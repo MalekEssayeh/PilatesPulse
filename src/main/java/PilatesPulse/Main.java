@@ -12,16 +12,14 @@ import java.util.List;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        ProgrammeService programmeService=new ProgrammeService();
-        ExerciceService exerciceService=new ExerciceService();
-        Exercice e=new Exercice( 68,12,5,  "Difficile", "Preacher curl", "Dos", "link");
-        Exercice e1=new Exercice( 69,12,5,  "Facile", "Skull crusher", "Dos", "link");
-        Exercice e3=new Exercice( 70,12,5,  "Moyenne", "Bench press", "Dos", "link");
-        Exercice e2=new Exercice( 71,12,5,  "Moyenne", "Skull crusher", "Dos", "link");
-        Exercice e4=new Exercice( 72,12,5,  "Facile", "Lat pulldowns", "Dos", "link");
-        Exercice e5=new Exercice( 73,14,5,  "Facile", "Squats", "Dos", "link");
-
-
+        ProgrammeService programmeService = new ProgrammeService();
+        ExerciceService exerciceService = new ExerciceService();
+        Exercice e = new Exercice(68, 12, 5, "Difficile", "Preacher curl", "Bras", "link1");
+        Exercice e1 = new Exercice(69, 12, 5, "Difficile", "Skull crusher", "Bras", "link2");
+        Exercice e3 = new Exercice(70, 12, 5, "Moyenne", "Bench press", "Dos", "link3");
+        Exercice e2 = new Exercice(71, 12, 5, "Difficile", "Skull crusher", "Bras", "link4");
+        Exercice e4 = new Exercice(72, 12, 5, "Facile", "Lat pulldowns", "StabilisateurEpaule", "link5");
+        Exercice e5 = new Exercice(73, 14, 5, "Facile", "Squats", "Fessiers", "link6");
 
         exerciceService.add(e);
         exerciceService.add(e1);
@@ -29,39 +27,45 @@ public class Main {
         exerciceService.add(e3);
         exerciceService.add(e4);
         exerciceService.add(e5);
-
-
-List<Exercice> Exercices=new ArrayList<>();
-        Exercices.add(e);
+        for (Exercice ex : exerciceService.fetch()) {
+            System.out.println(ex);
+        }
+        exerciceService.update(e1, "HTTPS/VIDEO.TN");
+        for (Exercice ex : exerciceService.fetch()) {
+            System.out.println(ex);
+        }
+        exerciceService.delete(e.getIdExercice());
+        for (Exercice ex : exerciceService.fetch()) {
+            System.out.println(ex);
+        }
+        List<Exercice> Exercices = new ArrayList<>();
         Exercices.add(e1);
         Exercices.add(e2);
+
+        Programme p = new Programme(210, 120, "Burn fat", 120, Exercices);
+
         Exercices.add(e3);
         Exercices.add(e4);
-        Exercices.add(e5);
-
-
-
-
-        Programme p=new Programme(210,120,"Burn fat",120,Exercices);
-       // Programme p2=new Programme(210,180,"BUILD STRONG ABS",6,"EASY",Exercices);
+        Programme p2 = new Programme(245, 210, "BUILD STRONG ABS", 80, Exercices);
 
         programmeService.add(p);
-        //programmeService.update(p,"Facile");
-        //programmeService.delete(14);
-        for(Programme pr :programmeService.fetch()){
+        programmeService.add(p2);
+        for (Programme pr : programmeService.fetch()) {
             System.out.println(pr);
         }
-        /*
-for(Exercice ex :exerciceService.fetch()){
-    System.out.println(ex);
-}
-exerciceService.update(e1,"HTTPS/VIDEO.TN");
-        for(Exercice ex :exerciceService.fetch()){
-            System.out.println(ex);
+        programmeService.update(p, "Facile");
+        for (Programme pr : programmeService.fetch()) {
+            System.out.println(pr);
         }
-exerciceService.delete(e);
-        for(Exercice ex :exerciceService.fetch()){
-            System.out.println(ex);
-        }*/
+        programmeService.delete(210);
+
+        for (Programme pr : programmeService.fetch()) {
+            System.out.println(pr);
+        }
+        programmeService.addList(p, e5);
+        for (Programme pr : programmeService.fetch()) {
+            System.out.println(pr);
+        }
+
     }
 }

@@ -89,7 +89,6 @@ public class ProgrammeService implements crudInterface<Programme>{
                 List<Exercice> exercices = new ArrayList<>();
                 while (rs1.next()) {
                     int a = rs1.getInt(2);
-                    System.out.println(a);
                     ex.setInt(1, a);
                     ResultSet rs2 = ex.executeQuery();
                     while (rs2.next()) {
@@ -127,7 +126,18 @@ public class ProgrammeService implements crudInterface<Programme>{
             ex.printStackTrace();
         }
     }
-
+public void addList(Programme p,Exercice a){
+    try {
+        String req ="INSERT INTO `ListExercice`(`idProg`,`IDex` ) VALUES (?,?) ";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setInt(2, a.getIdExercice());
+        ps.setInt(1,  p.getIdProgramme());
+        ps.executeUpdate();
+        System.out.println("Exercice added to list successfully!");
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
     @Override
     public void delete(int p) {
         try {
