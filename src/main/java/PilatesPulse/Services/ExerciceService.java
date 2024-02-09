@@ -20,7 +20,7 @@ public class ExerciceService implements crudInterface<Exercice> {
     public void add(Exercice p) {
         try {
 
-            String req = "INSERT INTO `Exercice`(`nomExercice`, `idCoach`, `DifficulteExercice`, `EvaluationExercice`, `Muscle`, `Demonstration`) VALUES (?,?,?,?,?,?)";
+            String req = "INSERT INTO `Exercice`(`nomExercice`, `idCoach`, `DifficulteExercice`, `EvaluationExercice`, `Muscle`, `Demonstration`,`IDexercice`) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getNomExercice());
             ps.setInt(   2, p.getIdCoach());
@@ -28,6 +28,7 @@ public class ExerciceService implements crudInterface<Exercice> {
             ps.setInt(   4, p.getEvaluationExercice());
             ps.setString(5, p.getMuscle());
             ps.setString(6, p.getDemonstration());
+            ps.setInt(7, p.getIdExercice());
 
 
 
