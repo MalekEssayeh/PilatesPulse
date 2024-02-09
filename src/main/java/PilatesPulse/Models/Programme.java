@@ -29,13 +29,33 @@ public class Programme {
 
     }
 
-    public Programme(int idProgramme, int idCoachp,String nomProgramme, int dureeProgramme, int evaluationProgramme, String difficulteProgramme, List<Exercice> listExercice) {
+    public Programme(int idProgramme, int idCoachp,String nomProgramme, int dureeProgramme, List<Exercice> listExercice) {
         this.idProgramme = idProgramme;
         this.idCoachp = idCoachp;
         this.dureeProgramme = dureeProgramme;
-        this.evaluationProgramme = evaluationProgramme;
-        this.difficulteProgramme = difficulteProgramme;
         this.listExercice = listExercice;
+        int eval=0;
+        int f=0,d=0,m=0;
+        for(Exercice ex:listExercice){
+        if(ex.getDifficulteExercice().equals("Moyenne"))
+            m++;
+        if(ex.getDifficulteExercice().equals("Difficile"))
+            d++;
+        if(ex.getDifficulteExercice().equals("Facile"))
+            f++;
+        eval+=ex.evaluationExercice;
+        }
+
+        this.evaluationProgramme = eval/listExercice.size();
+        if(Math.abs((d-f)/listExercice.size())>0&&Math.abs((d-f)/listExercice.size())<0.2||m>f+d)
+        this.difficulteProgramme = "Moyenne";
+        else if(d>f)
+            this.difficulteProgramme = "Difficile";
+        else
+            this.difficulteProgramme = "Facile";
+        this.evaluationProgramme=eval/listExercice.size();
+
+
         this.nomProgramme=nomProgramme;
 
     }
@@ -45,7 +65,7 @@ public class Programme {
         this.dureeProgramme = dureeProgramme;
         this.evaluationProgramme = evaluationProgramme;
         this.difficulteProgramme = difficulteProgramme;
-this.nomProgramme=nomProgramme;
+        this.nomProgramme=nomProgramme;
     }
 
     public int getIdProgramme() {

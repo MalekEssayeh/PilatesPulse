@@ -40,9 +40,6 @@ public class ProgrammeService implements crudInterface<Programme>{
                     try (ResultSet rs = ps2.executeQuery()) {
                         if (rs.next()) {
                             p.setIdProgramme(rs.getInt(1));
-                            System.out.println("*********************");
-                            System.out.println(p.getIdProgramme());
-                            System.out.println("*********************");
                         }
                     }
                 }
