@@ -66,6 +66,13 @@ public class Main {
         for (Programme pr : programmeService.fetch()) {
             System.out.println(pr);
         }
+        for (Exercice ex : exerciceService.rechercheExercice(72)) {
+            System.out.println(ex);
+        }
+        for (Programme ex : programmeService.rechercheProgramme(210)) {
+            System.out.println(ex);
+        }
 
     }
+
 }

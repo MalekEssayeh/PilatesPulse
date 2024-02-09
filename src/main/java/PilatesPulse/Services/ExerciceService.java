@@ -101,6 +101,31 @@ public class ExerciceService implements crudInterface<Exercice> {
             ex.printStackTrace();
         }
     }
+    public List<Exercice> rechercheExercice(int id) {
+        List<Exercice> Exercices = new ArrayList<>();
+        try {
 
+            String req = "SELECT * FROM Exercice WHERE IDexercice LIKE CONCAT(?, '%')";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Exercice p = new Exercice();
+                p.setIdExercice(rs.getInt(1));
+                p.setNomExercice(rs.getString(2));
+                p.setIdCoach(rs.getInt(3));
+                p.setDifficulteExercice(rs.getString(4));
+                p.setEvaluationExercice(rs.getInt(5));
+                p.setMuscle(rs.getString(6));
+                p.setDemonstration(rs.getString(7));
+
+                Exercices.add(p);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return Exercices;
+    }
 
 }
