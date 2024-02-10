@@ -142,9 +142,17 @@ public void addList(Programme p,Exercice a){
     public void delete(int p) {
         try {
             String req ="DELETE FROM `Programme`  WHERE IDprogramme = ?";
+            String req1 ="DELETE FROM `ListExercice`  WHERE IDprog = ?";
+
             PreparedStatement ps = cnx.prepareStatement(req);
+            PreparedStatement ps2 = cnx.prepareStatement(req1);
+
             ps.setInt(1, p);
+            ps2.setInt(1, p);
+
             ps.executeUpdate();
+            ps2.executeUpdate();
+
             System.out.println("Programme Deleted successfully!");
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -161,8 +169,9 @@ public void addList(Programme p,Exercice a){
             PreparedStatement ps = cnx.prepareStatement(req1);
             PreparedStatement ex = cnx.prepareStatement(req2);
 
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery(req);
+            PreparedStatement st = cnx.prepareStatement(req);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Programme p = new Programme();
                 p.setIdProgramme(rs.getInt(1));
@@ -200,4 +209,57 @@ public void addList(Programme p,Exercice a){
         }
         return Programmes;
     }
+    public List<Programme> filtreProgramme(int a,int b ) {
+        List<Programme> Programmes = new ArrayList<>();
+        try {
+
+            String req = "SELECT * FROM Programme WHERE DureeProgramme BETWEEN ? AND ?";
+            String req1 = "SELECT * FROM listExercice WHERE idProg = ?";
+            String req2 = "SELECT * FROM Exercice WHERE idExercice = ?";
+
+            // Creating prepared statements
+            PreparedStatement ps = cnx.prepareStatement(req1);
+            PreparedStatement ex = cnx.prepareStatement(req2);
+
+            PreparedStatement st = cnx.prepareStatement(req);
+            st.setInt(1, a);
+            st.setInt(2, b);
+             ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Programme p = new Programme();
+                p.setIdProgramme(rs.getInt(1));
+                p.setNomProgramme(rs.getString(2));
+                p.setIdCoachp(rs.getInt(3));
+                p.setDureeProgramme(rs.getInt(4));
+                p.setEvaluationProgramme(rs.getInt(5));
+                p.setDifficulteProgramme(rs.getString(6));
+                ps.setInt(1, p.getIdProgramme());
+
+                ResultSet rs1 = ps.executeQuery();
+
+                List<Exercice> exercices = new ArrayList<>();
+                while (rs1.next()) {
+                    int j = rs1.getInt(2);
+                    ex.setInt(1, j);
+                    ResultSet rs2 = ex.executeQuery();
+                    while (rs2.next()) {
+                        Exercice exer = new Exercice();
+                        exer.setIdExercice(rs2.getInt(1));
+                        exer.setNomExercice(rs2.getString(2));
+                        exer.setIdCoach(rs2.getInt(3));
+                        exer.setDifficulteExercice(rs2.getString(4));
+                        exer.setEvaluationExercice(rs2.getInt(5));
+                        exer.setMuscle(rs2.getString(6));
+                        exer.setDemonstration(rs2.getString(7));
+                        exercices.add(exer);
+                    }
+                }
+                p.setListExercice(exercices);
+                Programmes.add(p);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return Programmes;
+        }
 }

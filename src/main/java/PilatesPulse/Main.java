@@ -27,14 +27,20 @@ public class Main {
         exerciceService.add(e3);
         exerciceService.add(e4);
         exerciceService.add(e5);
+        System.out.println("*********************AJOUT EXERCICE**************************");
+
         for (Exercice ex : exerciceService.fetch()) {
             System.out.println(ex);
         }
         exerciceService.update(e1, "HTTPS/VIDEO.TN");
+        System.out.println("*********************MAJ EXERCICE**************************");
+
         for (Exercice ex : exerciceService.fetch()) {
             System.out.println(ex);
         }
         exerciceService.delete(e.getIdExercice());
+        System.out.println("*********************SUPRESSION EXERCICE**************************");
+
         for (Exercice ex : exerciceService.fetch()) {
             System.out.println(ex);
         }
@@ -43,36 +49,50 @@ public class Main {
         Exercices.add(e2);
 
         Programme p = new Programme(210, 120, "Burn fat", 120, Exercices);
+        List<Exercice> Exercices1 = new ArrayList<>();
 
-        Exercices.add(e3);
-        Exercices.add(e4);
-        Programme p2 = new Programme(245, 210, "BUILD STRONG ABS", 80, Exercices);
+        Exercices1.add(e3);
+        Exercices1.add(e4);
+        Programme p2 = new Programme(245, 210, "BUILD STRONG ABS", 80, Exercices1);
 
         programmeService.add(p);
         programmeService.add(p2);
+        System.out.println("*********************AJOUT PROGRAMME**************************");
+
         for (Programme pr : programmeService.fetch()) {
             System.out.println(pr);
         }
         programmeService.update(p, "Facile");
+        System.out.println("*********************MAJ PROGRAMME**************************");
+
         for (Programme pr : programmeService.fetch()) {
             System.out.println(pr);
         }
         programmeService.delete(210);
+        System.out.println("*********************SUPRESSION PROGRAMME**************************");
 
         for (Programme pr : programmeService.fetch()) {
             System.out.println(pr);
         }
+        System.out.println("*********************AJOUT D'UN EXERCICE DANS UNE LISTE DE PROGRAMME **************************");
+
         programmeService.addList(p, e5);
         for (Programme pr : programmeService.fetch()) {
             System.out.println(pr);
         }
+        System.out.println("*********************RECHERCHE EXERCICE**************************");
+
         for (Exercice ex : exerciceService.rechercheExercice(72)) {
             System.out.println(ex);
         }
-        for (Programme ex : programmeService.rechercheProgramme(210)) {
+        System.out.println("*********************RECHERCHE PROGRAMME**************************");
+        for (Programme ex : programmeService.rechercheProgramme(50)) {
             System.out.println(ex);
         }
 
+        for (Programme ex : programmeService.filtreProgramme(70,75)) {
+            System.out.println(ex);
+        }
     }
 
 }
