@@ -8,8 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import PilatesPulse.Models.Exercice;
-import PilatesPulse.Models.Programme;
 import PilatesPulse.Utils.Connexion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class ExerciceService implements crudInterface<Exercice> {
     Connection cnx = Connexion.getInstance().getCnx();
@@ -46,8 +47,8 @@ public class ExerciceService implements crudInterface<Exercice> {
 
 
     @Override
-    public List<Exercice> fetch() {
-        List<Exercice> Exercices = new ArrayList<>();
+    public ObservableList<Exercice> fetch() {
+        ObservableList<Exercice> Exercices = FXCollections.observableArrayList();
         try {
 
             String req = "SELECT * FROM Exercice";

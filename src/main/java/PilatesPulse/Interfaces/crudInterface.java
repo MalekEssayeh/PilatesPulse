@@ -1,4 +1,6 @@
 package PilatesPulse.Interfaces;
+import javafx.collections.ObservableList;
+
 import java.util.List;
 
 public interface crudInterface <T>{
@@ -12,7 +14,7 @@ public interface crudInterface <T>{
         public void add(T p);
 
         //list : select
-        public List<T> fetch();
+        public ObservableList<T> fetch();
         public void update(T p,String a);
         public void delete(int p);
         //affectation

@@ -10,6 +10,8 @@ import java.util.List;
 import PilatesPulse.Models.Exercice;
 import PilatesPulse.Models.Programme;
 import PilatesPulse.Utils.Connexion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class ProgrammeService implements crudInterface<Programme>{
 
@@ -61,8 +63,8 @@ public class ProgrammeService implements crudInterface<Programme>{
         }
 
 
-    public List<Programme> fetch() {
-        List<Programme> Programmes = new ArrayList<>();
+    public ObservableList<Programme> fetch() {
+        ObservableList<Programme> Programmes = FXCollections.observableArrayList() ;
         try {
             String req = "SELECT * FROM Programme";
             String req1 = "SELECT * FROM listExercice WHERE idProg = ?";

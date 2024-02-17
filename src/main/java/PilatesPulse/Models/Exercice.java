@@ -84,14 +84,15 @@ public class Exercice {
 
     @Override
     public String toString() {
-        return "Exercice{" +
-                "idExercice=" + idExercice +
-                ", idCoach=" + idCoach +
-                ", evaluationExercice=" + evaluationExercice +
-                ", difficulteExercice='" + difficulteExercice + '\'' +
-                ", nomExercice='" + nomExercice + '\'' +
-                ", muscle='" + muscle + '\'' +
-                ", demonstration='" + demonstration + '\'' +
-                '}';
+        return "<b>ID:</b> <font color='#4B0082'>" + idExercice + "</font>\n" +
+                "<b>Coach ID:</b> <font color='#4B0082'>" + idCoach + "</font>\n" +
+                "<b>Evaluation:</b> <font color='#4B0082'>" + evaluationExercice + "</font>\n" +
+                "<b>Difficulty:</b> <font color='#4B0082'>" + difficulteExercice + "</font>\n" +
+                "<b>Name:</b> <font color='#4B0082'>" + nomExercice + "</font>\n" +
+                "<b>Muscle:</b> <font color='#4B0082'>" + muscle + "</font>\n" +
+                "<b>Demonstration:</b> <font color='#4B0082'>" + demonstration + "</font>";
     }
+
+
+
 }
