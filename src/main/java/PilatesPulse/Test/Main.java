@@ -1,4 +1,4 @@
-package PilatesPulse;
+package PilatesPulse.Test;
 
 import PilatesPulse.Models.Exercice;
 import PilatesPulse.Models.Programme;
