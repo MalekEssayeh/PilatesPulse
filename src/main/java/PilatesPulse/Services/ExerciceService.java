@@ -155,4 +155,31 @@ public class ExerciceService implements crudInterface<Exercice> {
         }
 
         return Exercices;}
-}
+
+    public void Edit(int e,String nomExercice, int idCoach, String difficulteExercice, int evaluationExercice, String muscle, String demonstration) {
+        try {
+            String req = "UPDATE `Exercice` SET `NomExercice`=?, `IdCoach`=?, `DifficulteExercice`=?, `EvaluationExercice`=?, `Muscle`=?, `Demonstration`=? WHERE `IDExercice`=?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+
+            // Set values for each parameter
+            ps.setString(1, nomExercice);
+            ps.setInt(2, idCoach);
+            ps.setString(3, difficulteExercice);
+            ps.setInt(4, evaluationExercice);
+            ps.setString(5, muscle);
+            ps.setString(6, demonstration);
+            ps.setInt(7, e);
+
+            // Execute the update
+            int rowsUpdated = ps.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                System.out.println("Exercice updated successfully!");
+            } else {
+                System.out.println("Failed to update Exercice. No matching record found.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }}

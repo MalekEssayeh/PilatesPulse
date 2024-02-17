@@ -8,6 +8,6 @@
    <children>
       <ListView fx:id="ListExercice" layoutX="74.0" layoutY="88.0" prefHeight="416.0" prefWidth="711.0" />
       <Button fx:id="Delete" layoutX="808.0" layoutY="264.0" mnemonicParsing="false" onAction="#deleteSelectedExercice" prefHeight="26.0" prefWidth="55.0" text="Delete" />
-      <Button fx:id="Delete1" layoutX="808.0" layoutY="296.0" mnemonicParsing="false" onAction="#deleteSelectedExercice" text="Update" />
+      <Button fx:id="Editer" layoutX="808.0" layoutY="296.0" mnemonicParsing="false" onAction="#Editer" text="Editer" />
    </children>
 </AnchorPane>
