@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="652.0" prefWidth="873.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AffichageExercice">
    <children>
-      <ListView fx:id="ListExercice" layoutX="73.0" layoutY="89.0" prefHeight="416.0" prefWidth="726.0" />
+      <ListView fx:id="ListExercice" layoutX="73.0" layoutY="89.0" prefHeight="416.0" prefWidth="726.0">
+         <stylesheets>
+            <URL value="@Style/legacy/MFXLegacyListView.css" />
+            <URL value="@Style/legacy/MFXLegacyListCell.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="corner" />
+            <String fx:value="decrement-arrow" />
+            <String fx:value="label" />
+         </styleClass></ListView>
       <Button fx:id="Delete" layoutX="211.0" layoutY="535.0" mnemonicParsing="false" onAction="#deleteSelectedExercice" prefHeight="34.0" prefWidth="116.0" text="Delete" />
       <Button fx:id="Editer" layoutX="561.0" layoutY="535.0" mnemonicParsing="false" onAction="#Editer" prefHeight="33.0" prefWidth="116.0" text="Editer" />
    </children>

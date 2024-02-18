@@ -21,7 +21,6 @@
 @import "MFXColors.css";
 
 .mfx-text-field {
-
   -mfx-main: -mfx-purple;
   -fx-background-color: white;
   -fx-background-radius: 5;
@@ -55,12 +54,12 @@
 }
 
 .mfx-text-field .floating-text {
-  -fx-font-family: "Century Gothic";
+  -fx-font-family: "Open Sans Regular";
   -fx-text-fill: -mfx-text-he;
 }
 
 .mfx-text-field:floating .floating-text {
-  -fx-background-color: Transparent;
+  -fx-background-color: white;
 }
 
 .mfx-text-field:focus-within .floating-text {

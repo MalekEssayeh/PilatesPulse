@@ -21,12 +21,13 @@
 @import "MFXColors.css";
 
 .mfx-button {
-  -fx-font-family: "Century Gothic Bold";
+  -fx-font-family: "Open Sans Regular";
   -fx-text-fill: -mfx-text-he;
 }
 
 .mfx-button:armed,
 .mfx-button:hover,
+.mfx-button:focused,
 .mfx-button {
   -fx-background-radius: 3px;
   -fx-background-insets: 0px;
