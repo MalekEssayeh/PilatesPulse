@@ -76,7 +76,6 @@
 
                         textFlow.getChildren().addAll(idText, coachText, evaluationText, difficultyText, nameText, muscleText, demonstrationText);
 
-                        // Set the TextFlow as the graphic for the ListCell
                         setGraphic(textFlow);
                     }
                 }
@@ -122,7 +121,6 @@
 
                 stage.show();
 
-                // Pass the primary stage reference to the EditionExercice controller
                 EditionExercice editionExerciceController = loader.getController();
                 editionExerciceController.setPrimaryStage(primaryStage);
 

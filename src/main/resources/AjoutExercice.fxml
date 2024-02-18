@@ -51,13 +51,13 @@
             <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
          </textFill>
       </MFXTextField>
-      <MFXButton layoutX="364.0" layoutY="514.0" onAction="#AjoutEx" prefHeight="26.0" prefWidth="129.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Confirmer" textFill="WHITE">
+      <MFXButton fx:id="AjoutEx" layoutX="364.0" layoutY="514.0" onAction="#AjoutEx" prefHeight="26.0" prefWidth="129.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Confirmer" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </MFXButton>
       <MFXSlider fx:id="Evaluation" layoutX="315.0" layoutY="338.0" max="5.0" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" />
-      <Label fx:id="label1" layoutX="110.0" layoutY="34.0" prefHeight="94.0" prefWidth="768.0" text="Ajouter Exercice" textAlignment="CENTER" textFill="#403060">
+      <Label fx:id="label1" layoutX="120.0" layoutY="34.0" prefHeight="94.0" prefWidth="768.0" text="Ajouter Exercice" textAlignment="CENTER" textFill="#403060">
          <font>
             <Font name="Century Gothic Bold" size="72.0" />
          </font></Label>

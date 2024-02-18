@@ -2,11 +2,17 @@ package PilatesPulse.Controller;
 
 import PilatesPulse.Models.Exercice;
 import PilatesPulse.Services.ExerciceService;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXSlider;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -14,18 +20,22 @@ import java.util.ResourceBundle;
 
 public class EditionExercice implements Initializable {
     @FXML
-    private Button Modifier;
+    private MFXButton Modifier;
     private int ID ;
     @FXML
-    private ComboBox<String> Muscle;
+    private MFXComboBox<String> Muscle;
     @FXML
-    private ComboBox<Integer> Evaluation;
+    private MFXSlider Evaluation;
     @FXML
-    private ComboBox<String> Difficulte;
+    private MFXComboBox<String> Difficulte;
     @FXML
-    private TextField NomExercice;
+    private MFXTextField NomExercice;
     @FXML
-    private TextField Demonstration;
+    private MFXTextField Demonstration;
+    @FXML
+    private Label label1;
+    @FXML
+    private Label label11;
 
     private ExerciceService exp= new ExerciceService();
     private Stage primaryStage;
@@ -34,13 +44,18 @@ public class EditionExercice implements Initializable {
         this.ID = ID;
     }
     public void Modifier(javafx.event.ActionEvent actionEvent) {
-        exp.Edit(ID,NomExercice.getText(),1299,Difficulte.getValue(),Evaluation.getValue(),Muscle.getValue(),Demonstration.getText());
+        exp.Edit(ID,NomExercice.getText(),1299,Difficulte.getValue(), (int) Evaluation.getValue(),Muscle.getValue(),Demonstration.getText());
         Stage stage = (Stage) Modifier.getScene().getWindow();
         stage.close();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Font customFont = Font.loadFont(getClass().getResourceAsStream("/gothicb.ttf"), 72);
+        Font customFont2 = Font.loadFont(getClass().getResourceAsStream("/gothicb.ttf"), 18);
+
+        label1.setFont(customFont);
+        label11.setFont(customFont2);
         Exercice e1=new Exercice();
  for (Exercice e: exp.rechercheExercice(ID)) {
      e1 = e;
@@ -48,9 +63,7 @@ public class EditionExercice implements Initializable {
 
         String[] t1 = {"Abdominaux", "PlancherPelvin", "Dos", "Fessiers", "Cuisses", "Epaules", "Bras", "StabilisateurEpaule"};
         String[] t2 = {"Facile", "Moyenne", "Difficile"};
-        Integer[] t3 = {1, 2, 3, 4, 5};
         Muscle.getItems().addAll(t1);
-        Evaluation.getItems().addAll(t3);
         Difficulte.getItems().addAll(t2);
         Muscle.setValue(e1.getMuscle());
         Evaluation.setValue(e1.getEvaluationExercice());
