@@ -1,5 +1,8 @@
 package PilatesPulse.Controller;
 
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXSlider;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -13,30 +16,28 @@ import java.util.ResourceBundle;
 
 public class AjoutExercice implements Initializable {
     @FXML
-    private ComboBox<String> Muscle;
+    private MFXComboBox<String> Muscle;
     @FXML
-    private ComboBox<Integer> Evaluation;
+    private MFXSlider Evaluation;
     @FXML
-    private ComboBox<String> Difficulte;
+    private MFXComboBox<String> Difficulte;
     @FXML
-    private TextField NomExercice;
+    private MFXTextField NomExercice;
     @FXML
-    private TextField Demonstration;
+    private MFXTextField Demonstration;
 
     private ExerciceService exp= new ExerciceService();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] t1 = {"Abdominaux", "PlancherPelvin", "Dos", "Fessiers", "Cuisses", "Epaules", "Bras", "StabilisateurEpaule"};
         String[] t2 = {"Facile", "Moyenne", "Difficile"};
-        Integer[] t3 = {1, 2, 3, 4, 5};
         Muscle.getItems().addAll(t1);
-        Evaluation.getItems().addAll(t3);
         Difficulte.getItems().addAll(t2);
     }
 
 
     public void AjoutEx(javafx.event.ActionEvent actionEvent) {
-        exp.add(new Exercice(1299,Evaluation.getValue(),Difficulte.getValue(),NomExercice.getText(),Muscle.getValue(),Demonstration.getText()));
+        exp.add(new Exercice(1299, (int) Evaluation.getValue(),Difficulte.getValue(),NomExercice.getText(),Muscle.getValue(),Demonstration.getText()));
 
     }
 }

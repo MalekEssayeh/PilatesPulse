@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TextField?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXSlider?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AjoutExercice">
+<AnchorPane prefHeight="618.0" prefWidth="878.0" style="-fx-background-color: #FFF0F5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AjoutExercice">
    <children>
-      <TextField fx:id="Demonstration" layoutX="225.0" layoutY="301.0" />
-      <ComboBox fx:id="Evaluation" layoutX="224.0" layoutY="187.0" prefWidth="150.0" />
-      <ComboBox fx:id="Difficulte" layoutX="225.0" layoutY="245.0" prefWidth="150.0" />
-      <ComboBox fx:id="Muscle" layoutX="225.0" layoutY="127.0" prefWidth="150.0" />
-      <TextField fx:id="NomExercice" layoutX="224.0" layoutY="70.0" />
-      <Button layoutX="273.0" layoutY="348.0" mnemonicParsing="false" onAction="#AjoutEx" text="Ajouter" />
+      <MFXTextField fx:id="NomExercice" floatMode="BORDER" floatingText="Nom Exercice" layoutX="305.0" layoutY="83.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" styleClass="mfx-text-field" stylesheets="@Style/MFXTextField.css" />
+      <MFXComboBox fx:id="Difficulte" layoutX="305.0" layoutY="269.0" prefHeight="40.0" prefWidth="244.0" promptText="Difficulté">
+         <stylesheets>
+            <URL value="@Style/MFXComboBox.css" />
+            <URL value="@Style/MFXComboBoxCell.css" />
+         </stylesheets>
+      </MFXComboBox>
+      <MFXComboBox fx:id="Muscle" layoutX="305.0" layoutY="148.0" prefHeight="40.0" prefWidth="244.0" promptText="Muscle Solicitée">
+         <stylesheets>
+            <URL value="@Style/MFXComboBox.css" />
+            <URL value="@Style/MFXComboBoxCell.css" />
+         </stylesheets>
+      </MFXComboBox>
+      <MFXTextField fx:id="Demonstration" floatMode="BORDER" floatingText="Lien Photo" layoutX="305.0" layoutY="335.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" stylesheets="@Style/MFXTextField.css">
+         <styleClass>
+            <String fx:value="Style\MFXTextField.css" />
+            <String fx:value="floating-text" />
+         </styleClass>
+      </MFXTextField>
+      <MFXButton layoutX="400.0" layoutY="409.0" onAction="#AjoutEx" />
+      <MFXSlider fx:id="Evaluation" layoutX="313.0" layoutY="239.0" max="5.0" prefHeight="26.0" prefWidth="228.0" stylesheets="@Style/MFXSlider.css" />
+      <Label layoutX="305.0" layoutY="207.0" prefHeight="18.0" prefWidth="144.0" style="-fx-background-color: white;" text="Donner une Evaluation :" />
    </children>
 </AnchorPane>

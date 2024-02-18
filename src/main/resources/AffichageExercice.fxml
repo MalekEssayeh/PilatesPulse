@@ -4,10 +4,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="652.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AffichageExercice">
+<AnchorPane prefHeight="652.0" prefWidth="873.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AffichageExercice">
    <children>
-      <ListView fx:id="ListExercice" layoutX="74.0" layoutY="88.0" prefHeight="416.0" prefWidth="711.0" />
-      <Button fx:id="Delete" layoutX="808.0" layoutY="264.0" mnemonicParsing="false" onAction="#deleteSelectedExercice" prefHeight="26.0" prefWidth="55.0" text="Delete" />
-      <Button fx:id="Editer" layoutX="808.0" layoutY="296.0" mnemonicParsing="false" onAction="#Editer" text="Editer" />
+      <ListView fx:id="ListExercice" layoutX="73.0" layoutY="89.0" prefHeight="416.0" prefWidth="726.0" />
+      <Button fx:id="Delete" layoutX="211.0" layoutY="535.0" mnemonicParsing="false" onAction="#deleteSelectedExercice" prefHeight="34.0" prefWidth="116.0" text="Delete" />
+      <Button fx:id="Editer" layoutX="561.0" layoutY="535.0" mnemonicParsing="false" onAction="#Editer" prefHeight="33.0" prefWidth="116.0" text="Editer" />
    </children>
 </AnchorPane>
