@@ -38,7 +38,7 @@ public class PromoService implements userInterface<Promo> {
     }
 
     @Override
-    public void update(Promo promo, String newNom) {}
+    public void update(Promo promo) {}
 
 
     @Override
@@ -104,5 +104,9 @@ public class PromoService implements userInterface<Promo> {
     @Override
     public List<Promo> filterByName(String name) {
         return null;
+    }
+
+    public boolean login(String email, String password) {
+        return false;
     }
 }

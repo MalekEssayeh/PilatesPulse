@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Profile">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Users/Admin/Downloads/13c2f4707e1fdd0d831552333ffdf5d8.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

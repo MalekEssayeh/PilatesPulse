@@ -47,18 +47,22 @@ public class userService implements userInterface<user> {
         }
     }
 
-    public void update(user user, String nom) {
+    public void update(user user) {
         try {
-            String req = "UPDATE `user` SET `nom`=? WHERE id=?";
+            String req = "UPDATE `user` SET `nom`=?, `prenom`=?, `mail`=?, `mdp`=? WHERE id=?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
-            pstmt.setString(1, nom);
-            pstmt.setInt(2, user.getId());
+            pstmt.setString(1, user.getNom());
+            pstmt.setString(2, user.getPrenom());
+            pstmt.setString(3, user.getMail());
+            pstmt.setString(4, user.getMdp());
+            pstmt.setInt(5, user.getId());
             pstmt.executeUpdate();
-            System.out.println("user updated successfully!");
+            System.out.println("User updated successfully!");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
+
 
     public void update2(user user, Date validite){
 
@@ -145,6 +149,23 @@ public class userService implements userInterface<user> {
             ex.printStackTrace();
         }
         return userList;
+    }
+
+    public boolean login(String mail, String mdp) {
+        try {
+            String req = "SELECT * FROM `user` WHERE `mail` = ? AND `mdp` = ?";
+            PreparedStatement pstmt = cnx.prepareStatement(req);
+            pstmt.setString(1, mail);
+            pstmt.setString(2, mdp);
+            ResultSet rs = pstmt.executeQuery();
+
+            // If the result set has any rows, it means the user exists with the given email and password
+            return rs.next();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        // Return false if any exception occurs or if no user is found with the given credentials
+        return false;
     }
 
 }

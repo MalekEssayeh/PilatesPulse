@@ -1,5 +1,10 @@
 package user.test;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import user.Models.Promo;
 import user.Models.user;
 import user.Services.PromoService;
@@ -7,10 +12,13 @@ import user.Services.userService;
 
 import java.util.List;
 
+import static javafx.application.Application.launch;
+
 public class Main {
+
     public static void main(String[] args) {
 
-        // Create an instance of userService
+   /*     // Create an instance of userService
         userService us = new userService();
 
         // Test addUser2
@@ -67,7 +75,7 @@ public class Main {
        ps.delete(18);
 
         //Test update
-        ps.update2(p1,java.sql.Date.valueOf("2024-03-26"));
+        ps.update2(p1,java.sql.Date.valueOf("2024-03-26"));*/
 
 
     }
