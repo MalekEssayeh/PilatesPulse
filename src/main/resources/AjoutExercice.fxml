@@ -13,14 +13,6 @@
 
 <AnchorPane prefHeight="618.0" prefWidth="878.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AjoutExercice">
    <children>
-      <MFXTextField fx:id="NomExercice" floatingText="Nom Exercice" layoutX="307.0" layoutY="148.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" styleClass="mfx-text-field" stylesheets="@css/MFXTextField.css">
-         <font>
-            <Font name="Century Gothic Bold" size="14.0" />
-         </font>
-         <textFill>
-            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
-         </textFill>
-      </MFXTextField>
       <MFXComboBox fx:id="Difficulte" layoutX="307.0" layoutY="374.0" prefHeight="40.0" prefWidth="244.0" promptText="Difficulté">
          <stylesheets>
             <URL value="@css/MFXComboBox.css" />
@@ -66,5 +58,17 @@
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </Label>
+      <MFXTextField fx:id="NomExercice" floatingText="NomExercice" layoutX="307.0" layoutY="154.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" stylesheets="@css/MFXTextField.css">
+         <styleClass>
+            <String fx:value="css\MFXTextField.css" />
+            <String fx:value="floating-text" />
+         </styleClass>
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+         </textFill>
+      </MFXTextField>
    </children>
 </AnchorPane>

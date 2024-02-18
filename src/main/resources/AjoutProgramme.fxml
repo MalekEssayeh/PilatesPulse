@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXListView?>
+<?import io.github.palexdev.materialfx.controls.MFXSlider?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="597.0" prefWidth="884.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AjoutProgramme">
+   <children>
+      <MFXButton fx:id="Ajoutpr" layoutX="386.0" layoutY="553.0" onAction="#Ajoutpr" prefHeight="26.0" prefWidth="129.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Confirmer" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </MFXButton>
+      <MFXSlider fx:id="Duree" layoutX="341.0" layoutY="282.0" max="120.0" minorTicksCount="120" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" />
+      <Label fx:id="label1" layoutX="113.0" layoutY="48.0" prefHeight="94.0" prefWidth="768.0" text="Ajouter Programme" textAlignment="CENTER" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="72.0" />
+         </font>
+      </Label>
+      <Label fx:id="label11" layoutX="333.0" layoutY="234.0" prefHeight="18.0" prefWidth="151.0" text="Durée en minute :" textAlignment="CENTER" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="NomProgramme" floatingText="Nom Programme" layoutX="329.0" layoutY="164.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" stylesheets="@css/MFXTextField.css">
+         <styleClass>
+            <String fx:value="css\MFXTextField.css" />
+            <String fx:value="floating-text" />
+         </styleClass>
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+         </textFill>
+      </MFXTextField>
+      <MFXListView fx:id="listajout" depthLevel="LEVEL0" layoutX="229.0" layoutY="314.0" prefHeight="192.0" prefWidth="200.0">
+         <stylesheets>
+            <URL value="@css/MFXCheckListView.css" />
+            <URL value="@css/MFXCheckListCell.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="mfx-check-list-cell" />
+            <String fx:value="mfx-check-list-view" />
+            <String fx:value="data-label" />
+            <String fx:value="mfx-list-view" />
+         </styleClass></MFXListView>
+      <MFXListView fx:id="listsuppr" layoutX="473.0" layoutY="314.0" prefHeight="192.0" prefWidth="200.0">
+         <stylesheets>
+            <URL value="@css/MFXCheckListView.css" />
+            <URL value="@css/MFXCheckListCell.css" />
+         </stylesheets>
+         <styleClass>
+            <String fx:value="mfx-check-list-cell" />
+            <String fx:value="mfx-check-list-view" />
+            <String fx:value="data-label" />
+            <String fx:value="mfx-list-view" />
+         </styleClass></MFXListView>
+      <MFXButton fx:id="add" layoutX="253.0" layoutY="491.0" onAction="#adding" prefHeight="30.0" prefWidth="151.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Ajouter Exercice" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="delete" layoutX="497.0" layoutY="490.0" onAction="#deleting" prefHeight="30.0" prefWidth="151.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Supprimer Exercice" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </MFXButton>
+   </children>
+</AnchorPane>

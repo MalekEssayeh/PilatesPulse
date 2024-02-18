@@ -32,7 +32,7 @@
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
             // Load Poppins font
-            Font.loadFont(getClass().getResource("/Poppins-Bold.ttf").toExternalForm(), 40);
+            Font.loadFont(getClass().getResource("/gothicb.ttf").toExternalForm(), 40);
 
             ListExercice.setCellFactory(param -> new ListCell<>() {
                 @Override
@@ -45,38 +45,52 @@
                     } else {
                         TextFlow textFlow = new TextFlow();
 
-                        // Create Text objects for different parts of the information
-                        Text idText = new Text("ID: " + exercice.getIdExercice() + "\n");
-                        idText.setFill(Color.web("#4B0082"));
-                        idText.setFont(Font.font("Poppins", FontWeight.BOLD, 12)); // Set font to Poppins and make it bold
 
-                        Text coachText = new Text("Coach ID: " + exercice.getIdCoach() + "\n");
-                        coachText.setFill(Color.web("#4B0082"));
-                        coachText.setFont(Font.font("Poppins", FontWeight.BOLD, 12));
+                        String labelStyle = "-fx-fill: #4B0070; -fx-font-family: 'Century Gothic'; -fx-font-weight: bold; -fx-font-size: 24;";
 
-                        Text evaluationText = new Text("Evaluation: " + exercice.getEvaluationExercice() + "\n");
-                        evaluationText.setFill(Color.web("#4B0082"));
-                        evaluationText.setFont(Font.font("Poppins", FontWeight.BOLD, 12));
 
-                        Text difficultyText = new Text("Difficulty: " + exercice.getDifficulteExercice() + "\n");
-                        difficultyText.setFill(Color.web("#4B0082"));
-                        difficultyText.setFont(Font.font("Poppins", FontWeight.BOLD, 12));
+                        String dataStyle = "-fx-fill: #403060; -fx-font-family: 'Tw Cen MT Condensed Extra Bold'; -fx-font-weight: bold; -fx-font-size: 24;";
 
-                        Text nameText = new Text("Name: " + exercice.getNomExercice() + "\n");
-                        nameText.setFill(Color.web("#4B0082"));
-                        nameText.setFont(Font.font("Poppins", FontWeight.BOLD, 12));
+                        Text nameText = new Text("Name: ");
+                        nameText.setStyle(labelStyle);
+                        Text nameData = new Text(exercice.getNomExercice() + "\n");
+                        nameData.setStyle(dataStyle);
 
-                        Text muscleText = new Text("Muscle: " + exercice.getMuscle() + "\n");
-                        muscleText.setFill(Color.web("#4B0082"));
-                        muscleText.setFont(Font.font("Poppins", FontWeight.BOLD, 12));
+                        Text idText = new Text("ID: ");
+                        idText.setStyle(labelStyle);
+                        Text idData = new Text(exercice.getIdExercice() + "\n");
+                        idData.setStyle(dataStyle);
 
-                        Text demonstrationText = new Text("Demonstration: " + exercice.getDemonstration() + "\n");
-                        demonstrationText.setFill(Color.web("#4B0082"));
-                        demonstrationText.setFont(Font.font("Poppins", FontWeight.BOLD, 12));
+                        Text coachText = new Text("Coach ID: ");
+                        coachText.setStyle(labelStyle);
+                        Text coachData = new Text(exercice.getIdCoach() + "\n");
+                        coachData.setStyle(dataStyle);
 
-                        textFlow.getChildren().addAll(idText, coachText, evaluationText, difficultyText, nameText, muscleText, demonstrationText);
+                        Text evaluationText = new Text("Evaluation: ");
+                        evaluationText.setStyle(labelStyle);
+                        Text evaluationData = new Text(exercice.getEvaluationExercice() + "\n");
+                        evaluationData.setStyle(dataStyle);
+
+                        Text difficultyText = new Text("Difficulty: ");
+                        difficultyText.setStyle(labelStyle);
+                        Text difficultyData = new Text(exercice.getDifficulteExercice() + "\n");
+                        difficultyData.setStyle(dataStyle);
+
+                        Text muscleText = new Text("Muscle: ");
+                        muscleText.setStyle(labelStyle);
+                        Text muscleData = new Text(exercice.getMuscle() + "\n");
+                        muscleData.setStyle(dataStyle);
+
+                        Text demonstrationText = new Text("Demonstration: ");
+                        demonstrationText.setStyle(labelStyle);
+                        Text demonstrationData = new Text(exercice.getDemonstration() + "\n");
+                        demonstrationData.setStyle(dataStyle);
+
+                        textFlow.getChildren().addAll( nameText, nameData,idText, idData, coachText, coachData, evaluationText, evaluationData,
+                                difficultyText, difficultyData, muscleText, muscleData, demonstrationText, demonstrationData);
 
                         setGraphic(textFlow);
+
                     }
                 }
             });
