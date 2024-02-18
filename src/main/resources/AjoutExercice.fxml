@@ -8,30 +8,64 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="618.0" prefWidth="878.0" style="-fx-background-color: #FFF0F5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AjoutExercice">
+<AnchorPane prefHeight="618.0" prefWidth="878.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AjoutExercice">
    <children>
-      <MFXTextField fx:id="NomExercice" floatMode="BORDER" floatingText="Nom Exercice" layoutX="305.0" layoutY="83.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" styleClass="mfx-text-field" stylesheets="@Style/MFXTextField.css" />
-      <MFXComboBox fx:id="Difficulte" layoutX="305.0" layoutY="269.0" prefHeight="40.0" prefWidth="244.0" promptText="Difficulté">
+      <MFXTextField fx:id="NomExercice" floatingText="Nom Exercice" layoutX="307.0" layoutY="148.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" styleClass="mfx-text-field" stylesheets="@Style/MFXTextField.css">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color opacity="0.0" />
+         </textFill>
+      </MFXTextField>
+      <MFXComboBox fx:id="Difficulte" layoutX="307.0" layoutY="374.0" prefHeight="40.0" prefWidth="244.0" promptText="Difficulté">
          <stylesheets>
             <URL value="@Style/MFXComboBox.css" />
             <URL value="@Style/MFXComboBoxCell.css" />
          </stylesheets>
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
       </MFXComboBox>
-      <MFXComboBox fx:id="Muscle" layoutX="305.0" layoutY="148.0" prefHeight="40.0" prefWidth="244.0" promptText="Muscle Solicitée">
+      <MFXComboBox fx:id="Muscle" layoutX="307.0" layoutY="213.0" prefHeight="40.0" prefWidth="244.0" promptText="Muscle Solicitée">
          <stylesheets>
             <URL value="@Style/MFXComboBox.css" />
             <URL value="@Style/MFXComboBoxCell.css" />
          </stylesheets>
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
       </MFXComboBox>
-      <MFXTextField fx:id="Demonstration" floatMode="BORDER" floatingText="Lien Photo" layoutX="305.0" layoutY="335.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" stylesheets="@Style/MFXTextField.css">
+      <MFXTextField fx:id="Demonstration" floatingText="Lien Photo" layoutX="307.0" layoutY="440.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" stylesheets="@Style/MFXTextField.css">
          <styleClass>
             <String fx:value="Style\MFXTextField.css" />
             <String fx:value="floating-text" />
          </styleClass>
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color opacity="0.0" />
+         </textFill>
       </MFXTextField>
-      <MFXButton layoutX="400.0" layoutY="409.0" onAction="#AjoutEx" />
-      <MFXSlider fx:id="Evaluation" layoutX="313.0" layoutY="239.0" max="5.0" prefHeight="26.0" prefWidth="228.0" stylesheets="@Style/MFXSlider.css" />
-      <Label layoutX="305.0" layoutY="207.0" prefHeight="18.0" prefWidth="144.0" style="-fx-background-color: white;" text="Donner une Evaluation :" />
+      <MFXButton layoutX="364.0" layoutY="514.0" onAction="#AjoutEx" prefHeight="26.0" prefWidth="129.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@Style/MFXButton.css" text="Confirmer" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </MFXButton>
+      <MFXSlider fx:id="Evaluation" layoutX="315.0" layoutY="338.0" max="5.0" prefHeight="26.0" prefWidth="228.0" stylesheets="@Style/MFXSlider.css" />
+      <Label layoutX="307.0" layoutY="278.0" prefHeight="23.0" prefWidth="222.0" text="Evaluation :" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="149.0" layoutY="35.0" prefHeight="94.0" prefWidth="580.0" text="Ajouter Exercice" textAlignment="CENTER" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="72.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
