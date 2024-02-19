@@ -91,7 +91,7 @@ public class Exercice {
         Exercice exercice = (Exercice) o;
         return idExercice == exercice.idExercice && idCoach == exercice.idCoach && evaluationExercice == exercice.evaluationExercice && Objects.equals(difficulteExercice, exercice.difficulteExercice) && Objects.equals(nomExercice, exercice.nomExercice) && Objects.equals(muscle, exercice.muscle) && Objects.equals(demonstration, exercice.demonstration);
     }
-
+ 
     @Override
     public int hashCode() {
         return Objects.hash(idExercice, idCoach, evaluationExercice, difficulteExercice, nomExercice, muscle, demonstration);
