@@ -1,5 +1,7 @@
 package PilatesPulse.Models;
 
+import java.util.Objects;
+
 public class Exercice {
     int idExercice,idCoach,evaluationExercice;
     String difficulteExercice,nomExercice,muscle,demonstration;
@@ -80,6 +82,19 @@ public class Exercice {
 
     public void setDemonstration(String demonstration) {
         this.demonstration = demonstration;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Exercice exercice = (Exercice) o;
+        return idExercice == exercice.idExercice && idCoach == exercice.idCoach && evaluationExercice == exercice.evaluationExercice && Objects.equals(difficulteExercice, exercice.difficulteExercice) && Objects.equals(nomExercice, exercice.nomExercice) && Objects.equals(muscle, exercice.muscle) && Objects.equals(demonstration, exercice.demonstration);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idExercice, idCoach, evaluationExercice, difficulteExercice, nomExercice, muscle, demonstration);
     }
 
     @Override

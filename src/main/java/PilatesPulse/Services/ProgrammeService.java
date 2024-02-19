@@ -128,6 +128,47 @@ public class ProgrammeService implements crudInterface<Programme>{
             ex.printStackTrace();
         }
     }
+    public void Edit(int id,String NomProgramme,int DureeProgramme,List<Exercice> ex,List<Exercice> exup) {
+        System.out.println(ex);
+        System.out.println(exup);
+
+    try {
+            ExerciceService es=new ExerciceService();
+            String req  = "UPDATE `Programme` SET `DureeProgramme`=?, `EvaluationProgramme`=?, `DifficulteProgramme`=?, `NomProgramme`=? WHERE idProgramme=?";
+            String req1 ="INSERT INTO `ListExercice`(`idProg`,`IDex` ) VALUES (?,?)";
+            String req2 ="DELETE FROM listexercice WHERE idprog = ? AND idex = ?";
+
+        for(Exercice e:exup) {
+            if(!ex.contains(e)){
+                PreparedStatement preps2 = cnx.prepareStatement(req1);
+                preps2.setInt(1, id);
+                preps2.setInt(2, e.getIdExercice());
+                preps2.executeUpdate();
+            }
+        }
+
+            for(Exercice e:ex) {
+                if(!exup.contains(e)){
+                    PreparedStatement preps2 = cnx.prepareStatement(req2);
+                    preps2.setInt(1, id);
+                    preps2.setInt(2, e.getIdExercice());
+                    preps2.executeUpdate();
+                }
+            }
+
+            Programme pr=new Programme(id,255,NomProgramme,DureeProgramme,exup);
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, DureeProgramme);
+            ps.setInt(2, pr.getEvaluationProgramme());
+            ps.setString(3, pr.getDifficulteProgramme());
+            ps.setString(4, NomProgramme);
+            ps.setInt(5, id);
+            ps.executeUpdate();
+            System.out.println("Programme updated successfully!");
+        } catch (SQLException exep) {
+            exep.printStackTrace();
+        }
+    }
 public void addList(Programme p,Exercice a){
     try {
         String req ="INSERT INTO `ListExercice`(`idProg`,`IDex` ) VALUES (?,?) ";

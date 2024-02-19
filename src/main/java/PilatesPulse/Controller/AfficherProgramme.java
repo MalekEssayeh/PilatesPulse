@@ -128,8 +128,8 @@ public class AfficherProgramme implements Initializable {
 
             stage.show();
 
-            EditionExercice editionExerciceController = loader.getController();
-            editionExerciceController.setPrimaryStage(primaryStage);
+            EditionProgramme editionProgrammeController = loader.getController();
+            editionProgrammeController.setPrimaryStage(primaryStage);
 
         } catch (Exception e) {
             e.printStackTrace();

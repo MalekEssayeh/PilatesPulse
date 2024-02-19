@@ -72,6 +72,7 @@ public class EditionExercice implements Initializable {
         Demonstration.setText(e1.getDemonstration());
     }
     public void setPrimaryStage(Stage primaryStage) {
+
         this.primaryStage = primaryStage;
     }
 

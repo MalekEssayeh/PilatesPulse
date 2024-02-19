@@ -53,7 +53,11 @@ public class Programme {
             this.difficulteProgramme = "Difficile";
         else
             this.difficulteProgramme = "Facile";
-        this.evaluationProgramme=eval/listExercice.size();
+        if(listExercice.size()!=0){
+            this.evaluationProgramme = eval / listExercice.size();
+        }
+        else
+            this.evaluationProgramme =0;
 
 
         this.nomProgramme=nomProgramme;
