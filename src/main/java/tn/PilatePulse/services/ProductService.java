@@ -30,7 +30,24 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
         }
 
     }
+    public void add2(String nom, float prix, int idCat ) {
+        try {
+            String req = "INSERT INTO `Product`(`nameProduct`, `PriceProduct`, `idCategory`) VALUES (?,?,?)";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, nom);
+            ps.setFloat(   2, prix);
+            ps.setInt(3, idCat);
 
+            ps.executeUpdate();
+
+            System.out.println("Product : "+"*"+nom+"*"+ "added succesfuly");
+
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 
     public List<Product> fetchProduct (){
         List<Product> products = new ArrayList<>();
