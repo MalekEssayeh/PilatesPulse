@@ -67,6 +67,11 @@ public class AfficherProgramme implements Initializable {
                     Text evaluationData = new Text(Programme.getEvaluationProgramme() + "\n");
                     evaluationData.setStyle(dataStyle);
 
+                    Text DuréeTEXT = new Text("Durée: ");
+                    DuréeTEXT.setStyle(labelStyle);
+                    Text DuréeData = new Text(Programme.getDureeProgramme() + "\n");
+                    DuréeData.setStyle(dataStyle);
+
                     Text difficultyText = new Text("Difficulty: ");
                     difficultyText.setStyle(labelStyle);
                     Text difficultyData = new Text(Programme.getDifficulteProgramme() + "\n");
@@ -74,13 +79,13 @@ public class AfficherProgramme implements Initializable {
 
 
 
-                    Text demonstrationText = new Text("ListExercice: ");
+                    Text demonstrationText = new Text("List Exercice: ");
                     demonstrationText.setStyle(labelStyle);
                     Text demonstrationData = new Text(Programme.getListExercice() + "\n");
                     demonstrationData.setStyle(dataStyle);
 
                     textFlow.getChildren().addAll( nameText, nameData,idText, idData, coachText, coachData, evaluationText, evaluationData,
-                            difficultyText, difficultyData,demonstrationText,demonstrationData);
+                            DuréeTEXT,DuréeData,difficultyText, difficultyData,demonstrationText,demonstrationData);
 
                     setGraphic(textFlow);
 

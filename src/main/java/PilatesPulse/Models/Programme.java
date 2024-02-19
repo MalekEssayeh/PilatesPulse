@@ -123,12 +123,12 @@ public class Programme {
     @Override
     public String toString() {
         return "Programme{" +
-                "idProgramme=" + idProgramme +
-                ", idCoachp=" + idCoachp +
-                ", dureeProgramme=" + dureeProgramme +
-                ", evaluationProgramme=" + evaluationProgramme +
-                ", difficulteProgramme=" + difficulteProgramme +
-                ", listExercice=" + listExercice +
+                "ID=" + idProgramme +
+                ", ID Coach =" + idCoachp +
+                ", Durée =" + dureeProgramme +
+                ", Evaluation=" + evaluationProgramme +
+                ", Difficulte=" + difficulteProgramme +
+                ", Exercices=" + listExercice +
                 '}';
     }
 }

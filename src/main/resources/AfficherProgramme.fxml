@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="622.0" prefWidth="820.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AfficherProgramme">
    <children>
       <MFXButton fx:id="Editer" layoutX="525.0" layoutY="550.0" onAction="#Editer" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Editer">
