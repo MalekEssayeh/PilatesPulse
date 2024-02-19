@@ -11,11 +11,16 @@ import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +62,7 @@ public class AjoutProgramme implements Initializable {
     private List<Exercice> lsEX = new ArrayList<>();
 
     @FXML
-    void Ajoutpr(ActionEvent event) {
+    void Ajoutpr(javafx.event.ActionEvent event) {
         if (Duree.getValue()==0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -75,8 +80,16 @@ public class AjoutProgramme implements Initializable {
         else
         {
         programmeService.add(new Programme(ThreadLocalRandom.current().nextInt(1000, 2852),255,NomProgramme.getText(), (int) Duree.getValue(),lsEX));
-        Stage stage = (Stage) Ajoutpr.getScene().getWindow();
-        stage.close();}
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherProgramme.fxml"));
+                Parent root = loader.load();
+
+                Scene currentScene = ((Node) event.getSource()).getScene();
+
+                currentScene.setRoot(root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }}
     }
 
     @FXML

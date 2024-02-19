@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="716.0" prefWidth="953.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AffichageExercice">
    <children>
-      <MFXButton fx:id="Editer" layoutX="589.0" layoutY="662.0" onAction="#Editer" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Editer">
+      <MFXButton fx:id="Editer" layoutX="592.0" layoutY="662.0" onAction="#Editer" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Editer">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
@@ -65,5 +65,15 @@
             <Font name="Century Gothic Bold" size="72.0" />
          </font>
       </Label>
+      <MFXButton fx:id="PRp" layoutX="867.0" layoutY="16.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#pass" prefHeight="38.0" prefWidth="114.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Exercice">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="Ajoutp" layoutX="385.0" layoutY="662.0" onAction="#ajoutpass" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Ajouter">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
    </children>
 </AnchorPane>

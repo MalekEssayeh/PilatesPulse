@@ -4,30 +4,47 @@ import PilatesPulse.Models.Exercice;
 import PilatesPulse.Models.Programme;
 import PilatesPulse.Services.ExerciceService;
 import PilatesPulse.Services.ProgrammeService;
+import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AfficherProgramme implements Initializable {
     @FXML
+    private AnchorPane prog;
+    @FXML
     private ListView<Programme> ListProgramme;
     ProgrammeService programmeService  = new ProgrammeService();
     private Stage primaryStage;
-
+    @FXML
+    private MFXComboBox<String> Tri;
+    @FXML
+    private MFXTextField recherche;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Load Poppins font
+        String[] trier = { "Nom","Difficulté", "Evaluation"};
+        Tri.getItems().addAll(trier);
         Font.loadFont(getClass().getResource("/gothicb.ttf").toExternalForm(), 40);
 
         ListProgramme.setCellFactory(param -> new ListCell<>() {
@@ -40,31 +57,27 @@ public class AfficherProgramme implements Initializable {
                     setGraphic(null);
                 } else {
                     TextFlow textFlow = new TextFlow();
+                    TextFlow textFlow2 = new TextFlow();
+
+                    HBox container = new HBox();
 
 
-                    String labelStyle = "-fx-fill: #4B0070; -fx-font-family: 'Century Gothic'; -fx-font-weight: bold; -fx-font-size: 24;";
+                    String labelStyle = "-fx-fill: #9b8385;  -fx-font-size: 27  ;";
+                    String nameStyle = "-fx-fill: #8b7080;  -fx-font-size: 40;";
+
+                    String dataStyle = "-fx-fill: #9b8385; -fx-font-size: 20;";
+
+                    Font josefinBoldFont = Font.loadFont(getClass().getResource("/JosefinSans-Bold.ttf").toExternalForm(), 24);
+
+                    Text nameData = new Text("\t     "+Programme.getNomProgramme() + "\n");
+                    nameData.setStyle(nameStyle);
+                    nameData.setFont(josefinBoldFont);
 
 
-                    String dataStyle = "-fx-fill: #403060; -fx-font-family: 'Tw Cen MT Condensed Extra Bold'; -fx-font-weight: bold; -fx-font-size: 24;";
 
-                    Text nameText = new Text("Name: ");
-                    nameText.setStyle(labelStyle);
-                    Text nameData = new Text(Programme.getNomProgramme() + "\n");
-                    nameData.setStyle(dataStyle);
-
-                    Text idText = new Text("ID: ");
-                    idText.setStyle(labelStyle);
-                    Text idData = new Text(Programme.getIdProgramme() + "\n");
-                    idData.setStyle(dataStyle);
-
-                    Text coachText = new Text("Coach ID: ");
-                    coachText.setStyle(labelStyle);
-                    Text coachData = new Text(Programme.getIdCoachp() + "\n");
-                    coachData.setStyle(dataStyle);
-
-                    Text evaluationText = new Text("Evaluation: ");
+                    Text evaluationText = new Text("\nEvaluation: ");
                     evaluationText.setStyle(labelStyle);
-                    Text evaluationData = new Text(Programme.getEvaluationProgramme() + "\n");
+                    Text evaluationData = new Text( Programme.getEvaluationProgramme() + "\n");
                     evaluationData.setStyle(dataStyle);
 
                     Text DuréeTEXT = new Text("Durée: ");
@@ -72,28 +85,28 @@ public class AfficherProgramme implements Initializable {
                     Text DuréeData = new Text(Programme.getDureeProgramme() + "\n");
                     DuréeData.setStyle(dataStyle);
 
-                    Text difficultyText = new Text("Difficulty: ");
+                    Text difficultyText = new Text("Difficulté: ");
                     difficultyText.setStyle(labelStyle);
                     Text difficultyData = new Text(Programme.getDifficulteProgramme() + "\n");
                     difficultyData.setStyle(dataStyle);
 
 
 
-                    Text demonstrationText = new Text("List Exercice: ");
+                    Text demonstrationText = new Text("Exercices: ");
                     demonstrationText.setStyle(labelStyle);
                     Text demonstrationData = new Text(Programme.getListExercice() + "\n");
                     demonstrationData.setStyle(dataStyle);
 
-                    textFlow.getChildren().addAll( nameText, nameData,idText, idData, coachText, coachData, evaluationText, evaluationData,
-                            DuréeTEXT,DuréeData,difficultyText, difficultyData,demonstrationText,demonstrationData);
-
+                    textFlow.getChildren().addAll(nameData,evaluationText,evaluationData ,DuréeTEXT,DuréeData,difficultyText,difficultyData,demonstrationText, demonstrationData);
                     setGraphic(textFlow);
+
 
                 }
             }
         });
 
         ListProgramme.getItems().addAll(programmeService.fetch());
+
     }
    @FXML
     private void deleteSelectedProgramme() {
@@ -143,5 +156,120 @@ public class AfficherProgramme implements Initializable {
 
     public void updateListView() {
         ListProgramme.getItems().setAll(programmeService.fetch());
+    }
+
+    public void tri(ActionEvent actionEvent) {
+        if(Tri.getValue().equals("Nom")) {
+            List<Programme> exerciceList =  ListProgramme.getItems().stream().sorted(Comparator.comparing(Programme::getNomProgramme)).toList();
+            ObservableList<Programme> observableExerciceList = FXCollections.observableArrayList(exerciceList);
+            ListProgramme.setItems(observableExerciceList);
+        }
+        if(Tri.getValue().equals("Difficulté")) {
+            List<Programme> exerciceList =  ListProgramme.getItems().stream().sorted(Comparator.comparing(Programme::getDifficulteProgramme)).toList();
+            ObservableList<Programme> observableExerciceList = FXCollections.observableArrayList(exerciceList);
+            ListProgramme.setItems(observableExerciceList);
+        }
+        if(Tri.getValue().equals("Evaluation")) {
+            List<Programme> exerciceList =  ListProgramme.getItems().stream().sorted(Comparator.comparing(Programme::getEvaluationProgramme)).toList();
+            ObservableList<Programme> observableExerciceList = FXCollections.observableArrayList(exerciceList);
+            ListProgramme.setItems(observableExerciceList);
+        }
+
+    }
+
+    public void refrech(ActionEvent actionEvent) {
+        Font josefinBoldFont = Font.loadFont(getClass().getResource("/JosefinSans-Bold.ttf").toExternalForm(), 24);
+        Font josefinRegularFont = Font.loadFont(getClass().getResource("/JosefinSans-ThinItalic.ttf").toExternalForm(), 24);
+        ListProgramme.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Programme Programme, boolean empty) {
+                super.updateItem(Programme, empty);
+
+                if (empty || Programme == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    TextFlow textFlow = new TextFlow();
+                    TextFlow textFlow2 = new TextFlow();
+
+                    HBox container = new HBox();
+
+
+                    String labelStyle = "-fx-fill: #9b8385;  -fx-font-size: 27  ;";
+                    String nameStyle = "-fx-fill: #8b7080;  -fx-font-size: 40;";
+
+                    String dataStyle = "-fx-fill: #9b8385; -fx-font-size: 20;";
+
+                    Font josefinBoldFont = Font.loadFont(getClass().getResource("/JosefinSans-Bold.ttf").toExternalForm(), 24);
+
+                    Text nameData = new Text("\t     "+Programme.getNomProgramme() + "\n");
+                    nameData.setStyle(nameStyle);
+                    nameData.setFont(josefinBoldFont);
+
+
+
+                    Text evaluationText = new Text("\nEvaluation: ");
+                    evaluationText.setStyle(labelStyle);
+                    Text evaluationData = new Text( Programme.getEvaluationProgramme() + "\n");
+                    evaluationData.setStyle(dataStyle);
+
+                    Text DuréeTEXT = new Text("Durée: ");
+                    DuréeTEXT.setStyle(labelStyle);
+                    Text DuréeData = new Text(Programme.getDureeProgramme() + "\n");
+                    DuréeData.setStyle(dataStyle);
+
+                    Text difficultyText = new Text("Difficulté: ");
+                    difficultyText.setStyle(labelStyle);
+                    Text difficultyData = new Text(Programme.getDifficulteProgramme() + "\n");
+                    difficultyData.setStyle(dataStyle);
+
+
+
+                    Text demonstrationText = new Text("Exercices: ");
+                    demonstrationText.setStyle(labelStyle);
+                    Text demonstrationData = new Text(Programme.getListExercice() + "\n");
+                    demonstrationData.setStyle(dataStyle);
+
+                    textFlow.getChildren().addAll(nameData,evaluationText,evaluationData ,DuréeTEXT,DuréeData,difficultyText,difficultyData,demonstrationText, demonstrationData);
+                    setGraphic(textFlow);
+
+
+                }
+            }
+        });
+
+        ObservableList<Programme> observableExerciceList = FXCollections.observableArrayList(programmeService.fetch());
+        ListProgramme.setItems(observableExerciceList);
+    }
+    public void ok(ActionEvent actionEvent) {
+        List<Programme> exerciceList =  ListProgramme.getItems().stream().filter(exercice -> exercice.getNomProgramme().contains(recherche.getText())).toList();
+        ObservableList<Programme> observableExerciceList = FXCollections.observableArrayList(exerciceList);
+        ListProgramme.setItems(observableExerciceList);
+    }
+
+    public void passing(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AffichageExercice.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) actionEvent.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ajoutpass(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjoutProgramme.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) actionEvent.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

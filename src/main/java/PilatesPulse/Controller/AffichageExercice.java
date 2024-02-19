@@ -10,6 +10,7 @@
     import javafx.fxml.FXML;
     import javafx.fxml.FXMLLoader;
     import javafx.fxml.Initializable;
+    import javafx.scene.Node;
     import javafx.scene.Parent;
     import javafx.scene.Scene;
     import javafx.scene.control.Label;
@@ -26,6 +27,7 @@
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
     import java.io.File;
+    import java.io.IOException;
     import java.net.URL;
 
     import java.util.Comparator;
@@ -195,6 +197,9 @@
 
         public void refrech(ActionEvent actionEvent) {
 
+            Font josefinBoldFont = Font.loadFont(getClass().getResource("/JosefinSans-Bold.ttf").toExternalForm(), 24);
+            Font josefinRegularFont = Font.loadFont(getClass().getResource("/JosefinSans-ThinItalic.ttf").toExternalForm(), 24);
+
             ListExercice.setCellFactory(param -> new ListCell<>() {
                 @Override
                 protected void updateItem(Exercice exercice, boolean empty) {
@@ -204,36 +209,31 @@
                         setText(null);
                         setGraphic(null);
                     } else {
+                        HBox container = new HBox();
+
                         TextFlow textFlow = new TextFlow();
 
 
-                        String labelStyle = "-fx-fill: #4B0070; -fx-font-family: 'Century Gothic'; -fx-font-weight: bold; -fx-font-size: 24;";
+                        String labelStyle = "-fx-fill: #9b8385;  -fx-font-size: 27  ;";
+                        String nameStyle = "-fx-fill: #8b7080;  -fx-font-size: 40;";
+
+                        String dataStyle = "-fx-fill: #9b8385; -fx-font-size: 20;";
 
 
-                        String dataStyle = "-fx-fill: #403060; -fx-font-family: 'Tw Cen MT Condensed Extra Bold'; -fx-font-weight: bold; -fx-font-size: 24;";
-
-                        Text nameText = new Text("Name: ");
-                        nameText.setStyle(labelStyle);
-                        Text nameData = new Text(exercice.getNomExercice() + "\n");
-                        nameData.setStyle(dataStyle);
-
-                        Text idText = new Text("ID: ");
-                        idText.setStyle(labelStyle);
-                        Text idData = new Text(exercice.getIdExercice() + "\n");
-                        idData.setStyle(dataStyle);
-
-                        Text coachText = new Text("Coach ID: ");
-                        coachText.setStyle(labelStyle);
-                        Text coachData = new Text(exercice.getIdCoach() + "\n");
-                        coachData.setStyle(dataStyle);
+                        Text nameData = new Text("\t"+exercice.getNomExercice() + "\n");
+                        nameData.setStyle(nameStyle);
+                        nameData.setFont(josefinBoldFont);
 
                         Text evaluationText = new Text("Evaluation: ");
                         evaluationText.setStyle(labelStyle);
+                        evaluationText.setFont(josefinBoldFont);
+
                         Text evaluationData = new Text(exercice.getEvaluationExercice() + "\n");
                         evaluationData.setStyle(dataStyle);
 
                         Text difficultyText = new Text("Difficulty: ");
                         difficultyText.setStyle(labelStyle);
+                        difficultyText. setFont(josefinBoldFont);
                         Text difficultyData = new Text(exercice.getDifficulteExercice() + "\n");
                         difficultyData.setStyle(dataStyle);
 
@@ -242,23 +242,49 @@
                         Text muscleData = new Text(exercice.getMuscle() + "\n");
                         muscleData.setStyle(dataStyle);
 
-                        Text demonstrationText = new Text("Demonstration: ");
-                        demonstrationText.setStyle(labelStyle);
+
 
                         String demonstrationPath = exercice.getDemonstration();
                         Image demonstrationImage = new Image(new File(demonstrationPath).toURI().toString());
                         ImageView imageView = new ImageView(demonstrationImage);
                         imageView.setFitHeight(200);
                         imageView.setFitWidth(200);
-                        textFlow.getChildren().addAll(nameText, nameData, idText, idData, coachText, coachData, evaluationText, evaluationData,
-                                difficultyText, difficultyData, muscleText, muscleData, demonstrationText);
-                        textFlow.getChildren().add(imageView);
-                        setGraphic(textFlow);
+                        textFlow.getChildren().addAll(nameData, evaluationText, evaluationData, difficultyText, difficultyData, muscleText, muscleData );
+                        container.getChildren().addAll(imageView,textFlow);
+                        container.setSpacing(30);
+                        setGraphic(container);
 
                     }
                 }
             });
+
             ObservableList<Exercice> observableExerciceList = FXCollections.observableArrayList(exerciceService.fetch());
             ListExercice.setItems(observableExerciceList);
+        }
+
+        public void pass(ActionEvent actionEvent) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherProgramme.fxml"));
+                Parent root = loader.load();
+
+                Scene currentScene = ((Node) actionEvent.getSource()).getScene();
+
+                currentScene.setRoot(root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void ajoutpass(ActionEvent actionEvent) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjoutExercice.fxml"));
+                Parent root = loader.load();
+
+                Scene currentScene = ((Node) actionEvent.getSource()).getScene();
+
+                currentScene.setRoot(root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }

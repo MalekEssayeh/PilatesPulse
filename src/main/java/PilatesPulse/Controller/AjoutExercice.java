@@ -6,7 +6,11 @@ import io.github.palexdev.materialfx.controls.MFXSlider;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import PilatesPulse.Services.ExerciceService;
 import PilatesPulse.Models.Exercice;
@@ -15,6 +19,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Application;
@@ -65,7 +70,7 @@ public class AjoutExercice implements Initializable {
             alert.setTitle("Erreur");
             alert.setHeaderText("Une erreur s'est produite");
             alert.setContentText("Ajouter une Evaluation.");
-            alert.showAndWait();
+            alert.showAndWait(); 
         } else if (NomExercice.getText()==null||NomExercice.getText().length()<2) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -90,8 +95,16 @@ public class AjoutExercice implements Initializable {
         else
         {
             exp.add(new Exercice(1299, (int) Evaluation.getValue(), Difficulte.getValue(), NomExercice.getText(), Muscle.getValue(), t.replace("/", "\\").replace("file:\\", "")));
-                Stage stage = (Stage) AjoutEx.getScene().getWindow();
-        stage.close();}
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AffichageExercice.fxml"));
+                Parent root = loader.load();
+
+                Scene currentScene = ((Node) actionEvent.getSource()).getScene();
+
+                currentScene.setRoot(root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }}
     }
 
     public void Browse(ActionEvent actionEvent) {
