@@ -1,6 +1,6 @@
 .list-view .list-cell:even {
-    -fx-background-color: linear-gradient(#eed5f4, #ffe5e7);
+    -fx-background-color: linear-gradient(#F7D9C4, #e0c7c9);
 }
 .list-view .list-cell:odd {
-    -fx-background-color:  linear-gradient(#eed5f4, #ffe5e7);
+    -fx-background-color:  linear-gradient(#F7D9C4, #e0c7c9);
 }

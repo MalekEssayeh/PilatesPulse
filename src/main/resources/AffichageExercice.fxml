@@ -1,28 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="652.0" prefWidth="873.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AffichageExercice">
+<AnchorPane prefHeight="716.0" prefWidth="953.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AffichageExercice">
    <children>
-      <MFXButton fx:id="Editer" layoutX="556.0" layoutY="540.0" onAction="#Editer" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Editer">
+      <MFXButton fx:id="Editer" layoutX="589.0" layoutY="662.0" onAction="#Editer" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Editer">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </MFXButton>
-      <MFXButton fx:id="Delete" layoutX="143.0" layoutY="540.0" onAction="#deleteSelectedExercice" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Supprimer">
+      <MFXButton fx:id="Delete" layoutX="176.0" layoutY="662.0" onAction="#deleteSelectedExercice" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Supprimer">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </MFXButton>
-      <ListView fx:id="ListExercice" layoutX="96.0" layoutY="75.0" prefHeight="413.0" prefWidth="694.0" stylesheets="@css/Listview.css">
+      <ListView fx:id="ListExercice" layoutX="129.0" layoutY="234.0" prefHeight="377.0" prefWidth="694.0" style="-fx-background-color: linear-gradient(#F7D9C4, #e0c7c9);" stylesheets="@css/Listview.css">
          <styleClass>
             <String fx:value="list-cell" />
             <String fx:value="list-view" />
          </styleClass>
       </ListView>
+      <MFXTextField fx:id="recherche" floatingText="Recherche" layoutX="264.0" layoutY="183.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="334.0" stylesheets="@css/MFXTextField.css">
+         <styleClass>
+            <String fx:value="css\MFXTextField.css" />
+            <String fx:value="floating-text" />
+         </styleClass>
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+         </textFill>
+      </MFXTextField>
+      <MFXButton fx:id="ok" layoutX="592.0" layoutY="183.0" onAction="#ok" prefHeight="40.0" prefWidth="54.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="ok">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
+      <MFXComboBox fx:id="Tri" layoutX="660.0" layoutY="183.0" onAction="#tri" prefHeight="40.0" prefWidth="162.0" promptText="Muscle Solicitée" text="Trier par rapport à">
+         <stylesheets>
+            <URL value="@css/MFXComboBox.css" />
+            <URL value="@css/MFXComboBoxCell.css" />
+         </stylesheets>
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </MFXComboBox>
+      <MFXButton fx:id="refrecher" layoutX="140.0" layoutY="183.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#refrech" prefHeight="38.0" prefWidth="114.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Refresh">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
+      <Label fx:id="label1" layoutX="130.0" layoutY="44.0" prefHeight="94.0" prefWidth="768.0" text="        Exercices" textAlignment="CENTER" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="72.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

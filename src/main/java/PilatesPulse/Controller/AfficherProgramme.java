@@ -98,7 +98,6 @@ public class AfficherProgramme implements Initializable {
    @FXML
     private void deleteSelectedProgramme() {
         Programme selectedProgramme = ListProgramme.getSelectionModel().getSelectedItem();
-
         if (selectedProgramme != null) {
             int id = selectedProgramme.getIdProgramme();
             programmeService.delete(id);
