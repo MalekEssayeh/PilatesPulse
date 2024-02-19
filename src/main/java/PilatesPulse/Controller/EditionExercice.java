@@ -6,15 +6,15 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXSlider;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -44,9 +44,33 @@ public class EditionExercice implements Initializable {
         this.ID = ID;
     }
     public void Modifier(javafx.event.ActionEvent actionEvent) {
-        exp.Edit(ID,NomExercice.getText(),1299,Difficulte.getValue(), (int) Evaluation.getValue(),Muscle.getValue(),Demonstration.getText());
+
+        String t=Demonstration.getText().replace("%20", " ");
+        if (Evaluation.getValue()==0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Une erreur s'est produite");
+            alert.setContentText("Ajouter une Evaluation.");
+            alert.showAndWait();
+        } else if (NomExercice.getText()==null||NomExercice.getText().length()<2) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Une erreur s'est produite");
+            alert.setContentText("longueur du nom d'exercice doit etre >2.");
+            alert.showAndWait();
+        }
+        else if (Muscle.getValue()==null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Une erreur s'est produite");
+            alert.setContentText("Ajouter un Muscle solicité.");
+            alert.showAndWait();
+        }
+        else
+        {
+        exp.Edit(ID,NomExercice.getText(),1299,Difficulte.getValue(), (int) Evaluation.getValue(),Muscle.getValue(),t.replace("/", "\\").replace("file:\\",""));
         Stage stage = (Stage) Modifier.getScene().getWindow();
-        stage.close();
+        stage.close();}
     }
 
     @Override
@@ -75,5 +99,17 @@ public class EditionExercice implements Initializable {
 
         this.primaryStage = primaryStage;
     }
+    public void Browse(ActionEvent actionEvent) {
+        Stage primaryStagee = new Stage();
 
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose a File");
+
+        File selectedFile = fileChooser.showOpenDialog(primaryStagee);
+
+        if (selectedFile != null) {
+            String fileUrl = selectedFile.toURI().toString();
+            Demonstration.setText(fileUrl);
+        }
+    }
 }

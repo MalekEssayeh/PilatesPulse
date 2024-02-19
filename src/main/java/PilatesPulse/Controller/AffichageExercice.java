@@ -17,10 +17,12 @@
     import javafx.scene.text.Text;
     import javafx.scene.text.TextFlow;
     import javafx.stage.Stage;
-
+    import javafx.scene.image.Image;
+    import javafx.scene.image.ImageView;
+    import java.io.File;
+    import java.net.URL;
 
     import java.awt.event.ActionEvent;
-    import java.net.URL;
     import java.util.ResourceBundle;
 
     public class AffichageExercice implements Initializable {
@@ -83,12 +85,15 @@
 
                         Text demonstrationText = new Text("Demonstration: ");
                         demonstrationText.setStyle(labelStyle);
-                        Text demonstrationData = new Text(exercice.getDemonstration() + "\n");
-                        demonstrationData.setStyle(dataStyle);
 
-                        textFlow.getChildren().addAll( nameText, nameData,idText, idData, coachText, coachData, evaluationText, evaluationData,
-                                difficultyText, difficultyData, muscleText, muscleData, demonstrationText, demonstrationData);
-
+                        String demonstrationPath = exercice.getDemonstration();
+                        Image demonstrationImage = new Image(new File(demonstrationPath).toURI().toString());
+                        ImageView imageView = new ImageView(demonstrationImage);
+                        imageView.setFitHeight(200);
+                        imageView.setFitWidth(200);
+                        textFlow.getChildren().addAll(nameText, nameData, idText, idData, coachText, coachData, evaluationText, evaluationData,
+                                difficultyText, difficultyData, muscleText, muscleData, demonstrationText);
+                        textFlow.getChildren().add(imageView);
                         setGraphic(textFlow);
 
                     }

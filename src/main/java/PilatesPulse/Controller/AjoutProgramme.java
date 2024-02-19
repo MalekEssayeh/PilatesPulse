@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -57,9 +58,25 @@ public class AjoutProgramme implements Initializable {
 
     @FXML
     void Ajoutpr(ActionEvent event) {
+        if (Duree.getValue()==0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Une erreur s'est produite");
+            alert.setContentText("Ajouter une Duree.");
+            alert.showAndWait();
+        } else if (NomProgramme.getText()==null||NomProgramme.getText().length()<2) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Une erreur s'est produite");
+            alert.setContentText("longueur du nom d'Programme doit etre >2.");
+            alert.showAndWait();
+        }
+
+        else
+        {
         programmeService.add(new Programme(ThreadLocalRandom.current().nextInt(1000, 2852),255,NomProgramme.getText(), (int) Duree.getValue(),lsEX));
         Stage stage = (Stage) Ajoutpr.getScene().getWindow();
-        stage.close();
+        stage.close();}
     }
 
     @FXML
@@ -88,7 +105,6 @@ public class AjoutProgramme implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         exerciceService = new ExerciceService();
         programmeService = new ProgrammeService();
-
         List<Exercice> exercises = exerciceService.fetch();
         for (Exercice exercise : exercises) {
             listajout.getItems().add(exercise);

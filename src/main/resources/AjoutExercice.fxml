@@ -31,7 +31,7 @@
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </MFXComboBox>
-      <MFXTextField fx:id="Demonstration" floatingText="Lien Photo" layoutX="307.0" layoutY="440.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" stylesheets="@css/MFXTextField.css">
+      <MFXTextField fx:id="Demonstration" disable="true" floatingText="Lien Photo" layoutX="307.0" layoutY="440.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="178.0" stylesheets="@css/MFXTextField.css">
          <styleClass>
             <String fx:value="css\MFXTextField.css" />
             <String fx:value="floating-text" />
@@ -70,5 +70,10 @@
             <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
          </textFill>
       </MFXTextField>
+      <MFXButton fx:id="Browse" layoutX="485.0" layoutY="440.0" onAction="#Browse" prefHeight="40.0" prefWidth="94.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Parcourir" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </MFXButton>
    </children>
 </AnchorPane>
