@@ -1,14 +1,24 @@
 package user.Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import user.Services.userService;
 import user.Models.user;
 
+import java.io.IOException;
+
 public class Updateuser {
+    @FXML
+    private Button Back;
     @FXML
     private TextField mailTF;
 
@@ -24,6 +34,10 @@ public class Updateuser {
     private user selectedUser; // Declare the selectedUser variable
     private final userService userService = new userService();
 
+    public void setSelectedUser(user selectedUser) {
+        this.selectedUser = selectedUser;
+    }
+
     public void initData(user selectedUser) {
         // Populate the UI with the selected user's information
         // For example:
@@ -31,7 +45,11 @@ public class Updateuser {
         prenomTF.setText(selectedUser.getPrenom());
         mailTF.setText(selectedUser.getMail());
         mdpTF.setText(selectedUser.getMdp());
+
+        // Set the selected user
+        setSelectedUser(selectedUser);
     }
+
 
     void updateUser() {
         // Get the updated information from the UI fields
@@ -60,6 +78,18 @@ public class Updateuser {
             alert.setTitle("Error");
             alert.setContentText("Failed to update user: " + e.getMessage());
             alert.showAndWait();
+        }
+    }
+    @FXML
+    void back(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Showuser.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately (e.g., log it)
         }
     }
 

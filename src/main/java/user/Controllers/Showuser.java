@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import user.Services.userService;
 import user.Models.user;
@@ -22,90 +19,47 @@ import java.util.List;
 
 public class Showuser {
     @FXML
+    private ChoiceBox<String> filterCB;
+    @FXML
+    private Button searchButton;
+
+    @FXML
+    private TextField searchTextField;
+    @FXML
     private Button Delete;
 
     @FXML
     private Button Update;
     @FXML
-    private ListView<user> mailLV;
+    private Button back;
 
     @FXML
-    private ListView<user> mdpLV;
-
-    @FXML
-    private ListView<user> nomLV;
-
-    @FXML
-    private ListView<user> prenomLV;
+    private ListView<user> usersLV;
 
     private final userService us = new userService();
 
+
+   @FXML
+   void initialize() {
+       try {
+           List<user> userList = us.show();
+           usersLV.getItems().addAll(userList);
+       } catch (Exception e) {
+           showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+       }
+       filterCB.getItems().addAll("nom", "prenom");
+
+   }
     @FXML
-    void initialize() {
+    void back(ActionEvent event) throws IOException {
         try {
-            List<user> userList = us.show();
-
-            // Set the items for all the list views
-            ObservableList<user> observableList = FXCollections.observableList(userList);
-            nomLV.setItems(observableList);
-            prenomLV.setItems(observableList);
-            mailLV.setItems(observableList);
-            mdpLV.setItems(observableList);
-
-            // Customize cell appearance
-            nomLV.setCellFactory(param -> new ListCell<user>() {
-                @Override
-                protected void updateItem(user item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                    } else {
-                        setText(item.getNom());
-                    }
-                }
-            });
-
-            prenomLV.setCellFactory(param -> new ListCell<user>() {
-                @Override
-                protected void updateItem(user item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                    } else {
-                        setText(item.getPrenom());
-                    }
-                }
-            });
-
-            mailLV.setCellFactory(param -> new ListCell<user>() {
-                @Override
-                protected void updateItem(user item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                    } else {
-                        setText(item.getMail());
-                    }
-                }
-            });
-
-            mdpLV.setCellFactory(param -> new ListCell<user>() {
-                @Override
-                protected void updateItem(user item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty || item == null) {
-                        setText(null);
-                    } else {
-                        setText(item.getMdp());
-                    }
-                }
-            });
-
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately (e.g., log it)
         }
     }
 
@@ -135,7 +89,7 @@ public class Showuser {
     @FXML
     void Delete(ActionEvent event) {
         // Get the selected user from the ListView
-        user selectedUser = mailLV.getSelectionModel().getSelectedItem();
+        user selectedUser = usersLV.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             int userId = selectedUser.getId(); // Assuming getId() returns the user's ID
             // Call the delete method from userService
@@ -144,32 +98,24 @@ public class Showuser {
                 // If the delete method executes without throwing an exception,
                 // assume that the deletion was successful
                 // Remove the deleted user from the list view
-                mailLV.getItems().remove(selectedUser);
+                usersLV.getItems().remove(selectedUser);
                 // Optionally, you can show a success message
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setContentText("User deleted successfully.");
-                alert.showAndWait();
+                showAlert(Alert.AlertType.INFORMATION, "Success", "User deleted successfully.");
             } catch (Exception e) {
                 // Show an error message if the deletion fails
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setContentText("Failed to delete user: " + e.getMessage());
-                alert.showAndWait();
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to delete user: " + e.getMessage());
             }
         } else {
             // Show a warning message if no user is selected for deletion
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setContentText("Please select a user to delete.");
-            alert.showAndWait();
+            showAlert(Alert.AlertType.WARNING, "Warning", "Please select a user to delete.");
         }
     }
+
 
     @FXML
     void Update(ActionEvent event) {
         // Get the selected user from the ListView
-        user selectedUser = mailLV.getSelectionModel().getSelectedItem();
+        user selectedUser = usersLV.getSelectionModel().getSelectedItem();
         if (selectedUser != null) {
             try {
                 // Load the UpdateUser.fxml file
@@ -192,12 +138,47 @@ public class Showuser {
             }
         } else {
             // Show a warning message if no user is selected for updating
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setContentText("Please select a user to update.");
-            alert.showAndWait();
+            showAlert(Alert.AlertType.WARNING, "Warning", "Please select a user to update.");
         }
     }
+
+    private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    void search(ActionEvent event) {
+        String keyword = searchTextField.getText();
+        List<user> searchResults = us.search(keyword);
+        ObservableList<user> observableSearchResults = FXCollections.observableArrayList(searchResults);
+        usersLV.setItems(observableSearchResults);
+    }
+
+    @FXML
+    void filterUsers(ActionEvent event) {
+        // Get the selected filter option from the ChoiceBox
+        String selectedFilter = filterCB.getValue();
+
+        // Retrieve the list of users based on the selected filter option
+        List<user> filteredUsers;
+        if ("nom".equals(selectedFilter)) {
+            filteredUsers = us.filterByName("nom");
+        } else if ("prenom".equals(selectedFilter)) {
+            filteredUsers = us.filterByName("prenom");
+        } else {
+            // Handle invalid or null filter option
+            return;
+        }
+
+        // Update the ListView with the filtered list of users
+        ObservableList<user> observableFilteredUsers = FXCollections.observableArrayList(filteredUsers);
+        usersLV.setItems(observableFilteredUsers);
+    }
+
 
 
 

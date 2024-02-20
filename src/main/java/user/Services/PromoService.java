@@ -42,12 +42,14 @@ public class PromoService implements userInterface<Promo> {
 
 
     @Override
-    public void update2(Promo promo, Date validite) {
+    public void update2(Promo promo) {
         try {
-            String req = "UPDATE `promo` SET `validite` = ? WHERE `id` = ?";
+            String req = "UPDATE `promo` SET `pourcentage` = ?, `isActive` = ?, `validite` = ? WHERE `id` = ?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
-            pstmt.setDate(1, validite);
-            pstmt.setInt(2, promo.getId());
+            pstmt.setDouble(1, promo.getPourcentage());
+            pstmt.setBoolean(2, promo.isActive());
+            pstmt.setDate(3, promo.getValidite());
+            pstmt.setInt(4, promo.getId());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -59,6 +61,8 @@ public class PromoService implements userInterface<Promo> {
             ex.printStackTrace();
         }
     }
+
+
 
     @Override
     public void delete(int code) {
@@ -102,9 +106,10 @@ public class PromoService implements userInterface<Promo> {
     }
 
     @Override
-    public List<Promo> filterByName(String name) {
+    public List<Promo> filterByName(String keyword) {
         return null;
     }
+
 
     public boolean login(String email, String password) {
         return false;

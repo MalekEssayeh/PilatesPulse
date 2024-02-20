@@ -64,7 +64,7 @@ public class userService implements userInterface<user> {
     }
 
 
-    public void update2(user user, Date validite){
+    public void update2(user user){
 
     }
 
@@ -128,12 +128,13 @@ public class userService implements userInterface<user> {
         return userList;
     }
 
-    public List<user> filterByName(String name) {
+    public List<user> filterByName(String keyword) {
         List<user> userList = new ArrayList<>();
         try {
-            String req = "SELECT * FROM `user` WHERE `nom` LIKE ?";
+            String req = "SELECT * FROM `user` WHERE `nom` LIKE ? OR `prenom` LIKE ?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
-            pstmt.setString(1, "%" + name + "%");
+            pstmt.setString(1, "%" + keyword + "%");
+            pstmt.setString(2, "%" + keyword + "%");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 user u = new user();
@@ -150,6 +151,7 @@ public class userService implements userInterface<user> {
         }
         return userList;
     }
+
 
     public boolean login(String mail, String mdp) {
         try {

@@ -51,7 +51,7 @@ public class Login {
             // Successful login logic (navigate to the next scene, etc.)
             System.out.println("Login successful!");
             try {
-                String fxmlFile = isAdmin ? "/Showuser.fxml" : "/Home.fxml";
+                String fxmlFile = isAdmin ? "/Backend.fxml" : "/Home.fxml";
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
                 Parent root = loader.load();
                 Stage stage = (Stage) loginBT.getScene().getWindow(); // Get the current stage
