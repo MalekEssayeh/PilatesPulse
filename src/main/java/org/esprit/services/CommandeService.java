@@ -1,0 +1,173 @@
+package org.esprit.services;
+
+import org.esprit.interfaces.IServiceC;
+import org.esprit.models.Commande;
+import org.esprit.utils.Connexion;
+
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.Date;
+
+public class CommandeService implements IServiceC<Commande> {
+    Connection connection = Connexion.getInstance().getConnection();
+
+
+//    public void ajouter(Commande c) {
+//        try{
+//        String req = "INSERT INTO `commande`(`nom`, `prenon`, `adresse`, `email`, `phone` ) VALUES (?,?,?,?,?)";
+//        PreparedStatement ps = connection.prepareStatement(req);
+//        ps.setString(1,c.getNom());
+//        ps.setString(2,c.getPrenom());
+//        ps.setString(3,c.getAdress());
+//        ps.setString(4,c.getMail());
+//        ps.setInt(5,c.getPhone());
+//
+//        ps.executeUpdate();
+//        System.out.println("Commande ajouté avec Succée!");
+//
+//     } catch (SQLException ex)
+//
+//    {
+//        ex.printStackTrace();
+//    }
+
+    @Override
+    public void ajouter(Commande c) {
+        try {
+            String req = "INSERT INTO `commande`(`Total`, `codePromo`, `nomProd`) VALUES (?,?,?)";
+
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setInt(1,c.getTotal());
+            ps.setString(2,c.getCodePromo());
+            ps.setString(3,c.getNomProd());
+            ps.executeUpdate();
+            System.out.println("Commande ajouté avec Succée!");
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+
+    @Override
+    public List<Commande> fetch() {
+        List<Commande> Commands = new ArrayList<>();
+        try {
+
+            String req = "SELECT * FROM commande";
+            Statement st = this.connection.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Commande c1 = new Commande();
+
+                c1.setTotal(rs.getInt(1));
+                c1.setCodePromo(rs.getString(2));
+                c1.setNomProd(rs.getString(3));
+
+                Commands.add(c1);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return Commands;
+    }
+
+
+
+
+    @Override
+    public void modifier(Commande c, String a) {
+
+        try {
+            String req ="UPDATE `commande` SET `codePromo`= ? WHERE nomProd = ?";
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setString(1, a);
+            ps.setString(2,  c.getNomProd());
+            ps.executeUpdate();
+            System.out.println("Code promo updated successfully!");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+
+    @Override
+    public void supprimer(int c) {
+
+
+        try {
+            String req ="DELETE FROM `commande`  WHERE idCmd = ?";
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setInt(1, c);
+            ps.executeUpdate();
+            System.out.println("Commande supprimée avec succée!");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+
+    public List<Commande> rechercheCommande(int idCmd) {
+        List<Commande> Commands = new ArrayList<>();
+        try {
+
+            String req = "SELECT * FROM Commande WHERE idCmd LIKE CONCAT(?, '%')";
+            PreparedStatement st = connection.prepareStatement(req);
+            st.setInt(1, idCmd);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Commande c = new Commande();
+                c.setIdCmd(rs.getInt(1));
+                c.setIdUser(rs.getInt(2));
+
+                c.setTotal(rs.getInt(3));
+                c.setCodePromo(rs.getString(4));
+                c.setNomProd(rs.getString(5));
+
+                Commands.add(c);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return Commands;
+    }
+
+
+
+
+    public List<Commande> filtreCommande(int idProd) {
+        List<Commande> Commands = new ArrayList<>();
+        try {
+
+            String req = "SELECT * FROM commande WHERE idProd = ?";
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Commande c= new Commande();
+                c.setIdCmd(rs.getInt(1));
+                c.setIdUser(rs.getInt(2));
+
+                c.setTotal(rs.getInt(3));
+                c.setCodePromo(rs.getString(4));
+                c.setNomProd(rs.getString(5));
+
+                Commands.add(c);
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return Commands;}
+}
+
