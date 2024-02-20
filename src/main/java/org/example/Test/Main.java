@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Test;
 
 import org.example.Models.Coach;
 import org.example.Models.Event;

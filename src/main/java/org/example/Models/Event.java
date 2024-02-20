@@ -3,6 +3,7 @@ package org.example.Models;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Event {
 
@@ -13,6 +14,25 @@ public class Event {
     private Time getHeureFin;
     private int numParticipants;
     private String description;
+    private List<User> event_participants;
+
+    public List<User> getEvent_participants() {
+        return event_participants;
+    }
+
+    public void setEvent_participants(List<User> event_participants) {
+        this.event_participants = event_participants;
+    }
+
+    public Event(String nom, LocalDate date, Time heureDebut, Time getHeureFin, int numParticipants, String description, List<User> event_participants) {
+        this.nom = nom;
+        this.date = date;
+        this.heureDebut = heureDebut;
+        this.getHeureFin = getHeureFin;
+        this.numParticipants = numParticipants;
+        this.description = description;
+        this.event_participants = event_participants;
+    }
 
     public Event() {
     }

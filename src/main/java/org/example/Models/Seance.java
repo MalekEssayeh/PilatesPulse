@@ -1,13 +1,30 @@
 package org.example.Models;
 
+import java.awt.*;
+import java.util.List;
+
 public class Seance {
 
     private int id;
     private int duration;
     private int coach_id;
     private int event_id;
+    private List<User> seance_participants;
 
+    public Seance(int duration, int coach_id, int event_id, List<User> seance_participants) {
+        this.duration = duration;
+        this.coach_id = coach_id;
+        this.event_id = event_id;
+        this.seance_participants = seance_participants;
+    }
 
+    public List<User> getEvent_participants() {
+        return seance_participants;
+    }
+
+    public void setEvent_participants(List<User> event_participants) {
+        this.seance_participants = event_participants;
+    }
 
     public Seance(int duration, int coach_id, int event_id ) {
         this.duration = duration;
