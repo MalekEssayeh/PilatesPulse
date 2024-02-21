@@ -42,6 +42,9 @@ public class AddProduct {
 }*/
     }
 
-    public void add(ActionEvent actionEvent) {
+    public void add(javafx.event.ActionEvent actionEvent) {
+        productService.add2(nomProductiD.getText(),
+                Float.parseFloat(prixProductID.getText()),
+                Integer.parseInt(idCategoryID.getText()));
     }
 }
