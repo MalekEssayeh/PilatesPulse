@@ -2,7 +2,10 @@ package tn.PilatePulse.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -77,6 +80,41 @@ public class DisplayProduct implements Initializable {
     }
 
     public void UpdateButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateProduct.fxml"));
+            loader.setControllerFactory(controllerClass -> {
+                if (controllerClass == UpdateProduct.class) {
+                    UpdateProduct updateProduct = new UpdateProduct();
+                    Product selectedProduct = listProducts.getSelectionModel().getSelectedItem();
+                    int id = selectedProduct.getIdProduct();
+                    updateProduct.setPassedId(id);
+                    return updateProduct;
+                } else {
+                    return new UpdateProduct();
+                }
+            });
+
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            stage.setOnHidden(event -> {
+                updateListView();
+            });
+
+            stage.show();
+
+            UpdateProduct updateProduct = loader.getController();
+            updateProduct.setPrimaryStage(primaryStage);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateListView() {
+        listProducts.getItems().setAll(productService.fetchProduct());
     }
 }
 

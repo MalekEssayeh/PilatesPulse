@@ -12,6 +12,14 @@ public class Product {
     }
     public Product(String maryoul, int i, Category c1) {
     }
+
+    public Product(int idProduct, String nameProduct, float priceProduct, int idCategory) {
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.priceProduct = priceProduct;
+        this.idCategory = idCategory;
+    }
+
     public Product(String nameProduct, float priceProduct, int idCategory) {
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;

@@ -79,6 +79,10 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
             ps.setString(1, product.getNameProduct());
             ps.setFloat(2, product.getPriceProduct());
             ps.setInt(3, product.getIdCategory());
+            ps.setInt(4, product.getIdProduct());
+            System.out.println(product.getIdProduct());
+            ps.executeUpdate();
+
             System.out.println("Product *"+product.getNameProduct()+"* added successfuly");
         }catch (SQLException sqlException){
             sqlException.printStackTrace();
