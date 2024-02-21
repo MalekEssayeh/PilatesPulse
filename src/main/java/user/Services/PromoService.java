@@ -14,10 +14,7 @@ public class PromoService implements userInterface<Promo> {
     private Connection cnx;
 
     public PromoService(){cnx= MyConnection.getInstance().getCnx();}
-    @Override
-    public void add(Promo promo) {
 
-    }
 
     @Override
     public void add2(Promo promo) {

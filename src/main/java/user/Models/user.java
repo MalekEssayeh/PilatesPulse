@@ -6,15 +6,18 @@ public class user {
     private String Prenom;
     private String mdp;
     private String mail;
+    private String role;
 
 
-    public user(){}
-    public user( String nom, String prenom, String mdp, String mail) {
+    public user(){
+    }
+    public user( String nom, String prenom, String mdp, String mail, String role) {
 
         this.nom = nom;
         Prenom = prenom;
         this.mdp = mdp;
         this.mail = mail;
+        this.role = role;
     }
 
     public int getId() {
@@ -56,6 +59,13 @@ public class user {
     public void setMail(String mail) {
         this.mail = mail;
     }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     @Override
     public String toString() {
@@ -65,6 +75,7 @@ public class user {
                 ", Prenom='" + Prenom + '\'' +
                 ", mdp='" + mdp + '\'' +
                 ", mail='" + mail + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

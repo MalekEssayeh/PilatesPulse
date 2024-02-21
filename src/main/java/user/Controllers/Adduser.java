@@ -84,7 +84,7 @@ public class Adduser {
             }
 
             // Attempt to add the user only if the email is valid
-            us.add2(new user(nomTF.getText(), prenomTF.getText(), mdpTF.getText(), email));
+            us.add2(new user(nomTF.getText(), prenomTF.getText(), mdpTF.getText(), email,"client"));
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }

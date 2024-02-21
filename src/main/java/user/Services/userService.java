@@ -18,44 +18,36 @@ public class userService implements userInterface<user> {
     public userService(){
         cnx=MyConnection.getInstance().getCnx();
     }
-    @Override
-    public void add(user user) {
-        try {
-            String req = "INSERT INTO `user`(`nom`, `prenom`, `mdp`, `mail`) VALUES ('"+ user.getNom() +"',"+user.getPrenom()+","+user.getMdp()+","+user.getMail()+")";
-            Statement st = cnx.createStatement();
-            st.executeUpdate(req);
-            System.out.println("User Added successfully!");
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
 
     public void add2(user user) {
         try {
-            String req = "INSERT INTO `user`(`nom`, `prenom`, `mdp`, `mail`) VALUES (?, ?, ?, ?)";
+            String req = "INSERT INTO `user`(`nom`, `prenom`, `mdp`, `mail`, `role`) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnx.prepareStatement(req);
             pstmt.setString(1, user.getNom());
             pstmt.setString(2, user.getPrenom());
             pstmt.setString(3, user.getMdp());
             pstmt.setString(4, user.getMail());
+            pstmt.setString(5, user.getRole());
 
             pstmt.executeUpdate();
 
-            System.out.println("User Added successfully!");
+            System.out.println("User added successfully!");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
+    @Override
     public void update(user user) {
         try {
-            String req = "UPDATE `user` SET  `nom`=?, `prenom`=?, `mail`=?, `mdp`=? WHERE id=?";
+            String req = "UPDATE `user` SET `nom`=?, `prenom`=?, `mdp`=?, `mail`=?, `role`=? WHERE `id`=?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
             pstmt.setString(1, user.getNom());
             pstmt.setString(2, user.getPrenom());
-            pstmt.setString(3, user.getMail());
-            pstmt.setString(4, user.getMdp());
-            pstmt.setInt(5, user.getId());
+            pstmt.setString(3, user.getMdp());
+            pstmt.setString(4, user.getMail());
+            pstmt.setString(5, user.getRole());
+            pstmt.setInt(6, user.getId());
             pstmt.executeUpdate();
             System.out.println("User updated successfully!");
         } catch (SQLException ex) {
@@ -85,12 +77,13 @@ public class userService implements userInterface<user> {
             PreparedStatement pstmt = cnx.prepareStatement(req);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                user u=new user();
-                u.setId(rs.getInt(1));
-                u.setNom(rs.getString(2));
-                u.setPrenom(rs.getString(3));
-                u.setMdp(rs.getString(4));
-                u.setMail(rs.getString(5));
+                user u = new user();
+                u.setId(rs.getInt("id"));
+                u.setNom(rs.getString("nom"));
+                u.setPrenom(rs.getString("prenom"));
+                u.setMdp(rs.getString("mdp"));
+                u.setMail(rs.getString("mail"));
+                u.setRole(rs.getString("role"));
 
                 userList.add(u);
             }
@@ -115,6 +108,7 @@ public class userService implements userInterface<user> {
                 u.setPrenom(rs.getString(3));
                 u.setMdp(rs.getString(4));
                 u.setMail(rs.getString(5));
+                u.setRole(rs.getString(6));
 
                 userList.add(u);
             }
@@ -139,6 +133,7 @@ public class userService implements userInterface<user> {
                 u.setPrenom(rs.getString(3));
                 u.setMdp(rs.getString(4));
                 u.setMail(rs.getString(5));
+                u.setRole(rs.getString(6));
 
                 userList.add(u);
             }

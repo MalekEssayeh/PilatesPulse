@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface userInterface <T>{
 
-    public void add(T t);
     public void add2(T t);
     public void update(T t);
     public void delete(int id);

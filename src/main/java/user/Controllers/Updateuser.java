@@ -1,15 +1,14 @@
 package user.Controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import user.Services.userService;
 import user.Models.user;
@@ -30,12 +29,19 @@ public class Updateuser {
 
     @FXML
     private TextField prenomTF;
+    @FXML
+    private ChoiceBox<String> roleCB;
     private int id;
     private user selectedUser; // Declare the selectedUser variable
     private final userService userService = new userService();
 
     public void setSelectedUser(user selectedUser) {
         this.selectedUser = selectedUser;
+    }
+    public void initialize() {
+        // Initialize the ChoiceBox with role options
+        ObservableList<String> roles = FXCollections.observableArrayList("client", "coach");
+        roleCB.setItems(roles);
     }
 
     public void initData(user selectedUser) {
@@ -46,6 +52,7 @@ public class Updateuser {
         prenomTF.setText(selectedUser.getPrenom());
         mailTF.setText(selectedUser.getMail());
         mdpTF.setText(selectedUser.getMdp());
+        roleCB.setValue(selectedUser.getRole());
 
         // Set the selected user
         setSelectedUser(selectedUser);
@@ -59,6 +66,7 @@ public class Updateuser {
         String updatedPrenom = prenomTF.getText();
         String updatedMail = mailTF.getText();
         String updatedMdp = mdpTF.getText();
+        String updatedRole = roleCB.getValue();
 
         // Update the user object with the new information
         selectedUser.setId(id);
@@ -66,6 +74,7 @@ public class Updateuser {
         selectedUser.setPrenom(updatedPrenom);
         selectedUser.setMail(updatedMail);
         selectedUser.setMdp(updatedMdp);
+        selectedUser.setRole(updatedRole);
 
         // Call the userService to update the user in the database
         try {

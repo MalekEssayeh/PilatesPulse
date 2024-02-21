@@ -39,17 +39,17 @@ public class Showuser {
     private final userService us = new userService();
 
 
-   @FXML
-   void initialize() {
-       try {
-           List<user> userList = us.show();
-           usersLV.getItems().addAll(userList);
-       } catch (Exception e) {
-           showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
-       }
-       filterCB.getItems().addAll("nom", "prenom");
+    @FXML
+    void initialize() {
+        try {
+            List<user> userList = us.show();
+            usersLV.getItems().addAll(userList);
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
+        filterCB.getItems().addAll("nom", "prenom");
+    }
 
-   }
     @FXML
     void back(ActionEvent event) throws IOException {
         try {
@@ -178,13 +178,6 @@ public class Showuser {
         ObservableList<user> observableFilteredUsers = FXCollections.observableArrayList(filteredUsers);
         usersLV.setItems(observableFilteredUsers);
     }
-
-
-
-
-
-
-
 }
 
 
