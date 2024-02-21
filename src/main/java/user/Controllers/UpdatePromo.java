@@ -29,11 +29,10 @@ public class UpdatePromo {
     @FXML
     private Button updateBT;
 
-    //@FXML
-    //private ChoiceBox<?> userCB;
-
     @FXML
     private DatePicker validiteDP;
+    private int code;
+    private int id;
 
     private Promo promoToUpdate;
     private final PromoService promoService = new PromoService();
@@ -43,20 +42,25 @@ public class UpdatePromo {
         ObservableList<Boolean> options = FXCollections.observableArrayList(true, false);
         isActiveCB.setItems(options);
     }
+    public void setpromoToUpdate(Promo promoToUpdate) {
+        this.promoToUpdate = promoToUpdate;
+    }
+
 
     public void initData(Promo promo) {
         promoToUpdate = promo;
+        code=promoToUpdate.getCode();
+        id=promoToUpdate.getId();
         percentageTF.setText(String.valueOf(promo.getPourcentage()));
-
         // No pre-selected value for isActive
         isActiveCB.setValue(null);
-
         // Convert Date to LocalDate
         Date validiteDate = promo.getValidite();
         if (validiteDate != null) {
             LocalDate validiteLocalDate = validiteDate.toLocalDate();
             validiteDP.setValue(validiteLocalDate);
         }
+        setpromoToUpdate(promoToUpdate);
     }
 
     @FXML
@@ -65,12 +69,17 @@ public class UpdatePromo {
         Boolean newIsActive = isActiveCB.getValue();
         LocalDate newValidite = validiteDP.getValue();
 
+        // Update the Promo object with the new values
         promoToUpdate.setPourcentage(newPourcentage);
         promoToUpdate.setActive(newIsActive);
 
         // Convert LocalDate to Date
         java.sql.Date newValiditeDate = java.sql.Date.valueOf(newValidite);
         promoToUpdate.setValidite(newValiditeDate);
+
+        // Set the code attribute
+        promoToUpdate.setCode(code);
+        promoToUpdate.setId(id);
 
         try {
             promoService.update(promoToUpdate);
@@ -80,6 +89,7 @@ public class UpdatePromo {
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to update promo: " + e.getMessage());
         }
     }
+
 
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);

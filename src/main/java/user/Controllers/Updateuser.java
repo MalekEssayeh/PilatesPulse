@@ -30,7 +30,7 @@ public class Updateuser {
 
     @FXML
     private TextField prenomTF;
-
+    private int id;
     private user selectedUser; // Declare the selectedUser variable
     private final userService userService = new userService();
 
@@ -39,6 +39,7 @@ public class Updateuser {
     }
 
     public void initData(user selectedUser) {
+        id=selectedUser.getId();
         // Populate the UI with the selected user's information
         // For example:
         nomTF.setText(selectedUser.getNom());
@@ -51,6 +52,7 @@ public class Updateuser {
     }
 
 
+    @FXML
     void updateUser() {
         // Get the updated information from the UI fields
         String updatedNom = nomTF.getText();
@@ -59,6 +61,7 @@ public class Updateuser {
         String updatedMdp = mdpTF.getText();
 
         // Update the user object with the new information
+        selectedUser.setId(id);
         selectedUser.setNom(updatedNom);
         selectedUser.setPrenom(updatedPrenom);
         selectedUser.setMail(updatedMail);
@@ -88,9 +91,13 @@ public class Updateuser {
             Scene scene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(scene);
+            // Close the current stage (update user interface)
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace(); // Handle the exception appropriately (e.g., log it)
         }
     }
+
 
 }

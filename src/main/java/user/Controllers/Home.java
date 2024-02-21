@@ -41,17 +41,25 @@ public class Home {
     @FXML
     void Profile(ActionEvent event) {
         try {
+            // Load the Profile.fxml file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Profile.fxml"));
             Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Profile");
-            stage.show();
+
+            // Create a new stage for the profile interface
+            Stage profileStage = new Stage();
+            profileStage.setScene(new Scene(root));
+            profileStage.setTitle("Profile");
+            profileStage.show();
+
+            // Close the current stage (home interface)
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to load Profile interface.");
         }
     }
+
 
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);

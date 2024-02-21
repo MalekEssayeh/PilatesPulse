@@ -38,13 +38,9 @@ public class PromoService implements userInterface<Promo> {
     }
 
     @Override
-    public void update(Promo promo) {}
-
-
-    @Override
-    public void update2(Promo promo) {
+    public void update(Promo promo) {
         try {
-            String req = "UPDATE `promo` SET `pourcentage` = ?, `isActive` = ?, `validite` = ? WHERE `id` = ?";
+            String req = "UPDATE `promo` SET `pourcentage` = ?, `isActive` = ?, `validite` = ? WHERE `code` = ?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
             pstmt.setDouble(1, promo.getPourcentage());
             pstmt.setBoolean(2, promo.isActive());
@@ -61,8 +57,6 @@ public class PromoService implements userInterface<Promo> {
             ex.printStackTrace();
         }
     }
-
-
 
     @Override
     public void delete(int code) {
@@ -90,7 +84,8 @@ public class PromoService implements userInterface<Promo> {
                 u.setCode(rs.getInt(1));
                 u.setPourcentage(rs.getFloat(2));
                 u.setValidite(rs.getDate(3));
-                u.setId(rs.getInt(4));
+                u.setActive(rs.getBoolean(4));
+                u.setId(rs.getInt(5));
 
                 promoList.add(u);
             }

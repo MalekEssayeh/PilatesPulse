@@ -49,7 +49,7 @@ public class userService implements userInterface<user> {
 
     public void update(user user) {
         try {
-            String req = "UPDATE `user` SET `nom`=?, `prenom`=?, `mail`=?, `mdp`=? WHERE id=?";
+            String req = "UPDATE `user` SET  `nom`=?, `prenom`=?, `mail`=?, `mdp`=? WHERE id=?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
             pstmt.setString(1, user.getNom());
             pstmt.setString(2, user.getPrenom());
@@ -63,10 +63,6 @@ public class userService implements userInterface<user> {
         }
     }
 
-
-    public void update2(user user){
-
-    }
 
     @Override
     public void delete(int id) {
