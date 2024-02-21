@@ -16,6 +16,7 @@ import user.Services.PromoService;
 import user.Services.userService;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import java.sql.Date;
@@ -57,6 +58,15 @@ public class AddPromo {
             }
             return null;
         }));
+        // Control de saisie calendrier
+        validiteDP.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                // Disable past dates
+                setDisable(date.isBefore(LocalDate.now()));
+            }
+        });
     }
 
 

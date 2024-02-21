@@ -4,11 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import user.Models.Promo;
 import user.Models.user;
 import user.Services.PromoService;
@@ -49,11 +45,20 @@ public class UpdatePromo {
 
     public void initData(Promo promo) {
         promoToUpdate = promo;
-        code=promoToUpdate.getCode();
-        id=promoToUpdate.getId();
+        code = promoToUpdate.getCode();
+        id = promoToUpdate.getId();
         percentageTF.setText(String.valueOf(promo.getPourcentage()));
         // No pre-selected value for isActive
         isActiveCB.setValue(null);
+        // Controle de saisie calendrier
+        validiteDP.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                // Disable past dates
+                setDisable(date.isBefore(LocalDate.now()));
+            }
+        });
         // Convert Date to LocalDate
         Date validiteDate = promo.getValidite();
         if (validiteDate != null) {
@@ -62,6 +67,8 @@ public class UpdatePromo {
         }
         setpromoToUpdate(promoToUpdate);
     }
+
+
 
     @FXML
     void update(ActionEvent event) {
