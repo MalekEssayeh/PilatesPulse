@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.PilatePulse.controllers.UpdateProduct">
    <children>
-      <TextField fx:id="nomProductiD" layoutX="226.0" layoutY="108.0" promptText="nom" />
+      <TextField fx:id="nomProductiD" layoutX="228.0" layoutY="108.0" promptText="nom" />
       <TextField fx:id="prixProductID" layoutX="226.0" layoutY="159.0" promptText="prix" />
       <TextField fx:id="idCategoryID" layoutX="227.0" layoutY="210.0" promptText="id Category" />
       <Button fx:id="updateButton" layoutX="211.0" layoutY="279.0" mnemonicParsing="false" onAction="#update" prefHeight="33.0" prefWidth="182.0" text="OK" />
