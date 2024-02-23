@@ -71,7 +71,6 @@ public class AfficherProgramme implements Initializable {
 
                     Text nameData = new Text("\t     "+Programme.getNomProgramme() + "\n");
                     nameData.setStyle(nameStyle);
-                    nameData.setFont(josefinBoldFont);
 
 
 

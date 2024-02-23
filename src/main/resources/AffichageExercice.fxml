@@ -23,7 +23,7 @@
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </MFXButton>
-      <ListView fx:id="ListExercice" layoutX="129.0" layoutY="234.0" prefHeight="377.0" prefWidth="694.0" style="-fx-background-color: linear-gradient(#F7D9C4, #e0c7c9);" stylesheets="@css/Listview.css">
+      <ListView fx:id="ListExercice" accessibleRole="LIST_ITEM" layoutX="129.0" layoutY="234.0" prefHeight="377.0" prefWidth="694.0" style="-fx-background-color: rgba(255,255,255,0.2); -fx-border-radius: 10;" stylesheets="@css/Listview.css">
          <styleClass>
             <String fx:value="list-cell" />
             <String fx:value="list-view" />

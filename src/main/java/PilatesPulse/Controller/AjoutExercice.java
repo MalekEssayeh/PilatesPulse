@@ -24,6 +24,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;import java.nio.file.Paths;
 
 
 public class AjoutExercice implements Initializable {
@@ -85,7 +90,7 @@ public class AjoutExercice implements Initializable {
             alert.setContentText("Ajouter un Muscle solicité.");
             alert.showAndWait();
         }
-        else if (Demonstration.getText()==null||!Demonstration.getText().endsWith("jpeg")||!Demonstration.getText().endsWith("png")||!Demonstration.getText().endsWith("jpg")) {
+        else if (Demonstration.getText()==null||(!Demonstration.getText().endsWith("jpeg")&&!Demonstration.getText().endsWith("png")&&!Demonstration.getText().endsWith("jpg"))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Une erreur s'est produite");
@@ -94,7 +99,19 @@ public class AjoutExercice implements Initializable {
         }
         else
         {
-            exp.add(new Exercice(1299, (int) Evaluation.getValue(), Difficulte.getValue(), NomExercice.getText(), Muscle.getValue(), t.replace("/", "\\").replace("file:\\", "")));
+            t=t.replace("/", "\\").replace("file:\\", "");
+            exp.add(new Exercice(1299, (int) Evaluation.getValue(), Difficulte.getValue(), NomExercice.getText(), Muscle.getValue(), t));
+            File selectedFile = new File(t);
+            String targetFolder = "C:\\java\\GestionPhyAct\\src\\main\\java\\PilatesPulse\\Gui"; // Specify the path to your target folder
+            String fileName = selectedFile.getName();
+            Path targetPath = Paths.get(targetFolder, fileName);
+
+            try {
+                Files.copy(selectedFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/AffichageExercice.fxml"));
                 Parent root = loader.load();

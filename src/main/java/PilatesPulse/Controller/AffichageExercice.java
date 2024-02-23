@@ -79,18 +79,15 @@
 
                         Text nameData = new Text("\t"+exercice.getNomExercice() + "\n");
                         nameData.setStyle(nameStyle);
-                        nameData.setFont(josefinBoldFont);
 
                         Text evaluationText = new Text("Evaluation: ");
                         evaluationText.setStyle(labelStyle);
-                        evaluationText.setFont(josefinBoldFont);
 
                         Text evaluationData = new Text(exercice.getEvaluationExercice() + "\n");
                         evaluationData.setStyle(dataStyle);
 
                         Text difficultyText = new Text("Difficulty: ");
                         difficultyText.setStyle(labelStyle);
-                        difficultyText. setFont(josefinBoldFont);
                         Text difficultyData = new Text(exercice.getDifficulteExercice() + "\n");
                         difficultyData.setStyle(dataStyle);
 

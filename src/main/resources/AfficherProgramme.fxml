@@ -23,7 +23,7 @@
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </MFXButton>
-      <ListView fx:id="ListProgramme" layoutX="140.0" layoutY="251.0" prefHeight="413.0" prefWidth="694.0" style="-fx-background-color: linear-gradient(#F7D9C4, #e0c7c9);" stylesheets="@css/Listview.css">
+      <ListView fx:id="ListProgramme" layoutX="140.0" layoutY="251.0" prefHeight="413.0" prefWidth="694.0" style="-fx-background-color: transparent;" stylesheets="@css/Listview.css">
          <styleClass>
             <String fx:value="list-cell" />
             <String fx:value="list-view" />
