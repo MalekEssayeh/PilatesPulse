@@ -34,6 +34,10 @@ public class UpdateProduct implements Initializable {
     @FXML
     private Button updateButton;
     @FXML
+    private TextField stockID;
+    @FXML
+    private TextField descriptionID;
+    @FXML
     private ListView<Product> listProducts;
     private Stage  primaryStage;
     private int id;
@@ -46,7 +50,9 @@ public class UpdateProduct implements Initializable {
         System.out.println(id);
         productService.update(new Product(id,
                 nomProductiD.getText(),
+                descriptionID.getText(),
                 Float.parseFloat(prixProductID.getText()),
+                Integer.parseInt(stockID.getText()),
                 Integer.parseInt(idCategoryID.getText())
                 ));
         Stage stage = (Stage) updateButton.getScene().getWindow();
@@ -65,7 +71,9 @@ public class UpdateProduct implements Initializable {
         }
 
         nomProductiD.setText(p1.getNameProduct());
+        descriptionID.setText(p1.getProductDescription());
         prixProductID.setText(String.valueOf(p1.getPriceProduct()));
+        stockID.setText(String.valueOf(p1.getStock()));
         idCategoryID.setText(String.valueOf(p1.getIdCategory()));
     }
 

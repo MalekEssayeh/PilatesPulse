@@ -5,25 +5,29 @@ public class Product {
     private String nameProduct;
     private float priceProduct;
     private int idCategory;
+    private String productDescription;
+    private int stock;
 
 
     public Product(){
 
     }
-    public Product(String maryoul, int i, Category c1) {
-    }
 
-    public Product(int idProduct, String nameProduct, float priceProduct, int idCategory) {
+    public Product(int idProduct, String nameProduct,String productDescription, float priceProduct, int stock, int idCategory) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;
         this.idCategory = idCategory;
+        this.productDescription = productDescription;
+        this.stock = stock;
     }
 
-    public Product(String nameProduct, float priceProduct, int idCategory) {
+    public Product(String nameProduct,String productDescription, float priceProduct, int stock, int idCategory) {
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;
         this.idCategory = idCategory;
+        this.productDescription = productDescription;
+        this.stock = stock;
     }
 
     public int getIdProduct() {
@@ -58,6 +62,22 @@ public class Product {
         this.idCategory = idCategory;
     }
 
+    public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -65,6 +85,8 @@ public class Product {
                 ", nameProduct='" + nameProduct + '\'' +
                 ", priceProduct=" + priceProduct +
                 ", idCategory=" + idCategory +
+                ", productDescription='" + productDescription + '\'' +
+                ", stock=" + stock +
                 '}';
     }
 }

@@ -14,11 +14,13 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
     @Override
     public void add(Product product) {
         try {
-            String req = "INSERT INTO `Product`(`nameProduct`, `PriceProduct`, `idCategory`) VALUES (?,?,?)";
+            String req = "INSERT INTO `Product`(`nameProduct`,`productDescription`, `PriceProduct`,`stock` ,`idCategory`) VALUES (?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, product.getNameProduct());
-            ps.setFloat(   2, product.getPriceProduct());
-            ps.setInt(3, product.getIdCategory());
+            ps.setString(2, product.getProductDescription());
+            ps.setFloat(   3, product.getPriceProduct());
+            ps.setInt(4, product.getStock());
+            ps.setInt(5, product.getIdCategory());
 
             ps.executeUpdate();
 
@@ -59,7 +61,9 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
                 Product p = new Product();
                 p.setIdProduct(rs.getInt(1));
                 p.setNameProduct(rs.getString(2));
-                p.setPriceProduct(rs.getFloat(3));
+                p.setProductDescription(rs.getString(3));
+                p.setPriceProduct(rs.getFloat(4));
+                p.setStock(rs.getInt(5));
                 p.setIdCategory(rs.getInt(4));
 
                 products.add(p);
@@ -74,16 +78,20 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
     @Override
     public void update(Product product) {
         try {
-            String req = "UPDATE `product` SET `nameProduct`=?,`PriceProduct`= ?,`idCategory`= ? WHERE `idProduct`=?";
+            String req = "UPDATE `product` SET `nameProduct`=?,`productDescription`=?,`PriceProduct`= ?,`stock`= ?,`idCategory`= ? WHERE `idProduct`=?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, product.getNameProduct());
-            ps.setFloat(2, product.getPriceProduct());
-            ps.setInt(3, product.getIdCategory());
-            ps.setInt(4, product.getIdProduct());
-            System.out.println(product.getIdProduct());
+            ps.setString(2, product.getProductDescription());
+            ps.setFloat(3, product.getPriceProduct());
+            ps.setInt(4, product.getStock());
+            ps.setInt(5, product.getIdCategory());
+            ps.setInt(6, product.getIdProduct());
+
+            //System.out.println(product.getIdProduct());
+
             ps.executeUpdate();
 
-            System.out.println("Product *"+product.getNameProduct()+"* added successfuly");
+            System.out.println("Product *"+product.getNameProduct()+"* updated successfuly");
         }catch (SQLException sqlException){
             sqlException.printStackTrace();
         }
@@ -161,7 +169,7 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
     public List<Product> filterProductsByIdCategory(int categoryId) {
         List<Product> productList = new ArrayList<>();
         try {
-            String req ="SELECT idProduct, nameProduct, priceProduct, idCategory " +
+            String req ="SELECT idProduct, nameProduct, productDescription, priceProduct, stock, idCategory " +
                     "FROM product " +
                     "WHERE idCategory = ?";
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -171,8 +179,10 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
                 Product p = new Product();
                 p.setIdProduct(rs.getInt(1));
                 p.setNameProduct(rs.getString(2));
-                p.setPriceProduct(rs.getFloat(3));
-                p.setIdCategory(rs.getInt(4));
+                p.setProductDescription(rs.getString(3));
+                p.setPriceProduct(rs.getFloat(4));
+                p.setStock(rs.getInt(5));
+                p.setIdCategory(rs.getInt(6));
 
                 productList.add(p);
             }
@@ -188,7 +198,7 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
     public List<Product> filterProductsByCategoryName(String categoryName){
        List<Product> productList = new ArrayList<>();
         try {
-            String req ="SELECT p.idProduct, p.nameProduct, p.priceProduct, p.idCategory, c.nameCat " +
+            String req ="SELECT p.idProduct, p.nameProduct, p.productDescription, p.priceProduct, p.stock, p.idCategory, c.nameCat " +
             "FROM product p " +
                     "JOIN category c ON p.idCategory = c.idCategory " +
                     "WHERE c.nameCat = ?";
@@ -199,8 +209,10 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
                 Product p = new Product();
                 p.setIdProduct(rs.getInt(1));
                 p.setNameProduct(rs.getString(2));
-                p.setPriceProduct(rs.getFloat(3));
-                p.setIdCategory(rs.getInt(4));
+                p.setProductDescription(rs.getString(3));
+                p.setPriceProduct(rs.getFloat(4));
+                p.setStock(rs.getInt(5));
+                p.setIdCategory(rs.getInt(6));
 
                 productList.add(p);
             }
@@ -217,7 +229,7 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
     public List<Product> filterProductsByPriceRange(float minPrice, float maxPrice) {
         List<Product> productList = new ArrayList<>();
         try {
-            String req ="SELECT idProduct, nameProduct, priceProduct, idCategory " +
+            String req ="SELECT idProduct, nameProduct,productDescription, priceProduct, stock, idCategory " +
                     "FROM product " +
                     "WHERE priceProduct BETWEEN ? AND ?";
 
@@ -231,8 +243,10 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
                 Product p = new Product();
                 p.setIdProduct(rs.getInt(1));
                 p.setNameProduct(rs.getString(2));
-                p.setPriceProduct(rs.getFloat(3));
-                p.setIdCategory(rs.getInt(4));
+                p.setProductDescription(rs.getString(3));
+                p.setPriceProduct(rs.getFloat(4));
+                p.setStock(rs.getInt(5));
+                p.setIdCategory(rs.getInt(6));
 
                 productList.add(p);
             }

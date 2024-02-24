@@ -20,11 +20,11 @@ public class Main {
         CategoryService cs = new CategoryService();
         //cs.add(c2);
 
-        Product p1 = new Product("T-shirt",45,1);
-        Product p2 = new Product("PANTALON JOGGING",65,1);
-        Product p3 = new Product("LEGGING",60,1);
-        Product p4 = new Product("PLANCHE D'ÉQUILIBRE",150,2);
-        ProductService ps = new ProductService();
+       // Product p1 = new Product("T-shirt",45,10,1 );
+       // Product p2 = new Product("PANTALON JOGGING",65,15,1);
+       // Product p3 = new Product("LEGGING",60,20,1);
+        //Product p4 = new Product("PLANCHE D'ÉQUILIBRE",150,5,2);
+       // ProductService ps = new ProductService();
 
         //ps.add(p1);
         //ps.add(p2);

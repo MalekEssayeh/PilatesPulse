@@ -10,6 +10,9 @@ import javafx.scene.control.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+
+
+
 import javafx.stage.Stage;
 import tn.PilatePulse.model.Product;
 import tn.PilatePulse.services.ProductService;
@@ -43,14 +46,22 @@ public class DisplayProduct implements Initializable {
                 } else {
                     TextFlow textFlow = new TextFlow();
 
+                    Text idText = new Text("ID: ");
+
+                    Text idData = new Text(product.getIdProduct() + "\n");
+
                     Text nameText = new Text("Name: ");
 
                     Text nameData = new Text(product.getNameProduct() + "\n");
 
+                    Text descriptionText = new Text("Description: ");
 
-                    Text idText = new Text("ID: ");
+                    Text descriptionData = new Text(product.getProductDescription() + "\n");
 
-                    Text idData = new Text(product.getIdProduct() + "\n");
+
+                    Text stockText = new Text("Stock: ");
+
+                    Text stockData = new Text(product.getStock() + "\n");
 
 
                     Text categoryText = new Text("Category ID: ");
@@ -58,7 +69,7 @@ public class DisplayProduct implements Initializable {
                     Text categoryData = new Text(product.getIdCategory() + "\n");
 
 
-                    textFlow.getChildren().addAll(nameText, nameData, idText, idData, categoryText, categoryData);
+                    textFlow.getChildren().addAll(idText, idData, nameText, nameData, descriptionText, descriptionData, stockText,stockData, categoryText, categoryData);
 
                     setGraphic(textFlow);
                 }
