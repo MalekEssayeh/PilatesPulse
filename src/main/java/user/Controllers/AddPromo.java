@@ -15,7 +15,7 @@ import user.Models.Promo;
 import user.Models.user;
 import user.Services.PromoService;
 import user.Services.userService;
-
+import javafx.scene.control.ChoiceBox;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -50,7 +50,7 @@ public class AddPromo {
         List<user> userList = userService.show();
         ObservableList<user> observableList = FXCollections.observableList(userList);
         userCB.setItems(observableList);
-        /////////////////// Set a custom cell factory for the choice box to display only nom and prenom
+        /* Set a custom cell factory for the choice box to display only nom and prenom
         userCB.setCellFactory(new Callback<ListView<user>, ListCell<user>>() {
             @Override
             public ListCell<user> call(ListView<user> param) {
@@ -67,7 +67,7 @@ public class AddPromo {
                     }
                 };
             }
-        }); ////////////////////////////////////////////////
+        }); */
 
         isActiveCB.getItems().addAll("true", "false");
         // Set up text formatter to allow only numeric input for the percentage text field

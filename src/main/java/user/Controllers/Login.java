@@ -43,8 +43,9 @@ public class Login {
             return;
         }
 
+
         // Authenticate the user
-        boolean authenticated = userService.login(email, password);
+        boolean authenticated = userService.login(email,password);
 
         // Check if authentication was successful
         if (authenticated) {
@@ -66,7 +67,6 @@ public class Login {
             showAlert(Alert.AlertType.ERROR, "Error", "Invalid email or password.");
         }
     }
-
 
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);

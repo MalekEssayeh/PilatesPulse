@@ -10,6 +10,8 @@ import java.util.List;
 import user.Models.user;
 import user.Utils.MyConnection;
 import java.sql.Date;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 
@@ -25,7 +27,7 @@ public class userService implements userInterface<user> {
             PreparedStatement pstmt = cnx.prepareStatement(req);
             pstmt.setString(1, user.getNom());
             pstmt.setString(2, user.getPrenom());
-            pstmt.setString(3, user.getMdp());
+            pstmt.setString(3, doHashing(user.getMdp()));
             pstmt.setString(4, user.getMail());
             pstmt.setString(5, user.getRole());
 
@@ -161,5 +163,24 @@ public class userService implements userInterface<user> {
         // Return false if any exception occurs or if no user is found with the given credentials
         return false;
     }
+
+
+    // Hashage MD5
+    public static String doHashing(String password) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.update(password.getBytes());
+            byte[] resultByteArray = messageDigest.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : resultByteArray) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
 
 }

@@ -40,7 +40,7 @@ public class PromoService implements userInterface<Promo> {
     @Override
     public void update(Promo promo) {
         try {
-            String req = "UPDATE `promo` SET `pourcentage` = ?, `isActive` = ?, `validite` = ? WHERE `code` = ?";
+            String req = "UPDATE `promo` SET `pourcentage` = ?, `isActive` = ?, `validite` = ?, `id` = ? WHERE `code` = ?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
             pstmt.setDouble(1, promo.getPourcentage());
             pstmt.setBoolean(2, promo.isActive());
