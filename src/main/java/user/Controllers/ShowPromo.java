@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import user.Models.Promo;
 import user.Services.PromoService;
 import user.Services.userService;
@@ -38,7 +39,7 @@ public class ShowPromo {
     private ListView<Promo> promosLV;
     private final PromoService ps = new PromoService();
 
-    @FXML
+   /* @FXML
     void initialize() {
         try {
             List<Promo> promoList = ps.show();
@@ -46,7 +47,36 @@ public class ShowPromo {
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
-    }
+    }*/
+   @FXML
+   void initialize() {
+       try {
+           List<Promo> promoList = ps.show();
+           promosLV.setItems(FXCollections.observableArrayList(promoList));
+
+           // Set custom cell factory to display specific attributes of Promo object
+           promosLV.setCellFactory(new Callback<ListView<Promo>, ListCell<Promo>>() {
+               @Override
+               public ListCell<Promo> call(ListView<Promo> listView) {
+                   return new ListCell<Promo>() {
+                       @Override
+                       protected void updateItem(Promo promo, boolean empty) {
+                           super.updateItem(promo, empty);
+                           if (empty || promo == null) {
+                               setText(null);
+                           } else {
+                               // Display only specific attributes of Promo object
+                               setText("Code: " + promo.getCode() + "\n" + " Pourcentage: " + promo.getPourcentage() + "\n" + " Validite: " + promo.getValidite());
+                           }
+                       }
+                   };
+               }
+           });
+       } catch (Exception e) {
+           showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+       }
+   }
+
 
 
 

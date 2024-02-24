@@ -7,7 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import user.Services.userService;
 import user.Models.user;
 import javafx.collections.ObservableList;
@@ -38,8 +40,7 @@ public class Showuser {
 
     private final userService us = new userService();
 
-
-    @FXML
+ /*   @FXML
     void initialize() {
         try {
             List<user> userList = us.show();
@@ -48,7 +49,40 @@ public class Showuser {
             showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
         filterCB.getItems().addAll("nom", "prenom");
-    }
+    }*/
+ @FXML
+ void initialize() {
+     try {
+         List<user> userList = us.show();
+         usersLV.setItems(FXCollections.observableArrayList(userList));
+
+         // Set custom cell factory for the ListView
+         usersLV.setCellFactory(new Callback<ListView<user>, ListCell<user>>() {
+             @Override
+             public ListCell<user> call(ListView<user> param) {
+                 return new ListCell<user>() {
+                     @Override
+                     protected void updateItem(user item, boolean empty) {
+                         super.updateItem(item, empty);
+                         if (empty || item == null) {
+                             setText(null);
+                         } else {
+                             // Set the text of the cell to display only the desired fields
+                             setText("Nom: " + item.getNom() + "\n" +
+                                     "Prenom: " + item.getPrenom() + "\n" +
+                                     "Mail: " + item.getMail() + "\n" +
+                                     "Role: " + item.getRole());
+                         }
+                     }
+                 };
+             }
+         });
+     } catch (Exception e) {
+         showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+     }
+     filterCB.getItems().addAll("nom", "prenom");
+ }
+
 
     @FXML
     void back(ActionEvent event) throws IOException {

@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import user.Models.Promo;
 import user.Models.user;
 import user.Services.PromoService;
@@ -49,6 +50,25 @@ public class AddPromo {
         List<user> userList = userService.show();
         ObservableList<user> observableList = FXCollections.observableList(userList);
         userCB.setItems(observableList);
+        /////////////////// Set a custom cell factory for the choice box to display only nom and prenom
+        userCB.setCellFactory(new Callback<ListView<user>, ListCell<user>>() {
+            @Override
+            public ListCell<user> call(ListView<user> param) {
+                return new ListCell<>() {
+                    @Override
+                    protected void updateItem(user user, boolean empty) {
+                        super.updateItem(user, empty);
+                        if (empty || user == null) {
+                            setText(null);
+                        } else {
+                            // Display only the nom and prenom attributes of the user object
+                            setText(user.getNom() + " " + user.getPrenom());
+                        }
+                    }
+                };
+            }
+        }); ////////////////////////////////////////////////
+
         isActiveCB.getItems().addAll("true", "false");
         // Set up text formatter to allow only numeric input for the percentage text field
         PercentageTF.setTextFormatter(new TextFormatter<>(change -> {

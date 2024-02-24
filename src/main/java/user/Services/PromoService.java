@@ -7,6 +7,7 @@ import user.Utils.MyConnection;
 import java.sql.Date;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class PromoService implements userInterface<Promo> {
     @Override
     public void add2(Promo promo) {
         try {
+            // Update isActive tekhou false ken date t3addet
+            promo.setActive(promo.getValidite().toLocalDate().isAfter(LocalDate.now()));
             String req = "INSERT INTO `promo`(`pourcentage`, `validite`, `isActive`, `id`) VALUES ( ?, ?, ?, ?)";
             PreparedStatement pstmt = cnx.prepareStatement(req);
             pstmt.setFloat(1, promo.getPourcentage());

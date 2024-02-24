@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Profile">
    <children>
@@ -12,5 +12,8 @@
             <Image url="@../../../../Users/Admin/Downloads/13c2f4707e1fdd0d831552333ffdf5d8.jpg" />
          </image>
       </ImageView>
+      <Label fx:id="nomL" layoutX="44.0" layoutY="242.0" text="Label" />
+      <Label fx:id="prenomL" layoutX="44.0" layoutY="270.0" text="Label" />
+      <Label fx:id="mailL" layoutX="44.0" layoutY="300.0" text="Label" />
    </children>
 </AnchorPane>

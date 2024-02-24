@@ -10,7 +10,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #260043;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Showuser">
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #260043;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Showuser" stylesheets="styles.css">
    <children>
       <ListView fx:id="usersLV" layoutX="69.0" layoutY="150.0" prefHeight="390.0" prefWidth="670.0" />
       <Button layoutX="814.0" layoutY="52.0" mnemonicParsing="false" onAction="#LogOut" style="-fx-background-color: transparent;" text="Log Out" textFill="#ffe1f2">
@@ -22,7 +23,7 @@
       <Button fx:id="Update" layoutX="760.0" layoutY="273.0" mnemonicParsing="false" onAction="#Update" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Update" textFill="#490e6e" />
       <ImageView fitHeight="70.0" fitWidth="123.0" layoutY="541.0" opacity="0.3" pickOnBounds="true">
          <image>
-            <Image url="@../../../../Users/Admin/Downloads/download%20(8).jpg" />
+            <Image url="@../../../../Users/Admin/Downloads/download%20(😎.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="53.0" fitWidth="83.0" layoutX="818.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">

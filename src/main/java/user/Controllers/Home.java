@@ -10,11 +10,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.IOException;
+import user.Models.user;
 
 public class Home {
 
     @FXML
     private Button Profile;
+    private user loggedInUser; // Variable to store the logged-in user
+
+    // Setter method for loggedInUser
+    public void setLoggedInUser(user user) {
+        this.loggedInUser = user;
+    }
     public void LogOut(ActionEvent actionEvent) {
         try {
             // Close the current stage (Home stage)

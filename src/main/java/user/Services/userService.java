@@ -152,6 +152,7 @@ public class userService implements userInterface<user> {
             pstmt.setString(2, mdp);
             ResultSet rs = pstmt.executeQuery();
 
+
             // If the result set has any rows, it means the user exists with the given email and password
             return rs.next();
         } catch (SQLException ex) {
