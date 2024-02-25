@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #260043;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.ShowPromo" stylesheets="styles.css">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #260043;" stylesheets="styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.ShowPromo">
    <children>
       <ImageView fitHeight="647.0" fitWidth="967.0" layoutX="-64.0" opacity="0.3" pickOnBounds="true">
          <image>
@@ -30,7 +30,7 @@
       <Button fx:id="Update" layoutX="769.0" layoutY="292.0" mnemonicParsing="false" onAction="#Update" prefHeight="31.0" prefWidth="114.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Update" textFill="#630c71" />
       <Button fx:id="Delete" layoutX="769.0" layoutY="345.0" mnemonicParsing="false" onAction="#Delete" prefHeight="31.0" prefWidth="114.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Delete" textFill="#630c71" />
       <Button fx:id="Add" layoutX="769.0" layoutY="246.0" mnemonicParsing="false" onAction="#Add" prefHeight="31.0" prefWidth="114.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Add" textFill="#630c71" />
-      <TextField fx:id="searchTextField" layoutX="116.0" layoutY="164.0" prefHeight="26.0" prefWidth="191.0" promptText="Search by name or surname" />
+      <TextField fx:id="searchTextField" layoutX="116.0" layoutY="164.0" prefHeight="26.0" prefWidth="191.0" promptText="Search by %" />
       <Button fx:id="searchButton" layoutX="316.0" layoutY="165.0" mnemonicParsing="false" onAction="#search" style="-fx-background-color: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);" text="Search">
          <font>
             <Font name="System Bold" size="12.0" />

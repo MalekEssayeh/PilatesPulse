@@ -27,7 +27,8 @@ public class userService implements userInterface<user> {
             PreparedStatement pstmt = cnx.prepareStatement(req);
             pstmt.setString(1, user.getNom());
             pstmt.setString(2, user.getPrenom());
-            pstmt.setString(3, doHashing(user.getMdp()));
+            pstmt.setString(3, user.getMdp());
+           // pstmt.setString(3, doHashing(user.getMdp()));
             pstmt.setString(4, user.getMail());
             pstmt.setString(5, user.getRole());
 
@@ -119,6 +120,7 @@ public class userService implements userInterface<user> {
         }
         return userList;
     }
+    public List<user> search2(float percentage){return null;}
 
     public List<user> filterByName(String keyword) {
         List<user> userList = new ArrayList<>();
@@ -166,7 +168,7 @@ public class userService implements userInterface<user> {
 
 
     // Hashage MD5
-    public static String doHashing(String password) {
+  /*  public static String doHashing(String password) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             messageDigest.update(password.getBytes());
@@ -180,6 +182,40 @@ public class userService implements userInterface<user> {
             e.printStackTrace();
         }
         return "";
+    }*/
+
+    public boolean resetPassword(String email) {
+        // Implement logic to generate a temporary password
+        String temporaryPassword = generateTemporaryPassword();
+
+        // Implement logic to update the user's password in the database
+        boolean passwordUpdated = updatePasswordInDatabase(email, temporaryPassword);
+
+        if (passwordUpdated) {
+            // Implement logic to send an email with the new password
+            boolean emailSent = sendEmail(email, temporaryPassword);
+            return emailSent;
+        } else {
+            return false;
+        }
+    }
+
+    private String generateTemporaryPassword() {
+        // Implement logic to generate a temporary password
+        // For simplicity, you can generate a random alphanumeric string
+        return "temp123"; // Example temporary password
+    }
+
+    private boolean updatePasswordInDatabase(String email, String newPassword) {
+        // Implement logic to update the user's password in the database
+        // Use JDBC or an ORM framework to execute SQL update statement
+        return true; // Assuming password update was successful
+    }
+
+    private boolean sendEmail(String email, String newPassword) {
+        // Implement logic to send an email with the new password
+        // Use JavaMail API or any other email-sending library
+        return true; // Assuming email sending was successful
     }
 
 

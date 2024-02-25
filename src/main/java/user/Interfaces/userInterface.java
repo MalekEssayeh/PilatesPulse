@@ -11,6 +11,7 @@ public interface userInterface <T>{
     public void delete(int id);
     public List<T> show();
     public List<T> search(String keyword);
+    public List<T> search2(float percentage);
     public List<T> filterByName(String keyword);
 
     public boolean login(String mail, String mdp);

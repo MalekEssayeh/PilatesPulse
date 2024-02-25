@@ -16,6 +16,7 @@ import user.Models.user;
 import user.Services.PromoService;
 import user.Services.userService;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListCell;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -34,12 +35,10 @@ public class AddPromo {
     private TextField PercentageTF;
 
     @FXML
-    private ChoiceBox<String> isActiveCB;
-    @FXML
     private DatePicker validiteDP;
 
     @FXML
-    private ChoiceBox<user> userCB; // Choice box for selecting the user
+    private ChoiceBox<user> userCB;
 
     private final PromoService promoService = new PromoService();
     private final userService userService = new userService();
@@ -48,10 +47,9 @@ public class AddPromo {
     void initialize() {
         // Populate the choice box with users
         List<user> userList = userService.show();
-        ObservableList<user> observableList = FXCollections.observableList(userList);
-        userCB.setItems(observableList);
-        /* Set a custom cell factory for the choice box to display only nom and prenom
-        userCB.setCellFactory(new Callback<ListView<user>, ListCell<user>>() {
+        userCB.setItems(FXCollections.observableArrayList(userList));
+        // Set a custom cell factory to display only nom and prenom
+       /* userCB.setCellFactory(new Callback<ListView<user>, ListCell<user>>() {
             @Override
             public ListCell<user> call(ListView<user> param) {
                 return new ListCell<>() {
@@ -67,9 +65,8 @@ public class AddPromo {
                     }
                 };
             }
-        }); */
+        });*/
 
-        isActiveCB.getItems().addAll("true", "false");
         // Set up text formatter to allow only numeric input for the percentage text field
         PercentageTF.setTextFormatter(new TextFormatter<>(change -> {
             String newText = change.getControlNewText();
@@ -96,12 +93,11 @@ public class AddPromo {
             // Parse the percentage from the UI
             float percentage = Float.parseFloat(PercentageTF.getText());
 
-            // Parse the isActive from the UI
-            String isActiveString = isActiveCB.getValue();
-            boolean isActive = Boolean.parseBoolean(isActiveString);
-
             // Parse the validite from the UI
             Date validite = Date.valueOf(validiteDP.getValue());
+
+            // Calculate the isActive status
+            boolean isActive = validite.toLocalDate().isAfter(LocalDate.now());
 
             // Get the selected user from the choice box
             user selectedUser = userCB.getValue();

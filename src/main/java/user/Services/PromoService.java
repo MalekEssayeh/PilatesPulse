@@ -95,10 +95,35 @@ public class PromoService implements userInterface<Promo> {
         return promoList;
     }
 
-    @Override
+
     public List<Promo> search(String keyword) {
         return null;
     }
+
+    public List<Promo> search2(float percentage) {
+        List<Promo> promoList = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM `promo` WHERE `pourcentage` = ?";
+            PreparedStatement pstmt = cnx.prepareStatement(req);
+            pstmt.setFloat(1, percentage);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Promo promo = new Promo();
+                promo.setCode(rs.getInt("code"));
+                promo.setPourcentage(rs.getFloat("pourcentage"));
+                promo.setValidite(rs.getDate("validite"));
+                promo.setActive(rs.getBoolean("isActive"));
+                promo.setId(rs.getInt("id"));
+
+                promoList.add(promo);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return promoList;
+    }
+
+
 
     @Override
     public List<Promo> filterByName(String keyword) {

@@ -28,6 +28,8 @@ public class Login {
 
     @FXML
     private Button SignUp;
+    @FXML
+    private Button resetPwdBT;
 
     private final userService userService = new userService();
 
@@ -95,6 +97,27 @@ public class Login {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to load Sign Up interface.");
         }
+    }
+    @FXML
+    void ResetPwd(ActionEvent event) {
+        try {
+            // Load the Adduser.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ResetPwd.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the Adduser interface
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Reset Password");
+
+            // Show the Adduser stage
+            stage.show();
+        } catch (IOException e) {
+            // Handle any potential IOException
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to load Reset pwd interface.");
+        }
+
     }
 
 

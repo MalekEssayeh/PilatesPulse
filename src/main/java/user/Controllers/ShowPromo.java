@@ -184,11 +184,16 @@ public class ShowPromo {
 
     @FXML
     void search(ActionEvent event) {
-        String keyword = searchTextField.getText();
-        List<Promo> searchResults = ps.search(keyword);
-        ObservableList<Promo> observableSearchResults = FXCollections.observableArrayList(searchResults);
-        promosLV.setItems(observableSearchResults);
+        try {
+            float percentage = Float.parseFloat(searchTextField.getText());
+            List<Promo> searchResults = ps.search2(percentage);
+            ObservableList<Promo> observableSearchResults = FXCollections.observableArrayList(searchResults);
+            promosLV.setItems(observableSearchResults);
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please enter a valid percentage value.");
+        }
     }
+
 
 
 }

@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #260043;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.AddPromo">
    <children>
       <ImageView fitHeight="668.0" fitWidth="923.0" layoutY="-10.0" opacity="0.3" pickOnBounds="true">
@@ -20,14 +19,13 @@
       </ImageView>
       <TextField fx:id="PercentageTF" layoutX="368.0" layoutY="207.0" prefHeight="30.0" prefWidth="214.0" promptText="Percentage" />
       <DatePicker fx:id="validiteDP" layoutX="370.0" layoutY="257.0" prefHeight="30.0" prefWidth="214.0" promptText="validiteDP" />
-      <ChoiceBox fx:id="isActiveCB" layoutX="370.0" layoutY="312.0" prefHeight="30.0" prefWidth="214.0" />
       <Label layoutX="337.0" layoutY="105.0" prefHeight="36.0" prefWidth="411.0" text="Add a dicount code" textFill="#faa7cf">
          <font>
             <Font name="Britannic Bold" size="36.0" />
          </font>
       </Label>
       <Button fx:id="AddBT" layoutX="422.0" layoutY="404.0" mnemonicParsing="false" onAction="#Add" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Add" textFill="#50085b" />
-      <ChoiceBox fx:id="userCB" layoutX="370.0" layoutY="360.0" prefHeight="30.0" prefWidth="214.0" />
+      <ChoiceBox fx:id="userCB" layoutX="367.0" layoutY="309.0" prefHeight="30.0" prefWidth="214.0" />
       <Button fx:id="BackBT" layoutX="89.0" layoutY="594.0" mnemonicParsing="false" onAction="#Back" prefHeight="26.0" prefWidth="58.0" text="Back" />
    </children>
 </AnchorPane>
