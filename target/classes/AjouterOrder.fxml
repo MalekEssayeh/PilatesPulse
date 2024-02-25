@@ -2,63 +2,34 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.esprit.controllers.AjouterOrder">
    <children>
-      <TextField fx:id="productNameField" layoutX="206.0" layoutY="137.0" prefHeight="25.0" prefWidth="195.0" promptText="productname" />
-      <TextField fx:id="promoCodeField" layoutX="207.0" layoutY="222.0" prefHeight="25.0" prefWidth="195.0" promptText="code promo" />
-      <TextField fx:id="totalField" layoutX="209.0" layoutY="310.0" prefHeight="25.0" prefWidth="194.0" promptText="Total" />
-      <Button fx:id="confirm" layoutX="231.0" layoutY="357.0" mnemonicParsing="false" onAction="#boutouna" prefHeight="38.0" prefWidth="149.0" style="-fx-background-color: #4B0082;" text="CONFIRM" textFill="#f8f8f8">
+      <TextField fx:id="productNameField" layoutX="251.0" layoutY="140.0" prefHeight="25.0" prefWidth="195.0" promptText="productname" />
+      <TextField fx:id="promoCodeField" layoutX="254.0" layoutY="224.0" prefHeight="25.0" prefWidth="195.0" promptText="code promo" />
+      <TextField fx:id="totalField" layoutX="254.0" layoutY="312.0" prefHeight="25.0" prefWidth="194.0" promptText="Total" />
+      <Button fx:id="confirm" layoutX="276.0" layoutY="358.0" mnemonicParsing="false" onAction="#boutouna" prefHeight="38.0" prefWidth="149.0" style="-fx-background-color: #4B0082;" text="CONFIRM" textFill="#f8f8f8">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <AnchorPane layoutX="7.0" prefHeight="64.0" prefWidth="700.0" style="-fx-background-color: #dfdde1;">
-         <children>
-            <MenuBar fx:id="menu" layoutX="269.0" layoutY="19.0" prefHeight="25.0" prefWidth="249.0">
-               <menus>
-                  <Menu mnemonicParsing="false" text="Exercices">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="yoga" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Programs">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="gain weight" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Products">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="whey" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-            <TextField fx:id="search" layoutX="25.0" layoutY="20.0" prefHeight="25.0" prefWidth="214.0" promptText="Search" />
-            <ImageView fx:id="image" fitHeight="47.0" fitWidth="60.0" layoutX="637.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:/C:/Users/ASUS/Downloads/affiche%20et%20annonce/logo%20(2).png" />
-               </image>
-            </ImageView>
-            <Label fx:id="label" layoutX="538.0" layoutY="23.0" text="Pilates Pulse" textFill="#7e1c83" />
-         </children>
-      </AnchorPane>
-      <Label fx:id="addorder" layoutX="230.0" layoutY="72.0" style="-fx-alignment: #4d058d;" text="ADD ORDER" textFill="#7404dd">
+      <Label fx:id="addorder" layoutX="263.0" layoutY="14.0" prefHeight="86.0" prefWidth="172.0" style="-fx-alignment: #4B0082;" text="ADD ORDER" textFill="#7404dd">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <Label layoutX="207.0" layoutY="119.0" style="-fx-background-insets: 4B0082;" text="PRODUCT" textFill="INDIGO" />
-      <Label layoutX="208.0" layoutY="195.0" text="PROMO CODE" textFill="INDIGO" />
-      <Label layoutX="210.0" layoutY="283.0" prefHeight="18.0" prefWidth="60.0" text="TOTAL" textFill="INDIGO" />
-      <Button fx:id="listet" layoutX="545.0" layoutY="364.0" mnemonicParsing="false" onAction="#naviguer" text="list" />
+      <Label layoutX="252.0" layoutY="119.0" style="-fx-background-insets:  linear-gradient(#eed5f4, #ffe5e7);" text="PRODUCT" textFill="INDIGO" />
+      <Label layoutX="254.0" layoutY="199.0" text="PROMO CODE" textFill="INDIGO" />
+      <Label layoutX="254.0" layoutY="285.0" prefHeight="18.0" prefWidth="60.0" text="TOTAL" textFill="INDIGO" />
+      <Button fx:id="listet" layoutX="276.0" layoutY="405.0" mnemonicParsing="false" onAction="#naviguer" prefHeight="38.0" prefWidth="149.0" style="-fx-background-color: #4B0082;" text="Display" />
+      <ImageView fitHeight="50.0" fitWidth="67.0" layoutX="599.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+<!--         <image>-->
+<!--            <Image url="@../../../../../Downloads/affiche%20et%20annonce/logo%20(2).png" />-->
+<!--         </image>-->
+      </ImageView>
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package org.esprit.models;
 
 import java.sql.Date;
+import java.util.Objects;
 
 public class Commande {
     private int idCmd, idUser,Total;
@@ -75,5 +76,18 @@ public class Commande {
                 ", codePromo='" + codePromo + '\'' +
                 ", nomProd='" + nomProd + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Commande commande = (Commande) o;
+        return idCmd == commande.idCmd && idUser == commande.idUser && Total == commande.Total && Objects.equals(codePromo, commande.codePromo) && Objects.equals(nomProd, commande.nomProd);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idCmd, idUser, Total, codePromo, nomProd);
     }
 }

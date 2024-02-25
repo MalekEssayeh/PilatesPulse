@@ -114,48 +114,44 @@ public class CommandeService implements IServiceC<Commande> {
     }
 
 
-    public List<Commande> rechercheCommande(int idCmd) {
+    public List<Commande> rechercheCommande(String nomProd) throws SQLException {
         List<Commande> Commands = new ArrayList<>();
         try {
-
-            String req = "SELECT * FROM Commande WHERE idCmd LIKE CONCAT(?, '%')";
+            String req = "SELECT * FROM Commande WHERE nomProd LIKE ?";
             PreparedStatement st = connection.prepareStatement(req);
-            st.setInt(1, idCmd);
+            st.setString(1, "%" + nomProd + "%"); // Adding wildcards to match any characters
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Commande c = new Commande();
                 c.setIdCmd(rs.getInt(1));
                 c.setIdUser(rs.getInt(2));
-
                 c.setTotal(rs.getInt(3));
+
+                // Add debug output to identify the issue
+                System.out.println("DEBUG - CodePromo: " + rs.getString(4));
+
                 c.setCodePromo(rs.getString(4));
                 c.setNomProd(rs.getString(5));
-
                 Commands.add(c);
             }
-
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            throw ex; // Throw the exception to be caught and handled in the calling method
         }
-
         return Commands;
     }
 
-
-
-
-    public List<Commande> filtreCommande(int idProd) {
+    public List<Commande> filtreCommande(String nomProd) {
         List<Commande> Commands = new ArrayList<>();
         try {
 
-            String req = "SELECT * FROM commande WHERE idProd = ?";
-            Statement st = connection.createStatement();
-            ResultSet rs = st.executeQuery(req);
+            String req = "SELECT * FROM `commande` WHERE `nomProd` LIKE ?";
+            PreparedStatement pst = connection.prepareStatement(req);
+            pst.setString(1, "%" + nomProd + "%");
+            ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 Commande c= new Commande();
                 c.setIdCmd(rs.getInt(1));
                 c.setIdUser(rs.getInt(2));
-
                 c.setTotal(rs.getInt(3));
                 c.setCodePromo(rs.getString(4));
                 c.setNomProd(rs.getString(5));

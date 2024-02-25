@@ -1,68 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.esprit.controllers.AfficherOrder">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #a1688f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.esprit.controllers.AfficherOrder">
    <children>
-      <ListView fx:id="listeProd" layoutX="270.0" layoutY="187.0" prefHeight="200.0" prefWidth="111.0" />
-      <ListView fx:id="listeCodePromo" layoutX="398.0" layoutY="187.0" prefHeight="200.0" prefWidth="111.0" />
-      <ListView fx:id="listeTotal" layoutX="522.0" layoutY="187.0" prefHeight="200.0" prefWidth="111.0" />
-      <Label layoutX="268.0" layoutY="159.0" text="Product Name" textFill="INDIGO">
+      <ListView fx:id="usersLV" layoutX="69.0" layoutY="150.0" prefHeight="390.0" prefWidth="670.0" />
+
+      <Button fx:id="Delete" layoutX="758.0" layoutY="228.0" mnemonicParsing="false" onAction="#Delete" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #8f6fa8;" text="Delete" textFill="#36065e" />
+      <Button fx:id="Update" layoutX="760.0" layoutY="273.0" mnemonicParsing="false" onAction="#Update" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #8f6fa8;" text="Update" textFill="#490e6e" />
+<!--      <ImageView fitHeight="70.0" fitWidth="123.0" layoutY="541.0" opacity="0.3" pickOnBounds="true">-->
+<!--         <image>-->
+<!--            <Image>-->
+<!--               <url>@../../../../Users/Admin/Downloads/download%20(8).jpg</url>-->
+<!--            </Image>-->
+<!--         </image>-->
+<!--      </ImageView>-->
+
+      <Label layoutX="222.0" layoutY="14.0" text="ORDERS" textFill="#752359">
          <font>
-            <Font name="System Bold Italic" size="17.0" />
+            <Font name="Britannic Bold" size="89.0" />
          </font>
       </Label>
-      <Label layoutX="412.0" layoutY="159.0" text="Promo Code" textFill="INDIGO">
+      <TextField fx:id="searchTextField" layoutX="69.0" layoutY="115.0" prefHeight="26.0" prefWidth="250.0" promptText="Search by product name" />
+      <Button fx:id="searchButton" layoutX="331.0" layoutY="116.0" mnemonicParsing="false" onAction="#search" style="-fx-background-color: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);" text="Search" textFill="#480a53">
          <font>
-            <Font name="System Bold Italic" size="17.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
-      </Label>
-      <Label layoutX="557.0" layoutY="159.0" text="Total" textFill="INDIGO">
-         <font>
-            <Font name="System Bold Italic" size="17.0" />
-         </font>
-      </Label>
-      <Button fx:id="Delete" layoutX="270.0" layoutY="412.0" mnemonicParsing="false" onAction="#Delete" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #4B0082;" text="Delete" textFill="WHITE" />
-      <Button fx:id="Update" layoutX="522.0" layoutY="412.0" mnemonicParsing="false" onAction="#Update" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #4B0082;" text="Update" textFill="WHITE" />
-      <AnchorPane layoutX="-2.0" layoutY="-1.0" prefHeight="75.0" prefWidth="900.0" style="-fx-background-color: #dfdde1;">
-         <children>
-            <MenuBar fx:id="menu" layoutX="269.0" layoutY="19.0" prefHeight="25.0" prefWidth="249.0">
-               <menus>
-                  <Menu mnemonicParsing="false" text="Exercices">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="yoga" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Programs">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="gain weight" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Products">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="whey" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-            <TextField fx:id="search" layoutX="25.0" layoutY="20.0" prefHeight="25.0" prefWidth="214.0" promptText="Search" />
-            <ImageView fx:id="image" fitHeight="47.0" fitWidth="60.0" layoutX="837.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:/C:/Users/ASUS/Downloads/affiche%20et%20annonce/logo%20(2).png" />
-               </image>
-            </ImageView>
-            <Label fx:id="label" layoutX="538.0" layoutY="23.0" text="Pilates Pulse" textFill="#7e1c83" />
-         </children>
-      </AnchorPane>
+      </Button>
+      <ChoiceBox fx:id="filterCB" layoutX="404.0" layoutY="116.0" prefHeight="26.0" prefWidth="278.0" />
+      <Button fx:id="back" layoutX="71.0" layoutY="40.0" mnemonicParsing="false" onAction="#back" text="&lt;" />
+
    </children>
 </AnchorPane>
