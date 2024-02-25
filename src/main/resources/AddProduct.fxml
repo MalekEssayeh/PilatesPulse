@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,10 +9,9 @@
    <children>
       <TextField fx:id="nomProductiD" layoutX="216.0" layoutY="39.0" promptText="nom" />
       <TextField fx:id="prixProductID" layoutX="216.0" layoutY="83.0" promptText="prix" />
-      <TextField fx:id="idCategoryID" layoutX="308.0" layoutY="126.0" promptText="id Category" />
+      <TextField fx:id="idCategoryID" layoutX="217.0" layoutY="126.0" promptText="Category reference" />
       <Button layoutX="200.0" layoutY="325.0" mnemonicParsing="false" onAction="#add" prefHeight="33.0" prefWidth="182.0" text="Ajouter" />
       <TextArea fx:id="descriptionID" layoutX="165.0" layoutY="213.0" prefHeight="72.0" prefWidth="252.0" promptText="Description...." />
       <TextField fx:id="stockID" layoutX="216.0" layoutY="169.0" promptText="stock" />
-      <ComboBox fx:id="categoryComboBox" layoutX="115.0" layoutY="126.0" prefWidth="150.0" promptText="Categories" />
    </children>
 </AnchorPane>

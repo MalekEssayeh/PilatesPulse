@@ -57,6 +57,13 @@ public class AddProduct {
         Category category = categoryComboBox.getValue();
     }
 
+
+
+
+
+
+
+
    /* @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
