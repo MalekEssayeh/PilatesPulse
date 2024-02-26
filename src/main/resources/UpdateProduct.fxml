@@ -1,18 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.PilatePulse.controllers.UpdateProduct">
    <children>
-      <TextField fx:id="nomProductiD" layoutX="226.0" layoutY="49.0" promptText="nom" />
-      <TextField fx:id="prixProductID" layoutX="226.0" layoutY="93.0" promptText="prix" />
-      <TextField fx:id="idCategoryID" layoutX="227.0" layoutY="136.0" promptText="id Category" />
-      <Button layoutX="210.0" layoutY="335.0" mnemonicParsing="false" onAction="#update" prefHeight="33.0" prefWidth="182.0" text="Update" />
-      <TextField fx:id="stockID" layoutX="226.0" layoutY="179.0" promptText="stock" />
-      <TextField fx:id="descriptionID" layoutX="226.0" layoutY="234.0" promptText="description" />
-      <TextField fx:id="imageURLid" layoutX="226.0" layoutY="278.0" promptText="image url" />
-      <Button fx:id="uploadButton" layoutX="392.0" layoutY="278.0" mnemonicParsing="false" onAction="#browse" text="Upload" />
+      <AnchorPane layoutX="-7.0" layoutY="-6.0" prefHeight="502.0" prefWidth="729.0" style="-fx-background-color: #FFDBFD;">
+         <children>
+            <AnchorPane fx:id="navBar" layoutX="4.0" layoutY="6.0" prefHeight="60.0" prefWidth="747.0" style="-fx-background-color: #ECECEC;">
+               <children>
+                  <Label layoutX="591.0" layoutY="20.0" prefHeight="17.0" prefWidth="80.0" text="Pilates Pulse" textFill="#120228">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="logoImg" fitHeight="29.0" fitWidth="33.0" layoutX="691.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../java/tn/PilatePulse/Images/Logo.png" />
+                     </image>
+                  </ImageView>
+                  <MFXButton fx:id="eventsButton" layoutX="290.0" layoutY="18.0" rippleColor="#ececec" style="-fx-background-color: ECECEC;" text="Events" />
+                  <MFXButton fx:id="shopButton" layoutX="251.0" layoutY="18.0" style="-fx-background-color: ECECEC;" text="Shop" />
+                  <MFXButton fx:id="exercicesButton" layoutX="126.0" layoutY="18.0" style="-fx-background-color: ECECEC;" text="Exercices" />
+                  <MFXButton fx:id="programsButton" layoutX="187.0" layoutY="18.0" style="-fx-background-color: ECECEC;" text="Programs" />
+                  <MFXButton fx:id="homeButton" layoutX="14.0" layoutY="16.0" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: ECECEC;" text="Home" />
+               </children>
+            </AnchorPane>
+            <MFXTextField fx:id="prixProductID" layoutX="90.0" layoutY="243.0" prefHeight="49.0" prefWidth="213.0" promptText="price" />
+            <MFXTextField fx:id="idCategoryID" layoutX="90.0" layoutY="383.0" prefHeight="60.0" prefWidth="213.0" promptText="Category refrence" />
+            <MFXTextField fx:id="stockID" layoutX="90.0" layoutY="314.0" prefHeight="49.0" prefWidth="213.0" promptText="stock" />
+            <MFXTextField fx:id="descriptionID" layoutX="361.0" layoutY="176.0" prefHeight="150.0" prefWidth="302.0" promptText="Description..." />
+            <Label fx:id="titleLabe" layoutX="213.0" layoutY="90.0" prefHeight="42.0" prefWidth="302.0" text="update product" textFill="#1e044d">
+               <font>
+                  <Font name="Britannic Bold" size="41.0" />
+               </font>
+            </Label>
+            <MFXTextField fx:id="imgURLId" layoutX="364.0" layoutY="339.0" prefHeight="49.0" prefWidth="192.0" promptText="image url" />
+            <Button fx:id="updateButton" layoutX="475.0" layoutY="413.0" mnemonicParsing="false" onAction="#update" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #1e044d;" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="uploadButton" layoutX="560.0" layoutY="355.0" mnemonicParsing="false" onAction="#browse" prefHeight="28.0" prefWidth="105.0" style="-fx-background-color: #1e044d;" text="upload" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Italic" size="16.0" />
+               </font>
+            </Button>
+            <Label layoutX="97.0" layoutY="251.0" prefHeight="17.0" prefWidth="140.0" text="Insert product price" />
+            <Label layoutX="97.0" layoutY="318.0" text="Quantity available" />
+            <Label layoutX="97.0" layoutY="388.0" prefHeight="17.0" prefWidth="149.0" text="Insert category reference" />
+            <Label layoutX="372.0" layoutY="194.0" prefHeight="17.0" prefWidth="140.0" text="Insert product description" />
+            <MFXTextField fx:id="nomProductiD" layoutX="92.0" layoutY="173.0" minWidth="-Infinity" prefHeight="60.0" prefWidth="213.0" promptText="name..." style="-fx-background-color: #ffffff;" />
+            <Label layoutX="97.0" layoutY="186.0" prefHeight="17.0" prefWidth="124.0" text="Insert product name" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

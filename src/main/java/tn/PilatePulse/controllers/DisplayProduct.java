@@ -1,12 +1,21 @@
 package tn.PilatePulse.controllers;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -17,18 +26,53 @@ import javafx.stage.Stage;
 import tn.PilatePulse.model.Product;
 import tn.PilatePulse.services.ProductService;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DisplayProduct implements Initializable {
     @FXML
-    private ListView<Product> listProducts;
-    @FXML
-    private Label label1;
+    private Button addID;
+
     @FXML
     private Button deleteid;
+
+    @FXML
+    private MFXButton eventsButton;
+
+    @FXML
+    private MFXButton homeButton;
+
+    @FXML
+    private ImageView logoImg;
+
+    @FXML
+    private MFXLegacyListView<Product> productList;
+
+    @FXML
+    private MFXButton programsButton;
+
+    @FXML
+    private MFXButton searchButton;
+
+    @FXML
+    private TextField searchTextField;
+
+    @FXML
+    private MFXButton shopButton;
+
+    @FXML
+    private Label titleLabe;
+
+    @FXML
+    private AnchorPane navBar;
+
     @FXML
     private Button updateid;
+
+
+
 
     ProductService productService = new ProductService();
     private Stage primaryStage;
@@ -36,57 +80,118 @@ public class DisplayProduct implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-        listProducts.setCellFactory(pram -> new ListCell<>() {
+        productList.setCellFactory(param -> new ListCell<>() {
 
+            @Override
             protected void updateItem(Product product, boolean empty) {
                 super.updateItem(product, empty);
+
                 if (empty || product == null) {
                     setText(null);
                     setGraphic(null);
                 } else {
+                    GridPane container = new GridPane();
+
                     TextFlow textFlow = new TextFlow();
 
-                    Text idText = new Text("ID: ");
 
-                    Text idData = new Text(product.getIdProduct() + "\n");
+                    String labelStyle = "-fx-fill: #9b8385;  -fx-font-size: 27  ;";
+                    String nameStyle = "-fx-fill: #8b7080;  -fx-font-size: 40;";
 
-                    Text nameText = new Text("Name: ");
+                    String dataStyle = "-fx-fill: #9b8385; -fx-font-size: 20;";
+
 
                     Text nameData = new Text(product.getNameProduct() + "\n");
+                    nameData.setStyle(nameStyle);
 
                     Text descriptionText = new Text("Description: ");
-
+                    descriptionText.setStyle(labelStyle);
                     Text descriptionData = new Text(product.getProductDescription() + "\n");
+                    descriptionData.setStyle(dataStyle);
 
+                    Text priceText = new Text("Price: ");
+                    priceText.setStyle(labelStyle);
+                    Text priceData = new Text(product.getPriceProduct() + "\n");
+                    priceData.setStyle(dataStyle);
 
-                    Text stockText = new Text("Stock: ");
-
+                    Text stockText = new Text("quantity available: ");
+                    stockText.setStyle(labelStyle);
                     Text stockData = new Text(product.getStock() + "\n");
+                    stockData.setStyle(dataStyle);
 
-
-                    Text categoryText = new Text("Category ID: ");
-
+                    Text categoryText = new Text("category reference: ");
+                    categoryText.setStyle(labelStyle);
                     Text categoryData = new Text(product.getIdCategory() + "\n");
+                    categoryData.setStyle(dataStyle);
+
+                    String imagePath = product.getImage();
+                    Image productImage = new Image(new File(imagePath).toURI().toString());
+                    ImageView imageView = new ImageView(productImage);
+                    imageView.setFitHeight(200);
+                    imageView.setFitWidth(200);
+                    nameData.setWrappingWidth(200);
+                    descriptionData.setWrappingWidth(200);
+                    descriptionText.setWrappingWidth(200);
+                    priceText.setWrappingWidth(200);
+                    priceData.setWrappingWidth(200);
+                    stockText.setWrappingWidth(200);
+                    stockData.setWrappingWidth(200);
+                    categoryText.setWrappingWidth(200);
+                    categoryData.setWrappingWidth(200);
+                    ColumnConstraints col1 = new ColumnConstraints(200);
+                    ColumnConstraints col2 = new ColumnConstraints(450);
+                    container.getColumnConstraints().addAll(col1, col2);
 
 
-                    textFlow.getChildren().addAll(idText, idData, nameText, nameData, descriptionText, descriptionData, stockText,stockData, categoryText, categoryData);
+                    textFlow.getChildren().addAll(nameData, descriptionText, descriptionData, priceText, priceData, stockText, stockData, categoryText, categoryData );
+                    container.add(textFlow, 1, 0);
+                    container.add(imageView, 0, 0);
+                    ColumnConstraints columnConstraints = new ColumnConstraints();
+                    columnConstraints.setHgrow(Priority.ALWAYS);
+                    container.getColumnConstraints().addAll(columnConstraints, columnConstraints);
 
-                    setGraphic(textFlow);
+                    container.setHgap(30);
+
+                    setGraphic(container);
+
                 }
             }
-
         });
-        listProducts.getItems().addAll(productService.fetchProduct());
+
+        productList.getItems().addAll(productService.fetchProduct());
+
+    }
+
+    @FXML
+    void addButton(ActionEvent event) {
+        try{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddProduct.fxml"));
+        Parent root = loader.load();
+
+        Scene currentScene = ((Node) event.getSource()).getScene();
+
+        currentScene.setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
     }
 
 
+    @FXML
+    void search(ActionEvent event) {
+
+
+}
+
+
     public void deleteButton(ActionEvent actionEvent) {
-        Product selectedExercice = listProducts.getSelectionModel().getSelectedItem();
+        Product selectedExercice = productList.getSelectionModel().getSelectedItem();
 
         if (selectedExercice != null) {
             int id = selectedExercice.getIdProduct();
             productService.remove(id);
-            listProducts.getItems().remove(selectedExercice);
+            productList.getItems().remove(selectedExercice);
         }
     }
 
@@ -96,7 +201,7 @@ public class DisplayProduct implements Initializable {
             loader.setControllerFactory(controllerClass -> {
                 if (controllerClass == UpdateProduct.class) {
                     UpdateProduct updateProduct = new UpdateProduct();
-                    Product selectedProduct = listProducts.getSelectionModel().getSelectedItem();
+                    Product selectedProduct = productList.getSelectionModel().getSelectedItem();
                     int id = selectedProduct.getIdProduct();
                     updateProduct.setPassedId(id);
                     return updateProduct;
@@ -125,7 +230,7 @@ public class DisplayProduct implements Initializable {
     }
 
     private void updateListView() {
-        listProducts.getItems().setAll(productService.fetchProduct());
+        productList.getItems().setAll(productService.fetchProduct());
     }
 }
 

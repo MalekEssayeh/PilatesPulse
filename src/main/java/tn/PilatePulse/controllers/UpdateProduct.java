@@ -1,5 +1,7 @@
 package tn.PilatePulse.controllers;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -23,26 +27,61 @@ import java.util.ResourceBundle;
 
 public class UpdateProduct implements Initializable {
     @FXML
-    private TextField idCategoryID;
+    private MFXTextField descriptionID;
 
     @FXML
-    private TextField nomProductiD;
+    private MFXButton eventsButton;
 
     @FXML
-    private TextField prixProductID;
+    private MFXButton exercicesButton;
+
+    @FXML
+    private MFXButton homeButton;
+
+    @FXML
+    private MFXTextField idCategoryID;
+
+    @FXML
+    private MFXTextField imgURLId;
+
+    @FXML
+    private ImageView logoImg;
+
+    @FXML
+    private Label logoLabel;
+
+    @FXML
+    private AnchorPane navBar;
+
+    @FXML
+    private MFXTextField nomProductiD;
+
+    @FXML
+    private MFXTextField prixProductID;
+
+    @FXML
+    private MFXButton programsButton;
+
+    @FXML
+    private MFXButton shopButton;
+
+    @FXML
+    private MFXTextField stockID;
+
+    @FXML
+    private Label titleLabe;
 
     @FXML
     private Button updateButton;
-    @FXML
-    private TextField stockID;
-    @FXML
-    private TextField descriptionID;
-    @FXML
-    private ListView<Product> listProducts;
-    @FXML
-    private TextField imageURLid;
+
     @FXML
     private Button uploadButton;
+
+    @FXML
+    void browse(ActionEvent event) {
+
+    }
+
     private Stage  primaryStage;
     private int id;
     private ProductService productService = new ProductService();
@@ -55,7 +94,7 @@ public class UpdateProduct implements Initializable {
         productService.update(new Product(id,
                 nomProductiD.getText(),
                 descriptionID.getText(),
-                imageURLid.getText(),
+                imgURLId.getText(),
                 Float.parseFloat(prixProductID.getText()),
                 Integer.parseInt(stockID.getText()),
                 Integer.parseInt(idCategoryID.getText())
