@@ -73,6 +73,15 @@ public class UpdateProduct implements Initializable {
     @FXML
     private Button uploadButton;
 
+
+    private Stage  primaryStage;
+    private int id;
+    private ProductService productService = new ProductService();
+    private Label nomProductID;
+
+
+
+
     @FXML
     void browse(ActionEvent event) {
         Stage primaryStage = new Stage();
@@ -88,10 +97,7 @@ public class UpdateProduct implements Initializable {
         }
     }
 
-    private Stage  primaryStage;
-    private int id;
-    private ProductService productService = new ProductService();
-    private Label nomProductID;
+
 
 
     @FXML

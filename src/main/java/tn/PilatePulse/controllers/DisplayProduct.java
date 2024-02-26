@@ -73,59 +73,6 @@ public class DisplayProduct implements Initializable {
     private Button updateid;
 
 
-
-    @FXML
-    void categoriesDashBoard(ActionEvent event) {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CategoriesDashboard.fxml"));
-            Parent root = loader.load();
-
-            Scene currentScene = ((Node) event.getSource()).getScene();
-
-            currentScene.setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-
-    @FXML
-    void productsDashBoard(ActionEvent event) {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayProduct.fxml"));
-            Parent root = loader.load();
-
-            Scene currentScene = ((Node) event.getSource()).getScene();
-
-            currentScene.setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-    @FXML
-    void shopDashboard(ActionEvent event) {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayShop.fxml"));
-            Parent root = loader.load();
-
-            Scene currentScene = ((Node) event.getSource()).getScene();
-
-            currentScene.setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-
-
-
     ProductService productService = new ProductService();
     private Stage primaryStage;
 
@@ -213,6 +160,62 @@ public class DisplayProduct implements Initializable {
         productList.getItems().addAll(productService.fetchProduct());
 
     }
+
+
+
+
+    @FXML
+    void categoriesDashBoard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CategoriesDashboard.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    @FXML
+    void productsDashBoard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayProduct.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    void shopDashboard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayShop.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
+
 
     @FXML
     void addButton(ActionEvent event) {
