@@ -6,6 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -22,17 +25,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UpdateProduct implements Initializable {
+
+    @FXML
+    private MFXButton categoriesButton;
+
     @FXML
     private MFXTextField descriptionID;
 
     @FXML
-    private MFXButton eventsButton;
-
-    @FXML
-    private MFXButton exercicesButton;
-
-    @FXML
-    private MFXButton homeButton;
+    private MFXButton homeButton1;
 
     @FXML
     private MFXTextField idCategoryID;
@@ -56,7 +57,13 @@ public class UpdateProduct implements Initializable {
     private MFXTextField prixProductID;
 
     @FXML
-    private MFXButton programsButton;
+    private MFXButton productButton;
+
+    @FXML
+    private MFXButton searchButton;
+
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     private MFXButton shopButton;
@@ -74,11 +81,70 @@ public class UpdateProduct implements Initializable {
     private Button uploadButton;
 
 
+
+
+
     private Stage  primaryStage;
     private int id;
     private ProductService productService = new ProductService();
     private Label nomProductID;
 
+
+
+
+    @FXML
+    void adminDashBoard(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void categoriesDashBoard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CategoriesDashboard.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void productsDashBoard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayProduct.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void shopDashboard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayShop.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void search(ActionEvent event) {
+
+    }
 
 
 
