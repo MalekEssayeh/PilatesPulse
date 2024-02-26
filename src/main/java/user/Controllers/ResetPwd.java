@@ -26,26 +26,7 @@ public class ResetPwd {
     private Button resetBT;
     private final userService userService= new userService();
 
-    @FXML
-    void Reset(ActionEvent event) {
-        String email = mailTF.getText();
 
-        // Check if the email field is empty
-        if (email.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Please enter your email.");
-            return;
-        }
-
-        // Call the UserService to handle the password reset logic
-        boolean resetSuccessful = userService.resetPassword(email);
-
-        if (resetSuccessful) {
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Password reset successful. Check your email for the new password.");
-        } else {
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to reset password. Please try again later.");
-        }
-
-    }
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

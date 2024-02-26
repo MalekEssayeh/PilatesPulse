@@ -25,7 +25,8 @@
     background-image:url('../../../../Users/Admin/Downloads/download%20(8).jpg');
     color:#490e6e;
     -fx-font-family: "Century Gothic";
-    -fx-font-weight: bold; /* Make the text bold */
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
 }
 
 

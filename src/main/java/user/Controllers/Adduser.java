@@ -11,6 +11,9 @@ import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 import user.Models.user;
 import user.Services.userService;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.io.IOException;
 import java.util.regex.Pattern;
@@ -32,6 +35,22 @@ public class Adduser {
     @FXML
     private TextField prenomTF;
     private final userService us= new userService();
+    // Hashage MD5
+    public static String doHashing(String password) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.update(password.getBytes());
+            byte[] resultByteArray = messageDigest.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : resultByteArray) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
     // Regular expression for validating email addresses
     private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
@@ -84,7 +103,7 @@ public class Adduser {
             }
 
             // Attempt to add the user only if the email is valid
-            us.add2(new user(nomTF.getText(), prenomTF.getText(), mdpTF.getText(), email,"client"));
+            us.add2(new user(nomTF.getText(), prenomTF.getText(),doHashing( mdpTF.getText()), email,"client"));
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }

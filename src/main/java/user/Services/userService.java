@@ -28,7 +28,6 @@ public class userService implements userInterface<user> {
             pstmt.setString(1, user.getNom());
             pstmt.setString(2, user.getPrenom());
             pstmt.setString(3, user.getMdp());
-           // pstmt.setString(3, doHashing(user.getMdp()));
             pstmt.setString(4, user.getMail());
             pstmt.setString(5, user.getRole());
 
@@ -127,8 +126,6 @@ public class userService implements userInterface<user> {
         try {
             String req = "SELECT * FROM `user` WHERE `nom` LIKE ? OR `prenom` LIKE ?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
-           // pstmt.setString(1, "%" + keyword + "%");
-            //pstmt.setString(2, "%" + keyword + "%");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 user u = new user();
@@ -155,67 +152,27 @@ public class userService implements userInterface<user> {
             pstmt.setString(1, mail);
             pstmt.setString(2, mdp);
             ResultSet rs = pstmt.executeQuery();
-
-
-            // If the result set has any rows, it means the user exists with the given email and password
+            // resultat aandou rows donc user mrigel w mawjoud
             return rs.next();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        // Return false if any exception occurs or if no user is found with the given credentials
+        // Return false ken exception wela user ghalet/mafamech
         return false;
     }
-
-
-    // Hashage MD5
-  /*  public static String doHashing(String password) {
+    public boolean isAdmin(String mail) {
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-            messageDigest.update(password.getBytes());
-            byte[] resultByteArray = messageDigest.digest();
-            StringBuilder sb = new StringBuilder();
-            for (byte b : resultByteArray) {
-                sb.append(String.format("%02x", b));
-            }
-            return sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            String req = "SELECT * FROM `user` WHERE `mail` = ? AND `role` = 'admin'";
+            PreparedStatement pstmt = cnx.prepareStatement(req);
+            pstmt.setString(1, mail);
+            ResultSet rs = pstmt.executeQuery();
+            // resultat aandou rows donc user mrigel w admin
+            return rs.next();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        return "";
-    }*/
-
-    public boolean resetPassword(String email) {
-        // Implement logic to generate a temporary password
-        String temporaryPassword = generateTemporaryPassword();
-
-        // Implement logic to update the user's password in the database
-        boolean passwordUpdated = updatePasswordInDatabase(email, temporaryPassword);
-
-        if (passwordUpdated) {
-            // Implement logic to send an email with the new password
-            boolean emailSent = sendEmail(email, temporaryPassword);
-            return emailSent;
-        } else {
-            return false;
-        }
-    }
-
-    private String generateTemporaryPassword() {
-        // Implement logic to generate a temporary password
-        // For simplicity, you can generate a random alphanumeric string
-        return "temp123"; // Example temporary password
-    }
-
-    private boolean updatePasswordInDatabase(String email, String newPassword) {
-        // Implement logic to update the user's password in the database
-        // Use JDBC or an ORM framework to execute SQL update statement
-        return true; // Assuming password update was successful
-    }
-
-    private boolean sendEmail(String email, String newPassword) {
-        // Implement logic to send an email with the new password
-        // Use JavaMail API or any other email-sending library
-        return true; // Assuming email sending was successful
+        // Return false ken exception wela user ghalet/mafamech
+        return false;
     }
 
 
