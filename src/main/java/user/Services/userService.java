@@ -174,6 +174,20 @@ public class userService implements userInterface<user> {
         // Return false ken exception wela user ghalet/mafamech
         return false;
     }
+    public boolean emailExists(String email) {
+        try {
+            String query = "SELECT COUNT(*) FROM `user` WHERE `mail` = ?";
+            PreparedStatement pstmt = cnx.prepareStatement(query);
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+            return count > 0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 
 
 }

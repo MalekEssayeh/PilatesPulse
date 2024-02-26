@@ -17,9 +17,6 @@ import java.util.List;
 public class UpdatePromo {
 
     @FXML
-    private ChoiceBox<Boolean> isActiveCB;
-
-    @FXML
     private TextField percentageTF;
 
     @FXML
@@ -29,14 +26,14 @@ public class UpdatePromo {
     private DatePicker validiteDP;
     private int code;
     private int id;
+    private boolean isActive;
 
     private Promo promoToUpdate;
     private final PromoService promoService = new PromoService();
     private final userService userService = new userService();
 
     public void initialize() {
-        ObservableList<Boolean> options = FXCollections.observableArrayList(true, false);
-        isActiveCB.setItems(options);
+
     }
     public void setpromoToUpdate(Promo promoToUpdate) {
         this.promoToUpdate = promoToUpdate;
@@ -47,9 +44,9 @@ public class UpdatePromo {
         promoToUpdate = promo;
         code = promoToUpdate.getCode();
         id = promoToUpdate.getId();
+        isActive = promoToUpdate.isActive();
         percentageTF.setText(String.valueOf(promo.getPourcentage()));
         // No pre-selected value for isActive
-        isActiveCB.setValue(null);
         // Controle de saisie calendrier
         validiteDP.setDayCellFactory(picker -> new DateCell() {
             @Override
@@ -73,12 +70,10 @@ public class UpdatePromo {
     @FXML
     void update(ActionEvent event) {
         float newPourcentage = Float.parseFloat(percentageTF.getText());
-        Boolean newIsActive = isActiveCB.getValue();
         LocalDate newValidite = validiteDP.getValue();
 
         // Update the Promo object with the new values
         promoToUpdate.setPourcentage(newPourcentage);
-        promoToUpdate.setActive(newIsActive);
 
         // Convert LocalDate to Date
         java.sql.Date newValiditeDate = java.sql.Date.valueOf(newValidite);

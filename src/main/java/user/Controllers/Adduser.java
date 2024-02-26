@@ -5,9 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import user.Models.user;
 import user.Services.userService;
@@ -22,12 +20,16 @@ import javafx.scene.Node;
 
 
 public class Adduser {
+    @FXML
+    private TextField nomdpTF;
+    @FXML
+    private CheckBox showpwdCB;
 
     @FXML
     private TextField mailTF;
 
     @FXML
-    private TextField mdpTF;
+    private PasswordField mdpTF;
 
     @FXML
     private TextField nomTF;
@@ -128,6 +130,19 @@ public class Adduser {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    @FXML
+    void showPwd(ActionEvent event) {
+        if (showpwdCB.isSelected()) {
+            nomdpTF.setText(mdpTF.getText());
+            nomdpTF.setVisible(true);
+            mdpTF.setVisible(false);
+            return;
+        }
+        mdpTF.setText( nomdpTF.getText());
+        mdpTF.setVisible(true);
+        nomdpTF.setVisible(false);
+
     }
 
 }

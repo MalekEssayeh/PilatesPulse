@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import user.Models.user;
 import user.Services.userService;
@@ -19,6 +16,10 @@ import java.sql.SQLException;
 
 
 public class Login {
+    @FXML
+    private TextField nomdpTF;
+    @FXML
+    private CheckBox showpwdCB;
 
     @FXML
     private TextField mailTF;
@@ -103,19 +104,17 @@ public class Login {
     @FXML
     void SignUp(ActionEvent event) {
         try {
-            // Load the Adduser.fxml file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Adduser.fxml"));
             Parent root = loader.load();
 
-            // Create a new stage for the Adduser interface
+            // Create a new stage for the interface
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Sign Up");
 
-            // Show the Adduser stage
+            // Show the stage
             stage.show();
         } catch (IOException e) {
-            // Handle any potential IOException
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to load Sign Up interface.");
         }
@@ -123,22 +122,31 @@ public class Login {
     @FXML
     void ResetPwd(ActionEvent event) {
         try {
-            // Load the Adduser.fxml file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ResetPwd.fxml"));
             Parent root = loader.load();
 
-            // Create a new stage for the Adduser interface
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Reset Password");
 
-            // Show the Adduser stage
             stage.show();
         } catch (IOException e) {
-            // Handle any potential IOException
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to load Reset pwd interface.");
         }
+
+    }
+    @FXML
+    void showPwd(ActionEvent event) {
+        if (showpwdCB.isSelected()) {
+            nomdpTF.setText(mdpTF.getText());
+            nomdpTF.setVisible(true);
+            mdpTF.setVisible(false);
+            return;
+        }
+        mdpTF.setText( nomdpTF.getText());
+        mdpTF.setVisible(true);
+        nomdpTF.setVisible(false);
 
     }
 
