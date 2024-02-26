@@ -157,29 +157,34 @@ public class DisplayShop implements Initializable {
                     TextFlow textFlow = new TextFlow();
 
 
+                    String labelStyle = "-fx-fill: #9b8385;  -fx-font-size: 27  ;";
+                    String nameStyle = "-fx-fill: #8b7080;  -fx-font-size: 40;";
+
+                    String dataStyle = "-fx-fill: #9b8385; -fx-font-size: 20;";
+
 
                     Text nameData = new Text(product.getNameProduct() + "\n");
-                    //nameData.setStyle(nameStyle);
+                    nameData.setStyle(nameStyle);
 
                     Text descriptionText = new Text("Description: ");
-                    //evaluationText.setStyle(labelStyle);
+                    descriptionText.setStyle(labelStyle);
                     Text descriptionData = new Text(product.getProductDescription() + "\n");
-                    //evaluationData.setStyle(dataStyle);
+                    descriptionData.setStyle(dataStyle);
 
                     Text priceText = new Text("Price: ");
-                    //difficultyText.setStyle(labelStyle);
+                    priceText.setStyle(labelStyle);
                     Text priceData = new Text(product.getPriceProduct() + "\n");
-                    //difficultyData.setStyle(dataStyle);
+                    priceData.setStyle(dataStyle);
 
                     Text stockText = new Text("quantity available: ");
-                   // muscleText.setStyle(labelStyle);
+                    stockText.setStyle(labelStyle);
                     Text stockData = new Text(product.getStock() + "\n");
-                   // muscleData.setStyle(dataStyle);
+                    stockData.setStyle(dataStyle);
 
                     Text categoryText = new Text("category reference: ");
-                    // muscleText.setStyle(labelStyle);
+                    categoryText.setStyle(labelStyle);
                     Text categoryData = new Text(product.getIdCategory() + "\n");
-                    // muscleData.setStyle(dataStyle);
+                     categoryData.setStyle(dataStyle);
 
                     String imagePath = product.getImage();
                     Image productImage = new Image(new File(imagePath).toURI().toString());
