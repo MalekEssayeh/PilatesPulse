@@ -80,14 +80,15 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
     @Override
     public void update(Product product) {
         try {
-            String req = "UPDATE `product` SET `nameProduct`=?,`productDescription`=?,`PriceProduct`= ?,`stock`= ?,`idCategory`= ? WHERE `idProduct`=?";
+            String req = "UPDATE `product` SET `nameProduct`=?,`image`=?,`productDescription`=?,`PriceProduct`= ?,`stock`= ?,`idCategory`= ? WHERE `idProduct`=?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, product.getNameProduct());
-            ps.setString(2, product.getProductDescription());
-            ps.setFloat(3, product.getPriceProduct());
-            ps.setInt(4, product.getStock());
-            ps.setInt(5, product.getIdCategory());
-            ps.setInt(6, product.getIdProduct());
+            ps.setString(2, product.getImage());
+            ps.setString(3, product.getProductDescription());
+            ps.setFloat(4, product.getPriceProduct());
+            ps.setInt(5, product.getStock());
+            ps.setInt(6, product.getIdCategory());
+            ps.setInt(7, product.getIdProduct());
 
             //System.out.println(product.getIdProduct());
 
@@ -123,8 +124,11 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
                 Product p = new Product();
                 p.setIdProduct(rs.getInt(1));
                 p.setNameProduct(rs.getString(2));
-                p.setPriceProduct(rs.getFloat(3));
-                p.setIdCategory(rs.getInt(4));
+                p.setImage(rs.getString(3));
+                p.setProductDescription(rs.getString(4));
+                p.setPriceProduct(rs.getFloat(5));
+                p.setStock(rs.getInt(6));
+                p.setIdCategory(rs.getInt(7));
 
                 productList.add(p);
             }
@@ -151,8 +155,12 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
                Product p = new Product();
                p.setIdProduct(rs.getInt(1));
                p.setNameProduct(rs.getString(2));
-               p.setPriceProduct(rs.getFloat(3));
-               p.setIdCategory(rs.getInt(4));
+               p.setImage(rs.getString(3));
+               p.setProductDescription(rs.getString(4));
+               p.setPriceProduct(rs.getFloat(5));
+               p.setStock(rs.getInt(6));
+               p.setIdCategory(rs.getInt(7));
+
 
                productList.add(p);
            }
@@ -181,10 +189,12 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
                 Product p = new Product();
                 p.setIdProduct(rs.getInt(1));
                 p.setNameProduct(rs.getString(2));
-                p.setProductDescription(rs.getString(3));
-                p.setPriceProduct(rs.getFloat(4));
-                p.setStock(rs.getInt(5));
-                p.setIdCategory(rs.getInt(6));
+                p.setImage(rs.getString(3));
+                p.setProductDescription(rs.getString(4));
+                p.setPriceProduct(rs.getFloat(5));
+                p.setStock(rs.getInt(6));
+                p.setIdCategory(rs.getInt(7));
+
 
                 productList.add(p);
             }
@@ -211,10 +221,12 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
                 Product p = new Product();
                 p.setIdProduct(rs.getInt(1));
                 p.setNameProduct(rs.getString(2));
-                p.setProductDescription(rs.getString(3));
-                p.setPriceProduct(rs.getFloat(4));
-                p.setStock(rs.getInt(5));
-                p.setIdCategory(rs.getInt(6));
+                p.setImage(rs.getString(3));
+                p.setProductDescription(rs.getString(4));
+                p.setPriceProduct(rs.getFloat(5));
+                p.setStock(rs.getInt(6));
+                p.setIdCategory(rs.getInt(7));
+
 
                 productList.add(p);
             }
@@ -245,10 +257,12 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
                 Product p = new Product();
                 p.setIdProduct(rs.getInt(1));
                 p.setNameProduct(rs.getString(2));
-                p.setProductDescription(rs.getString(3));
-                p.setPriceProduct(rs.getFloat(4));
-                p.setStock(rs.getInt(5));
-                p.setIdCategory(rs.getInt(6));
+                p.setImage(rs.getString(3));
+                p.setProductDescription(rs.getString(4));
+                p.setPriceProduct(rs.getFloat(5));
+                p.setStock(rs.getInt(6));
+                p.setIdCategory(rs.getInt(7));
+
 
                 productList.add(p);
             }
