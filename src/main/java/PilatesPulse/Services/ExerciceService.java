@@ -21,7 +21,7 @@ public class ExerciceService implements crudInterface<Exercice> {
     public void add(Exercice p) {
         try {
 
-            String req = "INSERT INTO `Exercice`(`nomExercice`, `idCoach`, `DifficulteExercice`, `EvaluationExercice`, `Muscle`, `Demonstration`,`IDexercice`) VALUES (?,?,?,?,?,?,?)";
+            String req = "INSERT INTO `Exercice`(`nomExercice`, `idCoach`, `DifficulteExercice`, `EvaluationExercice`, `Muscle`, `Demonstration`, `Video`,`IDexercice`) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getNomExercice());
             ps.setInt(   2, p.getIdCoach());
@@ -29,7 +29,9 @@ public class ExerciceService implements crudInterface<Exercice> {
             ps.setInt(   4, p.getEvaluationExercice());
             ps.setString(5, p.getMuscle());
             ps.setString(6, p.getDemonstration());
-            ps.setInt(7, p.getIdExercice());
+            ps.setString(7, p.getVideo());
+
+            ps.setInt(8, p.getIdExercice());
 
 
 
@@ -63,6 +65,7 @@ public class ExerciceService implements crudInterface<Exercice> {
                 p.setEvaluationExercice(rs.getInt(5));
                 p.setMuscle(rs.getString(6));
                 p.setDemonstration(rs.getString(7));
+                p.setVideo(rs.getString(8));
 
                 Exercices.add(p);
             }
@@ -119,6 +122,7 @@ public class ExerciceService implements crudInterface<Exercice> {
                 p.setEvaluationExercice(rs.getInt(5));
                 p.setMuscle(rs.getString(6));
                 p.setDemonstration(rs.getString(7));
+                p.setVideo(rs.getString(8));
 
                 Exercices.add(p);
             }
@@ -156,9 +160,9 @@ public class ExerciceService implements crudInterface<Exercice> {
 
         return Exercices;}
 
-    public void Edit(int e,String nomExercice, int idCoach, String difficulteExercice, int evaluationExercice, String muscle, String demonstration) {
+    public void Edit(int e,String nomExercice, int idCoach, String difficulteExercice, int evaluationExercice, String muscle, String demonstration, String Video) {
         try {
-            String req = "UPDATE `Exercice` SET `NomExercice`=?, `IdCoach`=?, `DifficulteExercice`=?, `EvaluationExercice`=?, `Muscle`=?, `Demonstration`=? WHERE `IDExercice`=?";
+            String req = "UPDATE `Exercice` SET `NomExercice`=?, `IdCoach`=?, `DifficulteExercice`=?, `EvaluationExercice`=?, `Muscle`=?, `Demonstration`=?, `Video`=? WHERE `IDExercice`=?";
             PreparedStatement ps = cnx.prepareStatement(req);
 
             // Set values for each parameter
@@ -168,7 +172,9 @@ public class ExerciceService implements crudInterface<Exercice> {
             ps.setInt(4, evaluationExercice);
             ps.setString(5, muscle);
             ps.setString(6, demonstration);
-            ps.setInt(7, e);
+            ps.setString(7, Video);
+
+            ps.setInt(8, e);
 
             // Execute the update
             int rowsUpdated = ps.executeUpdate();

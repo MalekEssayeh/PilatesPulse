@@ -33,6 +33,8 @@ public class EditionExercice implements Initializable {
     @FXML
     private MFXTextField Demonstration;
     @FXML
+    private MFXTextField Video;
+    @FXML
     private Label label1;
     @FXML
     private Label label11;
@@ -46,6 +48,8 @@ public class EditionExercice implements Initializable {
     public void Modifier(javafx.event.ActionEvent actionEvent) {
 
         String t=Demonstration.getText().replace("%20", " ");
+        String t1=Video.getText().replace("%20", " ");
+
         if (Evaluation.getValue()==0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -68,7 +72,7 @@ public class EditionExercice implements Initializable {
         }
         else
         {
-        exp.Edit(ID,NomExercice.getText(),1299,Difficulte.getValue(), (int) Evaluation.getValue(),Muscle.getValue(),t.replace("/", "\\").replace("file:\\",""));
+        exp.Edit(ID,NomExercice.getText(),1299,Difficulte.getValue(), (int) Evaluation.getValue(),Muscle.getValue(),t.replace("/", "\\").replace("file:\\",""),t1.replace("/", "\\").replace("file:\\",""));
         Stage stage = (Stage) Modifier.getScene().getWindow();
         stage.close();}
     }
@@ -77,7 +81,6 @@ public class EditionExercice implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Font customFont = Font.loadFont(getClass().getResourceAsStream("/gothicb.ttf"), 72);
         Font customFont2 = Font.loadFont(getClass().getResourceAsStream("/gothicb.ttf"), 18);
-
         label1.setFont(customFont);
         label11.setFont(customFont2);
         Exercice e1=new Exercice();
@@ -94,6 +97,8 @@ public class EditionExercice implements Initializable {
         Difficulte.setValue(e1.getDifficulteExercice());
         NomExercice.setText(e1.getNomExercice());
         Demonstration.setText(e1.getDemonstration());
+        Video.setText(e1.getVideo());
+
     }
     public void setPrimaryStage(Stage primaryStage) {
 
@@ -110,6 +115,19 @@ public class EditionExercice implements Initializable {
         if (selectedFile != null) {
             String fileUrl = selectedFile.toURI().toString();
             Demonstration.setText(fileUrl);
+        }
+    }
+    public void Browse1(ActionEvent actionEvent) {
+        Stage primaryStagee = new Stage();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose a File");
+
+        File selectedFile = fileChooser.showOpenDialog(primaryStagee);
+
+        if (selectedFile != null) {
+            String fileUrl = selectedFile.toURI().toString();
+            Video.setText(fileUrl);
         }
     }
 }

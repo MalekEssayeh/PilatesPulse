@@ -4,15 +4,25 @@ import java.util.Objects;
 
 public class Exercice {
     int idExercice,idCoach,evaluationExercice;
-    String difficulteExercice,nomExercice,muscle,demonstration;
+    String difficulteExercice,nomExercice,muscle,demonstration,Video;
 
-    public Exercice(int idCoach, int evaluationExercice, String difficulteExercice, String nomExercice, String muscle, String demonstration) {
+    public String getVideo() {
+        return Video;
+    }
+
+    public void setVideo(String video) {
+        Video = video;
+    }
+
+    public Exercice(int idCoach, int evaluationExercice, String difficulteExercice, String nomExercice, String muscle, String demonstration,String Video) {
         this.idCoach = idCoach;
         this.evaluationExercice = evaluationExercice;
         this.difficulteExercice = difficulteExercice;
         this.nomExercice = nomExercice;
         this.muscle = muscle;
         this.demonstration = demonstration;
+        this.Video = Video;
+
     }
 
     public Exercice() {
