@@ -18,10 +18,15 @@ import javafx.collections.FXCollections;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ShowPromo {
+
+    @FXML
+    private Button filterBT;
     @FXML
     private Button searchButton;
 
@@ -193,6 +198,14 @@ public class ShowPromo {
             showAlert(Alert.AlertType.ERROR, "Error", "Please enter a valid percentage value.");
         }
     }
+
+    public void filterPromos(ActionEvent actionEvent) {
+                List<Promo> filteredPromos =  promosLV.getItems().stream().sorted(Comparator.comparing(Promo::getPourcentage)).toList();
+                ObservableList<Promo> observablePromoList = FXCollections.observableArrayList(filteredPromos);
+                promosLV.setItems(observablePromoList);
+        }
+
+
 
 
 

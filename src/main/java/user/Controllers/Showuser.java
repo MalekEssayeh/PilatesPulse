@@ -17,11 +17,14 @@ import javafx.collections.FXCollections;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
 
 public class Showuser {
     @FXML
     private ChoiceBox<String> filterCB;
+    @FXML
+    private Button filterBT;
     @FXML
     private Button searchButton;
 
@@ -192,7 +195,7 @@ public class Showuser {
         usersLV.setItems(observableSearchResults);
     }
 
-    @FXML
+  /*  @FXML
     void filterUsers(ActionEvent event) {
         // Get the selected filter option from the ChoiceBox
         String selectedFilter = filterCB.getValue();
@@ -211,7 +214,19 @@ public class Showuser {
         // Update the ListView with the filtered list of users
         ObservableList<user> observableFilteredUsers = FXCollections.observableArrayList(filteredUsers);
         usersLV.setItems(observableFilteredUsers);
-    }
+    }*/
+  public void filterUsers(ActionEvent actionEvent) {
+      if(filterCB.getValue().equals("nom")) {
+          List<user> filteredUsers =  usersLV.getItems().stream().sorted(Comparator.comparing(user::getNom)).toList();
+          ObservableList<user> observableUserList = FXCollections.observableArrayList(filteredUsers);
+          usersLV.setItems(observableUserList);
+      }
+      if(filterCB.getValue().equals("prenom")) {
+          List<user> filteredUsers =  usersLV.getItems().stream().sorted(Comparator.comparing(user::getPrenom)).toList();
+          ObservableList<user> observableUserList = FXCollections.observableArrayList(filteredUsers);
+          usersLV.setItems(observableUserList);
+      }
+  }
 }
 
 

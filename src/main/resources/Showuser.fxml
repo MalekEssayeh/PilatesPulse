@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #260043;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Showuser" stylesheets="styles.css">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #260043;" stylesheets="styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Showuser">
    <children>
       <ListView fx:id="usersLV" layoutX="69.0" layoutY="150.0" prefHeight="390.0" prefWidth="670.0" />
       <Button layoutX="814.0" layoutY="52.0" mnemonicParsing="false" onAction="#LogOut" style="-fx-background-color: transparent;" text="Log Out" textFill="#ffe1f2">
@@ -44,5 +43,10 @@
       </Button>
       <ChoiceBox fx:id="filterCB" layoutX="404.0" layoutY="116.0" prefHeight="26.0" prefWidth="278.0" />
       <Button fx:id="back" layoutX="71.0" layoutY="40.0" mnemonicParsing="false" onAction="#back" text="&lt;" />
+      <Button fx:id="filterBT" layoutX="691.0" layoutY="116.0" mnemonicParsing="false" onAction="#filterUsers" style="-fx-background-color: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);" text="Filter" textFill="#480a53">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

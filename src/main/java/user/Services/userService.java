@@ -127,8 +127,8 @@ public class userService implements userInterface<user> {
         try {
             String req = "SELECT * FROM `user` WHERE `nom` LIKE ? OR `prenom` LIKE ?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
-            pstmt.setString(1, "%" + keyword + "%");
-            pstmt.setString(2, "%" + keyword + "%");
+           // pstmt.setString(1, "%" + keyword + "%");
+            //pstmt.setString(2, "%" + keyword + "%");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 user u = new user();
