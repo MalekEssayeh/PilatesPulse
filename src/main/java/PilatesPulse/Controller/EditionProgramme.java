@@ -8,6 +8,7 @@ import io.github.palexdev.materialfx.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -60,10 +61,26 @@ public class EditionProgramme implements Initializable {
         this.ID = ID;
     }
     public void Modifier(javafx.event.ActionEvent actionEvent) {
+        if (Duree.getValue()==0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Une erreur s'est produite");
+            alert.setContentText("Ajouter une Duree.");
+            alert.showAndWait();
+        } else if (NomProgramme.getText()==null||NomProgramme.getText().length()<2) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Une erreur s'est produite");
+            alert.setContentText("longueur du nom d'Programme doit etre >2.");
+            alert.showAndWait();
+        }
+
+        else
+        {
         exp.Edit(ID,NomProgramme.getText(),(int)Duree.getValue(),lsEXnon,lsEX);
             Stage stage = (Stage) Modifier.getScene().getWindow();
         stage.close();
-    }
+    }}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -3,6 +3,7 @@ package PilatesPulse.Controller;
 import PilatesPulse.Models.Exercice;
 import PilatesPulse.Services.ExerciceService;
 import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXSlider;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -39,7 +40,7 @@ public class VideoReader implements Initializable {
     private MediaView Video;
 
     @FXML
-    private Slider VolumeSlider;
+    private MFXSlider VolumeSlider;
 
     private File file;
     private Media media;
@@ -53,19 +54,16 @@ public class VideoReader implements Initializable {
         for (Exercice e: exp.rechercheExercice(ID)) {
              e1= e;
         }
+
         file = new File(e1.getVideo());
         media = new Media(file.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         Video.setMediaPlayer(mediaPlayer);
+        Video.setPreserveRatio(false);
 
-        // Set up the VolumeSlider
-        VolumeSlider.setValue(mediaPlayer.getVolume() * 100); // Convert volume from [0, 1] to [0, 100]
-        VolumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                mediaPlayer.setVolume(newValue.doubleValue() / 100); // Convert volume from [0, 100] to [0, 1]
-            }
-        });
+        VolumeSlider.setValue(mediaPlayer.getVolume() * 100);
+        VolumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> mediaPlayer.setVolume(newValue.doubleValue() / 100));
+
     }
     @FXML
 
@@ -96,7 +94,6 @@ public class VideoReader implements Initializable {
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
-
     }
     public void setPassedId(int ID) {
         this.ID = ID;

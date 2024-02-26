@@ -40,7 +40,7 @@
          </font>
       </MFXComboBox>
       <MFXSlider fx:id="Evaluation" layoutX="325.0" layoutY="348.0" max="5.0" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" />
-      <MFXButton fx:id="Modifier" layoutX="374.0" layoutY="524.0" onAction="#Modifier" prefHeight="26.0" prefWidth="129.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Confirmer" textFill="WHITE">
+      <MFXButton fx:id="Modifier" layoutX="374.0" layoutY="590.0" onAction="#Modifier" prefHeight="26.0" prefWidth="129.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Confirmer" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
@@ -55,7 +55,7 @@
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </Label>
-      <MFXTextField fx:id="Demonstration" disable="true" floatingText="Lien Photo" layoutX="317.0" layoutY="450.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="178.0" stylesheets="@css/MFXTextField.css">
+      <MFXTextField fx:id="Demonstration" disable="true" floatingText="Photo" layoutX="315.0" layoutY="451.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="166.0" stylesheets="@css/MFXTextField.css">
          <styleClass>
             <String fx:value="css\MFXTextField.css" />
             <String fx:value="floating-text" />
@@ -67,12 +67,12 @@
             <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
          </textFill>
       </MFXTextField>
-      <MFXButton fx:id="Browse" layoutX="495.0" layoutY="450.0" onAction="#Browse" prefHeight="40.0" prefWidth="94.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Parcourir" textFill="WHITE">
+      <MFXButton fx:id="Browse" layoutX="475.0" layoutY="451.0" onAction="#Browse" prefHeight="40.0" prefWidth="85.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Parcourir" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </MFXButton>
-      <MFXTextField fx:id="Video" disable="true" floatingText="Video" layoutX="596.0" layoutY="405.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="178.0" stylesheets="@css/MFXTextField.css">
+      <MFXTextField fx:id="Video" disable="true" floatingText="Video" layoutX="316.0" layoutY="512.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="166.0" stylesheets="@css/MFXTextField.css">
          <styleClass>
             <String fx:value="css\MFXTextField.css" />
             <String fx:value="floating-text" />
@@ -84,7 +84,7 @@
             <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
          </textFill>
       </MFXTextField>
-      <MFXButton fx:id="Browse1" layoutX="774.0" layoutY="405.0" onAction="#Browse1" prefHeight="40.0" prefWidth="94.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Parcourir" textFill="WHITE">
+      <MFXButton fx:id="Browse1" layoutX="474.0" layoutY="512.0" onAction="#Browse1" prefHeight="40.0" prefWidth="86.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Parcourir" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>

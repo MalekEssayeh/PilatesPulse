@@ -12,9 +12,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="618.0" prefWidth="878.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AjoutExercice">
+<AnchorPane prefHeight="618.0" prefWidth="888.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AjoutExercice">
    <children>
-      <MFXComboBox fx:id="Difficulte" layoutX="308.0" layoutY="329.0" prefHeight="40.0" prefWidth="244.0" promptText="Difficulté">
+      <MFXComboBox fx:id="Difficulte" layoutX="307.0" layoutY="269.0" prefHeight="40.0" prefWidth="244.0" promptText="Difficulté">
          <stylesheets>
             <URL value="@css/MFXComboBox.css" />
             <URL value="@css/MFXComboBoxCell.css" />
@@ -23,7 +23,7 @@
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </MFXComboBox>
-      <MFXComboBox fx:id="Muscle" layoutX="307.0" layoutY="213.0" prefHeight="40.0" prefWidth="244.0" promptText="Muscle Solicitée">
+      <MFXComboBox fx:id="Muscle" layoutX="306.0" layoutY="153.0" prefHeight="40.0" prefWidth="244.0" promptText="Muscle Solicitée">
          <stylesheets>
             <URL value="@css/MFXComboBox.css" />
             <URL value="@css/MFXComboBoxCell.css" />
@@ -32,7 +32,7 @@
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </MFXComboBox>
-      <MFXTextField fx:id="Demonstration" disable="true" floatingText="Lien Photo" layoutX="308.0" layoutY="395.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="178.0" stylesheets="@css/MFXTextField.css">
+      <MFXTextField fx:id="Demonstration" disable="true" floatingText="Photo" layoutX="306.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="163.0" stylesheets="@css/MFXTextField.css">
          <styleClass>
             <String fx:value="css\MFXTextField.css" />
             <String fx:value="floating-text" />
@@ -49,17 +49,17 @@
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </MFXButton>
-      <MFXSlider fx:id="Evaluation" layoutX="315.0" layoutY="301.0" max="5.0" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" />
-      <Label fx:id="label1" layoutX="120.0" layoutY="34.0" prefHeight="94.0" prefWidth="768.0" text="Ajouter Exercice" textAlignment="CENTER" textFill="#403060">
+      <MFXSlider fx:id="Evaluation" layoutX="314.0" layoutY="241.0" max="5.0" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" />
+      <Label fx:id="label1" layoutX="120.0" prefHeight="94.0" prefWidth="768.0" text="Ajouter Exercice" textAlignment="CENTER" textFill="#403060">
          <font>
             <Font name="Century Gothic Bold" size="72.0" />
          </font></Label>
-      <Label fx:id="label11" layoutX="307.0" layoutY="265.0" prefHeight="18.0" prefWidth="151.0" text="Evaluation :" textAlignment="CENTER" textFill="#403060">
+      <Label fx:id="label11" layoutX="306.0" layoutY="205.0" prefHeight="18.0" prefWidth="151.0" text="Evaluation :" textAlignment="CENTER" textFill="#403060">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </Label>
-      <MFXTextField fx:id="NomExercice" floatingText="NomExercice" layoutX="307.0" layoutY="154.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" stylesheets="@css/MFXTextField.css">
+      <MFXTextField fx:id="NomExercice" floatingText="NomExercice" layoutX="306.0" layoutY="94.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" stylesheets="@css/MFXTextField.css">
          <styleClass>
             <String fx:value="css\MFXTextField.css" />
             <String fx:value="floating-text" />
@@ -71,7 +71,7 @@
             <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
          </textFill>
       </MFXTextField>
-      <MFXButton fx:id="Browse" layoutX="486.0" layoutY="395.0" onAction="#Browse" prefHeight="40.0" prefWidth="94.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Parcourir" textFill="WHITE">
+      <MFXButton fx:id="Browse" layoutX="469.0" layoutY="322.0" onAction="#Browse" prefHeight="40.0" prefWidth="80.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Parcourir" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
@@ -89,17 +89,12 @@
             <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
          </textFill>
       </MFXTextField>
-      <Pane fx:id="captchaLabel1" disable="true" layoutX="307.0" layoutY="453.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="228.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #ccc;">
+      <Pane fx:id="captchaLabel1" disable="true" layoutX="280.0" layoutY="453.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="228.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #ccc;">
          <children>
             <Pane fx:id="captchaLabel" layoutX="20.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="228.0" />
          </children>
       </Pane>
-      <MFXButton layoutX="512.0" layoutY="453.0" onAction="#refreshCaptcha" prefHeight="47.0" prefWidth="68.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Refrech" textFill="WHITE">
-         <font>
-            <Font name="Century Gothic Bold" size="14.0" />
-         </font>
-      </MFXButton>
-      <MFXTextField fx:id="Video" disable="true" floatingText="Video" layoutX="586.0" layoutY="395.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="178.0" stylesheets="@css/MFXTextField.css">
+      <MFXTextField fx:id="Video" disable="true" floatingText="Video" layoutX="308.0" layoutY="385.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="163.0" stylesheets="@css/MFXTextField.css">
          <styleClass>
             <String fx:value="css\MFXTextField.css" />
             <String fx:value="floating-text" />
@@ -111,7 +106,12 @@
             <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
          </textFill>
       </MFXTextField>
-      <MFXButton fx:id="Browse1" layoutX="764.0" layoutY="395.0" onAction="#Browse1" prefHeight="40.0" prefWidth="94.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Parcourir" textFill="WHITE">
+      <MFXButton fx:id="Browse1" layoutX="471.0" layoutY="385.0" onAction="#Browse1" prefHeight="40.0" prefWidth="80.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Parcourir" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </MFXButton>
+      <MFXButton layoutX="508.0" layoutY="453.0" onAction="#refreshCaptcha" prefHeight="47.0" prefWidth="69.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Refrech" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
