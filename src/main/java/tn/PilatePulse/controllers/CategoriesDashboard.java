@@ -2,36 +2,27 @@ package tn.PilatePulse.controllers;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView;
-import io.github.palexdev.mfxcore.controls.Label;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-public class ClothesList {
-
-    @FXML
-    private MFXButton accessoriesButton;
+public class CategoriesDashboard {
 
     @FXML
-    private MFXButton cartButton;
+    private Button addID;
 
     @FXML
-    private MFXButton clothesButton;
+    private MFXButton categoriesButton;
 
     @FXML
-    private MFXLegacyListView<?> clothesList;
+    private MFXLegacyListView<?> categoriesList;
 
     @FXML
-    private MFXButton coacheButton;
-
-    @FXML
-    private MFXButton eventsButton;
-
-    @FXML
-    private MFXButton exercicesButton;
+    private Button deleteid;
 
     @FXML
     private MFXButton homeButton;
@@ -40,10 +31,10 @@ public class ClothesList {
     private ImageView logoImg;
 
     @FXML
-    private Label logoLabel;
+    private AnchorPane navBar;
 
     @FXML
-    private MFXButton programsButton;
+    private MFXButton productButton;
 
     @FXML
     private MFXButton searchButton;
@@ -55,27 +46,43 @@ public class ClothesList {
     private MFXButton shopButton;
 
     @FXML
-    private MFXButton shophomeButton;
+    private Label titleLabe;
 
     @FXML
-    private AnchorPane topBar;
+    private Button updateid;
 
     @FXML
-    private MFXButton wishlistButton;
+    void UpdateButton(ActionEvent event) {
 
-    private Stage primaryStage;
-
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
     }
 
     @FXML
-    void Cart(ActionEvent event) {
+    void addButton(ActionEvent event) {
+
+    }
+
+    @FXML
+    void categoriesDashBoard(ActionEvent event) {
+
+    }
+
+    @FXML
+    void deleteButton(ActionEvent event) {
+
+    }
+
+    @FXML
+    void productsDashBoard(ActionEvent event) {
 
     }
 
     @FXML
     void search(ActionEvent event) {
+
+    }
+
+    @FXML
+    void shopDashboard(ActionEvent event) {
 
     }
 

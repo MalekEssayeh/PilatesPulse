@@ -32,14 +32,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DisplayProduct implements Initializable {
+
     @FXML
     private Button addID;
 
     @FXML
-    private Button deleteid;
+    private MFXButton categoriesButton;
 
     @FXML
-    private MFXButton eventsButton;
+    private Button deleteid;
 
     @FXML
     private MFXButton homeButton;
@@ -48,10 +49,13 @@ public class DisplayProduct implements Initializable {
     private ImageView logoImg;
 
     @FXML
-    private MFXLegacyListView<Product> productList;
+    private AnchorPane navBar;
 
     @FXML
-    private MFXButton programsButton;
+    private MFXButton productButton;
+
+    @FXML
+    private MFXLegacyListView<Product> productList;
 
     @FXML
     private MFXButton searchButton;
@@ -66,10 +70,58 @@ public class DisplayProduct implements Initializable {
     private Label titleLabe;
 
     @FXML
-    private AnchorPane navBar;
+    private Button updateid;
+
+
 
     @FXML
-    private Button updateid;
+    void categoriesDashBoard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CategoriesDashboard.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    @FXML
+    void productsDashBoard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayProduct.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    void shopDashboard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayShop.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 
 

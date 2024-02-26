@@ -26,10 +26,10 @@
             </ImageView>
             <TextField fx:id="searchTextField" layoutX="99.0" layoutY="16.0" prefHeight="25.0" prefWidth="138.0" promptText="Search..." />
             <MFXButton fx:id="searchButton" layoutX="244.0" layoutY="16.0" onAction="#search" prefHeight="17.0" prefWidth="39.0" text="OK" />
-            <MFXButton fx:id="eventsButton" layoutX="571.0" layoutY="16.0" rippleColor="#ececec" style="-fx-background-color: ECECEC;" text="Products" />
-            <MFXButton fx:id="shopButton" layoutX="450.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Shop" />
+            <MFXButton fx:id="productButton" layoutX="571.0" layoutY="16.0" onAction="#productsDashBoard" rippleColor="#ececec" style="-fx-background-color: ECECEC;" text="Products" />
+            <MFXButton fx:id="shopButton" layoutX="450.0" layoutY="16.0" onAction="#shopDashboard" style="-fx-background-color: ECECEC;" text="Shop" />
             <MFXButton fx:id="homeButton" layoutX="41.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Home" />
-            <MFXButton fx:id="programsButton" layoutX="495.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Categories" />
+            <MFXButton fx:id="categoriesButton" layoutX="495.0" layoutY="16.0" onAction="#categoriesDashBoard" style="-fx-background-color: ECECEC;" text="Categories" />
          </children>
       </AnchorPane>
       <MFXLegacyListView fx:id="productList" layoutX="17.0" layoutY="97.0" prefHeight="361.0" prefWidth="751.0" />

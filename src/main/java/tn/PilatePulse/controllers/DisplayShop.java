@@ -234,29 +234,7 @@ public class DisplayShop implements Initializable {
 
     }
 
-    public void clothesButtonFunction(ActionEvent actionEvent){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ClothesList.fxml"));
 
-            Parent root = loader.load();
-
-
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-
-            ClothesList clothesList = loader.getController();
-            clothesList.setPrimaryStage(primaryStage);
-
-            //Stage stage = new Stage();
-          //  stage.setScene(new Scene(root));
-
-           // stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
 
