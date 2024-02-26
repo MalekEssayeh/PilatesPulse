@@ -36,19 +36,18 @@ public class CommandeService implements IServiceC<Commande> {
     @Override
     public void ajouter(Commande c) {
         try {
-            String req = "INSERT INTO `commande`(`Total`, `codePromo`, `nomProd`) VALUES (?,?,?)";
+            String req = "INSERT INTO `commande`(Total, `codePromo`, `nomProd`) VALUES (?,?,?)";
 
             PreparedStatement ps = connection.prepareStatement(req);
-            ps.setInt(1,c.getTotal());
-            ps.setString(2,c.getCodePromo());
-            ps.setString(3,c.getNomProd());
+            ps.setInt(1, c.getTotal());  // Utilisez setInt pour un champ numérique
+            ps.setString(2, c.getCodePromo());
+            ps.setString(3, c.getNomProd());
             ps.executeUpdate();
-            System.out.println("Commande ajouté avec Succée!");
+            System.out.println("Commande ajouté avec Succès!");
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
 
@@ -112,33 +111,54 @@ public class CommandeService implements IServiceC<Commande> {
         }
 
     }
-
-
-    public List<Commande> rechercheCommande(String nomProd) throws SQLException {
+    public List<Commande> rechercheCommande(String nomProd) {
         List<Commande> Commands = new ArrayList<>();
         try {
             String req = "SELECT * FROM Commande WHERE nomProd LIKE ?";
             PreparedStatement st = connection.prepareStatement(req);
-            st.setString(1, "%" + nomProd + "%"); // Adding wildcards to match any characters
+            st.setString(1, "%" + nomProd + "%");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Commande c = new Commande();
                 c.setIdCmd(rs.getInt(1));
-                c.setIdUser(rs.getInt(2));
-                c.setTotal(rs.getInt(3));
-
-                // Add debug output to identify the issue
-                System.out.println("DEBUG - CodePromo: " + rs.getString(4));
-
-                c.setCodePromo(rs.getString(4));
-                c.setNomProd(rs.getString(5));
+                c.setTotal(rs.getInt(2));
+                c.setCodePromo(rs.getString(3));
+                c.setNomProd(rs.getString(4));
+                c.setIdUser(rs.getInt(5));
                 Commands.add(c);
             }
         } catch (SQLException ex) {
-            throw ex; // Throw the exception to be caught and handled in the calling method
+            System.out.println(ex);
         }
         return Commands;
     }
+
+
+//    public List<Commande> rechercheCommande(String nomProd) throws SQLException {
+//        List<Commande> Commands = new ArrayList<>();
+//        try {
+//            String req = "SELECT * FROM Commande WHERE nomProd LIKE ?";
+//            PreparedStatement st = connection.prepareStatement(req);
+//            st.setString(1, "%" + nomProd + "%"); // Adding wildcards to match any characters
+//            ResultSet rs = st.executeQuery();
+//            while (rs.next()) {
+//                Commande c = new Commande();
+//                c.setIdCmd(rs.getInt(1));
+//                c.setIdUser(rs.getInt(2));
+//                c.setTotal(rs.getInt(3));
+//
+//                // Add debug output to identify the issue
+//                System.out.println("DEBUG - CodePromo: " + rs.getString(4));
+//
+//                c.setCodePromo(rs.getString(4));
+//                c.setNomProd(rs.getString(5));
+//                Commands.add(c);
+//            }
+//        } catch (SQLException ex) {
+//            throw ex; // Throw the exception to be caught and handled in the calling method
+//        }
+//        return Commands;
+//    }
 
     public List<Commande> filtreCommande(String nomProd) {
         List<Commande> Commands = new ArrayList<>();
@@ -151,10 +171,10 @@ public class CommandeService implements IServiceC<Commande> {
             while (rs.next()) {
                 Commande c= new Commande();
                 c.setIdCmd(rs.getInt(1));
-                c.setIdUser(rs.getInt(2));
-                c.setTotal(rs.getInt(3));
-                c.setCodePromo(rs.getString(4));
-                c.setNomProd(rs.getString(5));
+                c.setTotal(rs.getInt(2));
+                c.setCodePromo(rs.getString(3));
+                c.setNomProd(rs.getString(4));
+                c.setIdUser(rs.getInt(5));
 
                 Commands.add(c);
 
