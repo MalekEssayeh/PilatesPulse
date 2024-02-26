@@ -5,24 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d0c1fb3-9b4a-467b-b7ca-696c2616e101" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/HelloApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/HelloController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/esprit/pilatespulse/pilatespulsev3/hello-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Interfaces/IEventService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Interfaces/ISessionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Participation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Session.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/EventService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/SessionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Utils/MyDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,8 +58,10 @@
     "Maven.PilatesPulseV3 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "GestionEvent",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/DELL/IdeaProjects/PilatesPulseV2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -75,7 +84,7 @@
       <updated>1708913641324</updated>
       <workItem from="1708913642432" duration="775000" />
       <workItem from="1708915155460" duration="893000" />
-      <workItem from="1708916300345" duration="571000" />
+      <workItem from="1708916300345" duration="2430000" />
     </task>
     <servers />
   </component>
