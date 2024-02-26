@@ -1,21 +1,25 @@
 package tn.PilatePulse.controllers;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import tn.PilatePulse.model.Category;
 import tn.PilatePulse.model.Product;
 import tn.PilatePulse.services.ProductService;
 import tn.PilatePulse.util.MaConnexion;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,22 +30,58 @@ import java.util.stream.Collectors;
 
 public class AddProduct {
 
-    @FXML
-    private TextField idCategoryID;
 
     @FXML
-    private TextField nomProductiD;
+    private Button addButtonid;
 
     @FXML
-    private TextField prixProductID;
+    private MFXTextField descriptionID;
+
     @FXML
-    private TextField stockID;
+    private MFXButton eventsButton;
+
     @FXML
-    private TextArea descriptionID;
+    private MFXButton exercicesButton;
+
     @FXML
-    private ComboBox<Category> categoryComboBox;
+    private MFXButton homeButton;
+
+    @FXML
+    private MFXTextField idCategoryID;
+
+    @FXML
+    private MFXTextField imgURLId;
+
+    @FXML
+    private ImageView logoImg;
+
+    @FXML
+    private Label logoLabel;
+
+    @FXML
+    private MFXTextField nomProductiD;
+
+    @FXML
+    private MFXTextField prixProductID;
+
+    @FXML
+    private MFXButton programsButton;
+
+    @FXML
+    private MFXButton shopButton;
+
+    @FXML
+    private MFXTextField stockID;
+
+    @FXML
+    private Label titleLabe;
+
+    @FXML
+    private AnchorPane topBar;
+
+    @FXML
+    private Button uploadButton;
     private final ProductService productService = new ProductService();
-
 
 
 
@@ -50,11 +90,27 @@ public class AddProduct {
         productService.add(new Product(
                 nomProductiD.getText(),
                 descriptionID.getText(),
+                imgURLId.getText(),
                 Float.parseFloat(prixProductID.getText()),
                 Integer.parseInt(stockID.getText()),
                 Integer.parseInt((idCategoryID.getText()))
                 ));
-        Category category = categoryComboBox.getValue();
+        //Category category = categoryComboBox.getValue();
+    }
+
+    @FXML
+    void browse(ActionEvent event) {
+        Stage primaryStage = new Stage();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose a File");
+
+        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+
+        if (selectedFile != null) {
+            String fileUrl = selectedFile.toURI().toString();
+            imgURLId.setText(fileUrl);
+        }
     }
 
 

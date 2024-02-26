@@ -7,27 +7,38 @@ public class Product {
     private int idCategory;
     private String productDescription;
     private int stock;
+    private String image;
 
 
     public Product(){
 
     }
 
-    public Product(int idProduct, String nameProduct,String productDescription, float priceProduct, int stock, int idCategory) {
+    public Product(int idProduct, String nameProduct,String productDescription,String image, float priceProduct, int stock, int idCategory) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;
         this.idCategory = idCategory;
         this.productDescription = productDescription;
+        this.image=image;
         this.stock = stock;
     }
 
-    public Product(String nameProduct,String productDescription, float priceProduct, int stock, int idCategory) {
+    public Product(String nameProduct,String productDescription,String image, float priceProduct, int stock, int idCategory) {
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;
         this.idCategory = idCategory;
         this.productDescription = productDescription;
+        this.image=image;
         this.stock = stock;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getIdProduct() {
@@ -87,6 +98,7 @@ public class Product {
                 ", idCategory=" + idCategory +
                 ", productDescription='" + productDescription + '\'' +
                 ", stock=" + stock +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

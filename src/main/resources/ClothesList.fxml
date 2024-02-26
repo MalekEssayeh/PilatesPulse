@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView?>
+<?import io.github.palexdev.mfxcore.controls.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.PilatePulse.controllers.ClothesList">
+   <children>
+      <AnchorPane prefHeight="410.0" prefWidth="618.0" style="-fx-background-color: #FFDBFD;">
+         <children>
+            <AnchorPane fx:id="topBar" prefHeight="56.0" prefWidth="618.0" style="-fx-background-color: #ECECEC;">
+               <children>
+                  <Label fx:id="logoLabel" layoutX="486.0" layoutY="20.0" prefHeight="17.0" prefWidth="80.0" text="Pilates Pulse" textFill="#120228">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="logoImg" fitHeight="29.0" fitWidth="33.0" layoutX="573.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../java/tn/PilatePulse/Images/Logo.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="searchTextField" layoutX="72.0" layoutY="16.0" prefHeight="17.0" prefWidth="114.0" text="Search..." />
+                  <MFXButton fx:id="searchButton" layoutX="197.0" layoutY="16.0" onAction="#search" prefHeight="17.0" prefWidth="39.0" text="OK" />
+                  <MFXButton fx:id="eventsButton" layoutX="414.0" layoutY="16.0" rippleColor="#ececec" style="-fx-background-color: ECECEC;" text="Events" />
+                  <MFXButton fx:id="shopButton" layoutX="375.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Shop" />
+                  <MFXButton fx:id="exercicesButton" layoutX="250.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Exercices" />
+                  <MFXButton fx:id="programsButton" layoutX="311.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Programs" />
+                  <MFXButton fx:id="homeButton" layoutX="14.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Home" />
+               </children>
+            </AnchorPane>
+            <MFXButton fx:id="shophomeButton" layoutX="160.0" layoutY="85.0" prefHeight="25.0" prefWidth="96.0" text="Home" />
+            <MFXButton fx:id="clothesButton" layoutX="256.0" layoutY="85.0" prefHeight="25.0" prefWidth="96.0" text="Clothes" />
+            <MFXButton fx:id="accessoriesButton" layoutX="352.0" layoutY="85.0" prefHeight="25.0" prefWidth="96.0" text="Accessories" />
+            <MFXButton fx:id="cartButton" layoutX="545.0" layoutY="60.0" onAction="#Cart" prefHeight="25.0" prefWidth="49.0" text="Cart" />
+            <MFXButton fx:id="wishlistButton" layoutX="475.0" layoutY="60.0" text="Wish list" />
+            <MFXButton fx:id="coacheButton" layoutX="14.0" layoutY="60.0" text="Get in touch ! " />
+            <MFXLegacyListView fx:id="clothesList" layoutX="25.0" layoutY="126.0" prefHeight="244.0" prefWidth="568.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

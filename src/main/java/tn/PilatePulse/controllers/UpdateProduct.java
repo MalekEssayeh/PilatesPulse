@@ -39,6 +39,10 @@ public class UpdateProduct implements Initializable {
     private TextField descriptionID;
     @FXML
     private ListView<Product> listProducts;
+    @FXML
+    private TextField imageURLid;
+    @FXML
+    private Button uploadButton;
     private Stage  primaryStage;
     private int id;
     private ProductService productService = new ProductService();
@@ -51,6 +55,7 @@ public class UpdateProduct implements Initializable {
         productService.update(new Product(id,
                 nomProductiD.getText(),
                 descriptionID.getText(),
+                imageURLid.getText(),
                 Float.parseFloat(prixProductID.getText()),
                 Integer.parseInt(stockID.getText()),
                 Integer.parseInt(idCategoryID.getText())

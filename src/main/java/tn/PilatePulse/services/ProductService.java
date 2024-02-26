@@ -14,13 +14,14 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
     @Override
     public void add(Product product) {
         try {
-            String req = "INSERT INTO `Product`(`nameProduct`,`productDescription`, `PriceProduct`,`stock` ,`idCategory`) VALUES (?,?,?,?,?)";
+            String req = "INSERT INTO `Product`(`nameProduct`,`productDescription`,`image`, `PriceProduct`,`stock` ,`idCategory`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, product.getNameProduct());
             ps.setString(2, product.getProductDescription());
-            ps.setFloat(   3, product.getPriceProduct());
-            ps.setInt(4, product.getStock());
-            ps.setInt(5, product.getIdCategory());
+            ps.setString(3, product.getImage());
+            ps.setFloat(   4, product.getPriceProduct());
+            ps.setInt(5, product.getStock());
+            ps.setInt(6, product.getIdCategory());
 
             ps.executeUpdate();
 
@@ -61,10 +62,11 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
                 Product p = new Product();
                 p.setIdProduct(rs.getInt(1));
                 p.setNameProduct(rs.getString(2));
-                p.setProductDescription(rs.getString(3));
-                p.setPriceProduct(rs.getFloat(4));
-                p.setStock(rs.getInt(5));
-                p.setIdCategory(rs.getInt(4));
+                p.setImage(rs.getString(3));
+                p.setProductDescription(rs.getString(4));
+                p.setPriceProduct(rs.getFloat(5));
+                p.setStock(rs.getInt(6));
+                p.setIdCategory(rs.getInt(7));
 
                 products.add(p);
             }

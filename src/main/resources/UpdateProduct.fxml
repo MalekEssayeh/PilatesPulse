@@ -12,5 +12,7 @@
       <Button layoutX="210.0" layoutY="335.0" mnemonicParsing="false" onAction="#update" prefHeight="33.0" prefWidth="182.0" text="Update" />
       <TextField fx:id="stockID" layoutX="226.0" layoutY="179.0" promptText="stock" />
       <TextField fx:id="descriptionID" layoutX="226.0" layoutY="234.0" promptText="description" />
+      <TextField fx:id="imageURLid" layoutX="226.0" layoutY="278.0" promptText="image url" />
+      <Button fx:id="uploadButton" layoutX="392.0" layoutY="278.0" mnemonicParsing="false" onAction="#browse" text="Upload" />
    </children>
 </AnchorPane>
