@@ -62,9 +62,9 @@ public class CommandeService implements IServiceC<Commande> {
             while (rs.next()) {
                 Commande c1 = new Commande();
 
-                c1.setTotal(rs.getInt(1));
-                c1.setCodePromo(rs.getString(2));
-                c1.setNomProd(rs.getString(3));
+                c1.setTotal(rs.getInt(2));
+                c1.setCodePromo(rs.getString(3));
+                c1.setNomProd(rs.getString(4));
 
                 Commands.add(c1);
             }
@@ -87,6 +87,8 @@ public class CommandeService implements IServiceC<Commande> {
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setString(1, a);
             ps.setString(2,  c.getNomProd());
+            System.out.println(c.getNomProd());
+            System.out.println(a);
             ps.executeUpdate();
             System.out.println("Code promo updated successfully!");
         } catch (SQLException ex) {

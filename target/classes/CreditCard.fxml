@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.esprit.controllers.CreditCard">
+    <TextField fx:id="cardNumberField" promptText="Card Number" />
+    <TextField fx:id="expirationDateField" promptText="Expiration Date" />
+    <TextField fx:id="cvvField" promptText="CVV" />
+</VBox>
+

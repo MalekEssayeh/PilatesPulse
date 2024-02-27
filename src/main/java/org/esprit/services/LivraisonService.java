@@ -19,7 +19,6 @@ public class LivraisonService implements IServiceL<Livraison> {
     }
 
 
-
     @Override
     public void ajouter(Livraison l) {
         try {
@@ -27,29 +26,23 @@ public class LivraisonService implements IServiceL<Livraison> {
             String req2 = "SELECT idLiv FROM livraison ORDER BY idLiv DESC LIMIT 1";
             String req1 = "INSERT INTO `listecommande`(`idLiv`,`idCmd` ) VALUES (?,?)";
 
-
-            try (PreparedStatement ps = connection.prepareStatement(req)) {
+            try (PreparedStatement ps = connection.prepareStatement(req, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, l.getMethodePay());
                 ps.setString(2, l.getAdresseLiv());
-                ps.setDate(3, l.getDateLiv());
-                ps.setInt(2, l.getPhone());
-
+                ps.setObject(3, java.sql.Date.valueOf(l.getDateLiv())); // Convert LocalDate to java.sql.Date
+                ps.setInt(4, l.getPhone());
                 ps.executeUpdate();
-            }
 
-            //Getting liv id
-            try (PreparedStatement ps2 = connection.prepareStatement(req2)) {
-                try (ResultSet rs = ps2.executeQuery()) {
-                    if (rs.next()) {
-                        l.setIdLiv(rs.getInt(1));
-
+                try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        l.setIdLiv(generatedKeys.getInt(1));
                     }
                 }
             }
 
             // Adding cmd list
             try (PreparedStatement ps1 = connection.prepareStatement(req1)) {
-                for (Commande c : l.getListCommande()){
+                for (Commande c : l.getListCommande()) {
                     ps1.setInt(1, l.getIdLiv());
                     ps1.setInt(2, c.getIdCmd());
                     ps1.executeUpdate();
@@ -61,9 +54,52 @@ public class LivraisonService implements IServiceL<Livraison> {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
 
-
-        }
+//    @Override
+//    public void ajouter(Livraison l) {
+//        try {
+//            String req = "INSERT INTO `livraison`(`methodePay`, `adresseLiv`, `dateLiv`,`phone`) VALUES (?,?,?,?)";
+//            String req2 = "SELECT idLiv FROM livraison ORDER BY idLiv DESC LIMIT 1";
+//            String req1 = "INSERT INTO `listecommande`(`idLiv`,`idCmd` ) VALUES (?,?)";
+//
+//
+//            try (PreparedStatement ps = connection.prepareStatement(req)) {
+//                ps.setString(1, l.getMethodePay());
+//                ps.setString(2, l.getAdresseLiv());
+//                ps.setDate(3, l.getDateLiv());
+//                ps.setInt(2, l.getPhone());
+//
+//                ps.executeUpdate();
+//            }
+//
+//            //Getting liv id
+//            try (PreparedStatement ps2 = connection.prepareStatement(req2)) {
+//                try (ResultSet rs = ps2.executeQuery()) {
+//                    if (rs.next()) {
+//                        l.setIdLiv(rs.getInt(1));
+//
+//                    }
+//                }
+//            }
+//
+//            // Adding cmd list
+//            try (PreparedStatement ps1 = connection.prepareStatement(req1)) {
+//                for (Commande c : l.getListCommande()){
+//                    ps1.setInt(1, l.getIdLiv());
+//                    ps1.setInt(2, c.getIdCmd());
+//                    ps1.executeUpdate();
+//                }
+//            }
+//
+//            System.out.println("Delivery Added Successfully!");
+//
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//
+//
+//        }
 
 
 
@@ -73,11 +109,10 @@ public class LivraisonService implements IServiceL<Livraison> {
         List<Livraison> Livraisons = new ArrayList<>();
 
         try {
-
             String req = "SELECT * FROM livraison";
             String req1 = "SELECT * FROM listCommande WHERE idLiv = ?";
             String req2 = "SELECT * FROM commande WHERE idCmd = ?";
-            // Creating prepared statements
+
             PreparedStatement ps = connection.prepareStatement(req1);
             PreparedStatement ex = connection.prepareStatement(req2);
 
@@ -89,13 +124,11 @@ public class LivraisonService implements IServiceL<Livraison> {
                 l.setIdLiv(rs.getInt(1));
                 l.setMethodePay(rs.getString(2));
                 l.setAdresseLiv(rs.getString(3));
-                l.setDateLiv(rs.getDate(4));
+                l.setDateLiv(rs.getDate(4).toLocalDate()); // Convert java.sql.Date to LocalDate
                 l.setPhone(rs.getInt(5));
-                ps.setInt(1,l.getIdLiv());
+                ps.setInt(1, l.getIdLiv());
 
                 ResultSet rs1 = ps.executeQuery();
-
-
 
                 List<Commande> commandes = new ArrayList<>();
                 while (rs1.next()) {
@@ -197,7 +230,7 @@ public class LivraisonService implements IServiceL<Livraison> {
             while (rs.next()) {
                 Livraison l = new Livraison();
                 l.setIdLiv(rs.getInt(1));
-                l.setDateLiv(rs.getDate(2));
+                l.setDateLiv(rs.getDate(4).toLocalDate()); // Convert java.sql.Date to LocalDate
                 l.setAdresseLiv(rs.getString(3));
                 l.setMethodePay(rs.getString(4));
                 l.setPhone(rs.getInt(5));
@@ -254,7 +287,7 @@ public class LivraisonService implements IServiceL<Livraison> {
                 l.setIdLiv(rs.getInt(1));
                 l.setMethodePay(rs.getString(2));
                 l.setAdresseLiv(rs.getString(3));
-                l.setDateLiv(rs.getDate(4));
+                l.setDateLiv(rs.getDate(4).toLocalDate()); // Convert java.sql.Date to LocalDate
                 l.setPhone(rs.getInt(5));
                 ps.setInt(1,l.getIdLiv());
 

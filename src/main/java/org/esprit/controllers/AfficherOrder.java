@@ -56,14 +56,14 @@ public class AfficherOrder {
 
     }
 
-    public void Editer(javafx.event.ActionEvent actionEvent) {
+    public void Update(javafx.event.ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdatePromoCode.fxml"));
             loader.setControllerFactory(controllerClass -> {
                 if (controllerClass == UpdatePromoCode.class) {
                     UpdatePromoCode editionExerciceController = new UpdatePromoCode();
                     Commande selectedOrder = listOrders.getSelectionModel().getSelectedItem();
-                    String id = selectedOrder.getNomProd();
+                    Commande id = selectedOrder;
                     editionExerciceController.setPassedId(id);
                     return editionExerciceController;
                 } else {
@@ -87,9 +87,9 @@ public class AfficherOrder {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }}
 
-}
+
 //
 //        Commande selectedCommande = listeProd.getSelectionModel().getSelectedItem();
 //        if (selectedCommande != null) {
