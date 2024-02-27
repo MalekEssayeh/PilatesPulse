@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d0c1fb3-9b4a-467b-b7ca-696c2616e101" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Controllers/AddSession.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Controllers/DisplayEvents.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Controllers/DisplaySessionsByEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/esprit/pilatespulse/pilatespulsev3/AddSession.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/esprit/pilatespulse/pilatespulsev3/CSS/MFXComboBox.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/esprit/pilatespulse/pilatespulsev3/DisplayEvents.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/esprit/pilatespulse/pilatespulsev3/DisplaySessionsByEvent.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/esprit/pilatespulse/pilatespulsev3/addEvent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/esprit/pilatespulse/pilatespulsev3/addEvent.fxml" afterDir="false" />
     </list>
@@ -86,7 +78,7 @@
       <updated>1708913641324</updated>
       <workItem from="1708913642432" duration="775000" />
       <workItem from="1708915155460" duration="893000" />
-      <workItem from="1708916300345" duration="12399000" />
+      <workItem from="1708916300345" duration="13673000" />
     </task>
     <servers />
   </component>
@@ -103,5 +95,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
