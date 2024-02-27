@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import user.Models.user;
 import user.Services.userService;
@@ -22,6 +23,9 @@ import javafx.scene.Node;
 public class Adduser {
     @FXML
     private Button signupBT;
+
+    @FXML
+    private Label strengthLabel;
     @FXML
     private TextField nomdpTF;
     @FXML
@@ -94,6 +98,8 @@ public class Adduser {
 
     @FXML
     void initialize() {
+        // Hide the strength label initially
+        strengthLabel.setVisible(false);
         setupValidation(); // Call setupValidation method when the controller is initialized
     }
 
@@ -170,5 +176,50 @@ public class Adduser {
         nomdpTF.setVisible(false);
 
     }
+    @FXML
+    void updatePasswordStrength() {
+        String password = mdpTF.getText();
+        int strength = calculatePasswordStrength(password);
+        displayPasswordStrength(strength);
+    }
 
+    private int calculatePasswordStrength(String password) {
+        int score = 0;
+        // Add points for length
+        int length = password.length();
+        if (length >= 8) {
+            score += 2;
+        } else if (length >= 6) {
+            score += 1;
+        }
+        // Add points for complexity (uppercase, lowercase, numbers, special characters)
+        if (password.matches(".*[A-Z].*")) {
+            score += 2;
+        }
+        if (password.matches(".*[a-z].*")) {
+            score += 2;
+        }
+        if (password.matches(".*\\d.*")) {
+            score += 2;
+        }
+        if (password.matches(".*[!@#$%^&*()-_=+\\|\\[{\\]};:'\",<.>/?].*")) {
+            score += 2;
+        }
+        return score;
+    }
+
+    private void displayPasswordStrength(int strength) {
+        if (strength >= 8) {
+            strengthLabel.setText("Strong");
+            strengthLabel.setStyle("-fx-text-fill: green;");
+        } else if (strength >= 4) {
+            strengthLabel.setText("Medium");
+            strengthLabel.setStyle("-fx-text-fill: orange;");
+        } else {
+            strengthLabel.setText("Weak");
+            strengthLabel.setStyle("-fx-text-fill: red;");
+        }
+        // Show the strength label
+        strengthLabel.setVisible(true);
+    }
 }
