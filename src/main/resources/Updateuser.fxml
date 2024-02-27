@@ -10,16 +10,10 @@
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #260043;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Updateuser">
    <children>
       <TextField fx:id="nomTF" layoutX="323.0" layoutY="116.0" />
-      <TextField fx:id="mdpTF" layoutX="326.0" layoutY="388.0" />
       <TextField fx:id="mailTF" layoutX="324.0" layoutY="255.0" />
       <TextField fx:id="prenomTF" layoutX="324.0" layoutY="191.0" />
-      <Button layoutX="347.0" layoutY="430.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Update" textFill="#370543" />
+      <Button layoutX="346.0" layoutY="376.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Update" textFill="#370543" />
       <Label layoutX="321.0" layoutY="93.0" prefHeight="22.0" prefWidth="80.0" text="SURNAME" textFill="#fcd7f2">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="321.0" layoutY="359.0" prefHeight="22.0" prefWidth="102.0" text="PASSWORD" textFill="#fcd7f2">
          <font>
             <Font size="15.0" />
          </font>

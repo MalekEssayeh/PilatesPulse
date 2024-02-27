@@ -188,6 +188,23 @@ public class userService implements userInterface<user> {
             return false;
         }
     }
+    public boolean userExists(String nom, String prenom) {
+        try {
+            String query = "SELECT COUNT(*) FROM `user` WHERE `nom` = ? AND `prenom` = ?";
+            PreparedStatement pstmt = cnx.prepareStatement(query);
+            pstmt.setString(1, nom);
+            pstmt.setString(2, prenom);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+            return count > 0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+
     public void updatePassword(int userId, String newPassword) throws SQLException {
         try { String req = "UPDATE `user` SET `mdp`=? WHERE `id`=?";
             PreparedStatement pstmt = cnx.prepareStatement(req);

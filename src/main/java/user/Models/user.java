@@ -67,7 +67,7 @@ public class user {
         this.role = role;
     }
 
-    @Override
+  /*  @Override
     public String toString() {
         return "user{" +
                 "id=" + id +
@@ -75,6 +75,14 @@ public class user {
                 ", Prenom='" + Prenom + '\'' +
                 ", mdp='" + mdp + '\'' +
                 ", mail='" + mail + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }*/
+    @Override
+    public String toString() {
+        return "user{" +
+                " nom='" + nom + '\'' +
+                ", Prenom='" + Prenom + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }

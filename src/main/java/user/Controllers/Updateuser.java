@@ -22,9 +22,6 @@ public class Updateuser {
     private TextField mailTF;
 
     @FXML
-    private TextField mdpTF;
-
-    @FXML
     private TextField nomTF;
 
     @FXML
@@ -32,6 +29,7 @@ public class Updateuser {
     @FXML
     private ChoiceBox<String> roleCB;
     private int id;
+    private String mdp;
     private user selectedUser; // Declare the selectedUser variable
     private final userService userService = new userService();
 
@@ -46,18 +44,15 @@ public class Updateuser {
 
     public void initData(user selectedUser) {
         id=selectedUser.getId();
-        // Populate the UI with the selected user's information
-        // For example:
+        mdp=selectedUser.getMdp();
+
         nomTF.setText(selectedUser.getNom());
         prenomTF.setText(selectedUser.getPrenom());
         mailTF.setText(selectedUser.getMail());
-        mdpTF.setText(selectedUser.getMdp());
         roleCB.setValue(selectedUser.getRole());
 
-        // Set the selected user
         setSelectedUser(selectedUser);
     }
-
 
     @FXML
     void updateUser() {
@@ -65,7 +60,6 @@ public class Updateuser {
         String updatedNom = nomTF.getText();
         String updatedPrenom = prenomTF.getText();
         String updatedMail = mailTF.getText();
-        String updatedMdp = mdpTF.getText();
         String updatedRole = roleCB.getValue();
 
         // Update the user object with the new information
@@ -73,7 +67,7 @@ public class Updateuser {
         selectedUser.setNom(updatedNom);
         selectedUser.setPrenom(updatedPrenom);
         selectedUser.setMail(updatedMail);
-        selectedUser.setMdp(updatedMdp);
+        selectedUser.setMdp(mdp);
         selectedUser.setRole(updatedRole);
 
         // Call the userService to update the user in the database

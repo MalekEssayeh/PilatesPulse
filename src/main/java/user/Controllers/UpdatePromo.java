@@ -81,7 +81,7 @@ public class UpdatePromo {
             //promoToUpdate.setCode(code);
            // promoToUpdate.setId(id);
             promoService.update(promoToUpdate);
-            System.out.println(promoToUpdate);
+
 
             showAlert(Alert.AlertType.INFORMATION, "Success", "Promo updated successfully.");
             // Close the current window upon successful update

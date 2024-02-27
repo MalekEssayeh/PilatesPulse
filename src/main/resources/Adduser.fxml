@@ -15,7 +15,7 @@
         <TextField fx:id="nomTF" layoutX="374.0" layoutY="141.0" promptText="surname" />
         <TextField fx:id="prenomTF" layoutX="374.0" layoutY="187.0" promptText="name" />
         <TextField fx:id="mailTF" layoutX="374.0" layoutY="232.0" promptText="email address" />
-        <Button layoutX="391.0" layoutY="348.0" mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="121.0" style="-fx-background-color: #4B0082;" text="sign up" textFill="#faf8f8" />
+        <Button fx:id="signupBT" layoutX="391.0" layoutY="348.0" mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="121.0" style="-fx-background-color: #4B0082;" text="sign up" textFill="#faf8f8" />
       <ImageView fitHeight="400.0" fitWidth="309.0" pickOnBounds="true">
          <image>
             <Image url="@../../../../Users/Admin/Downloads/374a620dd029b01a7e1415c4848e223c.jpg" />

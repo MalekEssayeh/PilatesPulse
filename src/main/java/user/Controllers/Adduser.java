@@ -21,6 +21,8 @@ import javafx.scene.Node;
 
 public class Adduser {
     @FXML
+    private Button signupBT;
+    @FXML
     private TextField nomdpTF;
     @FXML
     private CheckBox showpwdCB;
@@ -98,18 +100,42 @@ public class Adduser {
     @FXML
     void signUp(ActionEvent event) {
         try {
-            String email = mailTF.getText();
-            if (!isValidEmail(email)) {
-                showAlert(Alert.AlertType.ERROR, "Invalid Email", "Please enter a valid email address.");
-                return; // Stop sign-up process if email is invalid
+            String nom = nomTF.getText().trim();
+            String prenom = prenomTF.getText().trim();
+            String email = mailTF.getText().trim();
+            String password = mdpTF.getText(); // No need to trim password
+
+            // Check if nom and prenom fields are empty
+            if (nom.isEmpty() || prenom.isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Empty Fields", "Nom and prenom fields can't be empty.");
+                return;
             }
 
-            // Attempt to add the user only if the email is valid
-            us.add2(new user(nomTF.getText(), prenomTF.getText(),doHashing( mdpTF.getText()), email,"client"));
+            // Check if the combination of nom and prenom already exists
+            if (us.userExists(nom, prenom)) {
+                showAlert(Alert.AlertType.ERROR, "Existing User", "A user with the same nom and prenom already exists.");
+                return;
+            }
+
+            // Check if the email is already registered
+            if (us.emailExists(email)) {
+                showAlert(Alert.AlertType.ERROR, "Existing Email", "This email is already registered.");
+                return;
+            }
+
+            // Validate email format
+            if (!isValidEmail(email)) {
+                showAlert(Alert.AlertType.ERROR, "Invalid Email", "Please enter a valid email address.");
+                return;
+            }
+            // Attempt to add the user if all validations pass
+            us.add2(new user(nom, prenom, doHashing(password), email, "client"));
+            showAlert(Alert.AlertType.INFORMATION, "Success", "sign up successful.");
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
     }
+
 
 
     @FXML
