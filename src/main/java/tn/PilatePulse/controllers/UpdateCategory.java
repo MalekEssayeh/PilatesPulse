@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -122,13 +123,19 @@ public class UpdateCategory {
 
     @FXML
     void UpdateButton(ActionEvent event) {
-        System.out.println(id);
-        categoryService.update(new Category(id,
-                nameFieldCat.getText()
-        ));
-        Stage stage = (Stage) updateButtonId.getScene().getWindow();
-        stage.close();
+        if (id == 0 || nameFieldCat.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Incomplete Information");
+            alert.setContentText("Please make sure all fields are filled in");
+            alert.showAndWait();
+        } else {
+            categoryService.update(new Category(id, nameFieldCat.getText()));
+            Stage stage = (Stage) updateButtonId.getScene().getWindow();
+            stage.close();
+        }
     }
+
 
 
     @FXML

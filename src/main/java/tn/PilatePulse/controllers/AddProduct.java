@@ -148,17 +148,40 @@ public class AddProduct {
 
 
 
-    public void add(javafx.event.ActionEvent actionEvent) {
-        productService.add(new Product(
-                nomProductiD.getText(),
-                descriptionID.getText(),
-                imgURLId.getText(),
-                Float.parseFloat(prixProductID.getText()),
-                Integer.parseInt(stockID.getText()),
-                Integer.parseInt((idCategoryID.getText()))
-                ));
-        //Category category = categoryComboBox.getValue();
-    }
+  public void add(javafx.event.ActionEvent actionEvent) {
+      if (nomProductiD != null && descriptionID != null && imgURLId != null &&
+              prixProductID != null && stockID != null && idCategoryID != null &&
+              !nomProductiD.getText().isEmpty() && !descriptionID.getText().isEmpty() &&
+              !imgURLId.getText().isEmpty() && !prixProductID.getText().isEmpty() &&
+              !stockID.getText().isEmpty() && !idCategoryID.getText().isEmpty()) {
+
+          try {
+              Product productToAdd = new Product(
+                      nomProductiD.getText(),
+                      descriptionID.getText(),
+                      imgURLId.getText(),
+                      Float.parseFloat(prixProductID.getText()),
+                      Integer.parseInt(stockID.getText()),
+                      Integer.parseInt(idCategoryID.getText())
+              );
+
+              productService.add(productToAdd);
+          } catch (NumberFormatException e) {
+              Alert alert = new Alert(Alert.AlertType.ERROR);
+              alert.setTitle("Error");
+              alert.setHeaderText("Invalid Input");
+              alert.setContentText("Please enter valid numerical values for price, stock, and category ID");
+              alert.showAndWait();
+          }
+      } else {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.setTitle("Error");
+          alert.setHeaderText("Empty Fields");
+          alert.setContentText("Please make sure all fields are filled in");
+          alert.showAndWait();
+      }
+  }
+
 
     @FXML
     void browse(ActionEvent event) {

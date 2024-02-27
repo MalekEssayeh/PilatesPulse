@@ -9,10 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -29,6 +26,7 @@ import tn.PilatePulse.services.CategoryService;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CategoriesDashboard implements Initializable {
@@ -170,38 +168,48 @@ public class CategoriesDashboard implements Initializable {
 
     @FXML
     void UpdateButton(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateCategory.fxml"));
-            loader.setControllerFactory(controllerClass -> {
-                if (controllerClass == UpdateCategory.class) {
-                    UpdateCategory updateCategory = new UpdateCategory();
-                    Category selectedCategory = categoriesList.getSelectionModel().getSelectedItem();
-                    int id = selectedCategory.getIdCategory();
-                    updateCategory.setPassedId(id);
-                    return updateCategory;
-                } else {
-                    return new UpdateCategory();
-                }
-            });
+        Category selectedCategory = categoriesList.getSelectionModel().getSelectedItem();
 
-            Parent root = loader.load();
+        if (selectedCategory == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No Category Selected");
+            alert.setContentText("Please select a category to update.");
+            alert.showAndWait();
+        } else {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateCategory.fxml"));
+                loader.setControllerFactory(controllerClass -> {
+                    if (controllerClass == UpdateCategory.class) {
+                        UpdateCategory updateCategory = new UpdateCategory();
+                        int id = selectedCategory.getIdCategory();
+                        updateCategory.setPassedId(id);
+                        return updateCategory;
+                    } else {
+                        return new UpdateCategory();
+                    }
+                });
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+                Parent root = loader.load();
 
-            stage.setOnHidden(event1 -> {
-                updateListView();
-            });
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
 
-            stage.show();
+                stage.setOnHidden(event1 -> {
+                    updateListView();
+                });
 
-            UpdateCategory updateCategory = loader.getController();
-            updateCategory.setPrimaryStage(primaryStage);
+                stage.show();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+                UpdateCategory updateCategory = loader.getController();
+                updateCategory.setPrimaryStage(primaryStage);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
+
 
     private void updateListView() {
         categoriesList.getItems().setAll(categoryService.fetchCategory());
@@ -229,12 +237,27 @@ public class CategoriesDashboard implements Initializable {
     void deleteButton(ActionEvent event) {
         Category selectedCategory = categoriesList.getSelectionModel().getSelectedItem();
 
-        if (selectedCategory != null) {
-            int id = selectedCategory.getIdCategory();
-            categoryService.remove(id);
-            categoriesList.getItems().remove(selectedCategory);
+        if (selectedCategory == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No Category Selected");
+            alert.setContentText("Please select a category to delete.");
+            alert.showAndWait();
+        } else {
+            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAlert.setTitle("Confirm Deletion");
+            confirmAlert.setHeaderText("Are you sure you want to delete this category?");
+            confirmAlert.setContentText("Click OK to confirm or Cancel");
+
+            Optional<ButtonType> result = confirmAlert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                int id = selectedCategory.getIdCategory();
+                categoryService.remove(id);
+                categoriesList.getItems().remove(selectedCategory);
+            }
         }
     }
+
 
 
 

@@ -29,6 +29,7 @@ import tn.PilatePulse.services.ProductService;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DisplayProduct implements Initializable {
@@ -240,49 +241,77 @@ public class DisplayProduct implements Initializable {
 }
 
 
-    public void deleteButton(ActionEvent actionEvent) {
-        Product selectedExercice = productList.getSelectionModel().getSelectedItem();
 
-        if (selectedExercice != null) {
-            int id = selectedExercice.getIdProduct();
-            productService.remove(id);
-            productList.getItems().remove(selectedExercice);
-        }
-    }
+   public void deleteButton(ActionEvent actionEvent) {
+       Product selectedProduct = productList.getSelectionModel().getSelectedItem();
 
-    public void UpdateButton(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateProduct.fxml"));
-            loader.setControllerFactory(controllerClass -> {
-                if (controllerClass == UpdateProduct.class) {
-                    UpdateProduct updateProduct = new UpdateProduct();
-                    Product selectedProduct = productList.getSelectionModel().getSelectedItem();
-                    int id = selectedProduct.getIdProduct();
-                    updateProduct.setPassedId(id);
-                    return updateProduct;
-                } else {
-                    return new UpdateProduct();
-                }
-            });
+       if (selectedProduct == null) {
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setTitle("Error");
+           alert.setHeaderText("No Product Selected");
+           alert.setContentText("Please select a product to delete.");
+           alert.showAndWait();
+       } else {
+           // If a product is selected, prompt the user for confirmation
+           Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+           confirmAlert.setTitle("Confirm Deletion");
+           confirmAlert.setHeaderText("Are you sure you want to delete this item?");
+           confirmAlert.setContentText("Click OK to confirm or Cancel");
 
-            Parent root = loader.load();
+           Optional<ButtonType> result = confirmAlert.showAndWait();
+           if (result.isPresent() && result.get() == ButtonType.OK) {
+               int id = selectedProduct.getIdProduct();
+               productService.remove(id);
+               productList.getItems().remove(selectedProduct);
+           }
+       }
+   }
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
 
-            stage.setOnHidden(event -> {
-                updateListView();
-            });
 
-            stage.show();
+  public void UpdateButton(ActionEvent actionEvent) {
+      Product selectedProduct = productList.getSelectionModel().getSelectedItem();
 
-            UpdateProduct updateProduct = loader.getController();
-            updateProduct.setPrimaryStage(primaryStage);
+      if (selectedProduct == null) {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.setTitle("Error");
+          alert.setHeaderText("No Product Selected");
+          alert.setContentText("Please select a product to update.");
+          alert.showAndWait();
+      } else {
+          try {
+              FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateProduct.fxml"));
+              loader.setControllerFactory(controllerClass -> {
+                  if (controllerClass == UpdateProduct.class) {
+                      UpdateProduct updateProduct = new UpdateProduct();
+                      int id = selectedProduct.getIdProduct();
+                      updateProduct.setPassedId(id);
+                      return updateProduct;
+                  } else {
+                      return new UpdateProduct();
+                  }
+              });
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+              Parent root = loader.load();
+
+              Stage stage = new Stage();
+              stage.setScene(new Scene(root));
+
+              stage.setOnHidden(event -> {
+                  updateListView();
+              });
+
+              stage.show();
+
+              UpdateProduct updateProduct = loader.getController();
+              updateProduct.setPrimaryStage(primaryStage);
+
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+      }
+  }
+
 
     private void updateListView() {
         productList.getItems().setAll(productService.fetchProduct());

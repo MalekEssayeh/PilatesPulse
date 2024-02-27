@@ -168,18 +168,37 @@ public class UpdateProduct implements Initializable {
 
     @FXML
     void update(ActionEvent event) {
-        System.out.println(id);
-        productService.update(new Product(id,
-                nomProductiD.getText(),
-                descriptionID.getText(),
-                imgURLId.getText(),
-                Float.parseFloat(prixProductID.getText()),
-                Integer.parseInt(stockID.getText()),
-                Integer.parseInt(idCategoryID.getText())
+        if (nomProductiD.getText().isEmpty() || descriptionID.getText().isEmpty() ||
+                imgURLId.getText().isEmpty() || prixProductID.getText().isEmpty() ||
+                stockID.getText().isEmpty() || idCategoryID.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Empty Fields");
+            alert.setContentText("Please make sure all fields are filled in");
+            alert.showAndWait();
+        } else {
+            try {
+                productService.update(new Product(id,
+                        nomProductiD.getText(),
+                        descriptionID.getText(),
+                        imgURLId.getText(),
+                        Float.parseFloat(prixProductID.getText()),
+                        Integer.parseInt(stockID.getText()),
+                        Integer.parseInt(idCategoryID.getText())
                 ));
-        Stage stage = (Stage) updateButton.getScene().getWindow();
-        stage.close();
+                Stage stage = (Stage) updateButton.getScene().getWindow();
+                stage.close();
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Invalid Input");
+                alert.setContentText("Please enter valid numerical values for price, stock, and category ID");
+                alert.showAndWait();
+            }
+        }
     }
+
 
     public void setPassedId(int id) {
         this.id=id;
