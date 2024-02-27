@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #260043;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Backend">
    <children>
       <ImageView fitHeight="600.0" fitWidth="956.0" opacity="0.3" pickOnBounds="true">
@@ -26,5 +25,7 @@
       </ImageView>
       <Button fx:id="Promos" layoutX="554.0" layoutY="140.0" mnemonicParsing="false" onAction="#Promos" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Discount Codes" />
       <Button fx:id="Users" layoutX="429.0" layoutY="140.0" mnemonicParsing="false" onAction="#Users" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Users" />
+      <Button fx:id="viewAsClient" layoutX="426.0" layoutY="191.0" mnemonicParsing="false" onAction="#viewAsClient" prefHeight="26.0" prefWidth="255.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="View As Client" />
+      <Button fx:id="viewAsCoach" layoutX="426.0" layoutY="240.0" mnemonicParsing="false" onAction="#ViewAsCoach" prefHeight="26.0" prefWidth="255.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="View As Coach" />
    </children>
 </AnchorPane>
