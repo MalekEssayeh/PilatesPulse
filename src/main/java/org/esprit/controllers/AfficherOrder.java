@@ -61,11 +61,11 @@ public class AfficherOrder {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdatePromoCode.fxml"));
             loader.setControllerFactory(controllerClass -> {
                 if (controllerClass == UpdatePromoCode.class) {
-                    UpdatePromoCode editionExerciceController = new UpdatePromoCode();
+                    UpdatePromoCode updatePromoCodeController = new UpdatePromoCode();
                     Commande selectedOrder = listOrders.getSelectionModel().getSelectedItem();
                     Commande id = selectedOrder;
-                    editionExerciceController.setPassedId(id);
-                    return editionExerciceController;
+                    updatePromoCodeController.setPassedId(id);
+                    return updatePromoCodeController;
                 } else {
                     return new UpdatePromoCode();
                 }

@@ -163,7 +163,7 @@ public class LivraisonService implements IServiceL<Livraison> {
     @Override
     public void modifier(Livraison l, String a) {
         try{
-        String req ="UPDATE `livraison` SET `codePromo`= ? WHERE idLiv = ?";
+        String req ="UPDATE `livraison` SET `adresseLiv`= ? WHERE idLiv = ?";
         PreparedStatement ps = connection.prepareStatement(req);
             ps.setString(1,a);
             ps.setInt(2,  l.getIdLiv());

@@ -1,47 +1,94 @@
 package org.esprit.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.collections.FXCollections;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import org.esprit.models.Commande;
+import org.esprit.models.Livraison;
+import org.esprit.services.CommandeService;
+import org.esprit.services.LivraisonService;
 
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class AfficherLiv {
+public class AfficherLiv implements Initializable {
+
+
+
 
     @FXML
-    private Label locationLabel;
+    private ListView<Livraison> deliveryDetailsListView;
 
-    @FXML
-    private Label phoneLabel;
+    Stage primaryStage= new Stage();
+    private final LivraisonService ls = new LivraisonService();
 
-    @FXML
-    private Label dateLabel;
 
-    private Stage primaryStage;
 
-    private String location;
-    private String phone;
-    private LocalDate deliveryDate;
 
-    public void setDeliveryDetails(String location, String phone, LocalDate deliveryDate) {
-        this.location = location;
-        this.phone = phone;
-        this.deliveryDate = deliveryDate;
+    public void delete(ActionEvent actionEvent) {
+        Livraison selectedLiv = deliveryDetailsListView.getSelectionModel().getSelectedItem();
 
-        updateLabels();
+        if (selectedLiv != null) {
+            int id = selectedLiv.getIdLiv();
+            ls.supprimer(id);
+            deliveryDetailsListView.getItems().remove(selectedLiv);
+        }
     }
 
-    private void updateLabels() {
-        locationLabel.setText(location);
-        phoneLabel.setText(phone);
-        dateLabel.setText(deliveryDate.toString());
+
+
+    public void Update(javafx.event.ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateAdress.fxml"));
+            loader.setControllerFactory(controllerClass -> {
+                if (controllerClass == UpdateAdress.class) {
+                    UpdateAdress updateAdressController = new UpdateAdress();
+                    Livraison selectedLiv = deliveryDetailsListView.getSelectionModel().getSelectedItem();
+                    Livraison id = selectedLiv;
+                    updateAdressController.setPassedId(id);
+                    return updateAdressController;
+                } else {
+                    return new UpdatePromoCode();
+                }
+            });
+
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+
+
+            stage.show();
+
+            UpdateAdress updateAdressController = loader.getController();
+
+            updateAdressController.setPrimaryStage(primaryStage);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }
+    List<Livraison> livraisonList = ls.fetchLivraisons();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    public void closeWindow() {
-        primaryStage.close();
+
+        // Set the items for all the list views
+        ObservableList<Livraison> observableList = FXCollections.observableList(livraisonList);
+        deliveryDetailsListView.getItems().addAll(ls.fetchLivraisons());
     }
 }
+

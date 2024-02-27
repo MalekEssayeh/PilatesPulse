@@ -36,4 +36,6 @@
       <Separator layoutX="376.0" layoutY="98.0" orientation="VERTICAL" prefHeight="405.0" prefWidth="25.0" />
       <Button layoutX="327.0" layoutY="558.0" mnemonicParsing="false" onAction="#pass" text="PASS THE ORDER" />
       <Button layoutX="664.0" layoutY="198.0" mnemonicParsing="false" onAction="#pay" text="Payment Done" />
-   </children></AnchorPane>
+      <Button layoutX="363.0" layoutY="516.0" mnemonicParsing="false" onAction="#add" text="ADD" />
+   </children>
+</AnchorPane>

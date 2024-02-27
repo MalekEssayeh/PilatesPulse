@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #c3a3bd;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.esprit.controllers.UpdateAdress">
+   <children>
+      <TextField fx:id="AdressField" disable="true" layoutX="192.0" layoutY="175.0" prefHeight="25.0" prefWidth="297.0" promptText="enter your new adress" />
+      <Button layoutX="278.0" layoutY="333.0" mnemonicParsing="false" onAction="#updateB" prefHeight="38.0" prefWidth="149.0" style="-fx-background-color: #4B0082;" text="CONFIRM" textFill="#f8f8f8">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Label fx:id="addLiv" layoutX="160.0" layoutY="32.0" prefHeight="86.0" prefWidth="330.0" style="-fx-alignment: CENTER;" text="UPDATE YOUR ADRESS" textFill="#7404dd">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="Adr" layoutX="192.0" layoutY="150.0" style="-fx-background-insets:  linear-gradient(#eed5f4, #ffe5e7);" text="New Adress" textFill="INDIGO" />
+      <ImageView fx:id="pilates" fitHeight="62.0" fitWidth="94.0" layoutX="615.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Downloads/logo/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

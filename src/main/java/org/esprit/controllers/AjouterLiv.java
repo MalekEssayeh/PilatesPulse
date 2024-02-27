@@ -10,7 +10,9 @@ import javafx.scene.control.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.esprit.models.Commande;
 import org.esprit.models.Livraison;
+import org.esprit.services.LivraisonService;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,8 +20,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
-    public class AjouterLiv {
+public class AjouterLiv {
 
         @FXML
         private DatePicker date;
@@ -32,6 +35,7 @@ import java.time.LocalDate;
 
         @FXML
         private TextField phone;
+       private final LivraisonService ls = new LivraisonService();
 
         @FXML
         void initialize() {
@@ -47,7 +51,46 @@ import java.time.LocalDate;
             });
         }
 
-        @FXML
+    @FXML
+    void add(ActionEvent event) {
+        String location = loc.getText();
+        String phoneNumber = phone.getText();
+        String selectedPaymentMethod = payment.getValue();
+
+        if (isValidPhoneNumber(phoneNumber) && isValidAddress(location) && isValidPaymentMethod(selectedPaymentMethod)) {
+            // Create a Livraison object with the entered details
+            Livraison newLivraison = new Livraison(selectedPaymentMethod, location, LocalDate.now(), Integer.parseInt(phoneNumber));
+
+            // Fetch the list of Commande objects (you need to implement this part)
+            List<Commande> commandes = fetchCommandes(); // Implement this method
+
+            // Set the list of commandes in the Livraison object
+            newLivraison.setListCommande(commandes);
+
+            // Add the Livraison to the database using LivraisonService
+            ls.ajouter(newLivraison);
+
+            // Optionally, you can display a success message or perform additional actions
+            showAlert("Delivery Added", "Delivery added successfully!");
+        } else {
+            showAlert("Invalid Input", "Please enter valid information.");
+        }
+    }
+
+    // Placeholder for fetchCommandes
+    private List<Commande> fetchCommandes() {
+        // Implement logic to fetch Commande objects from your data source
+        // For example, you might call a method in LivraisonService to retrieve a list of Commande
+
+        // Assuming you have a method in LivraisonService like this (you should modify based on your actual implementation):
+        // List<Commande> fetchCommandesForLivraison(Livraison livraison)
+
+        // You can then call this method to get the list of commandes for the newLivraison
+        return ls.fetchCommandesForLivraison(new Livraison());
+    }
+
+
+    @FXML
         void pass(ActionEvent event) {
                 try{
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherLiv.fxml"));

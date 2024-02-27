@@ -10,6 +10,11 @@ public class Livraison {
     List<Commande> listCommande;
 
     public Livraison() {
+
+    }
+
+    public Livraison(String adresseLiv) {
+        this.adresseLiv = adresseLiv;
     }
 
     public Livraison(String methodePay, String adresseLiv, LocalDate dateLiv, int phone) {
