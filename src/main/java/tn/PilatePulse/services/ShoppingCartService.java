@@ -19,7 +19,7 @@ public class ShoppingCartService {
             ps.setString(2, product.getNameProduct());
             ps.setFloat(   3, product.getPriceProduct());
             ps.setString(4, product.getProductDescription());
-            ps.setString(3, product.getImage());
+            ps.setString(5, product.getImage());
 
 
             ps.executeUpdate();
