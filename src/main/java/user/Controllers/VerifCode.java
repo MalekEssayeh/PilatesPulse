@@ -24,6 +24,9 @@ public class VerifCode {
         // Check if the input code matches the verification code
         return inputCode.equals(verificationCode);
     }
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
     @FXML
     void back(ActionEvent event) throws IOException {
         try {
@@ -45,7 +48,7 @@ public class VerifCode {
         // Validate the input code using the validateCode method
         if (validateCode(inputCode)) {
             // Show another scene where the user can enter their new password
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/new_password.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/newPassword.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

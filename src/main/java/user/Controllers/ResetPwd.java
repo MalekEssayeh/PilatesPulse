@@ -65,13 +65,18 @@ public class ResetPwd {
             // Generate a verification code
             String verificationCode = generateVerificationCode();
             // Send the recovery email
-            mailing.sendRecoveryCode(email, verificationCode);
+            Mailing mailing=new Mailing();
+            mailing.sendEmail(email,"opa",verificationCode);
             // Notify the user that the recovery email has been sent
             showAlert(Alert.AlertType.INFORMATION, "Success", "Recovery email sent. Check your inbox.");
 
             // Load the verification code interface
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/VerifCode.fxml"));
             Parent root = loader.load();
+            ///////////////////////////////zedtou jdid
+            VerifCode verifCodeController = loader.getController();
+            verifCodeController.setVerificationCode(verificationCode); // Set the verification code
+            /////////////////////////////////////////////////////////
             Scene scene = new Scene(root);
             Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             window.setScene(scene);

@@ -36,6 +36,10 @@ public class Login {
     private Button resetPwdBT;
 
     private final userService userService = new userService();
+    private static int userId; // Static variable to store the user's ID pour recuperer l new pwd
+    public static int getUserId() {
+        return userId;
+    }
 
     // Hashage MD5
     public static String doHashing(String password) {
@@ -73,6 +77,8 @@ public class Login {
 
             // Check if authentication was successful
             if (authenticated) {
+                // Retrieve the user's ID and store it in the session variable
+                userId = userService.getUserIdByEmail(email); // lel new pwd
                 // Successful login logic (navigate to the next scene, etc.)
                 System.out.println("Login successful!");
                 String fxmlFile = isAdmin ? "/Backend.fxml" : "/Home.fxml";
@@ -86,7 +92,7 @@ public class Login {
                 // Display an error message for invalid credentials
                 showAlert(Alert.AlertType.ERROR, "Error", "Invalid email or password.");
             }
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             // Handle any potential exceptions
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "An error occurred: " + e.getMessage());

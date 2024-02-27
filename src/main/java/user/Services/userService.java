@@ -188,6 +188,35 @@ public class userService implements userInterface<user> {
             return false;
         }
     }
+    public void updatePassword(int userId, String newPassword) throws SQLException {
+        try { String req = "UPDATE `user` SET `mdp`=? WHERE `id`=?";
+            PreparedStatement pstmt = cnx.prepareStatement(req);
+            pstmt.setString(1, newPassword);
+            pstmt.setInt(2, userId);
+            pstmt.executeUpdate();
+            System.out.println("Password updated successfully!");
+
+        } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    }
+    // Method to retrieve the user's ID by email
+    public int getUserIdByEmail(String email) throws SQLException {
+        int userId = -1; // Initialize with a default value
+        try {
+            String query = "SELECT id FROM user WHERE mail = ?";
+            PreparedStatement pstmt = cnx.prepareStatement(query);
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                userId = rs.getInt("id");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw ex; // Rethrow the exception to handle it in the calling method
+        }
+        return userId;
+    }
 
 
 }

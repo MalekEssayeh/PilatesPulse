@@ -46,6 +46,7 @@ public class PromoService implements userInterface<Promo> {
             pstmt.setBoolean(2, promo.isActive());
             pstmt.setDate(3, promo.getValidite());
             pstmt.setInt(4, promo.getId());
+            pstmt.setInt(5, promo.getCode());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {

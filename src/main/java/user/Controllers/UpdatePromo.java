@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import user.Models.Promo;
 import user.Models.user;
 import user.Services.PromoService;
@@ -35,16 +36,12 @@ public class UpdatePromo {
     public void initialize() {
 
     }
-    public void setpromoToUpdate(Promo promoToUpdate) {
-        this.promoToUpdate = promoToUpdate;
-    }
-
 
     public void initData(Promo promo) {
-        promoToUpdate = promo;
-        code = promoToUpdate.getCode();
-        id = promoToUpdate.getId();
-        isActive = promoToUpdate.isActive();
+        this.promoToUpdate = promo;
+       // code = promoToUpdate.getCode();
+       // id = promoToUpdate.getId();
+       // isActive = promoToUpdate.isActive();
         percentageTF.setText(String.valueOf(promo.getPourcentage()));
         // No pre-selected value for isActive
         // Controle de saisie calendrier
@@ -62,30 +59,34 @@ public class UpdatePromo {
             LocalDate validiteLocalDate = validiteDate.toLocalDate();
             validiteDP.setValue(validiteLocalDate);
         }
-        setpromoToUpdate(promoToUpdate);
+        //setpromoToUpdate(promoToUpdate);
     }
 
 
 
     @FXML
     void update(ActionEvent event) {
-        float newPourcentage = Float.parseFloat(percentageTF.getText());
-        LocalDate newValidite = validiteDP.getValue();
-
-        // Update the Promo object with the new values
-        promoToUpdate.setPourcentage(newPourcentage);
-
-        // Convert LocalDate to Date
-        java.sql.Date newValiditeDate = java.sql.Date.valueOf(newValidite);
-        promoToUpdate.setValidite(newValiditeDate);
-
-        // Set the code attribute
-        promoToUpdate.setCode(code);
-        promoToUpdate.setId(id);
-
         try {
+            float newPourcentage = Float.parseFloat(percentageTF.getText());
+            LocalDate newValidite = validiteDP.getValue();
+
+            // Update the Promo object with the new values
+            promoToUpdate.setPourcentage(newPourcentage);
+
+            // Convert LocalDate to Date
+            java.sql.Date newValiditeDate = java.sql.Date.valueOf(newValidite);
+            promoToUpdate.setValidite(newValiditeDate);
+
+            // Set the code attribute
+            //promoToUpdate.setCode(code);
+           // promoToUpdate.setId(id);
             promoService.update(promoToUpdate);
+            System.out.println(promoToUpdate);
+
             showAlert(Alert.AlertType.INFORMATION, "Success", "Promo updated successfully.");
+            // Close the current window upon successful update
+            Stage stage = (Stage) updateBT.getScene().getWindow();
+            stage.close();
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to update promo: " + e.getMessage());

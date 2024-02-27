@@ -9,7 +9,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 
 public class Mailing {
-    public void sendRecoveryCode(String userEmail, String verificationCode) {
+   /* public void sendRecoveryCode(String userEmail, String verificationCode) {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
@@ -19,13 +19,13 @@ public class Mailing {
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("", "");
+                return new PasswordAuthentication("anouar.jebri@gmail.com", "ihux xeib vlrp viws");
             }
         });
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("cinephoria.cinema@gmail.com"));
+            message.setFrom(new InternetAddress("zh.zribi.heni@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(userEmail));
             message.setSubject("Verification Code for Your Account");
             message.setText("Your verification code: " + verificationCode);
@@ -37,8 +37,8 @@ public class Mailing {
         }
     }
 }
-
-     /*   public static void sendEmail(String recipient, String subject, String body) {
+*/
+      public  void sendEmail(String recipient, String subject, String body) {
             // Set properties for the SMTP server
             Properties properties = new Properties();
             properties.put("mail.smtp.host", "smtp.gmail.com");
@@ -47,8 +47,8 @@ public class Mailing {
             properties.put("mail.smtp.starttls.enable", "true");
 
             // Replace these with your Gmail credentials
-            String username = "zh.zribi.heni@gmail.com";
-            String password = "ovzl mlmu dbaf gias";
+            String username = "anouar.jebri@gmail.com";
+            String password = "ihux xeib vlrp viws";
 
             Session session = Session.getInstance(properties, new Authenticator() {
                 @Override
@@ -78,6 +78,6 @@ public class Mailing {
                 System.err.println("Error sending email: " + e.getMessage());
             }
         }
-    }*/
+    }
 
 
