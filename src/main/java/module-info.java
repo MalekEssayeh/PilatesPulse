@@ -9,4 +9,6 @@ module com.esprit.pilatespulse.pilatespulsev3 {
 
     opens com.esprit.pilatespulse.pilatespulsev3 to javafx.fxml;
     exports com.esprit.pilatespulse.pilatespulsev3;
+    exports com.esprit.pilatespulse.pilatespulsev3.Controllers;
+    opens com.esprit.pilatespulse.pilatespulsev3.Controllers to javafx.fxml;
 }

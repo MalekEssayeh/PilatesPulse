@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d0c1fb3-9b4a-467b-b7ca-696c2616e101" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/SessionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/ParticipationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/ParticipationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -41,6 +42,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "Maven.PilatesPulseV3 [clean].executor": "Run",
     "Maven.PilatesPulseV3 [org.apache.maven.plugins:maven-clean-plugin:2.5:clean].executor": "Run",
     "Maven.PilatesPulseV3 [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor": "Run",
@@ -73,7 +75,7 @@
       <updated>1708913641324</updated>
       <workItem from="1708913642432" duration="775000" />
       <workItem from="1708915155460" duration="893000" />
-      <workItem from="1708916300345" duration="8034000" />
+      <workItem from="1708916300345" duration="9252000" />
     </task>
     <servers />
   </component>
