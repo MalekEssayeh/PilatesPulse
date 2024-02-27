@@ -17,6 +17,7 @@ public class Event {
     private String description;
     private int coachID;
     private final ObservableSet<User> eventParticipants = FXCollections.observableSet();
+    private final ObservableSet<Session> sessionList = FXCollections.observableSet();
 
     public Event() {
     }

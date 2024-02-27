@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d0c1fb3-9b4a-467b-b7ca-696c2616e101" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Interfaces/IEventService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Interfaces/ISessionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Event.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Participation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Session.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/EventService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/SessionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Utils/MyDB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Interfaces/IParticipationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/ParticipationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Event.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -84,11 +76,22 @@
       <updated>1708913641324</updated>
       <workItem from="1708913642432" duration="775000" />
       <workItem from="1708915155460" duration="893000" />
-      <workItem from="1708916300345" duration="2430000" />
+      <workItem from="1708916300345" duration="6746000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
