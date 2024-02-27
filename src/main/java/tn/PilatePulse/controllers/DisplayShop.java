@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,6 +25,7 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import tn.PilatePulse.model.Product;
 import tn.PilatePulse.services.ProductService;
+import tn.PilatePulse.services.ShoppingCartService;
 
 import java.io.File;
 import java.net.URL;
@@ -99,9 +101,26 @@ public class DisplayShop implements Initializable {
 
     @FXML
     private MFXButton wishlistButton;
+    ShoppingCartService shoppingCartService = new ShoppingCartService();
 
     @FXML
     void addToCart(ActionEvent event) {
+        Product selectedProduct = productList.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            shoppingCartService.add(selectedProduct);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Item added to cart successfully!");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a product to add to cart.");
+            alert.showAndWait();
+        }
 
     }
 

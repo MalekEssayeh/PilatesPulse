@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import tn.PilatePulse.model.Product;
 
 public class ShoppingCart {
 
@@ -58,5 +59,6 @@ public class ShoppingCart {
     void search(ActionEvent event) {
 
     }
+
 
 }
