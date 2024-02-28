@@ -27,6 +27,7 @@ public class AfficherLiv implements Initializable {
 
 
 
+
     @FXML
     private ListView<Livraison> deliveryDetailsListView;
 
@@ -45,6 +46,21 @@ public class AfficherLiv implements Initializable {
             deliveryDetailsListView.getItems().remove(selectedLiv);
         }
     }
+    public void updateListView(Livraison newLivraison) {
+        // Clear existing items in the ListView
+        deliveryDetailsListView.getItems().clear();
+
+        // Fetch the updated list of deliveries and add them to the ListView
+        List<Livraison> updatedLivraisons = ls.fetchLivraisons();
+        ObservableList<Livraison> observableList = FXCollections.observableList(updatedLivraisons);
+        deliveryDetailsListView.getItems().addAll(observableList);
+
+        // Add the newLivraison to the ListView if it's not null
+        if (newLivraison != null) {
+            deliveryDetailsListView.getItems().add(newLivraison);
+        }
+    }
+
 
 
 

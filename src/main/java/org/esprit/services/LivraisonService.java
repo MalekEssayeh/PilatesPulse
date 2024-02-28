@@ -23,8 +23,8 @@ public class LivraisonService implements IServiceL<Livraison> {
     public void ajouter(Livraison l) {
         try {
             String req = "INSERT INTO `livraison`(`methodePay`, `adresseLiv`, `dateLiv`,`phone`) VALUES (?,?,?,?)";
-            String req2 = "SELECT idLiv FROM livraison ORDER BY idLiv DESC LIMIT 1";
-            String req1 = "INSERT INTO `listecommande`(`idLiv`,`idCmd` ) VALUES (?,?)";
+//            String req2 = "SELECT idLiv FROM livraison ORDER BY idLiv DESC LIMIT 1";
+
 
             try (PreparedStatement ps = connection.prepareStatement(req, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, l.getMethodePay());
@@ -41,6 +41,7 @@ public class LivraisonService implements IServiceL<Livraison> {
             }
 
             // Adding cmd list
+            String req1 = "INSERT INTO `listecommande`(`idLiv`, `idCmd`) VALUES (?, ?)";
             try (PreparedStatement ps1 = connection.prepareStatement(req1)) {
                 for (Commande c : l.getListCommande()) {
                     ps1.setInt(1, l.getIdLiv());
@@ -110,7 +111,7 @@ public class LivraisonService implements IServiceL<Livraison> {
 
         try {
             String req = "SELECT * FROM livraison";
-            String req1 = "SELECT * FROM listCommande WHERE idLiv = ?";
+            String req1 = "SELECT * FROM listecommande WHERE idLiv = ?";
             String req2 = "SELECT * FROM commande WHERE idCmd = ?";
 
             PreparedStatement ps = connection.prepareStatement(req1);

@@ -22,7 +22,6 @@ public class UpdatePromoCode implements Initializable {
     private AnchorPane orderin;
 
 
-
     @FXML
     private TextField productNameField;
 
@@ -30,21 +29,29 @@ public class UpdatePromoCode implements Initializable {
     private TextField promoCodeField;
 
 
+    private Commande commande;
 
 
     @FXML
     private TextField totalField;
 
 
-
     @FXML
     void updateB(ActionEvent event) {
-        rc.modifier(new Commande( Integer.parseInt(totalField.getText()),promoCodeField.getText(),productNameField.getText()),promoCodeField.getText());
+        String promoCodeText = promoCodeField.getText().trim(); // Trim to remove leading/trailing whitespaces
 
+        try {
+            int promoCode = Integer.parseInt(promoCodeText);
+            // Your code to handle the parsed integer...
+        } catch (NumberFormatException e) {
+            // Handle the case where the input is not a valid integer
+            System.out.println("Invalid promo code: " + promoCodeText);
+        }
 
 
     }
-     private final CommandeService rc = new CommandeService();
+
+    private final CommandeService rc = new CommandeService();
 //    public void initData(Commande selectedCommande) {
 //        Commande commande = rc.rechercheCommande();
 //        rc.rechercheCommande(id);
@@ -53,6 +60,7 @@ public class UpdatePromoCode implements Initializable {
     public void setPassedId(Commande id) {
         this.id = id;
     }
+
     public void setPrimaryStage(Stage primaryStage) {
 
         this.primaryStage = primaryStage;
@@ -61,11 +69,18 @@ public class UpdatePromoCode implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (commande != null) {
+            promoCodeField.setText(commande.getCodePromo());
+            System.out.println(id);
+            promoCodeField.setText(id.getCodePromo());
+            productNameField.setText(id.getNomProd());
+            totalField.setText(id.getTotal() + "");
 
-        System.out.println(id);
-        promoCodeField.setText(id.getCodePromo());
-        productNameField.setText(id.getNomProd());
-        totalField.setText(id.getTotal()+"");
+        }
 
+
+    }
+
+    public void initData(Commande selectedOrder) {
     }
 }

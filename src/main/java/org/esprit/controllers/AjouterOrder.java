@@ -1,263 +1,84 @@
 package org.esprit.controllers;
-
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.esprit.services.CommandeService;
-import org.esprit.models.Commande;
-
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import org.esprit.models.Commande;
+import org.esprit.services.CommandeService;
 
 public class AjouterOrder {
 
     @FXML
-    private Label addorder;
-
-    @FXML
-    private Button confirm;
-
-    @FXML
-    private ImageView image;
-    @FXML
-    private TextField product;
-
-
-    @FXML
-    private Label label;
-
-
-    @FXML
-    private TextField productNameField; // assuming this is for the product name
+    private TextField productNameField;
 
     @FXML
     private TextField promoCodeField;
 
+    @FXML
+    private TextField totalField;
 
     @FXML
-    private TextField search; // assuming this is for the search field
+    private Button confirmButton;
 
     @FXML
-    private TextField totalField; // assuming this is for the total
+    private Label addOrderLabel;
 
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle)  {
-//        setupValidation();
-//    }
+    @FXML
+    private Label productLabel;
 
-    private final List<String> CODE_PROMO = Arrays.asList("pilates01", "pwellb11", "mindsoult", "pilatesforlife");
+    @FXML
+    private Label promoCodeLabel;
 
-    private final CommandeService cs = new CommandeService();
+    @FXML
+    private Label totalLabel;
 
-    private void showAlert(Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    @FXML
+    private ImageView pilatesImageView;
+
+    private Commande sharedCommande; // Shared data model
+    CommandeService cs = new CommandeService();
+
+    public void initialize() {
+        sharedCommande = new Commande();
     }
 
     @FXML
-    void boutouna(ActionEvent event) {
-        String productName = productNameField.getText();
-        String promoCode = promoCodeField.getText();
-        int total = Integer.parseInt(totalField.getText());
+    public void boutouna() {
+        try {
+            sharedCommande.setNomProd(productNameField.getText());
+            sharedCommande.setCodePromo(promoCodeField.getText());
+            sharedCommande.setTotal(Integer.parseInt(totalField.getText()));
 
-        // You may need to adjust this logic based on your requirements for order creation
+            // Call the ajouter method to add the data to the database
+            cs.ajouter(sharedCommande);
 
-            
-         if (!isValidCodePromo(promoCodeField.getText())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText("Une erreur s'est produite");
-            alert.setContentText("Ajouter code Promo correct !.");
-            alert.showAndWait();
-            
-        } else {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherOrder.fxml"));
-                Parent root = loader.load();
-
-                Scene currentScene = ((Node) event.getSource()).getScene();
-
-                currentScene.setRoot(root);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-            System.out.println("Veuillez remplir tous les champs.");
-        }
-
-
-    private void validateAndAddOrder() throws Exception {
-        String productName = productNameField.getText();
-        String promoCode = promoCodeField.getText();
-        int total = Integer.parseInt(totalField.getText());
-
-        // Validate promo code
-        if (!isValidCodePromo(promoCode)) {
-            showAlert(Alert.AlertType.ERROR, "Invalid Promo Code", "Please enter a valid Code Promo !");
-            return; // Stop processing if promo code is invalid
-        }
-
-        // Validate if productName and promoCode are not empty
-        if (!productName.isEmpty() && !promoCode.isEmpty()) {
-            // Assuming recipeService works for orders too
-            cs.ajouter(new Commande(total, promoCode, productName));
-            productNameField.clear();
-            promoCodeField.clear();
-            totalField.clear();
-        } else {
-            showAlert(Alert.AlertType.ERROR, "Missing Information", "Please fill in all fields.");
+            System.out.println("Confirm Button clicked");
+            System.out.println("Product Name: " + sharedCommande.getNomProd());
+            System.out.println("Promo Code: " + sharedCommande.getCodePromo());
+            System.out.println("Total: " + sharedCommande.getTotal());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    private boolean isValidCodePromo(String promoCode) {
-        if (CODE_PROMO.contains(promoCode)) {
-            return true;
-        } else
-            return false;
-
-
+    public void naviguer(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherOrder.fxml"));
+            Parent root = loader.load();
+            Scene scene = productNameField.getScene();
+            Stage stage = (Stage) scene.getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
+    }
 
-
-//package org.esprit.controllers;
-//
-//import javafx.event.ActionEvent;
-//import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
-//import javafx.fxml.Initializable;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
-//import javafx.scene.control.*;
-//import javafx.stage.Stage;
-//import org.esprit.services.CommandeService;
-//import org.esprit.models.Commande;
-//
-//import java.io.IOException;
-//import java.net.URL;
-//import java.util.Arrays;
-//import java.util.List;
-//import java.util.ResourceBundle;
-//
-//
-//public class AjouterOrder implements Initializable {
-//
-//
-//
-//
-//    @FXML
-//    private TextField productNameField; // assuming this is for the product name
-//
-//    @FXML
-//    private TextField promoCodeField;
-//
-//    @FXML
-//    private TextField totalField; // assuming this is for the total
-//
-//    // Regular expression for validating promo code
-//    private final List<String> CODE_PROMO = Arrays.asList("pilates01", "pwellb11", "mindsoult", "pilatesforlife");
-//
-//    private final CommandeService cs = new CommandeService();
-//
-//    //
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle)  {
-//        setupValidation();
-//    }
-//    private void showAlert(Alert.AlertType type, String title, String message) {
-//        Alert alert = new Alert(type);
-//        alert.setTitle(title);
-//        alert.setHeaderText(null);
-//        alert.setContentText(message);
-//        alert.showAndWait();
-//    }
-//
-//    @FXML
-//    void boutouna(ActionEvent event) {
-//        try {
-//            validateAndAddOrder();
-//        } catch (NumberFormatException e) {
-//            showAlert(Alert.AlertType.ERROR, "Invalid Total", "Please enter a valid Total !");
-//        } catch (Exception e) {
-//            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
-//        }
-//    }
-//
-//    private void validateAndAddOrder() throws Exception {
-//        String productName = productNameField.getText();
-//        String promoCode = promoCodeField.getText();
-//        int total = Integer.parseInt(totalField.getText());
-//
-//        // Validate promo code
-//        if (!isValidCodePromo(promoCode)) {
-//            showAlert(Alert.AlertType.ERROR, "Invalid Promo Code", "Please enter a valid Code Promo !");
-//            return; // Stop processing if promo code is invalid
-//        }
-//
-//        // Validate if productName and promoCode are not empty
-//        if (!productName.isEmpty() && !promoCode.isEmpty()) {
-//            // Assuming recipeService works for orders too
-//            cs.ajouter(new Commande(total, promoCode, productName));
-//            productNameField.clear();
-//            promoCodeField.clear();
-//            totalField.clear();
-//        } else {
-//            showAlert(Alert.AlertType.ERROR, "Missing Information", "Please fill in all fields.");
-//        }
-//    }
-//
-//
-//
-////    @FXML
-////    void naviguer(ActionEvent event) {
-////        try {
-////            FXMLLoader loader = new FXMLLoader(getClass().getResource("src/org/main/resources/AjouterOrder.fxml"));
-////            Parent root = loader.load();
-//////            Scene scene = productNameField.getScene();
-////            Stage stage = new Stage();
-//////            Stage stage = (Stage) scene.getWindow();
-////            stage.setScene(new Scene(root));
-////            stage.setTitle("Display infos");
-////            stage.show();
-////        } catch (IOException e) {
-////            e.printStackTrace();
-////        }
-////    }
-//
-//
-//
-//
-//
-////    @FXML
-////    void back(ActionEvent event) {
-////        try {
-////            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCommande.fxml"));
-////            Parent root = loader.load();
-////            Scene scene = new Scene(root);
-////            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-////            window.setScene(scene);
-////        } catch (IOException e) {
-////            e.printStackTrace(); // Handle the exception appropriately (e.g., log it)
-////        }
-////    }
-//
-////    public void Delete(ActionEvent actionEvent) {
-////    }
-//
-//
-//}
-//
-//

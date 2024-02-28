@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -19,14 +17,7 @@
          </font>
       </Label>
       <TextField fx:id="loc" layoutX="34.0" layoutY="129.0" onAction="#pass" prefHeight="25.0" prefWidth="226.0" promptText="City, Street Name, Street Number" />
-      <TextField fx:id="phone" layoutX="34.0" layoutY="173.0" onAction="#pass" promptText="Phone number" />      <ComboBox fx:id="payment" layoutX="630.0" layoutY="129.0" prefWidth="150.0" promptText="Choose a payment method">
-         <items>
-            <FXCollections fx:factory="observableArrayList">
-               <String fx:value="Pay with Cash" />
-               <String fx:value="Pay with Credit Card" />
-            </FXCollections>
-         </items>
-      </ComboBox>
+      <TextField fx:id="phone" layoutX="34.0" layoutY="173.0" onAction="#pass" promptText="Phone number" />
       <Label layoutX="482.0" layoutY="37.0" prefHeight="65.0" prefWidth="266.0" text="Payment Method" textFill="#0f335b">
          <font>
             <Font name="Britannic Bold" size="36.0" />
@@ -35,7 +26,9 @@
       <DatePicker fx:id="date" layoutX="34.0" layoutY="224.0" promptText="Choose a delivery Date" />
       <Separator layoutX="376.0" layoutY="98.0" orientation="VERTICAL" prefHeight="405.0" prefWidth="25.0" />
       <Button layoutX="327.0" layoutY="558.0" mnemonicParsing="false" onAction="#pass" text="PASS THE ORDER" />
-      <Button layoutX="664.0" layoutY="198.0" mnemonicParsing="false" onAction="#pay" text="Payment Done" />
       <Button layoutX="363.0" layoutY="516.0" mnemonicParsing="false" onAction="#add" text="ADD" />
+      <CheckBox fx:id="cash" layoutX="529.0" layoutY="177.0" mnemonicParsing="false" text="Pay With Cash" />
+      <CheckBox fx:id="card" layoutX="529.0" layoutY="216.0" mnemonicParsing="false" text="Credit Card" />
+      <Label fx:id="paymentlabel" layoutX="491.0" layoutY="113.0" prefHeight="25.0" prefWidth="184.0" text="Choose a payment method " />
    </children>
 </AnchorPane>

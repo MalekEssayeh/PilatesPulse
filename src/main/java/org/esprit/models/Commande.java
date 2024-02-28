@@ -12,13 +12,7 @@ public class Commande {
 
     }
 
-//    public Commande(int idCmd, int idUser, int total, String codePromo, String nomProd) {
-//        this.idCmd = idCmd;
-//        this.idUser = idUser;
-//        Total = total;
-//        this.codePromo = codePromo;
-//        this.nomProd = nomProd;
-//    }
+
 
     public Commande(int total, String codePromo, String nomProd) {
         Total = total;
