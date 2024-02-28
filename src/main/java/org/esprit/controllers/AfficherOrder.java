@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
@@ -27,13 +28,15 @@ public class AfficherOrder {
     private Button deleteButton;
 
     @FXML
+    private Button playGameButton;
+    @FXML
     private Button updateButton;
 
     @FXML
     private ImageView logoImageView;
 
     private ObservableList<Commande> orders;
-
+    CommandeService cs = new CommandeService();
     @FXML
     public void initialize() {
         // Initialize the ListView with sample data (you should replace this with your actual order data)
@@ -116,6 +119,62 @@ public class AfficherOrder {
         cs.ajouter(order);
     }
 
+
+    public void playGame(ActionEvent actionEvent) {
+        // Call a method to start the game
+        startTunisianGame();
+    }
+
+    private void startTunisianGame() {
+        // Define a map of Tunisian words and their correct meanings
+        Map<String, String> gameWords = new HashMap<>();
+        gameWords.put("Bchir", "A common name");
+        gameWords.put("Chwaya", "A small portion of food");
+
+        AtomicInteger correctGuesses = new AtomicInteger(0);
+
+        // Iterate through the game words
+        gameWords.forEach((tunisianWord, correctMeaning) -> {
+            // Show a dialog with multiple-choice options
+            Optional<String> userGuess = showGameDialog(tunisianWord);
+
+            // Check if the user's guess is correct
+            if (userGuess.isPresent() && userGuess.get().equals(correctMeaning)) {
+                correctGuesses.incrementAndGet();
+            }
+        });
+
+        // Check if the user won the game (you can adjust the condition based on your preference)
+        if (correctGuesses.get() == gameWords.size()) {
+            showCongratulationsMessage();
+            assignPromoCode();
+        }
+    }
+    private Optional<String> showGameDialog(String tunisianWord) {
+        // Implement the logic to show a dialog with multiple-choice options
+        // For simplicity, we'll use a basic dialog, and you can customize it
+        return new GameDialog(tunisianWord).showAndWait();
+    }
+
+    private void showCongratulationsMessage() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Congratulations!");
+        alert.setHeaderText(null);
+        alert.setContentText("Thank you for playing! You won a promo code for your next order.\nEnjoy your discount!");
+        alert.showAndWait();
+    }
+
+    private void assignPromoCode() {
+        // Generate a promo code
+        String promoCode = cs.generatePromoCode();
+
+        // Display a message with the promo code
+        Alert promoCodeAlert = new Alert(Alert.AlertType.INFORMATION);
+        promoCodeAlert.setTitle("Promo Code");
+        promoCodeAlert.setHeaderText(null);
+        promoCodeAlert.setContentText("Your promo code for 10% off: " + promoCode);
+        promoCodeAlert.showAndWait();
+    }
 
 
 

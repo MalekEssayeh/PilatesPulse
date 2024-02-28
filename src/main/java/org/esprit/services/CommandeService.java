@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
+import java.util.Random;
 
 public class CommandeService implements IServiceC<Commande> {
     Connection connection = Connexion.getInstance().getConnection();
@@ -75,6 +76,20 @@ public class CommandeService implements IServiceC<Commande> {
         return Commands;
     }
 
+    public String generatePromoCode() {
+        // Generate a random promo code (you can customize the format and length)
+        int length = 8;
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder promoCode = new StringBuilder();
+
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characters.length());
+            promoCode.append(characters.charAt(index));
+        }
+
+        return promoCode.toString();
+    }
 
 
 

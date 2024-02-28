@@ -12,6 +12,7 @@
       <ListView fx:id="listOrders" layoutX="270.0" layoutY="187.0" prefHeight="168.0" prefWidth="346.0" />
       <Button fx:id="Delete" layoutX="405.0" layoutY="476.0" mnemonicParsing="false" onAction="#Delete" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #4B0082;" text="Delete" textFill="WHITE" />
       <Button fx:id="Update" layoutX="405.0" layoutY="517.0" mnemonicParsing="false" onAction="#Update" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #4B0082;" text="Update" textFill="WHITE" />
+    <Button fx:id="playGameButton" layoutX="20.0" layoutY="500.0" mnemonicParsing="false" onAction="#playGame" text="Play Game" />
       <ImageView fitHeight="62.0" fitWidth="74.0" layoutX="812.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../Downloads/logo/logo.png" />
