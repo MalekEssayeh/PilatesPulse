@@ -29,11 +29,12 @@ public class UpdatePromoCode implements Initializable {
     private TextField promoCodeField;
 
 
-    private Commande commande;
+
 
 
     @FXML
     private TextField totalField;
+    private Commande selectedOrder; // Store the selected order
 
 
     @FXML
@@ -43,12 +44,27 @@ public class UpdatePromoCode implements Initializable {
         try {
             int promoCode = Integer.parseInt(promoCodeText);
             // Your code to handle the parsed integer...
+
+            // Update the promo code in the selected order
+            selectedOrder.setCodePromo(promoCodeText);
+
+            // Save the changes to the database (assuming your service has an update method)
+            CommandeService cs = new CommandeService();
+            cs.modifier(selectedOrder, promoCodeText);
+
+            // Close the stage after updating
+            Stage stage = (Stage) promoCodeField.getScene().getWindow();
+            stage.close();
+
         } catch (NumberFormatException e) {
             // Handle the case where the input is not a valid integer
             System.out.println("Invalid promo code: " + promoCodeText);
         }
 
 
+    }
+    public String getNewPromoCode() {
+        return promoCodeField.getText();
     }
 
     private final CommandeService rc = new CommandeService();
@@ -69,18 +85,20 @@ public class UpdatePromoCode implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (commande != null) {
-            promoCodeField.setText(commande.getCodePromo());
-            System.out.println(id);
-            promoCodeField.setText(id.getCodePromo());
-            productNameField.setText(id.getNomProd());
-            totalField.setText(id.getTotal() + "");
 
+            if (selectedOrder != null) {
+                promoCodeField.setText(selectedOrder.getCodePromo());
+                productNameField.setText(selectedOrder.getNomProd());
+                totalField.setText(String.valueOf(selectedOrder.getTotal()));
+            }
         }
 
 
+
+
+    public void initData(Commande id) {
+        selectedOrder = id;
+        promoCodeField.setText(id.getCodePromo());
     }
 
-    public void initData(Commande selectedOrder) {
-    }
 }
