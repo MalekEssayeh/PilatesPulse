@@ -120,6 +120,7 @@ public class AjouterOrder {
              alert.setTitle("Error");
              alert.setHeaderText(null);
              alert.setContentText(errorMessage);
+
              alert.showAndWait();
     }
 

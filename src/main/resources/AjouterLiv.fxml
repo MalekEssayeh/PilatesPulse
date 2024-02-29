@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -11,24 +10,48 @@
 
 <AnchorPane fx:id="liv" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #c3a3bd;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.esprit.controllers.AjouterLiv">
    <children>
-      <Label layoutX="34.0" layoutY="36.0" prefHeight="65.0" prefWidth="517.0" text="Delivery Details" textFill="#0f335b">
+      <Label fx:id="detailslabel" layoutX="66.0" layoutY="81.0" prefHeight="65.0" prefWidth="517.0" text="Détails de facturation" textFill="#0f335b">
          <font>
-            <Font name="Britannic Bold" size="36.0" />
+            <Font name="Britannic Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="loc" layoutX="34.0" layoutY="129.0" onAction="#pass" prefHeight="25.0" prefWidth="226.0" promptText="City, Street Name, Street Number" />
-      <TextField fx:id="phone" layoutX="34.0" layoutY="173.0" onAction="#pass" promptText="Phone number" />
-      <Label layoutX="482.0" layoutY="37.0" prefHeight="65.0" prefWidth="266.0" text="Payment Method" textFill="#0f335b">
+      <TextField fx:id="adresseTextField" layoutX="66.0" layoutY="194.0" prefHeight="25.0" prefWidth="226.0" promptText="City, Street Name, Street Number" />
+      <TextField fx:id="phoneField" layoutX="66.0" layoutY="262.0" onAction="#pass" promptText="Phone number" />
+      <Label fx:id="methodlabel" layoutX="472.0" layoutY="82.0" prefHeight="65.0" prefWidth="266.0" text="Méthode de paiement" textFill="#0f335b">
          <font>
-            <Font name="Britannic Bold" size="36.0" />
+            <Font name="Britannic Bold" size="24.0" />
          </font>
       </Label>
-      <DatePicker fx:id="date" layoutX="34.0" layoutY="224.0" promptText="Choose a delivery Date" />
+      <DatePicker fx:id="dateField" layoutX="65.0" layoutY="338.0" promptText="Choose a delivery Date" />
       <Separator layoutX="376.0" layoutY="98.0" orientation="VERTICAL" prefHeight="405.0" prefWidth="25.0" />
-      <Button layoutX="327.0" layoutY="558.0" mnemonicParsing="false" onAction="#pass" text="PASS THE ORDER" />
-      <Button layoutX="363.0" layoutY="516.0" mnemonicParsing="false" onAction="#add" text="ADD" />
-      <CheckBox fx:id="cash" layoutX="529.0" layoutY="177.0" mnemonicParsing="false" text="Pay With Cash" />
-      <CheckBox fx:id="card" layoutX="529.0" layoutY="216.0" mnemonicParsing="false" text="Credit Card" />
-      <Label fx:id="paymentlabel" layoutX="491.0" layoutY="113.0" prefHeight="25.0" prefWidth="184.0" text="Choose a payment method " />
+      <Button layoutX="325.0" layoutY="618.0" mnemonicParsing="false" onAction="#paadDelivery" prefHeight="41.0" prefWidth="141.0" text="PASS THE ORDER" />
+      <Button layoutX="324.0" layoutY="567.0" mnemonicParsing="false" onAction="#add" prefHeight="41.0" prefWidth="141.0" text="ADD" />
+      <Label fx:id="labelAjouterLiv" layoutX="211.0" layoutY="14.0" prefHeight="65.0" prefWidth="368.0" text="Ajouter une Livraison">
+         <font>
+            <Font name="Britannic Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="adresslabel" layoutX="67.0" layoutY="162.0" prefHeight="25.0" prefWidth="124.0" text="Adresse..*">
+         <font>
+            <Font name="Britannic Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="phonelabel" layoutX="67.0" layoutY="229.0" prefHeight="25.0" prefWidth="124.0" text="Phone..*">
+         <font>
+            <Font name="Britannic Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="datelabel" layoutX="67.0" layoutY="307.0" prefHeight="25.0" prefWidth="124.0" text="Date de livraison..*">
+         <font>
+            <Font name="Britannic Bold" size="14.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="468.0" layoutY="169.0" prefHeight="100.0" prefWidth="299.0" style="-fx-background-color: #d1d6da;">
+         <children>
+            <Label fx:id="scriptone" alignment="TOP_RIGHT" layoutX="18.0" layoutY="9.0" prefHeight="83.0" prefWidth="256.0" text="Les tickets restaurant peuvent également être utilisés en payant en espèces ! Il y a un supplément de 10% sur les titres restaurant qui seront à récupérer à la livraison !" wrapText="true" />
+         </children>
+      </AnchorPane>
+      <Button layoutX="476.0" layoutY="299.0" mnemonicParsing="false" onAction="#ajouterMethodPay" prefHeight="41.0" prefWidth="292.0" text="Ajouter une méthode de paiement" />
+      <Label fx:id="scripttwo" layoutX="238.0" layoutY="484.0" prefHeight="83.0" prefWidth="340.0" text="Vos données personnelles seront utilisées pour traiter votre commande, soutenir votre expérience sur ce site Web et à d'autres fins décrites dans notre politique de confidentialité." wrapText="true" />
    </children>
 </AnchorPane>

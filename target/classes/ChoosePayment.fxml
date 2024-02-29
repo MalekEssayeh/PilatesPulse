@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="methodP" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #8b96a1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.esprit.controllers.ChoosePayment">
+   <children>
+      <AnchorPane layoutX="124.0" layoutY="210.0" prefHeight="108.0" prefWidth="353.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <Button layoutX="90.0" layoutY="54.0" mnemonicParsing="false" onAction="#PaiementCash" prefHeight="25.0" prefWidth="161.0" style="-fx-background-color: #eb9682;" text="Paiement à la livraison" textFill="WHITE" />
+            <Label layoutX="54.0" layoutY="6.0" prefHeight="17.0" prefWidth="292.0" text="Choisissez une méthode de paiement" textFill="#111154">
+               <font>
+                  <Font name="Britannic Bold" size="14.0" />
+               </font>
+            </Label>
+            <Line endX="203.0" layoutX="121.0" layoutY="35.0" startX="-100.0" />
+            <Label layoutX="35.0" layoutY="86.0" prefHeight="17.0" prefWidth="280.0" text="Payer en argent comptant à la livraison ( 10.00 TND )" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="124.0" layoutY="329.0" prefHeight="60.0" prefWidth="353.0" style="-fx-background-color: #ebebeb;">
+         <children>
+            <Button layoutX="87.0" layoutY="18.0" mnemonicParsing="false" onAction="#addCard" prefHeight="25.0" prefWidth="161.0" style="-fx-background-color: #eb9682;" text="Ajouter une carte " textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
