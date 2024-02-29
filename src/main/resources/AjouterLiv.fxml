@@ -24,7 +24,7 @@
       </Label>
       <DatePicker fx:id="dateField" layoutX="65.0" layoutY="338.0" promptText="Choose a delivery Date" />
       <Separator layoutX="376.0" layoutY="98.0" orientation="VERTICAL" prefHeight="405.0" prefWidth="25.0" />
-      <Button layoutX="325.0" layoutY="618.0" mnemonicParsing="false" onAction="#paadDelivery" prefHeight="41.0" prefWidth="141.0" text="PASS THE ORDER" />
+      <Button layoutX="325.0" layoutY="618.0" mnemonicParsing="false" onAction="#passDelivery" prefHeight="41.0" prefWidth="141.0" text="PASS THE ORDER" />
       <Button layoutX="324.0" layoutY="567.0" mnemonicParsing="false" onAction="#add" prefHeight="41.0" prefWidth="141.0" text="ADD" />
       <Label fx:id="labelAjouterLiv" layoutX="211.0" layoutY="14.0" prefHeight="65.0" prefWidth="368.0" text="Ajouter une Livraison">
          <font>
