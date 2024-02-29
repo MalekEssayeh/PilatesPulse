@@ -1,6 +1,6 @@
 package org.esprit.controllers;
 
-import javafx.application.Platform;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -17,7 +18,8 @@ import org.esprit.models.Commande;
 import org.esprit.services.CommandeService;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
+
 
 public class AfficherOrder {
 
@@ -32,19 +34,23 @@ public class AfficherOrder {
     @FXML
     private Button updateButton;
 
-    @FXML
-    private ImageView logoImageView;
 
     private ObservableList<Commande> orders;
     CommandeService cs = new CommandeService();
     @FXML
     public void initialize() {
-        // Initialize the ListView with sample data (you should replace this with your actual order data)
-        CommandeService cs = new CommandeService();
-        List<Commande> fetchedOrders = cs.fetch();
+        // Fetch the last added order from the database
+        Commande lastAddedOrder = cs.fetchLastAddedOrder();
 
-        // Initialize the ListView with fetched data
-        orders = FXCollections.observableArrayList(fetchedOrders);
+        // Check if there is a last added order
+        if (lastAddedOrder != null) {
+            // Populate the product name and total from the last added order
+            String lastProductName = lastAddedOrder.getNomProd();
+            int lastTotal = lastAddedOrder.getTotal();
+        }
+
+        // Add the fetched orders to the listOrders
+        orders = FXCollections.observableArrayList(lastAddedOrder);
         listOrders.setItems(orders);
 
         // Show the welcome notification
@@ -84,9 +90,14 @@ public class AfficherOrder {
             UpdatePromoCode updatePromoCode = loader.getController();
             updatePromoCode.initData(selectedOrder);
             // Set a listener to refresh the ListView after the update
-            stage.setOnHidden(e -> {
+            stage.setOnHidden(e -> { if (!updatePromoCode.getNewPromoCode().equals(selectedOrder.getCodePromo())) {
+                // Only proceed if the new promo code is different from the actual promo code
                 refreshListView();
                 showUpdateNotification(selectedOrder.getCodePromo(), updatePromoCode.getNewPromoCode());
+            } else {
+                // Display an error message if the new promo code is the same as the actual promo code
+                showErrorNotification("New promo code must be different from the actual promo code.");
+            }
             });
             // Use showAndWait to block processing until the window is closed
             stage.showAndWait();
@@ -94,6 +105,15 @@ public class AfficherOrder {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showErrorNotification(String errorMessage) {
+        Notifications.create()
+                .title("Error")
+                .text(errorMessage)
+                .darkStyle()
+                .graphic(null)
+                .showError(); // Use showError() for an error notification in red
     }
     private void refreshListView() {
         // Fetch data from the database using your CommandeService
@@ -112,43 +132,108 @@ public class AfficherOrder {
                 .showInformation();
     }
 
-    public void addOrder(Commande order) {
-        // Add the new order to the ListView
-        orders.add(order);
-        CommandeService cs = new CommandeService();
-        cs.ajouter(order);
-    }
+
 
 
     public void playGame(ActionEvent actionEvent) {
-        // Call a method to start the game
-        startTunisianGame();
+        // Get the selected order
+        Commande selectedOrder = listOrders.getSelectionModel().getSelectedItem();
+
+        // Check if the total is greater than 100
+        if (selectedOrder != null && selectedOrder.getTotal() > 100) {
+            // Call a method to start the game
+            startYogaGame();
+        } else {
+            // Display a message that the order does not qualify for the game
+            showGameQualificationMessage();
+        }
+
     }
 
-    private void startTunisianGame() {
-        // Define a map of Tunisian words and their correct meanings
-        Map<String, String> gameWords = new HashMap<>();
-        gameWords.put("Bchir", "A common name");
-        gameWords.put("Chwaya", "A small portion of food");
+    private void showGameQualificationMessage() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game Qualification");
+        alert.setHeaderText(null);
+        alert.setContentText("To play the game, the order total must be greater than 100.");
+        alert.showAndWait();
+    }
 
-        AtomicInteger correctGuesses = new AtomicInteger(0);
 
-        // Iterate through the game words
-        gameWords.forEach((tunisianWord, correctMeaning) -> {
-            // Show a dialog with multiple-choice options
-            Optional<String> userGuess = showGameDialog(tunisianWord);
+    private void startYogaGame() {
+        // Define the yoga questions and their options
+        List<Question> yogaQuestions = new ArrayList<>();
+        yogaQuestions.add(new Question("What is the meaning of the word “Yoga”?", "C) Union", "A) Harmony", "B) Exercise", "C) Union"));
+        yogaQuestions.add(new Question("What is the main focus of Hatha Yoga?", "A) Physical postures", "B) Meditation", "C) Breath control", "A) Physical postures"));
+        yogaQuestions.add(new Question("In which ancient text are the Yoga Sutras compiled?", "C) Patanjali’s Yoga Sutras", "A) Rigveda", "B) Bhagavad Gita", "C) Patanjali’s Yoga Sutras"));
+        yogaQuestions.add(new Question("What is the purpose of Pranayama in yoga?", "B) Breathing control", "A) Body warm-up", "C) Physical relaxation", "B) Breathing control"));
+        yogaQuestions.add(new Question("Which of the following is not one of the eight limbs of yoga?", "C) Mudra", "A) Asana", "B) Niyama", "C) Mudra"));
+        yogaQuestions.add(new Question("What is the warrior pose called in Sanskrit?", "A) Virabhadrasana", "B) Adho Mukha Svanasana", "C) Trikonasana", "A) Virabhadrasana"));
+        yogaQuestions.add(new Question("How many vinyasas are there in a traditional Sun Salutation?", "B) 12", "A) 10", "C) 18", "B) 12"));
+        yogaQuestions.add(new Question("What does Yama mean in the context of yoga philosophy?", "A) Moral observances", "B) Meditation", "C) Movement", "A) Moral observances"));
+        yogaQuestions.add(new Question("Which of the following is not a branch of yoga?", "C) Ayurveda", "A) Kundalini", "B) Raja", "C) Ayurveda"));
+        yogaQuestions.add(new Question("What is the translation of Savasana in English?", "B) Corpse Pose", "A) Downward-Facing Dog", "C) Tree Pose", "B) Corpse Pose"));
+        yogaQuestions.add(new Question("Which pose represents the animal Cobra in yoga?", "A) Bhujangasana", "B) Tadasana", "C) Vrikshasana", "A) Bhujangasana"));
+        yogaQuestions.add(new Question("What is the goal of Raja Yoga?", "B) Self-realization", "A) Physical strength", "C) Flexibility", "B) Self-realization"));
+        yogaQuestions.add(new Question("What is the name of the goddess who resides at the base of the spine in Kundalini Yoga?", "C) Kundalini Shakti", "A) Saraswati", "B) Durga", "C) Kundalini Shakti"));
+        yogaQuestions.add(new Question("What is the name of the yoga performed in a heated room?", "B) Bikram Yoga", "A) Ashtanga Yoga", "C) Vinyasa Yoga", "B) Bikram Yoga"));
 
-            // Check if the user's guess is correct
-            if (userGuess.isPresent() && userGuess.get().equals(correctMeaning)) {
-                correctGuesses.incrementAndGet();
+        // Shuffle the questions to present them randomly
+        Collections.shuffle(yogaQuestions);
+
+        // Present three random questions to the user
+        int correctAnswers = 0;
+        for (int i = 0; i < 3; i++) {
+            Question currentQuestion = yogaQuestions.get(i);
+            String userAnswer = presentQuestion(currentQuestion);
+
+            if (userAnswer != null && userAnswer.equals(currentQuestion.getCorrectOption())) {
+                correctAnswers++;
+            } else {
+                break; // If the user answers one question wrong, exit the loop
             }
-        });
+        }
 
-        // Check if the user won the game (you can adjust the condition based on your preference)
-        if (correctGuesses.get() == gameWords.size()) {
+        // Check if the user answered all three questions correctly
+        if (correctAnswers == 3) {
             showCongratulationsMessage();
             assignPromoCode();
+        } else {
+            showTryAgainMessage();
         }
+    }
+
+    private String presentQuestion(Question question) {
+        // You can customize the way you present the question to the user
+        // For simplicity, let's use an Alert dialog with multiple-choice options
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Question");
+        alert.setHeaderText(question.getQuestion());
+
+        // Set the options as buttons
+        alert.getButtonTypes().setAll(
+                new ButtonType(question.getOptionA()),
+                new ButtonType(question.getOptionB()),
+                new ButtonType(question.getOptionC()),
+                ButtonType.CANCEL
+        );
+
+        // Show the dialog and wait for the user's response
+        Optional<ButtonType> result = alert.showAndWait();
+
+        // Check which button the user clicked and return the corresponding option
+        if (result.isPresent() && result.get() != ButtonType.CANCEL) {
+            return result.get().getText();
+        } else {
+            return null; // User canceled the dialog
+        }}
+
+    private void showTryAgainMessage() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Try Again");
+        alert.setHeaderText(null);
+        alert.setContentText("You need to answer all three questions correctly to win the promo code. Please try again!");
+        alert.showAndWait();
     }
     private Optional<String> showGameDialog(String tunisianWord) {
         // Implement the logic to show a dialog with multiple-choice options
@@ -160,22 +245,25 @@ public class AfficherOrder {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Congratulations!");
         alert.setHeaderText(null);
-        alert.setContentText("Thank you for playing! You won a promo code for your next order.\nEnjoy your discount!");
+        alert.setContentText("Thank you for playing! You won a promo code for this order.\nEnjoy your discount!");
         alert.showAndWait();
     }
 
     private void assignPromoCode() {
-        // Generate a promo code
-        String promoCode = cs.generatePromoCode();
+        // Assuming total is a field in your Commande class
+        Commande selectedOrder = listOrders.getSelectionModel().getSelectedItem();
+        double total = selectedOrder.getTotal();
 
-        // Display a message with the promo code
+        // Calculate the discounted total (90% of the original total)
+        double discountedTotal = total * 0.9;
+
+        // Display a message with the discounted total
         Alert promoCodeAlert = new Alert(Alert.AlertType.INFORMATION);
-        promoCodeAlert.setTitle("Promo Code");
+        promoCodeAlert.setTitle("Discount Applied");
         promoCodeAlert.setHeaderText(null);
-        promoCodeAlert.setContentText("Your promo code for 10% off: " + promoCode);
+        promoCodeAlert.setContentText(String.format("A 10%% discount has been applied. Your new total is: %.2f", discountedTotal));
         promoCodeAlert.showAndWait();
     }
-
 
 
 }

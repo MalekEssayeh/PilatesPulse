@@ -133,6 +133,42 @@ public class CommandeService implements IServiceC<Commande> {
         }
 
     }
+    public Commande fetchLastAddedOrder() {
+        // Implement logic to fetch the last added order from the database
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = Connexion.getInstance().getConnection();
+
+                    // SQL query to select the last added order
+                      String query = "SELECT * FROM commande ORDER BY idCmd DESC LIMIT 1";
+
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                // Map the result set to a Commande object
+                int idCmd = resultSet.getInt("idCmd");
+                int idUser = resultSet.getInt("idUser");
+                int total = resultSet.getInt("Total");
+                String codePromo = resultSet.getString("codePromo");
+                String nomProd = resultSet.getString("nomProd");
+
+                return new Commande(idCmd, idUser, total, codePromo, nomProd);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close resources (ResultSet, PreparedStatement, and Connection) in a finally block
+            // Handle exceptions appropriately
+        }
+
+        return null; // Return null if there was an issue fetching the last added order
+
+    }
 
 
 
