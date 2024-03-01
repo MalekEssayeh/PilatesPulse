@@ -52,27 +52,32 @@ public class AjouterOrder {
              // Fetch the last order from the database
              Commande lastOrder = cs.fetchLastAddedOrder(); // Implement a method in CommandeService to fetch the last order
 
-             // Use the product name and total from the last order
-             String productName = lastOrder.getNomProd();
-             int total = lastOrder.getTotal();
+             if (lastOrder != null) {
+                 // Use the product name and total from the last order
+                 String productName = lastOrder.getNomProd();
+                 int total = lastOrder.getTotal();
 
-             // Set the product name and total in their respective fields
-             productNameField.setText(productName);
-             totalField.setText(String.valueOf(total));
+                 // Set the product name and total in their respective fields
+                 productNameField.setText(productName);
+                 totalField.setText(String.valueOf(total));
 
-             // Make the product name and total fields non-editable
-             productNameField.setEditable(false);
-             totalField.setEditable(false);
+                 // Make the product name and total fields non-editable
+                 productNameField.setEditable(false);
+                 totalField.setEditable(false);
 
-             // Get the entered promo code
-             String promoCode = promoCodeField.getText();
+                 // Get the entered promo code
+                 String promoCode = promoCodeField.getText();
 
-             // Implement control de saisie for the promo code
-             if (isValidPromoCode(promoCode)) {
-                 // The promo code is valid, proceed with any additional logic if needed
+                 // Implement control de saisie for the promo code
+                 if (isValidPromoCode(promoCode)) {
+                     // The promo code is valid, proceed with any additional logic if needed
+                 } else {
+                     // Show an error notification for an invalid promo code
+                     showErrorNotification("Invalid promo code. Please enter a valid promo code.");
+                 }
              } else {
-                 // Show an error notification for an invalid promo code
-                 showErrorNotification("Invalid promo code. Please enter a valid promo code.");
+                 // Handle the case where lastOrder is null, e.g., show an error message or take appropriate action
+                 showErrorNotification("Error fetching the last order from the database.");
              }
          }
     @FXML
@@ -125,11 +130,19 @@ public class AjouterOrder {
     }
 
     private boolean isValidPromoCode(String promoCode) {
-             // List of allowed promo codes
-             List<String> allowedPromoCodes = Arrays.asList("pilates987", "mindsoulT", "moveurmind", "peacepilate");
+        // List of allowed promo codes
+        List<String> allowedPromoCodes = Arrays.asList("pilatespulse12", "soulmindT", "therapy22");
 
-             // Check if the entered promo code is in the allowed list
-             return allowedPromoCodes.contains(promoCode);
+        // Check if the entered promo code is in the allowed list
+        boolean isValid = allowedPromoCodes.contains(promoCode);
+
+        // Show an error notification if the promo code is not valid
+        if (!isValid) {
+            showErrorNotification("Invalid promo code. Please enter a valid promo code.");
+        }
+
+        // Return the result of the validation
+        return isValid;
     }
 
     public void naviguer(ActionEvent actionEvent) {
@@ -143,5 +156,8 @@ public class AjouterOrder {
             e.printStackTrace();
         }
     }
+
+
+
     }
 

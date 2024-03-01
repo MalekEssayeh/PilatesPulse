@@ -5,10 +5,8 @@ import org.esprit.models.Commande;
 import org.esprit.utils.Connexion;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
 import java.util.Random;
 
 public class CommandeService implements IServiceC<Commande> {
@@ -92,14 +90,13 @@ public class CommandeService implements IServiceC<Commande> {
     }
 
 
-
     @Override
     public void modifier(Commande c, String a) {
         try {
-            String req ="UPDATE `commande` SET `codePromo`= ? WHERE nomProd = ?";
+            String req = "UPDATE `commande` SET `codePromo`= ? WHERE nomProd = ?";
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setString(1, a);
-            ps.setString(2,  c.getNomProd());
+            ps.setString(2, c.getNomProd());
             System.out.println(c.getNomProd());
             System.out.println(a);
             ps.executeUpdate();
@@ -123,7 +120,7 @@ public class CommandeService implements IServiceC<Commande> {
 
 
         try {
-            String req ="DELETE FROM `commande`  WHERE idCmd = ?";
+            String req = "DELETE FROM `commande`  WHERE idCmd = ?";
             PreparedStatement ps = connection.prepareStatement(req);
             ps.setInt(1, c);
             ps.executeUpdate();
@@ -133,6 +130,7 @@ public class CommandeService implements IServiceC<Commande> {
         }
 
     }
+
     public Commande fetchLastAddedOrder() {
         // Implement logic to fetch the last added order from the database
         Connection connection = null;
@@ -142,8 +140,8 @@ public class CommandeService implements IServiceC<Commande> {
         try {
             connection = Connexion.getInstance().getConnection();
 
-                    // SQL query to select the last added order
-                      String query = "SELECT * FROM commande ORDER BY idCmd DESC LIMIT 1";
+            // SQL query to select the last added order
+            String query = "SELECT * FROM commande ORDER BY idCmd DESC LIMIT 1";
 
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery();
@@ -171,31 +169,31 @@ public class CommandeService implements IServiceC<Commande> {
     }
 
 
-
-    public List<Commande> rechercheCommande(String nomProd) throws SQLException {
-        List<Commande> Commands = new ArrayList<>();
+    public List<Commande> search(String keyword) {
+        List<Commande> orderslist = new ArrayList<>();
         try {
-            String req = "SELECT * FROM Commande WHERE nomProd LIKE ?";
-            PreparedStatement st = connection.prepareStatement(req);
-            st.setString(1, "%" + nomProd + "%"); // Adding wildcards to match any characters
-            ResultSet rs = st.executeQuery();
+            String req = "SELECT * FROM `commande` WHERE `nomProd` LIKE ? OR `codePromo` LIKE ?";
+            PreparedStatement pstmt = connection.prepareStatement(req);
+            pstmt.setString(1, "%" + keyword + "%");
+            pstmt.setString(2, "%" + keyword + "%");
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 Commande c = new Commande();
                 c.setIdCmd(rs.getInt(1));
-                c.setIdUser(rs.getInt(2));
-                c.setTotal(rs.getInt(3));
+                c.setTotal(rs.getInt(2));
+                c.setCodePromo(rs.getString(3));
+                c.setNomProd(rs.getString(4));
+                c.setIdUser(rs.getInt(5));
 
-                // Add debug output to identify the issue
-                System.out.println("DEBUG - CodePromo: " + rs.getString(4));
 
-                c.setCodePromo(rs.getString(4));
-                c.setNomProd(rs.getString(5));
-                Commands.add(c);
+
+
+                orderslist.add(c);
             }
         } catch (SQLException ex) {
-            throw ex; // Throw the exception to be caught and handled in the calling method
+            ex.printStackTrace();
         }
-        return Commands;
+        return orderslist;
     }
 
     public List<Commande> filtreCommande(String nomProd) {
@@ -207,7 +205,7 @@ public class CommandeService implements IServiceC<Commande> {
             pst.setString(1, "%" + nomProd + "%");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                Commande c= new Commande();
+                Commande c = new Commande();
                 c.setIdCmd(rs.getInt(1));
                 c.setTotal(rs.getInt(2));
                 c.setCodePromo(rs.getString(3));
@@ -222,6 +220,7 @@ public class CommandeService implements IServiceC<Commande> {
             ex.printStackTrace();
         }
 
-        return Commands;}
+        return Commands;
+    }
 }
 

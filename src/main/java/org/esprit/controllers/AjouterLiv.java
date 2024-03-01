@@ -12,17 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.esprit.models.Livraison;
+import org.esprit.services.LivraisonService;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class AjouterLiv {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/pilatecommandedelivery"; ;
     @FXML
     private TextField adresseTextField;
 
@@ -59,15 +56,13 @@ public class AjouterLiv {
     @FXML
     private Label scripttwo;
 
-    private ChoosePayment ajouterLivController;
+    LivraisonService ls = new LivraisonService();
 
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
 
-    // Add this method to set the AjouterLivController in AjouterLiv
 
-    public void setAjouterLivController(ChoosePayment choosePaymentController) {
-        this.ajouterLivController = choosePaymentController;
+    @FXML
+    void addCard(ActionEvent event) {
+
     }
 
     @FXML
@@ -95,49 +90,26 @@ public class AjouterLiv {
             showAlert("Invalid Date", "Please select a date different from today and in the future.");
             return;
         }
-        saveToDatabase();
 
-        try {
-            // Load ChoosePayment.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChoosePayment.fxml"));
-            Parent root = loader.load();
+        // Create a Livraison object
+        Livraison livraison = new Livraison("Cash on delivery", adresseText, selectedDate, Integer.parseInt(phoneText));
 
-            // Create a new scene with the loaded FXML file
-            Scene scene = new Scene(root);
+        ls.ajouter(livraison);
 
-            // Access the current stage (the window) from the button
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        System.out.println("Livraison added successfully!");
 
-            // Set the new scene to the stage
-            stage.setScene(scene);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+
+
         }
-    }
-    private void saveToDatabase() {
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pilatecommandedelivery", "root", "")) {
-            // Create a prepared statement with the SQL INSERT query
-            String sql = "INSERT INTO livraison (methodePay, adresseLiv, dateLiv, phone) VALUES (?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                // Set values for the prepared statement
-                // Assuming 'methodePay' is a placeholder for payment method, update it accordingly
-                preparedStatement.setString(1, "your_payment_method_here");
-                preparedStatement.setString(2, adresseTextField.getText());
-                preparedStatement.setDate(3, java.sql.Date.valueOf(dateField.getValue()));
-                preparedStatement.setString(4, phoneField.getText());
 
-                // Execute the query
-                preparedStatement.executeUpdate();
 
-                // Show a success alert
-                showAlert("Success", "Data added to the database.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            showAlert("Error", "Failed to save data to the database.");
-        }
-    }
+
+
+
+
+
+
 
     // Helper method to show an alert
     private void showAlert(String title, String content) {
@@ -149,29 +121,6 @@ public class AjouterLiv {
     }
 
 
-    @FXML
-    void ajouterMethodPay(ActionEvent event) {
-
-
-        try {
-            // Load ChoosePayment.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChoosePayment.fxml"));
-            Parent root = loader.load();
-
-            // Create a new scene with the loaded FXML file
-            Scene scene = new Scene(root);
-
-            // Access the current stage (the window) from the button
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            // Set the new scene to the stage
-            stage.setScene(scene);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 
 
     @FXML
@@ -179,9 +128,4 @@ public class AjouterLiv {
 
     }
 
-    public void setMethodPay(String paiementALaLivraison) {
-    }
-
-    public void setMethodLabel(String paiementALaLivraison) {
-    }
 }

@@ -1,16 +1,15 @@
 package org.esprit.controllers;
 
 
+import com.google.zxing.WriterException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import java.nio.file.Paths;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
@@ -28,6 +27,9 @@ public class AfficherOrder {
 
     @FXML
     private Button deleteButton;
+
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     private Button playGameButton;
@@ -89,19 +91,30 @@ public class AfficherOrder {
             stage.setScene(new Scene(loader.load()));
             UpdatePromoCode updatePromoCode = loader.getController();
             updatePromoCode.initData(selectedOrder);
+
             // Set a listener to refresh the ListView after the update
-            stage.setOnHidden(e -> { if (!updatePromoCode.getNewPromoCode().equals(selectedOrder.getCodePromo())) {
-                // Only proceed if the new promo code is different from the actual promo code
-                refreshListView();
-                showUpdateNotification(selectedOrder.getCodePromo(), updatePromoCode.getNewPromoCode());
-            } else {
-                // Display an error message if the new promo code is the same as the actual promo code
-                showErrorNotification("New promo code must be different from the actual promo code.");
-            }
+            stage.setOnHidden(e -> {
+                String newPromoCode = updatePromoCode.getNewPromoCode();
+                List<String> allowedPromoCodes = Arrays.asList("pilatespulse12", "soulmindT", "therapy22");
+
+                if (allowedPromoCodes.contains(newPromoCode)) {
+                    // Only proceed if the new promo code is in the allowed list
+                    if (!newPromoCode.equals(selectedOrder.getCodePromo())) {
+                        // Only proceed if the new promo code is different from the actual promo code
+                        refreshListView();
+                        showUpdateNotification(selectedOrder.getCodePromo(), newPromoCode);
+                    } else {
+                        // Display an error message if the new promo code is the same as the actual promo code
+                        showErrorNotification("New promo code must be different from the actual promo code.");
+                    }
+                } else {
+                    // Display an error message if the new promo code is not in the allowed list
+                    showErrorNotification("Invalid promo code. Please enter a valid promo code.");
+                }
             });
+
             // Use showAndWait to block processing until the window is closed
             stage.showAndWait();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -266,4 +279,93 @@ public class AfficherOrder {
     }
 
 
+    @FXML
+    void genererCodesQR(ActionEvent event) {
+        CommandeService commandeService = new CommandeService();
+        List<Commande> commandes = listOrders.getItems();
+        for (Commande commande : commandes) {
+            String commandeData = "ID: " + commande.getIdCmd() + ", Total: " + commande.getTotal() + ", codepromo: " + commande.getCodePromo() + ", NomProduit: " + commande.getNomProd();
+
+            // Construct the file path using java.nio.file.Path
+            String filePath = "C:/Users/ASUS/Desktop/qrcode/QRcode.png";
+            filePath = filePath + java.nio.file.FileSystems.getDefault().getSeparator() + commande.getIdCmd() + ".png";
+
+            try {
+                QRCodeGenerator.generateQRCode(commandeData, filePath);
+                System.out.println("Code QR généré pour la commande avec l'ID : " + commande.getIdCmd());
+            } catch (WriterException | IOException e) {
+                System.err.println("Erreur lors de la génération du code QR pour la commande avec l'ID : " + commande.getIdCmd());
+                e.printStackTrace();
+            }
+        }
+        showAlert("Success", "Codes QR générés avec succès.");
+
+    }
+
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
+
+
+    @FXML
+    void QRcodeButton(ActionEvent event) {
+        // Get the selected order
+        Commande selectedOrder = listOrders.getSelectionModel().getSelectedItem();
+
+        if (selectedOrder != null) {
+            // Construct the personalized content for the QR code
+            String personalizedContent = "ID: " + selectedOrder.getIdCmd() +
+                    ", Total: " + selectedOrder.getTotal() +
+                    ", codepromo: " + selectedOrder.getCodePromo() +
+                    ", NomProduit: " + selectedOrder.getNomProd();
+
+            // Call the genererCodesQR method with the personalized content
+            genererCodesQR(personalizedContent);
+
+            // Show a success message or perform additional actions if needed
+            showAlert("Success", "QR code generated successfully.");
+        } else {
+            // Show an error message if no order is selected
+            showAlert("Error", "Please select an order before generating a QR code.");
+        }
+    }
+
+    @FXML
+    void genererCodesQR(String personalizedContent) {
+        // Specify the file path for the generated QR code
+        String filePath = "C:/Users/ASUS/Desktop/qrcode/QRcode.png";
+
+        try {
+            // Generate the QR code with the personalized content
+            QRCodeGenerator.generateQRCode(personalizedContent, filePath);
+            System.out.println("QR code generated successfully.");
+
+            // Show a success message or perform additional actions if needed
+            showAlert("Success", "QR code generated successfully.");
+        } catch (WriterException | IOException e) {
+            System.err.println("Error generating QR code.");
+            e.printStackTrace();
+
+            // Show an error message or perform additional error-handling actions if needed
+            showAlert("Error", "Failed to generate QR code.");
+        }
+
+
+}
+
+
+//    @FXML
+//    void search(ActionEvent event) {
+//        String keyword = searchTextField.getText();
+//        List<Commande> searchResults = cs.search(keyword);
+//        ObservableList<user> observableSearchResults = FXCollections.observableArrayList(searchResults);
+//        usersLV.setItems(observableSearchResults);
+//    }
 }

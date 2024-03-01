@@ -13,8 +13,7 @@ public class Commande {
     }
 
 
-    public Commande(int idCmd, int idUser, int total, String codePromo, String nomProd) {
-        this.idCmd = idCmd;
+    public Commande(int idUser, int total, String codePromo, String nomProd) {
         this.idUser = idUser;
         Total = total;
         this.codePromo = codePromo;
