@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.ResetPwd">
+   <children>
+      <Label layoutX="315.0" layoutY="89.0" text="Reset Password" textFill="#510a61">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="571.0" fitWidth="368.0" layoutX="-108.0" layoutY="-118.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../Users/Admin/Downloads/096f155c77e36d7df3c7ff0a233b7bc3.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="387.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Users/Admin/Downloads/png-transparent-padlock-computer-icons-combination-lock-padlock-purple-violet-technic-thumbnail-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="mailTF" layoutX="318.0" layoutY="207.0" prefHeight="27.0" prefWidth="212.0" promptText="recovery email address" />
+      <Button fx:id="resetBT" layoutX="374.0" layoutY="253.0" mnemonicParsing="false" onAction="#Reset" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: #4B0082;" text="Reset" textFill="WHITE" />
+      <Button fx:id="backBT" layoutX="274.0" layoutY="403.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Label layoutX="318.0" layoutY="178.0" text="EMAIL" textFill="INDIGO">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
