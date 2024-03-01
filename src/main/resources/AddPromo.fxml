@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="668.0" fitWidth="923.0" layoutY="-10.0" opacity="0.3" pickOnBounds="true">
          <image>
-            <Image url="@../../../../Users/Admin/Downloads/download%20(8).jpg" />
+            <Image url="images/alexis.jpg" />
          </image>
       </ImageView>
       <TextField fx:id="PercentageTF" layoutX="368.0" layoutY="207.0" prefHeight="30.0" prefWidth="214.0" promptText="Percentage" />
@@ -26,6 +26,6 @@
       </Label>
       <Button fx:id="AddBT" layoutX="422.0" layoutY="404.0" mnemonicParsing="false" onAction="#Add" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Add" textFill="#50085b" />
       <ChoiceBox fx:id="userCB" layoutX="367.0" layoutY="309.0" prefHeight="30.0" prefWidth="214.0" />
-      <Button fx:id="BackBT" layoutX="89.0" layoutY="594.0" mnemonicParsing="false" onAction="#Back" prefHeight="26.0" prefWidth="58.0" text="Back" />
+      <Button fx:id="BackBT" layoutX="89.0" layoutY="594.0" mnemonicParsing="false" onAction="#Back" prefHeight="26.0" prefWidth="58.0" text="Back" style="-fx-background-color: #f0a6ca; -fx-text-fill: #6b0056;"/>
    </children>
 </AnchorPane>

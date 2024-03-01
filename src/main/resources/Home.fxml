@@ -10,17 +10,17 @@
    <children>
       <ImageView fitHeight="49.0" fitWidth="54.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Users/Admin/Downloads/logo3-removebg-preview.png" />
+            <Image url="images/logo3-removebg-preview.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="552.0" fitWidth="900.0" layoutY="65.0" opacity="0.47" pickOnBounds="true">
          <image>
-            <Image url="@../../../../Users/Admin/Downloads/🪄%20(1).jpg" />
+            <Image url="images/bg.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="860.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Users/Admin/Downloads/download.png" />
+            <Image url="images/download.png" />
          </image>
       </ImageView>
       <Button layoutX="845.0" layoutY="39.0" mnemonicParsing="false" onAction="#LogOut" style="-fx-background-color: transparent;" text="log out" textFill="#3d0451">
@@ -30,7 +30,7 @@
       </Button>
       <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="796.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Users/Admin/Downloads/pngtree-purple-linear-shopping-app-icon-png-image_4422128-removebg-preview.png" />
+            <Image url="images/pngtree-purple-linear-shopping-app-icon-png-image_4422128-removebg-preview.png" />
          </image>
       </ImageView>
       <Button layoutX="788.0" layoutY="39.0" mnemonicParsing="false" onAction="#ProfileBtn" style="-fx-background-color: transparent;" text="Profile" textFill="#3d0451">

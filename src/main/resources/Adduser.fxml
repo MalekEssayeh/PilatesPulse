@@ -18,7 +18,7 @@
         <Button fx:id="signupBT" layoutX="391.0" layoutY="348.0" mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="121.0" style="-fx-background-color: #4B0082;" text="sign up" textFill="#faf8f8" />
       <ImageView fitHeight="400.0" fitWidth="309.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../../Users/Admin/Downloads/374a620dd029b01a7e1415c4848e223c.jpg" />
+            <Image url="images/374a620dd029b01a7e1415c4848e223c.jpg" />
          </image>
       </ImageView>
       <Label layoutX="400.0" layoutY="71.0" text="SIGN UP" textFill="#260043">
@@ -28,14 +28,13 @@
       </Label>
       <ImageView fitHeight="75.0" fitWidth="122.0" layoutX="411.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Users/Admin/Downloads/pngtree-purple-linear-shopping-app-icon-png-image_4422128-removebg-preview.png" />
+            <Image url="images/pngtree-purple-linear-shopping-app-icon-png-image_4422128-removebg-preview.png" />
          </image>
       </ImageView>
-      <Button layoutX="322.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="53.0" text="back" />
+        <Button fx:id="backBT" layoutX="322.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #f0a6ca; -fx-text-fill: #6b0056;" text="back" />
       <CheckBox fx:id="showpwdCB" layoutX="534.0" layoutY="279.0" mnemonicParsing="false" onAction="#showPwd" />
       <TextField fx:id="nomdpTF" layoutX="376.0" layoutY="310.0" />
       <PasswordField fx:id="mdpTF" layoutX="379.0" layoutY="275.0" onKeyReleased="#updatePasswordStrength" promptText="password" />
-        <Label fx:id="strengthLabel" />
       <Label fx:id="strengthLabel" layoutX="386.0" layoutY="318.0" text="Label" visible="false" />
       <TextField fx:id="numTelTF" layoutX="379.0" layoutY="237.0" promptText="phone number" />
     </children>

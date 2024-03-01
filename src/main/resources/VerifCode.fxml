@@ -17,15 +17,15 @@
         </Label>
         <ImageView fitHeight="571.0" fitWidth="368.0" layoutX="-108.0" layoutY="-118.0" pickOnBounds="true">
             <image>
-                <Image url="@../../../../Users/Admin/Downloads/096f155c77e36d7df3c7ff0a233b7bc3.jpg" />
+                <Image url="images/096f155c77e36d7df3c7ff0a233b7bc3.jpg" />
             </image>
         </ImageView>
         <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="387.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../Users/Admin/Downloads/png-transparent-padlock-computer-icons-combination-lock-padlock-purple-violet-technic-thumbnail-removebg-preview.png" />
+                <Image url="images/png-transparent-padlock-computer-icons-combination-lock-padlock-purple-violet-technic-thumbnail-removebg-preview.png" />
             </image>
         </ImageView>
-        <Button fx:id="backBT" layoutX="274.0" layoutY="403.0" mnemonicParsing="false" onAction="#back" text="Back" />
+        <Button fx:id="backBT" layoutX="274.0" layoutY="403.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #f0a6ca; -fx-text-fill: #6b0056;" text="back" />
         <TextField fx:id="codeTF" layoutX="331.0" layoutY="214.0" promptText="verification code" />
       <Button fx:id="confirmBT" layoutX="372.0" layoutY="262.0" mnemonicParsing="false" onAction="#confirmCode" style="-fx-background-color: #4B0082;" text="Confirm" textFill="#faf6f6" />
     </children>

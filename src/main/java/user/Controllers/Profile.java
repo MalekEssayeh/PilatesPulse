@@ -28,6 +28,8 @@ public class Profile {
     @FXML
     private Label prenomL;
     @FXML
+    private Label numTelL;
+    @FXML
     private Label codesL;
 
     @FXML
@@ -41,6 +43,8 @@ public class Profile {
             nomL.setText(UserSession.getNom());
             prenomL.setText(UserSession.getPrenom());
             mailL.setText(UserSession.getMail());
+            numTelL.setText(String.valueOf(UserSession.getNumTel()));
+
 
             // Retrieve and display code promos associated with the user's ID
             List<Promo> userPromos = promoService.searchByUserId(UserSession.getId());

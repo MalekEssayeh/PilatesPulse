@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="647.0" fitWidth="967.0" layoutX="-64.0" opacity="0.3" pickOnBounds="true">
          <image>
-            <Image url="@../../../../Users/Admin/Downloads/download%20(8).jpg" />
+            <Image url="images/alexis.jpg" />
          </image>
       </ImageView>
       <Label layoutX="266.0" layoutY="98.0" text="Discount Codes" textFill="#f784cd">
@@ -23,7 +23,7 @@
       </Label>
       <ImageView fitHeight="46.0" fitWidth="54.0" layoutX="843.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Users/Admin/Downloads/images__4_-removebg-preview.png" />
+            <Image url="images/images__4_-removebg-preview.png" />
          </image>
       </ImageView>
       <ListView fx:id="promosLV" layoutX="116.0" layoutY="200.0" prefHeight="290.0" prefWidth="599.0" />
@@ -36,7 +36,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="back" layoutX="79.0" layoutY="60.0" mnemonicParsing="false" onAction="#back" text="&lt;" />
+      <Button fx:id="backBT" layoutX="79" layoutY="60.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #f0a6ca; -fx-text-fill: #6b0056;" text="back" />
       <Button fx:id="filterBT" layoutX="376.0" layoutY="164.0" mnemonicParsing="false" onAction="#filterPromos" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);" text="Filter by %">
          <font>
             <Font name="System Bold" size="12.0" />

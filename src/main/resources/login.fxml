@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="400.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Users/Admin/Downloads/8c764816-b8f2-4af1-9533-a90d0ccd9347.jpg" />
+                  <Image url="images/8c764816-b8f2-4af1-9533-a90d0ccd9347.jpg" />
                </image>
             </ImageView>
          </children>
@@ -28,7 +28,7 @@
          <children>
             <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="151.0" layoutY="14.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../../../Users/Admin/Downloads/pngtree-purple-linear-shopping-app-icon-png-image_4422128-removebg-preview.png" />
+                  <Image url="images/pngtree-purple-linear-shopping-app-icon-png-image_4422128-removebg-preview.png" />
                </image>
             </ImageView>
             <Label layoutX="58.0" layoutY="124.0" text="EMAIL" textFill="#510a61">
