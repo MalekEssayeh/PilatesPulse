@@ -30,6 +30,7 @@ public class Updateuser {
     private ChoiceBox<String> roleCB;
     private int id;
     private String mdp;
+    private int tel;
     private user selectedUser; // Declare the selectedUser variable
     private final userService userService = new userService();
 
@@ -45,6 +46,7 @@ public class Updateuser {
     public void initData(user selectedUser) {
         id=selectedUser.getId();
         mdp=selectedUser.getMdp();
+        tel=selectedUser.getNumTel();
 
         nomTF.setText(selectedUser.getNom());
         prenomTF.setText(selectedUser.getPrenom());
@@ -69,6 +71,7 @@ public class Updateuser {
         selectedUser.setMail(updatedMail);
         selectedUser.setMdp(mdp);
         selectedUser.setRole(updatedRole);
+        selectedUser.setNumTel(tel);
 
         // Call the userService to update the user in the database
         try {

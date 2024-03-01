@@ -9,23 +9,18 @@ public class user {
     private String role;
     private int numTel;
 
-    public int getNumTel() {
-        return numTel;
-    }
 
-    public void setNumTel(int numTel) {
-        this.numTel = numTel;
-    }
 
     public user(){
     }
-    public user( String nom, String prenom, String mdp, String mail, String role) {
+    public user( String nom, String prenom, String mdp, String mail, String role,int numTel) {
 
         this.nom = nom;
-        Prenom = prenom;
+        this.Prenom = prenom;
         this.mdp = mdp;
         this.mail = mail;
         this.role = role;
+        this.numTel = numTel;
     }
 
     public int getId() {
@@ -73,6 +68,13 @@ public class user {
 
     public void setRole(String role) {
         this.role = role;
+    }
+    public int getNumTel() {
+        return numTel;
+    }
+
+    public void setNumTel(int numTel) {
+        this.numTel = numTel;
     }
 
   /*  @Override

@@ -42,6 +42,8 @@ public class Adduser {
 
     @FXML
     private TextField prenomTF;
+    @FXML
+    private TextField numTelTF;
     private final userService us= new userService();
     // Hashage MD5
     public static String doHashing(String password) {
@@ -94,6 +96,11 @@ public class Adduser {
             }
             return null;
         }));
+        numTelTF.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d{0,11}")) {
+                numTelTF.setText(oldValue); // Revert to the old value if the new value doesn't match the pattern
+            }
+        });
     }
 
     @FXML
@@ -110,10 +117,12 @@ public class Adduser {
             String prenom = prenomTF.getText().trim();
             String email = mailTF.getText().trim();
             String password = mdpTF.getText(); // No need to trim password
+            int numTel = Integer.parseInt(numTelTF.getText().trim());
+
 
             // Check if nom and prenom fields are empty
-            if (nom.isEmpty() || prenom.isEmpty()) {
-                showAlert(Alert.AlertType.ERROR, "Empty Fields", "Nom and prenom fields can't be empty.");
+            if (nom.isEmpty() || prenom.isEmpty() || numTelTF.getText().trim().isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Empty Fields", "Name and phone fields can't be empty.");
                 return;
             }
 
@@ -135,7 +144,7 @@ public class Adduser {
                 return;
             }
             // Attempt to add the user if all validations pass
-            us.add2(new user(nom, prenom, doHashing(password), email, "client"));
+            us.add2(new user(nom, prenom, doHashing(password), email, "client",numTel));
             showAlert(Alert.AlertType.INFORMATION, "Success", "sign up successful.");
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());

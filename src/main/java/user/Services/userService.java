@@ -23,14 +23,14 @@ public class userService implements userInterface<user> {
 
     public void add2(user user) {
         try {
-            String req = "INSERT INTO `user`(`nom`, `prenom`, `mdp`, `mail`, `role`) VALUES (?, ?, ?, ?, ?)";
+            String req = "INSERT INTO `user`(`nom`, `prenom`, `mdp`, `mail`, `role`, `numTel`) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnx.prepareStatement(req);
             pstmt.setString(1, user.getNom());
             pstmt.setString(2, user.getPrenom());
             pstmt.setString(3, user.getMdp());
             pstmt.setString(4, user.getMail());
             pstmt.setString(5, user.getRole());
-
+            pstmt.setInt(6, user.getNumTel());
             pstmt.executeUpdate();
 
             System.out.println("User added successfully!");
@@ -42,14 +42,15 @@ public class userService implements userInterface<user> {
     @Override
     public void update(user user) {
         try {
-            String req = "UPDATE `user` SET `nom`=?, `prenom`=?, `mdp`=?, `mail`=?, `role`=? WHERE `id`=?";
+            String req = "UPDATE `user` SET `nom`=?, `prenom`=?, `mdp`=?, `mail`=?, `role`=? , `numTel`=? WHERE `id`=?";
             PreparedStatement pstmt = cnx.prepareStatement(req);
             pstmt.setString(1, user.getNom());
             pstmt.setString(2, user.getPrenom());
             pstmt.setString(3, user.getMdp());
             pstmt.setString(4, user.getMail());
             pstmt.setString(5, user.getRole());
-            pstmt.setInt(6, user.getId());
+            pstmt.setInt(6, user.getNumTel());
+            pstmt.setInt(7, user.getId());
             pstmt.executeUpdate();
             System.out.println("User updated successfully!");
         } catch (SQLException ex) {
@@ -86,6 +87,7 @@ public class userService implements userInterface<user> {
                 u.setMdp(rs.getString("mdp"));
                 u.setMail(rs.getString("mail"));
                 u.setRole(rs.getString("role"));
+                u.setNumTel(rs.getInt("numTel"));
                 userList.add(u);
             }
         } catch (SQLException ex) {
@@ -110,6 +112,7 @@ public class userService implements userInterface<user> {
                 u.setMdp(rs.getString(4));
                 u.setMail(rs.getString(5));
                 u.setRole(rs.getString(6));
+                u.setNumTel(rs.getInt(7));
 
                 userList.add(u);
             }
@@ -134,6 +137,7 @@ public class userService implements userInterface<user> {
                 u.setMdp(rs.getString(4));
                 u.setMail(rs.getString(5));
                 u.setRole(rs.getString(6));
+                u.setNumTel(rs.getInt(7));
 
                 userList.add(u);
             }
@@ -245,6 +249,7 @@ public class userService implements userInterface<user> {
                 u.setPrenom(rs.getString("prenom"));
                 u.setMail(rs.getString("mail"));
                 u.setRole(rs.getString("role"));
+                u.setNumTel(rs.getInt("numTel"));
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());

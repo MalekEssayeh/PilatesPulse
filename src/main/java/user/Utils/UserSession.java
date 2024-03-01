@@ -7,6 +7,7 @@ public class UserSession {
     private static String prenom;
     private static String mail;
     private static String role;
+    private static int numTel;
 
     public static void setSession(user u){
         id = u.getId();
@@ -14,6 +15,7 @@ public class UserSession {
         prenom = u.getPrenom();
         mail = u.getMail();
         role = u.getRole();
+        numTel = u.getNumTel();
 
     }
     public static int getId() {
@@ -54,5 +56,10 @@ public class UserSession {
 
     public static void setRole(String role) {
         UserSession.role = role;
+    }
+    public static int getNumTel() {return numTel;}
+
+    public static void setNumTel(int numTel) {
+        UserSession.numTel = numTel;
     }
 }
