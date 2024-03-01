@@ -1,4 +1,3 @@
-org\esprit\controllers\UpdateCommandeController.class
 org\esprit\test\MainFX.class
 org\esprit\controllers\AfficherOrder.class
 org\esprit\controllers\AjouterOrder.class

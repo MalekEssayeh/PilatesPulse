@@ -59,8 +59,16 @@ public class AjouterLiv {
     @FXML
     private Label scripttwo;
 
+    private ChoosePayment ajouterLivController;
+
     private static final String USER = "root";
     private static final String PASSWORD = "";
+
+    // Add this method to set the AjouterLivController in AjouterLiv
+
+    public void setAjouterLivController(ChoosePayment choosePaymentController) {
+        this.ajouterLivController = choosePaymentController;
+    }
 
     @FXML
     void add(ActionEvent event) {
@@ -91,7 +99,7 @@ public class AjouterLiv {
 
         try {
             // Load ChoosePayment.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/ChoosePayment.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChoosePayment.fxml"));
             Parent root = loader.load();
 
             // Create a new scene with the loaded FXML file
@@ -171,4 +179,9 @@ public class AjouterLiv {
 
     }
 
+    public void setMethodPay(String paiementALaLivraison) {
+    }
+
+    public void setMethodLabel(String paiementALaLivraison) {
+    }
 }

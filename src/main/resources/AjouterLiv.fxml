@@ -16,7 +16,7 @@
          </font>
       </Label>
       <TextField fx:id="adresseTextField" layoutX="66.0" layoutY="194.0" prefHeight="25.0" prefWidth="226.0" promptText="City, Street Name, Street Number" />
-      <TextField fx:id="phoneField" layoutX="66.0" layoutY="262.0" onAction="#pass" promptText="Phone number" />
+      <TextField fx:id="phoneField" layoutX="66.0" layoutY="262.0" promptText="Phone number" />
       <Label fx:id="methodlabel" layoutX="472.0" layoutY="82.0" prefHeight="65.0" prefWidth="266.0" text="Méthode de paiement" textFill="#0f335b">
          <font>
             <Font name="Britannic Bold" size="24.0" />
