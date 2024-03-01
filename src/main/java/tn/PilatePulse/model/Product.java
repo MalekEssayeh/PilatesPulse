@@ -7,6 +7,7 @@ public class Product {
     private int idCategory;
     private String productDescription;
     private int stock;
+    private String categoryName;
     private String image;
 
 
@@ -31,6 +32,23 @@ public class Product {
         this.productDescription = productDescription;
         this.image=image;
         this.stock = stock;
+    }
+
+    public Product(String nameProduct,String productDescription,String image, float priceProduct, int stock, String categoryName) {
+        this.nameProduct = nameProduct;
+        this.priceProduct = priceProduct;
+        this.productDescription = productDescription;
+        this.image=image;
+        this.stock = stock;
+        this.categoryName = categoryName;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getImage() {

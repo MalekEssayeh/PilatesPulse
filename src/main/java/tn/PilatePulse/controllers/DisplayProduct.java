@@ -252,7 +252,6 @@ public class DisplayProduct implements Initializable {
            alert.setContentText("Please select a product to delete.");
            alert.showAndWait();
        } else {
-           // If a product is selected, prompt the user for confirmation
            Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
            confirmAlert.setTitle("Confirm Deletion");
            confirmAlert.setHeaderText("Are you sure you want to delete this item?");

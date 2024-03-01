@@ -1,15 +1,41 @@
 package tn.PilatePulse.services;
 
+import tn.PilatePulse.controllers.ShoppingCart;
 import tn.PilatePulse.model.Product;
+import tn.PilatePulse.model.ShoppingCartModel;
 import tn.PilatePulse.util.MaConnexion;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShoppingCartService {
 
     Connection cnx = MaConnexion.getInstance().getCnx();
+
+
+    public List<ShoppingCartModel> fetchProducts (){
+            List<ShoppingCartModel> productselected = new ArrayList<>();
+            try{
+                String req = "SELECT * FROM shoppingcart";
+                Statement st = cnx.createStatement();
+                ResultSet rs = st.executeQuery(req);
+                while (rs.next()){
+                    ShoppingCartModel p = new ShoppingCartModel();
+                    p.setIdProduct(rs.getInt(1));
+                    p.setNameProduct(rs.getString(2));
+                    p.setImage(rs.getString(3));
+                    p.setProductDescription(rs.getString(4));
+                    p.setPriceProduct(rs.getFloat(5));
+
+
+                    productselected.add(p);
+                }
+            } catch (SQLException exception){
+                exception.printStackTrace();
+            }
+            return productselected;
+        }
 
     public void add(Product product) {
         try {
@@ -30,6 +56,16 @@ public class ShoppingCartService {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
+
+    public float calculateTotal() {
+        List<ShoppingCartModel> productsSelected = new ArrayList<>();
+        float total = 0.0f;
+        for (ShoppingCartModel product : productsSelected) {
+            total += product.getPriceProduct();
+        }
+        return total;
+    }
+
+
 }

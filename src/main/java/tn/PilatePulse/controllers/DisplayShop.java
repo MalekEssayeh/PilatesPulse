@@ -1,14 +1,13 @@
 package tn.PilatePulse.controllers;
 
-import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXSlider;
-import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView;
 import io.github.palexdev.mfxcore.controls.Label;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -16,19 +15,21 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import tn.PilatePulse.model.Category;
 import tn.PilatePulse.model.Product;
+import tn.PilatePulse.model.ShoppingCartModel;
+import tn.PilatePulse.services.CategoryService;
 import tn.PilatePulse.services.ProductService;
 import tn.PilatePulse.services.ShoppingCartService;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DisplayShop implements Initializable {
@@ -101,60 +102,22 @@ public class DisplayShop implements Initializable {
 
     @FXML
     private MFXButton wishlistButton;
+    @FXML
+    private MFXButton filterButton;
+    @FXML
+    private MFXComboBox<String> categoryComboBox;
+
+
     ShoppingCartService shoppingCartService = new ShoppingCartService();
+    Category category  =new Category();
 
-    @FXML
-    void addToCart(ActionEvent event) {
-        Product selectedProduct = productList.getSelectionModel().getSelectedItem();
-        if (selectedProduct != null) {
-            shoppingCartService.add(selectedProduct);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText(null);
-            alert.setContentText("Item added to cart successfully!");
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Please select a product to add to cart.");
-            alert.showAndWait();
-        }
-
-    }
-
-    @FXML
-    void addTowishList(ActionEvent event) {
-
-    }
-
-    @FXML
-    void coachList(ActionEvent event) {
-
-    }
-
-    @FXML
-    void displayCart(ActionEvent event) {
-
-    }
-
-    @FXML
-    void displayWishList(ActionEvent event) {
-
-    }
-
-    @FXML
-    void goBackToHome(ActionEvent event) {
-
-    }
 
     private Stage primaryStage;
     private ProductService productService = new ProductService();
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
-
 
 
 
@@ -171,6 +134,8 @@ public class DisplayShop implements Initializable {
                     setText(null);
                     setGraphic(null);
                 } else {
+
+
                     GridPane container = new GridPane();
 
                     TextFlow textFlow = new TextFlow();
@@ -235,6 +200,10 @@ public class DisplayShop implements Initializable {
 
                     setGraphic(container);
 
+
+                    // Set the initial selection
+                    categoryComboBox.getSelectionModel().selectFirst();
+
                 }
             }
         });
@@ -244,12 +213,109 @@ public class DisplayShop implements Initializable {
     }
 
     @FXML
+    void filterByPrice(ActionEvent event) {
+        float minPrice = 0;
+        float maxPrice = (float) priceRangeSlider.getValue();
+
+        List<Product> filteredProducts = productService.filterProductsByPriceRange(minPrice, maxPrice);
+
+        productList.getItems().clear();
+        productList.getItems().addAll(filteredProducts);
+    }
+
+
+    @FXML
     void Cart(ActionEvent event) {
 
     }
 
     @FXML
     void search(ActionEvent event) {
+        String searchTerm = searchTextField.getText().trim(); // Trim whitespace
+
+        List<Product> searchResult;
+        if (searchTerm.isEmpty()) {
+            searchResult = productService.fetchProduct(); // Retrieve all products
+        } else {
+            searchResult = productService.rechercheParNom(searchTerm);
+        }
+
+        if (searchResult.isEmpty()) {
+            showAlert(Alert.AlertType.INFORMATION, "Search Result", "No Product Found", "No product matching the search term was found.");
+        } else {
+            productList.getItems().clear();
+            productList.getItems().addAll(searchResult);
+        }
+    }
+
+
+
+    @FXML
+    void filterProductByCategory(ActionEvent event) {
+        List<String> categoryNames = productService.getAllCategoryNames();
+        categoryComboBox.getItems().addAll(categoryNames);
+    }
+
+
+
+    private void showAlert(Alert.AlertType alertType, String title, String headerText, String contentText) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+    @FXML
+    void addTowishList(ActionEvent event) {
+
+    }
+    @FXML
+    void addToCart(ActionEvent event) {
+        Product selectedProduct = productList.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            shoppingCartService.add(selectedProduct);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Item added to cart successfully!");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a product to add to cart.");
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    void coachList(ActionEvent event) {
+
+    }
+
+    @FXML
+    void displayCart(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ShoppingCart.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void displayWishList(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goBackToHome(ActionEvent event) {
 
     }
 

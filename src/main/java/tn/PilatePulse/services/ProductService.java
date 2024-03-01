@@ -76,6 +76,30 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
         return products;
     }
 
+    public List<Product> fetchProductByCategoryName(){
+        List<Product> products = new ArrayList<>();
+        try (Statement st = cnx.createStatement();
+             ResultSet rs = st.executeQuery("SELECT p.idProduct, p.nameProduct, p.image, p.productDescription, p.priceProduct, p.stock, c.nameCategory " +
+                     "FROM product p " +
+                     "JOIN category c ON p.idCategory = c.idCategory")) {
+            while (rs.next()) {
+                Product p = new Product();
+                p.setIdProduct(rs.getInt("idProduct"));
+                p.setNameProduct(rs.getString("nameProduct"));
+                p.setImage(rs.getString("image"));
+                p.setProductDescription(rs.getString("productDescription"));
+                p.setPriceProduct(rs.getFloat("priceProduct"));
+                p.setStock(rs.getInt("stock"));
+                p.setCategoryName(rs.getString("nameCategory")); // Assuming you have a setter for categoryName in Product class
+
+                products.add(p);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return products;
+    }
+
 
     @Override
     public void update(Product product) {
@@ -239,11 +263,34 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
        return productList ;
    }
 
+
+
+
+    public List<String> getAllCategoryNames() {
+        List<String> categoryNames = new ArrayList<>();
+        try {
+            String req = "SELECT nameCategory FROM category";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String categoryName = rs.getString("nameCategory");
+                categoryNames.add(categoryName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categoryNames;
+    }
+
+
+
+
+
     @Override
     public List<Product> filterProductsByPriceRange(float minPrice, float maxPrice) {
         List<Product> productList = new ArrayList<>();
         try {
-            String req ="SELECT idProduct, nameProduct,productDescription, priceProduct, stock, idCategory " +
+            String req ="SELECT idProduct, nameProduct,image,productDescription, priceProduct, stock, idCategory " +
                     "FROM product " +
                     "WHERE priceProduct BETWEEN ? AND ?";
 

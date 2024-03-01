@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="485.0" prefWidth="801.0" style="-fx-background-color: #FFDBFD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.PilatePulse.controllers.ShoppingCart">
    <children>
       <AnchorPane fx:id="topBar" layoutX="-9.0" layoutY="-1.0" prefHeight="67.0" prefWidth="810.0" style="-fx-background-color: #ECECEC;">
@@ -34,7 +33,7 @@
             <MFXButton fx:id="homeButton" layoutX="21.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Home" />
          </children>
       </AnchorPane>
-      <MFXLegacyListView fx:id="listOfProducts" layoutX="36.0" layoutY="119.0" prefHeight="266.0" prefWidth="463.0" />
+      <MFXLegacyListView fx:id="productList" layoutX="36.0" layoutY="119.0" prefHeight="266.0" prefWidth="715.0" />
       <Button fx:id="shopButton" layoutX="36.0" layoutY="406.0" mnemonicParsing="false" onAction="#returnToShop" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #1e044d;" text="Continue shopping" textFill="WHITE">
          <font>
             <Font name="Calibri Italic" size="16.0" />
@@ -45,18 +44,19 @@
             <Font name="Britannic Bold" size="32.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="524.0" layoutY="227.0" prefHeight="158.0" prefWidth="250.0" style="-fx-background-color: #FFFF;">
+      <AnchorPane layoutX="530.0" layoutY="388.0" prefHeight="92.0" prefWidth="221.0" style="-fx-background-color: #FFFF;">
          <children>
             <Label layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="131.0" text="Subtotal :" textFill="#1e044d">
                <font>
                   <Font name="Britannic Bold" size="27.0" />
                </font>
             </Label>
-            <Button fx:id="checkoutButton" layoutX="41.0" layoutY="116.0" mnemonicParsing="false" onAction="#checkOutFunction" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #1e044d;" text="Proceed to checkout" textFill="WHITE">
+            <Button fx:id="checkoutButton" layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onAction="#checkOutFunction" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #1e044d;" text="Proceed to checkout" textFill="WHITE">
                <font>
                   <Font name="Calibri Italic" size="16.0" />
                </font>
             </Button>
+            <Label fx:id="totalLabel" layoutX="139.0" layoutY="14.0" prefHeight="37.0" prefWidth="68.0" />
          </children>
       </AnchorPane>
    </children>

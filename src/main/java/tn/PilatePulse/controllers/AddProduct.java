@@ -149,6 +149,8 @@ public class AddProduct {
 
 
   public void add(javafx.event.ActionEvent actionEvent) {
+      String t1=imgURLId.getText().replace("%20", " ");
+      t1=t1.replace("/", "\\").replace("file:\\", "");
       if (nomProductiD != null && descriptionID != null && imgURLId != null &&
               prixProductID != null && stockID != null && idCategoryID != null &&
               !nomProductiD.getText().isEmpty() && !descriptionID.getText().isEmpty() &&

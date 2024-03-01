@@ -58,13 +58,17 @@ public class CategoryService implements InterfaceCRUD<Category> {
             String req = "UPDATE `category` SET `nameCat`=? WHERE `idCategory`=?";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, category.getNameCategory());
+            ps.setInt(2, category.getIdCategory()); // Set the value for the second parameter
 
-            System.out.println("Category * "+category.getNameCategory()+" * added successfuly");
-        }catch (SQLException sqlException){
+            ps.executeUpdate();
+
+            System.out.println("Category * "+category.getNameCategory()+" * updated successfully");
+        } catch (SQLException sqlException){
             sqlException.printStackTrace();
         }
 
     }
+
 
     public void remove(int idc){
 
