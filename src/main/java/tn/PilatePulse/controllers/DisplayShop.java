@@ -2,6 +2,7 @@ package tn.PilatePulse.controllers;
 
 import io.github.palexdev.materialfx.controls.*;
 import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView;
+import io.github.palexdev.materialfx.utils.SwingFXUtils;
 import io.github.palexdev.mfxcore.controls.Label;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +20,6 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import org.controlsfx.control.Rating;
 import tn.PilatePulse.model.Category;
 import tn.PilatePulse.model.Product;
 import tn.PilatePulse.model.ShoppingCartModel;
@@ -28,11 +28,24 @@ import tn.PilatePulse.services.ProductService;
 import tn.PilatePulse.services.ShoppingCartService;
 import tn.PilatePulse.services.WishListService;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.ResourceBundle;
+
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+
+
 
 public class DisplayShop implements Initializable {
 
@@ -177,6 +190,20 @@ public class DisplayShop implements Initializable {
                     String imagePath = product.getImage();
                     Image productImage = new Image(new File(imagePath).toURI().toString());
                     ImageView imageView = new ImageView(productImage);
+                    BufferedImage qrCodeImage = createQRImage(
+                                    nameData.getText() + " : \n" +
+                                    descriptionText.getText() + " \n" +
+                                    descriptionData.getText() + " \n" +
+                                    priceText.getText() + " \n" +
+                                    priceData.getText() + " \n"+
+                                    stockText.getText()+ " \n"+
+                                    stockData.getText()+ " \n"+
+                                    categoryText.getText()+ " \n"+
+                                    categoryData.getText()
+                                    , 125);
+                    Image qrCodeImageFX = SwingFXUtils.toFXImage(qrCodeImage, null);
+                    ImageView Qr = new ImageView(qrCodeImageFX);
+
                     imageView.setFitHeight(200);
                     imageView.setFitWidth(200);
                     nameData.setWrappingWidth(200);
@@ -190,15 +217,17 @@ public class DisplayShop implements Initializable {
                     categoryData.setWrappingWidth(200);
                     ColumnConstraints col1 = new ColumnConstraints(200);
                     ColumnConstraints col2 = new ColumnConstraints(450);
-                    container.getColumnConstraints().addAll(col1, col2);
+                    ColumnConstraints col3 = new ColumnConstraints(200);
+                    container.getColumnConstraints().addAll(col1, col2, col3);
 
 
                     textFlow.getChildren().addAll(nameData, descriptionText, descriptionData, priceText, priceData, stockText, stockData, categoryText, categoryData );
                     container.add(textFlow, 1, 0);
                     container.add(imageView, 0, 0);
+                    container.add(Qr, 2, 0);
                     ColumnConstraints columnConstraints = new ColumnConstraints();
                     columnConstraints.setHgrow(Priority.ALWAYS);
-                    container.getColumnConstraints().addAll(columnConstraints, columnConstraints);
+                    container.getColumnConstraints().addAll(columnConstraints, columnConstraints,columnConstraints);
 
                     container.setHgap(30);
 
@@ -253,6 +282,36 @@ public class DisplayShop implements Initializable {
 
 
     }
+    public BufferedImage createQRImage( String qrCodeText, int size)
+    {
+        Hashtable<EncodeHintType, ErrorCorrectionLevel> hintMap = new Hashtable<>();
+        hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix byteMatrix = null;
+        try {
+            byteMatrix = qrCodeWriter.encode(qrCodeText, BarcodeFormat.QR_CODE, size, size, hintMap);
+        } catch (WriterException e) {
+            throw new RuntimeException(e);
+        }
+        int matrixWidth = byteMatrix.getWidth();
+        BufferedImage image = new BufferedImage(matrixWidth, matrixWidth, BufferedImage.TYPE_INT_RGB);
+        image.createGraphics();
+
+        Graphics2D graphics = (Graphics2D) image.getGraphics();
+        graphics.setColor(Color.WHITE);
+        graphics.fillRect(0, 0, matrixWidth, matrixWidth);
+        graphics.setColor(Color.BLACK);
+
+        for (int i = 0; i < matrixWidth; i++) {
+            for (int j = 0; j < matrixWidth; j++) {
+                if (byteMatrix.get(i, j)) {
+                    graphics.fillRect(i, j, 1, 1);
+                }
+            }
+        }
+        return image;
+    }
+
 
     @FXML
     void filterByPrice(ActionEvent event) {
