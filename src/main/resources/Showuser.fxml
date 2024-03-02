@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #260043;"  stylesheets="styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Showuser">
+   <children>
+      <ListView fx:id="usersLV" layoutX="69.0" layoutY="150.0" prefHeight="390.0" prefWidth="670.0" />
+      <Button layoutX="814.0" layoutY="52.0" mnemonicParsing="false" onAction="#LogOut" style="-fx-background-color: transparent;" text="Log Out" textFill="#ffe1f2">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="Delete" layoutX="758.0" layoutY="228.0" mnemonicParsing="false" onAction="#Delete" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Delete" textFill="#490e6e" />
+      <Button fx:id="Update" layoutX="760.0" layoutY="273.0" mnemonicParsing="false" onAction="#Update" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" text="Update" textFill="#490e6e" />
+      <ImageView fitHeight="70.0" fitWidth="123.0" layoutY="541.0" opacity="0.3" pickOnBounds="true">
+         <image>
+            <Image url="@/images/alexis.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="83.0" layoutX="818.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/images/images__4_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="312.0" layoutY="7.0" text="Users" textFill="#f784cd">
+         <font>
+            <Font name="Britannic Bold" size="89.0" />
+         </font>
+      </Label>
+      <TextField fx:id="searchTextField" layoutX="69.0" layoutY="115.0" prefHeight="26.0" prefWidth="250.0" promptText="Search by name or surname" />
+      <Button fx:id="searchButton" layoutX="331.0" layoutY="116.0" mnemonicParsing="false" onAction="#search" onKeyReleased="#search" style="-fx-background-color: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);" text="Search" textFill="#480a53">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ChoiceBox fx:id="filterCB" layoutX="404.0" layoutY="116.0" prefHeight="26.0" prefWidth="278.0" />
+      <Button fx:id="backBT" layoutX="71.0" layoutY="40.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #f0a6ca; -fx-text-fill: #6b0056;" text="back" />
+      <Button fx:id="filterBT" layoutX="691.0" layoutY="116.0" mnemonicParsing="false" onAction="#filterUsers" style="-fx-background-color: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);" text="Filter" textFill="#480a53">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

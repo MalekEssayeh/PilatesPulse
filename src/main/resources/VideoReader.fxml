@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXSlider?>
+<?import io.github.palexdev.mfxcore.controls.Label?>
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.VideoReader">
+   <children>
+      <Label layoutY="507.0" prefHeight="73.0" prefWidth="832.0" style="-fx-background-color: #f2e9e4;" />
+      <MediaView fx:id="Video" fitHeight="510.0" fitWidth="832.0" />
+      <MFXButton fx:id="min5" layoutX="108.0" layoutY="512.0" onAction="#min5" prefHeight="51.0" prefWidth="54.0" text="-5">
+         <graphic>
+         </graphic>
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="file:/C:/java/GestionPhyAct/src/main/resources/skip-back.png" />
+               </source>
+            </ImageInput>
+         </effect>
+      </MFXButton>
+      <MFXButton fx:id="reset" layoutX="502.0" layoutY="519.0" onAction="#resetmedia" prefHeight="51.0" prefWidth="54.0" text="Restart">
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="file:/C:/java/GestionPhyAct/src/main/resources/square.png" />
+               </source>
+            </ImageInput>
+         </effect></MFXButton>
+      <MFXButton fx:id="resume" layoutX="250.0" layoutY="514.0" onAction="#resumemedia" prefHeight="51.0" prefWidth="54.0" text="RESUME">
+         <graphic>
+         </graphic>
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="file:/C:/java/GestionPhyAct/src/main/resources/play.png" />
+               </source>
+            </ImageInput>
+         </effect>
+      </MFXButton>
+      <MFXButton fx:id="plus5" layoutX="374.0" layoutY="512.0" onAction="#plus5" prefHeight="51.0" prefWidth="54.0" text="+5">
+         <graphic>
+         </graphic>
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="file:/C:/java/GestionPhyAct/src/main/resources/skip-forward.png" />
+               </source>
+            </ImageInput>
+         </effect>
+      </MFXButton>
+      <MFXButton layoutX="603.0" layoutY="512.0" prefHeight="66.0" prefWidth="69.0" text="Volume">
+         <effect>
+            <ImageInput>
+               <source>
+                  <Image url="file:/C:/java/GestionPhyAct/src/main/resources/volume.png" />
+               </source>
+            </ImageInput>
+         </effect></MFXButton>
+      <MFXSlider fx:id="VolumeSlider" layoutX="693.0" layoutY="540.0" prefHeight="6.0" prefWidth="102.0" styleClass="mfx-slider" stylesheets="@css/MFXSlider.css" />
+   </children>
+</AnchorPane>
