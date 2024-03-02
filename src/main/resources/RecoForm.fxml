@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXSlider?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="PilatesPulse.Controller.RecoForm"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="461.0" prefWidth="757.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.RecoForm">
+   <children>
+      <MFXComboBox fx:id="Sexe" layoutX="271.0" layoutY="163.0" prefHeight="40.0" prefWidth="244.0" promptText="Sexe">
+         <stylesheets>
+            <URL value="@css/MFXComboBox.css" />
+            <URL value="@css/MFXComboBoxCell.css" />
+         </stylesheets>
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </MFXComboBox>
+      <MFXSlider fx:id="Evaluation" layoutX="279.0" layoutY="251.0" max="80.0" min="15.0" minorTicksCount="65" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" value="15.0" />
+      <Label fx:id="label11" layoutX="271.0" layoutY="215.0" prefHeight="18.0" prefWidth="151.0" text="Age :" textAlignment="CENTER" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="label1" layoutX="59.0" layoutY="14.0" prefHeight="94.0" prefWidth="638.0" text="Recommandation" textAlignment="CENTER" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="72.0" />
+         </font>
+      </Label>
+      <MFXSlider fx:id="Evaluation1" layoutX="279.0" layoutY="323.0" max="200.0" min="150.0" minorTicksCount="50" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" tickUnit="0.0" value="150.0" />
+      <Label fx:id="label111" layoutX="271.0" layoutY="287.0" prefHeight="18.0" prefWidth="151.0" text="Longueur :" textAlignment="CENTER" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </Label>
+      <MFXSlider fx:id="Evaluation2" layoutX="279.0" layoutY="394.0" max="120.0" min="30.0" minorTicksCount="90" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" value="30.0" />
+      <Label fx:id="label112" layoutX="271.0" layoutY="358.0" prefHeight="18.0" prefWidth="151.0" text="Poids :" textAlignment="CENTER" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
