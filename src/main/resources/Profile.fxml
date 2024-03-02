@@ -3,8 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #eed5f4, #ffe5e7);" stylesheets="styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Profile">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #eed5f4, #ffe5e7); " xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Profile">
     <children>
         <!-- Profile Image -->
         <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="50.0" layoutY="50.0">
@@ -16,16 +17,20 @@
         <!-- Profile Details -->
         <VBox layoutX="250.0" layoutY="100.0" spacing="10">
             <!-- Profile Title -->
-            <Label styleClass="title" text="Profile" />
+            <Label layoutX="132.0" layoutY="56.0" text="PROFILE" textFill="#510a61">
+            <font>
+                <Font name="System Bold" size="28.0" />
+            </font>
+            </Label>
 
             <!-- Personal Information -->
             <GridPane vgap="5">
 
                 <!-- Labels -->
-                <Label text="Surname:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <Label text="Phone number:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Label text="SURNAME:" textFill="#510a61" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="NAME:" textFill="#510a61" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label text="EMAIL:" textFill="#510a61" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label text="PHONE NUMBER:" textFill="#510a61" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
                 <!-- Data -->
                 <Label fx:id="nomL" styleClass="info" GridPane.columnIndex="1" GridPane.rowIndex="0" />
@@ -46,13 +51,12 @@
         </VBox>
 
         <!-- Discount Codes -->
-        <VBox layoutX="50.0" layoutY="300.0" spacing="5">
-            <Label styleClass="title" text="Discount Codes:" />
-            <ListView fx:id="codesLV" prefHeight="104.0" prefWidth="200.0" />
-        </VBox>
-        <Button fx:id="updateBT" layoutX="250.0" layoutY="226.0" mnemonicParsing="false" onAction="#UpdateProfile" prefHeight="26.0" prefWidth="139.0" style="-fx-background-color: #4B0082;" text="Update" textFill="WHITE" />
+        <VBox layoutX="50.0" layoutY="300.0" spacing="5" />
+        <Button fx:id="updateBT" layoutX="646.0" layoutY="168.0" mnemonicParsing="false" onAction="#UpdateProfile" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: #4B0082;" text="Update" textFill="WHITE" />
 
         <!-- Back Button -->
         <Button fx:id="backBT" layoutX="29.0" layoutY="545.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #f0a6ca; -fx-text-fill: #6b0056;" text="back" />
+         <Label layoutX="250.0" layoutY="246.0" styleClass="title" text="DISCOUNT CODES:" textFill="#510a61" />
+         <ListView fx:id="codesLV" layoutX="369.0" layoutY="255.0" prefHeight="104.0" prefWidth="102.0" stylesheets="styles.css" />
     </children>
 </AnchorPane>
