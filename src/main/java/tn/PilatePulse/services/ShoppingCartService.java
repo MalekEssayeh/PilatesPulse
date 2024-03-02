@@ -61,15 +61,16 @@ public class ShoppingCartService {
         }
     }
 
-    public void addToWishList(WishList product) {
+    public void addToWishList(WishList product, int quantity) {
         try {
-            String req = "INSERT INTO `ShoppingCart`(`idProduct`,`nameProduct`,`PriceProduct`,`productDescription`,`image`) VALUES (?,?,?,?,?)";
+            String req = "INSERT INTO `ShoppingCart`(`idProduct`,`nameProduct`,`PriceProduct`,`productDescription`,`image`,`quantity`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, product.getIdProduct());
             ps.setString(2, product.getNameProduct());
             ps.setFloat(   3, product.getPriceProduct());
             ps.setString(4, product.getProductDescription());
             ps.setString(5, product.getImage());
+            ps.setInt(6,quantity);
 
 
             ps.executeUpdate();

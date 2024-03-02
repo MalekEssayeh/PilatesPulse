@@ -176,18 +176,38 @@ public class DisplayWishList implements Initializable {
 
     }
 
-    /*@FXML
+    @FXML
+
     void addToCart(ActionEvent event) {
         WishList selectedProduct = productList.getSelectionModel().getSelectedItem();
         if (selectedProduct != null) {
-            shoppingCartService.addToWishList(selectedProduct);
-            wishListService.remove(selectedProduct.getIdProduct());
+            // Prompt the user to enter the quantity desired
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Enter Quantity");
+            dialog.setHeaderText("Enter the quantity desired:");
+            dialog.setContentText("Quantity:");
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText(null);
-            alert.setContentText("Item added to cart successfully!");
-            alert.showAndWait();
+            // Show the dialog and wait for user input
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(quantityStr -> {
+                try {
+                    int quantity = Integer.parseInt(quantityStr);
+                    shoppingCartService.addToWishList(selectedProduct, quantity);
+                    wishListService.remove(selectedProduct.getIdProduct());
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Item added to cart successfully!");
+                    alert.showAndWait();
+                } catch (NumberFormatException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Please enter a valid quantity.");
+                    alert.showAndWait();
+                }
+            });
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -195,7 +215,8 @@ public class DisplayWishList implements Initializable {
             alert.setContentText("Please select a product to add to cart.");
             alert.showAndWait();
         }
-    }*/
+    }
+
 
     @FXML
     void returnToShop(ActionEvent event) {
