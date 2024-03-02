@@ -48,8 +48,9 @@
         <!-- Discount Codes -->
         <VBox layoutX="50.0" layoutY="300.0" spacing="5">
             <Label styleClass="title" text="Discount Codes:" />
-            <ListView fx:id="codesLV" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="codesLV" prefHeight="104.0" prefWidth="200.0" />
         </VBox>
+        <Button fx:id="updateBT" layoutX="250.0" layoutY="226.0" mnemonicParsing="false" onAction="#UpdateProfile" prefHeight="26.0" prefWidth="139.0" style="-fx-background-color: #4B0082;" text="Update" textFill="WHITE" />
 
         <!-- Back Button -->
         <Button fx:id="backBT" layoutX="29.0" layoutY="545.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #f0a6ca; -fx-text-fill: #6b0056;" text="back" />

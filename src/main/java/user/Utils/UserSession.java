@@ -7,13 +7,16 @@ public class UserSession {
     private static String prenom;
     private static String mail;
     private static String role;
+    private static String mdp;
     private static int numTel;
+
 
     public static void setSession(user u){
         id = u.getId();
         nom = u.getNom();
         prenom = u.getPrenom();
         mail = u.getMail();
+        mdp = u.getMdp();
         role = u.getRole();
         numTel = u.getNumTel();
 
@@ -61,5 +64,13 @@ public class UserSession {
 
     public static void setNumTel(int numTel) {
         UserSession.numTel = numTel;
+    }
+
+    public static String getMdp() {
+        return mdp;
+    }
+
+    public static void setMdp(String mdp) {
+        UserSession.mdp = mdp;
     }
 }

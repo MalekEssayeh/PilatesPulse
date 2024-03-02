@@ -70,4 +70,18 @@ public class Profile {
     }
 
 
+    public void UpdateProfile(ActionEvent actionEvent) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateProfile.fxml"));
+            Parent root = loader.load();
+            UpdateProfile editProfileController = loader.getController();
+            // Pass current user information to the edit profile controller
+            editProfileController.initData(new user( UserSession.getNom(), UserSession.getPrenom(), UserSession.getMail(), UserSession.getRole(), UserSession.getMdp(), UserSession.getNumTel()));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately (e.g., log it)
+        }
+    }
 }
