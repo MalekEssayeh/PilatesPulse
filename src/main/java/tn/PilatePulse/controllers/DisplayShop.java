@@ -216,8 +216,42 @@ public class DisplayShop implements Initializable {
 
         productList.getItems().addAll(productService.fetchProduct());
         List<String> categoryNames = productService.getAllCategoryNames();
-        //System.out.println(categoryNames);
         categoryComboBox.getItems().addAll(categoryNames);
+
+        productList.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                 Product selectedItem = productList.getSelectionModel().getSelectedItem();
+                // Perform the action you want with the selected item
+                System.out.println("Double-clicked on: " + selectedItem);
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProductItem.fxml"));
+                loader.setControllerFactory(controllerClass -> {
+                    if (controllerClass == ProductItem.class) {
+                        ProductItem productItemController = new ProductItem();
+                        Product productSelected = productList.getSelectionModel().getSelectedItem();
+                        productItemController.setPassedProduct(productSelected);
+                        return productItemController;
+                    } else {
+                        return new ProductItem();
+                    }
+                });
+
+                Parent root = null;
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+
+                stage.show();
+
+
+            }
+        });
 
 
     }
