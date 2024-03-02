@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXSlider?>
 <?import java.net.URL?>
@@ -8,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="461.0" prefWidth="757.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.RecoForm">
+<AnchorPane prefHeight="475.0" prefWidth="757.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.RecoForm">
    <children>
-      <MFXComboBox fx:id="Sexe" layoutX="271.0" layoutY="163.0" prefHeight="40.0" prefWidth="244.0" promptText="Sexe">
+      <MFXComboBox fx:id="Genre" layoutX="271.0" layoutY="163.0" prefHeight="40.0" prefWidth="244.0" promptText="Genre">
          <stylesheets>
             <URL value="@css/MFXComboBox.css" />
             <URL value="@css/MFXComboBoxCell.css" />
@@ -19,7 +20,7 @@
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </MFXComboBox>
-      <MFXSlider fx:id="Evaluation" layoutX="279.0" layoutY="251.0" max="80.0" min="15.0" minorTicksCount="65" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" value="15.0" />
+      <MFXSlider fx:id="Age" layoutX="279.0" layoutY="251.0" max="80.0" min="15.0" minorTicksCount="65" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" value="15.0" />
       <Label fx:id="label11" layoutX="271.0" layoutY="215.0" prefHeight="18.0" prefWidth="151.0" text="Age :" textAlignment="CENTER" textFill="#403060">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
@@ -30,17 +31,22 @@
             <Font name="Century Gothic Bold" size="72.0" />
          </font>
       </Label>
-      <MFXSlider fx:id="Evaluation1" layoutX="279.0" layoutY="323.0" max="200.0" min="150.0" minorTicksCount="50" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" tickUnit="0.0" value="150.0" />
+      <MFXSlider fx:id="Height" layoutX="279.0" layoutY="323.0" max="200.0" min="150.0" minorTicksCount="50" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" tickUnit="0.0" value="150.0" />
       <Label fx:id="label111" layoutX="271.0" layoutY="287.0" prefHeight="18.0" prefWidth="151.0" text="Longueur :" textAlignment="CENTER" textFill="#403060">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </Label>
-      <MFXSlider fx:id="Evaluation2" layoutX="279.0" layoutY="394.0" max="120.0" min="30.0" minorTicksCount="90" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" value="30.0" />
+      <MFXSlider fx:id="weight" layoutX="279.0" layoutY="394.0" max="120.0" min="30.0" minorTicksCount="90" prefHeight="26.0" prefWidth="228.0" stylesheets="@css/MFXSlider.css" value="30.0" />
       <Label fx:id="label112" layoutX="271.0" layoutY="358.0" prefHeight="18.0" prefWidth="151.0" text="Poids :" textAlignment="CENTER" textFill="#403060">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
          </font>
       </Label>
+      <MFXButton fx:id="Confirm" layoutX="328.0" layoutY="422.0" onAction="#Confirm" prefHeight="26.0" prefWidth="129.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Confirmer" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </MFXButton>
    </children>
 </AnchorPane>

@@ -131,4 +131,9 @@ public class Programme {
                 ", Exercices=" + listExercice +
                 '}';
     }
+    public int getExerciseCountForMuscle(String targetMuscle) {
+        return (int) listExercice.stream()
+                .filter(exercise -> exercise.muscle.equals(targetMuscle))
+                .count();
+    }
 }

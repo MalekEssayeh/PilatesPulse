@@ -13,12 +13,12 @@
 
 <AnchorPane fx:id="prog" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="716.0" prefWidth="953.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PilatesPulse.Controller.AfficherProgramme">
    <children>
-      <MFXButton fx:id="Editer" layoutX="610.0" layoutY="643.0" onAction="#Editer" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Editer">
+      <MFXButton fx:id="Editer" layoutX="500.0" layoutY="643.0" onAction="#Editer" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Editer">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </MFXButton>
-      <MFXButton fx:id="Delete" layoutX="197.0" layoutY="643.0" onAction="#deleteSelectedProgramme" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Supprimer">
+      <MFXButton fx:id="Delete" layoutX="87.0" layoutY="643.0" onAction="#deleteSelectedProgramme" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Supprimer">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
@@ -70,7 +70,12 @@
             <Font name="Century Gothic Bold" size="18.0" />
          </font>
       </MFXButton>
-      <MFXButton fx:id="Ajoutp" layoutX="403.0" layoutY="643.0" onAction="#ajoutpass" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Ajouter">
+      <MFXButton fx:id="Ajoutp" layoutX="293.0" layoutY="643.0" onAction="#ajoutpass" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Ajouter">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="Rec" layoutX="709.0" layoutY="643.0" onAction="#Rec" prefHeight="26.0" prefWidth="182.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Recommandation">
          <font>
             <Font name="Century Gothic Bold" size="18.0" />
          </font>

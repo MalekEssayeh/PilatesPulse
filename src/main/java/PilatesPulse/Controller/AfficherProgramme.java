@@ -29,6 +29,7 @@ import java.net.URL;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AfficherProgramme implements Initializable {
     @FXML
@@ -41,6 +42,9 @@ public class AfficherProgramme implements Initializable {
     private MFXComboBox<String> Tri;
     @FXML
     private MFXTextField recherche;
+    @FXML
+    private String Line;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] trier = { "Nom","Difficulté", "Evaluation"};
@@ -271,4 +275,17 @@ public class AfficherProgramme implements Initializable {
             e.printStackTrace();
         }
     }
+    public void Rec(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecoForm.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
