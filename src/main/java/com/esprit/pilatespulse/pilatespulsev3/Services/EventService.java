@@ -13,13 +13,13 @@ public class EventService implements IEventService<Event> {
     Connection cnx = MyDB.getInstance().getCnx();
 
     @Override
-    public void addEvent(Event event) {
+    public void addNewEvent(Event event) {
         try {
-            String query = "INSERT INTO event (name, startDate, finishDate, nbrParticipants, description, coachID) VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO event (name, startDate, finishDate, nbrParticipants, description, coach_id) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = cnx.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, event.getName());
-            ps.setDate(2, event.getStartDate());
-            ps.setDate(3, event.getFinishDate());
+            ps.setDate(2, Date.valueOf(event.getStartDate()));
+            ps.setDate(3, Date.valueOf(event.getFinishDate()));
             ps.setInt(4, event.getNbrParticipants());
             ps.setString(5, event.getDescription());
             ps.setInt(6, event.getCoachID());
@@ -54,8 +54,8 @@ public class EventService implements IEventService<Event> {
                 Event event = new Event();
                 event.setEventID(rs.getInt("eventID"));
                 event.setName(rs.getString("name"));
-                event.setStartDate(rs.getDate("startDate"));
-                event.setFinishDate(rs.getDate("finishDate"));
+                event.setStartDate(rs.getDate("startDate").toLocalDate());
+                event.setFinishDate(rs.getDate("finishDate").toLocalDate());
                 event.setNbrParticipants(rs.getInt("nbrParticipants"));
                 event.setDescription(rs.getString("description"));
                 event.setCoachID(rs.getInt("coachID"));
@@ -76,8 +76,8 @@ public class EventService implements IEventService<Event> {
             String query = "UPDATE event SET `name`=?, `startDate`=?, `finishDate`=?, `nbrParticipants`=?, `description`=?, `coachID`=? WHERE eventID = ?";
             PreparedStatement ps = cnx.prepareStatement(query);
             ps.setString(1, event.getName());
-            ps.setDate(2, event.getStartDate());
-            ps.setDate(3, event.getFinishDate());
+            ps.setDate(2, Date.valueOf(event.getStartDate()));
+            ps.setDate(3, Date.valueOf(event.getFinishDate()));
             ps.setInt(4, event.getNbrParticipants());
             ps.setString(5, event.getDescription());
             ps.setInt(6, event.getCoachID());
@@ -128,8 +128,8 @@ public class EventService implements IEventService<Event> {
                 Event e = new Event();
                 e.setEventID(rs.getInt("eventID"));
                 e.setName(rs.getString("name"));
-                e.setStartDate(rs.getDate("startDate"));
-                e.setFinishDate(rs.getDate("finishDate"));
+                e.setStartDate(rs.getDate("startDate").toLocalDate());
+                e.setFinishDate(rs.getDate("finishDate").toLocalDate());
                 e.setNbrParticipants(rs.getInt("nbrParticipants"));
                 e.setDescription(rs.getString("description"));
                 e.setCoachID(rs.getInt("coachID"));
@@ -155,8 +155,8 @@ public class EventService implements IEventService<Event> {
                 Event e = new Event();
                 e.setEventID(rs.getInt("eventID"));
                 e.setName(rs.getString("name"));
-                e.setStartDate(rs.getDate("startDate"));
-                e.setFinishDate(rs.getDate("finishDate"));
+                e.setStartDate(rs.getDate("startDate").toLocalDate());
+                e.setFinishDate(rs.getDate("finishDate").toLocalDate());
                 e.setNbrParticipants(rs.getInt("nbrParticipants"));
                 e.setDescription(rs.getString("description"));
                 e.setCoachID(rs.getInt("coachID"));
@@ -182,8 +182,8 @@ public class EventService implements IEventService<Event> {
                 Event e = new Event();
                 e.setEventID(rs.getInt("eventID"));
                 e.setName(rs.getString("name"));
-                e.setStartDate(rs.getDate("startDate"));
-                e.setFinishDate(rs.getDate("finishDate"));
+                e.setStartDate(rs.getDate("startDate").toLocalDate());
+                e.setFinishDate(rs.getDate("finishDate").toLocalDate());
                 e.setNbrParticipants(rs.getInt("nbrParticipants"));
                 e.setDescription(rs.getString("description"));
                 e.setCoachID(rs.getInt("coachID"));

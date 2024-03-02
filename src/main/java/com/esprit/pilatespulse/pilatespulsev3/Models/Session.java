@@ -12,13 +12,12 @@ public class Session {
     private int coachID;
     private int eventID;
     private Time startTime;
-    private Time finishTime;
     private Date date;
 
     public Session() {
     }
 
-    public Session(int sessionID, String name, String description, int duration, int coachID, int eventID, Time startTime, Time finishTime, Date date) {
+    public Session(int sessionID, String name, String description, int duration, int coachID, int eventID, Time startTime, Date date) {
         this.sessionID = sessionID;
         this.name = name;
         this.description = description;
@@ -26,18 +25,16 @@ public class Session {
         this.coachID = coachID;
         this.eventID = eventID;
         this.startTime = startTime;
-        this.finishTime = finishTime;
         this.date = date;
     }
 
-    public Session(String name, String description, int duration, int coachID, int eventID, Time startTime, Time finishTime, Date date) {
+    public Session(String name, String description, int duration, int coachID, int eventID, Time startTime, Date date) {
         this.name = name;
         this.description = description;
         this.duration = duration;
         this.coachID = coachID;
         this.eventID = eventID;
         this.startTime = startTime;
-        this.finishTime = finishTime;
         this.date = date;
     }
 
@@ -97,14 +94,6 @@ public class Session {
         this.startTime = startTime;
     }
 
-    public Time getFinishTime() {
-        return finishTime;
-    }
-
-    public void setFinishTime(Time finishTime) {
-        this.finishTime = finishTime;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -123,7 +112,6 @@ public class Session {
                 ", coachID=" + coachID +
                 ", eventID=" + eventID +
                 ", startTime=" + startTime +
-                ", finishTime=" + finishTime +
                 ", date=" + date +
                 '}';
     }

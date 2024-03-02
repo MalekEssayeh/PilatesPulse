@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class MyDB {
 
     private static MyDB instance ;
-    final String URL ="jdbc:mysql://127.0.0.1:3306/pilatespulse";
+    final String URL ="jdbc:mysql://127.0.0.1:3306/gestionevent";
     final String USERNAME ="root";
     final String PWD ="";
     private Connection cnx;

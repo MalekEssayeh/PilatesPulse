@@ -5,14 +5,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Event {
 
     private int eventID;
     private String name;
-    private Date startDate;
-    private Date finishDate;
+    private LocalDate startDate;
+    private LocalDate finishDate;
     private int nbrParticipants;
     private String description;
     private int coachID;
@@ -22,7 +23,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(int eventID, String name, Date startDate, Date finishDate, int nbrParticipants, String description, int coachID) {
+    public Event(int eventID, String name, LocalDate startDate, LocalDate finishDate, int nbrParticipants, String description, int coachID) {
         this.eventID = eventID;
         this.name = name;
         this.startDate = startDate;
@@ -32,7 +33,7 @@ public class Event {
         this.coachID = coachID;
     }
 
-    public Event(String name, Date startDate, Date finishDate, int nbrParticipants, String description, int coachID) {
+    public Event(String name, LocalDate startDate, LocalDate finishDate, int nbrParticipants, String description, int coachID) {
         this.name = name;
         this.startDate = startDate;
         this.finishDate = finishDate;
@@ -41,7 +42,7 @@ public class Event {
         this.coachID = coachID;
     }
 
-    public Event(String name, Date startDate, Date finishDate, int nbrParticipants) {
+    public Event(String name, LocalDate startDate, LocalDate finishDate, int nbrParticipants) {
         this.name = name;
         this.startDate = startDate;
         this.finishDate = finishDate;
@@ -64,19 +65,19 @@ public class Event {
         this.name = name;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getFinishDate() {
+    public LocalDate getFinishDate() {
         return finishDate;
     }
 
-    public void setFinishDate(Date finishDate) {
+    public void setFinishDate(LocalDate finishDate) {
         this.finishDate = finishDate;
     }
 

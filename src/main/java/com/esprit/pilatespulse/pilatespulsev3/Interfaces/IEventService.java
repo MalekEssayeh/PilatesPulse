@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IEventService<T> {
 
-    public void addEvent(T t);
+    public void addNewEvent(T t);
     public List<T> displayEvents();
     public void updateEvent(T t, int id);
     public void deleteEvent(int id);
