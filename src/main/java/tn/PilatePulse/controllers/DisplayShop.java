@@ -19,12 +19,14 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 import tn.PilatePulse.model.Category;
 import tn.PilatePulse.model.Product;
 import tn.PilatePulse.model.ShoppingCartModel;
 import tn.PilatePulse.services.CategoryService;
 import tn.PilatePulse.services.ProductService;
 import tn.PilatePulse.services.ShoppingCartService;
+import tn.PilatePulse.services.WishListService;
 
 import java.io.File;
 import java.io.IOException;
@@ -106,15 +108,19 @@ public class DisplayShop implements Initializable {
     private MFXButton filterButton;
     @FXML
     private MFXComboBox<String> categoryComboBox;
+    @FXML
+    private Rating ratingStars;
 
 
     ShoppingCartService shoppingCartService = new ShoppingCartService();
+    WishListService wishListService = new WishListService();
     Category category  =new Category();
 
 
 
     private Stage primaryStage;
     private ProductService productService = new ProductService();
+
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
@@ -209,6 +215,10 @@ public class DisplayShop implements Initializable {
         });
 
         productList.getItems().addAll(productService.fetchProduct());
+        List<String> categoryNames = productService.getAllCategoryNames();
+        //System.out.println(categoryNames);
+        categoryComboBox.getItems().addAll(categoryNames);
+
 
     }
 
@@ -253,7 +263,8 @@ public class DisplayShop implements Initializable {
     @FXML
     void filterProductByCategory(ActionEvent event) {
         List<String> categoryNames = productService.getAllCategoryNames();
-        categoryComboBox.getItems().addAll(categoryNames);
+        System.out.println(categoryNames);
+        //categoryComboBox.getItems().addAll(categoryNames);
     }
 
 
@@ -267,7 +278,22 @@ public class DisplayShop implements Initializable {
     }
     @FXML
     void addTowishList(ActionEvent event) {
+        Product selectedProduct = productList.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            wishListService.add(selectedProduct);
 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Item added to wish list successfully!");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a product to add to wish list.");
+            alert.showAndWait();
+        }
     }
     @FXML
     void addToCart(ActionEvent event) {
@@ -311,6 +337,16 @@ public class DisplayShop implements Initializable {
 
     @FXML
     void displayWishList(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayWishList.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

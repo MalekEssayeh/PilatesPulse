@@ -2,8 +2,10 @@ package tn.PilatePulse.test;
 
 import tn.PilatePulse.model.Category;
 import tn.PilatePulse.model.Product;
+import tn.PilatePulse.model.ShoppingCartModel;
 import tn.PilatePulse.services.CategoryService;
 import tn.PilatePulse.services.ProductService;
+import tn.PilatePulse.services.ShoppingCartService;
 import tn.PilatePulse.util.MaConnexion;
 
 import java.sql.Connection;
@@ -14,17 +16,27 @@ public class Main {
         Connection cnx = MaConnexion.getInstance().getCnx();
 
 
-        Category c1 = new Category(1,"Vêtements");
-        Category c2 = new Category(2,"accessoires");
+        ShoppingCartModel sc2 = new ShoppingCartModel("sweat pants",15,"black","D:\\mmm\\2023-2024 3A14\\PI\\GestionShop\\src\\main\\java\\tn\\PilatePulse\\Images\\orange.jpg");
 
-        CategoryService cs = new CategoryService();
+        ShoppingCartService shoppingCartService = new ShoppingCartService();
+
+
+
+
+
+
+
+        // Category c1 = new Category(1,"Vêtements");
+        //Category c2 = new Category(2,"accessoires");
+
+        //CategoryService cs = new CategoryService();
         //cs.add(c2);
 
        // Product p1 = new Product("T-shirt",45,10,1 );
        // Product p2 = new Product("PANTALON JOGGING",65,15,1);
        // Product p3 = new Product("LEGGING",60,20,1);
-        //Product p4 = new Product("PLANCHE D'ÉQUILIBRE",150,5,2);
-       // ProductService ps = new ProductService();
+        //Product p4 = new Product("();PLANCHE D'ÉQUILIBRE",150,5,2);
+        //       // ProductService ps = new ProductService
 
         //ps.add(p1);
         //ps.add(p2);

@@ -269,11 +269,11 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
     public List<String> getAllCategoryNames() {
         List<String> categoryNames = new ArrayList<>();
         try {
-            String req = "SELECT nameCategory FROM category";
+            String req = "SELECT nameCat FROM category";
             PreparedStatement ps = cnx.prepareStatement(req);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String categoryName = rs.getString("nameCategory");
+                String categoryName = rs.getString("nameCat");
                 categoryNames.add(categoryName);
             }
         } catch (SQLException e) {

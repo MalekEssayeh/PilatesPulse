@@ -6,19 +6,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import tn.PilatePulse.model.Product;
 import tn.PilatePulse.model.ShoppingCartModel;
+import tn.PilatePulse.model.WishList;
 import tn.PilatePulse.services.ShoppingCartService;
+import tn.PilatePulse.services.WishListService;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,10 +30,10 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ShoppingCart implements Initializable {
+public class DisplayWishList implements Initializable {
 
     @FXML
-    private Button checkoutButton;
+    private Button addToCartButton;
 
     @FXML
     private MFXButton eventsButton;
@@ -41,13 +45,19 @@ public class ShoppingCart implements Initializable {
     private MFXButton homeButton;
 
     @FXML
-    private MFXLegacyListView<ShoppingCartModel> productList;
-
-    @FXML
     private ImageView logoImg;
 
     @FXML
+    private AnchorPane navBar;
+
+    @FXML
+    private MFXLegacyListView<WishList> productList;
+
+    @FXML
     private MFXButton programsButton;
+
+    @FXML
+    private Button removeButton;
 
     @FXML
     private MFXButton searchButton;
@@ -58,26 +68,19 @@ public class ShoppingCart implements Initializable {
     @FXML
     private Button shopButton;
 
-    @FXML
-    private AnchorPane navBar;
 
-    @FXML
-    private Button removeButton;
-
-    @FXML
-    private Label totalLabel;
-
+    WishListService wishListService = new WishListService();
     ShoppingCartService shoppingCartService = new ShoppingCartService();
 
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         productList.setCellFactory(param -> new ListCell<>() {
 
             @Override
-            protected void updateItem(ShoppingCartModel product, boolean empty) {
+            protected void updateItem(WishList product, boolean empty) {
                 super.updateItem(product, empty);
 
                 if (empty || product == null) {
@@ -142,13 +145,14 @@ public class ShoppingCart implements Initializable {
             }
         });
 
-        productList.getItems().addAll(shoppingCartService.fetchProducts());
-        updateTotalLabel();
+        productList.getItems().addAll(wishListService.fetchProducts());
     }
+
+
 
     @FXML
     void DeleteProductSelected(ActionEvent event) {
-        ShoppingCartModel selectedProduct = productList.getSelectionModel().getSelectedItem();
+        WishList selectedProduct = productList.getSelectionModel().getSelectedItem();
 
         if (selectedProduct == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -165,21 +169,33 @@ public class ShoppingCart implements Initializable {
             Optional<ButtonType> result = confirmAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 int id = selectedProduct.getIdProduct();
-                shoppingCartService.remove(id);
+                wishListService.remove(id);
                 productList.getItems().remove(selectedProduct);
-                updateTotalLabel();
             }
         }
+
     }
 
-    private void updateTotalLabel() {
-        float total = shoppingCartService.calculateTotal();
-        totalLabel.setText(String.format("%.2f", total));
+    @FXML
+    void addToCart(ActionEvent event) {
+        WishList selectedProduct = productList.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            shoppingCartService.addToWishList(selectedProduct);
+            wishListService.remove(selectedProduct.getIdProduct());
 
-        System.out.println(total);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Item added to cart successfully!");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a product to add to cart.");
+            alert.showAndWait();
+        }
     }
-
-
 
     @FXML
     void returnToShop(ActionEvent event) {
@@ -197,11 +213,6 @@ public class ShoppingCart implements Initializable {
 
     @FXML
     void search(ActionEvent event) {
-
-    }
-
-    @FXML
-    void checkOutFunction(ActionEvent event) {
 
     }
 
