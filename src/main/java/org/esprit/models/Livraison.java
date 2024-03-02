@@ -93,6 +93,9 @@ public class Livraison {
     public void setListCommande(List<Commande> listCommande) {
         this.listCommande = listCommande;
     }
+
+    public void setIdCmd(Object o) {
+    }
 }
 
 //package org.esprit.models;

@@ -8,11 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #c3a3bd;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.esprit.controllers.UpdateAdress">
    <children>
       <TextField fx:id="AdressField" disable="true" layoutX="192.0" layoutY="175.0" prefHeight="25.0" prefWidth="297.0" promptText="enter your new adress" />
-      <Button layoutX="278.0" layoutY="333.0" mnemonicParsing="false" onAction="#updateB" prefHeight="38.0" prefWidth="149.0" style="-fx-background-color: #4B0082;" text="CONFIRM" textFill="#f8f8f8">
+      <Button layoutX="278.0" layoutY="333.0" mnemonicParsing="false" onAction="#updateA" prefHeight="38.0" prefWidth="149.0" style="-fx-background-color: #4B0082;" text="CONFIRM" textFill="#f8f8f8">
          <font>
             <Font size="17.0" />
          </font>

@@ -68,7 +68,6 @@ public class AjouterLiv {
     @FXML
     void add(ActionEvent event) {
 
-
         String phoneText = phoneField.getText();
         if (!phoneText.matches("\\d{8}|\\d{2} \\d{3} \\d{3}")) {
             showAlert("Invalid Phone Number", "Please enter a valid 8-digit phone number (e.g., 29******) or with spaces (e.g., 29 *** ***).");
@@ -94,11 +93,13 @@ public class AjouterLiv {
         // Create a Livraison object
         Livraison livraison = new Livraison("Cash on delivery", adresseText, selectedDate, Integer.parseInt(phoneText));
 
+        // Set idCmd to NULL explicitly
+        livraison.setIdCmd(null);
+
+        // Call the service method to add to the database
         ls.ajouter(livraison);
 
-        System.out.println("Livraison added successfully!");
-
-
+        System.out.println("Livraison added successfully to the database!");
 
 
         }
@@ -126,6 +127,27 @@ public class AjouterLiv {
     @FXML
     void passDelivery(ActionEvent event) {
 
+
+        try {
+            // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherLiv.fxml"));
+            Parent root = loader.load();
+
+            // Create a new scene
+            Scene scene = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new scene on the stage
+            stage.setScene(scene);
+
+            // Show the new scene
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-}
+
+    }

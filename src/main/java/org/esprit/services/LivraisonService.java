@@ -15,11 +15,8 @@ public class LivraisonService implements IServiceL<Livraison> {
 
     Connection connection = Connexion.getInstance().getConnection();
 
-    public LivraisonService() throws SQLException {
-
+    public LivraisonService() {
     }
-    Commande c = new Commande();
-    Livraison l = new Livraison();
 
 
     @Override
@@ -54,21 +51,9 @@ public class LivraisonService implements IServiceL<Livraison> {
             }
 
             System.out.println("Delivery Added Successfully!");
+
         } catch (SQLException ex) {
             ex.printStackTrace();
-            System.out.println("Error adding delivery to the database: " + ex.getMessage());
-
-        }
-    }
-
-    // Adding cmd list
-    String req1 = "INSERT INTO `listecommande`(`idLiv`, `idCmd`) VALUES (?, ?)";
-             (PreparedStatement ps1 = connection.prepareStatement(req1)) {
-        for (Commande c : l.getListCommande()) {
-            // Note: Do not set idCmd, let the database handle it
-            ps1.setInt(1, l.getIdLiv());
-            // Do not set ps1.setInt(2, c.getIdCmd());
-            ps1.executeUpdate();
         }
     }
 
@@ -80,7 +65,6 @@ public class LivraisonService implements IServiceL<Livraison> {
 //            String req1 = "INSERT INTO `listecommande`(`idLiv`,`idCmd` ) VALUES (?,?)";
 //
 //
-
 //            try (PreparedStatement ps = connection.prepareStatement(req)) {
 //                ps.setString(1, l.getMethodePay());
 //                ps.setString(2, l.getAdresseLiv());
@@ -153,33 +137,37 @@ public class LivraisonService implements IServiceL<Livraison> {
                     ex.setInt(1, a);
                     ResultSet rs2 = ex.executeQuery();
                     while (rs2.next()) {
+
                         Commande c = new Commande();
-                        c.setIdCmd(rs2.getInt(1));  // Fix here
-                        c.setIdUser(rs2.getInt(2));
-                        c.setTotal(rs2.getInt(3));
-                        c.setCodePromo(rs2.getString(4));
-                        c.setNomProd(rs2.getString(5));
+                        c.setIdCmd(rs.getInt(1));
+                        c.setIdUser(rs.getInt(2));
+
+                        c.setTotal(rs.getInt(3));
+                        c.setCodePromo(rs.getString(4));
+                        c.setNomProd(rs.getString(5));
 
                         commandes.add(c);
+                    }
                 }
                 l.setListCommande(commandes);
                 Livraisons.add(l);
             }
-
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return Livraisons;
-    } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    }
 
 
-        @Override
+
+
+    @Override
     public void modifier(Livraison l, String a) {
         try{
-        String req ="UPDATE `livraison` SET `adresseLiv`= ? WHERE idLiv = ?";
+        String req ="UPDATE `livraison` SET `adresseLiv`= ? WHERE phone = ?";
         PreparedStatement ps = connection.prepareStatement(req);
             ps.setString(1,a);
-            ps.setInt(2,  l.getIdLiv());
+            ps.setInt(2,  l.getPhone());
             ps.executeUpdate();
             System.out.println("Delivery updated with success!");
 
