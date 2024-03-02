@@ -51,7 +51,7 @@ public class RecoForm implements Initializable {
             String ageString = String.valueOf((int) ageValue);
             String heightString = String.valueOf((int) heightValue);
             String weightString = String.valueOf((int) weightValue);
-            // Construct the command array
+
             String[] command = {"python", "C:\\java\\GestionPhyAct\\Library\\RecomIA.py", genreValue, ageString, heightString, weightString};
 
             ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -62,11 +62,18 @@ public class RecoForm implements Initializable {
             System.out.println(line);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/RecTable.fxml"));
+
+            loader.setControllerFactory(controllerClass -> {
+                if (controllerClass == RecTable.class) {
+                    RecTable Rectablectrl = new RecTable();
+                    Rectablectrl.setPassedLine(line);
+                    return Rectablectrl;
+                } else {
+                    return new RecTable();
+                }
+            });
+
             Parent root = loader.load();
-
-            RecTable recTableController = loader.getController();
-            recTableController.setPassedLine(line);
-
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
             Scene scene = new Scene(root);
