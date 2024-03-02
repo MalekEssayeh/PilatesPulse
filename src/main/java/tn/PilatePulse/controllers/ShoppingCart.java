@@ -71,6 +71,7 @@ public class ShoppingCart implements Initializable {
 
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -110,6 +111,11 @@ public class ShoppingCart implements Initializable {
                     Text priceData = new Text(product.getPriceProduct() + "\n");
                     priceData.setStyle(dataStyle);
 
+                    Text quantityText = new Text("Quantiy: ");
+                    quantityText.setStyle(labelStyle);
+                    Text quantityData = new Text(product.getQuantity() + "\n");
+                    quantityData.setStyle(dataStyle);
+
 
                     String imagePath = product.getImage();
                     Image productImage = new Image(new File(imagePath).toURI().toString());
@@ -121,12 +127,14 @@ public class ShoppingCart implements Initializable {
                     descriptionText.setWrappingWidth(200);
                     priceText.setWrappingWidth(200);
                     priceData.setWrappingWidth(200);
+                    quantityText.setWrappingWidth(200);
+                    quantityData.setWrappingWidth(200);
                     ColumnConstraints col1 = new ColumnConstraints(200);
                     ColumnConstraints col2 = new ColumnConstraints(450);
                     container.getColumnConstraints().addAll(col1, col2);
 
 
-                    textFlow.getChildren().addAll(nameData, descriptionText, descriptionData, priceText, priceData);
+                    textFlow.getChildren().addAll(nameData, descriptionText, descriptionData, priceText, priceData, quantityText, quantityData);
                     container.add(textFlow, 1, 0);
                     container.add(imageView, 0, 0);
                     ColumnConstraints columnConstraints = new ColumnConstraints();

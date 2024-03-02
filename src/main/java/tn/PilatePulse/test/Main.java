@@ -16,7 +16,7 @@ public class Main {
         Connection cnx = MaConnexion.getInstance().getCnx();
 
 
-        ShoppingCartModel sc2 = new ShoppingCartModel("sweat pants",15,"black","D:\\mmm\\2023-2024 3A14\\PI\\GestionShop\\src\\main\\java\\tn\\PilatePulse\\Images\\orange.jpg");
+        //ShoppingCartModel sc2 = new ShoppingCartModel("sweat pants",15,"black","D:\\mmm\\2023-2024 3A14\\PI\\GestionShop\\src\\main\\java\\tn\\PilatePulse\\Images\\orange.jpg");
 
         ShoppingCartService shoppingCartService = new ShoppingCartService();
 

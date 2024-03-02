@@ -28,6 +28,7 @@ public class ShoppingCartService {
                     p.setImage(rs.getString(3));
                     p.setProductDescription(rs.getString(4));
                     p.setPriceProduct(rs.getFloat(5));
+                    p.setQuantity(rs.getInt(6));
 
 
                     productselected.add(p);
@@ -38,15 +39,16 @@ public class ShoppingCartService {
             return productselected;
         }
 
-    public void add(Product product) {
+    public void add(Product product, int quantity) {
         try {
-            String req = "INSERT INTO `ShoppingCart`(`idProduct`,`nameProduct`,`PriceProduct`,`productDescription`,`image`) VALUES (?,?,?,?,?)";
+            String req = "INSERT INTO `ShoppingCart`(`idProduct`,`nameProduct`,`PriceProduct`,`productDescription`,`image`,`quantity`) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setInt(1, product.getIdProduct());
             ps.setString(2, product.getNameProduct());
             ps.setFloat(   3, product.getPriceProduct());
             ps.setString(4, product.getProductDescription());
             ps.setString(5, product.getImage());
+            ps.setInt(6,quantity);
 
 
             ps.executeUpdate();
@@ -98,7 +100,7 @@ public class ShoppingCartService {
         List<ShoppingCartModel> productsSelected = fetchProducts() ;
         float total = 0.0f;
         for (ShoppingCartModel product : productsSelected) {
-            total += product.getPriceProduct();
+            total += product.getPriceProduct()*product.getQuantity();
         }
         return total;
     }

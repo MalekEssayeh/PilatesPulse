@@ -176,7 +176,7 @@ public class DisplayWishList implements Initializable {
 
     }
 
-    @FXML
+    /*@FXML
     void addToCart(ActionEvent event) {
         WishList selectedProduct = productList.getSelectionModel().getSelectedItem();
         if (selectedProduct != null) {
@@ -195,7 +195,7 @@ public class DisplayWishList implements Initializable {
             alert.setContentText("Please select a product to add to cart.");
             alert.showAndWait();
         }
-    }
+    }*/
 
     @FXML
     void returnToShop(ActionEvent event) {

@@ -33,7 +33,7 @@
             <MFXButton fx:id="homeButton" layoutX="21.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Home" />
          </children>
       </AnchorPane>
-      <MFXLegacyListView fx:id="productList" layoutX="36.0" layoutY="119.0" prefHeight="266.0" prefWidth="715.0" />
+      <MFXLegacyListView fx:id="productList" layoutX="36.0" layoutY="119.0" prefHeight="266.0" prefWidth="715.0" style="-fx-background-color: transparent;" />
       <Button fx:id="shopButton" layoutX="36.0" layoutY="406.0" mnemonicParsing="false" onAction="#returnToShop" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #1e044d;" text="Continue shopping" textFill="WHITE">
          <font>
             <Font name="Calibri Italic" size="16.0" />
@@ -44,14 +44,14 @@
             <Font name="Britannic Bold" size="32.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="495.0" layoutY="388.0" prefHeight="92.0" prefWidth="274.0" style="-fx-background-color: #FFFF;">
+      <AnchorPane layoutX="495.0" layoutY="388.0" prefHeight="92.0" prefWidth="274.0">
          <children>
             <Label layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="131.0" text="Subtotal :" textFill="#1e044d">
                <font>
                   <Font name="Britannic Bold" size="27.0" />
                </font>
             </Label>
-            <Button fx:id="checkoutButton" layoutX="38.0" layoutY="58.0" mnemonicParsing="false" onAction="#checkOutFunction" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #1e044d;" text="Proceed to checkout" textFill="WHITE">
+            <Button fx:id="checkoutButton" layoutX="14.0" layoutY="51.0" mnemonicParsing="false" onAction="#checkOutFunction" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #1e044d;" text="Proceed to checkout" textFill="WHITE">
                <font>
                   <Font name="Calibri Italic" size="16.0" />
                </font>

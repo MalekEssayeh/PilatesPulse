@@ -108,8 +108,6 @@ public class DisplayShop implements Initializable {
     private MFXButton filterButton;
     @FXML
     private MFXComboBox<String> categoryComboBox;
-    @FXML
-    private Rating ratingStars;
 
 
     ShoppingCartService shoppingCartService = new ShoppingCartService();
@@ -329,7 +327,7 @@ public class DisplayShop implements Initializable {
             alert.showAndWait();
         }
     }
-    @FXML
+   /* @FXML
     void addToCart(ActionEvent event) {
         Product selectedProduct = productList.getSelectionModel().getSelectedItem();
         if (selectedProduct != null) {
@@ -348,7 +346,7 @@ public class DisplayShop implements Initializable {
             alert.showAndWait();
         }
 
-    }
+    }*/
 
     @FXML
     void coachList(ActionEvent event) {

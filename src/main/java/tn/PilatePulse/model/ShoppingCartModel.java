@@ -6,25 +6,36 @@ public class ShoppingCartModel {
     private float priceProduct;
     private String productDescription;
     private String image;
+    private int quantity;
 
     public  ShoppingCartModel(){}
-    public ShoppingCartModel(int idProduct, String nameProduct, float priceProduct, String productDescription, String image) {
+    public ShoppingCartModel(int idProduct, String nameProduct, float priceProduct, String productDescription, String image, int quantity) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;
         this.productDescription = productDescription;
         this.image = image;
+        this.quantity=quantity;
     }
 
-    public ShoppingCartModel(String nameProduct, float priceProduct, String productDescription, String image) {
+    public ShoppingCartModel(String nameProduct, float priceProduct, String productDescription, String image, int quantity) {
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;
         this.productDescription = productDescription;
         this.image = image;
+        this.quantity = quantity;
     }
 
     public int getIdProduct() {
         return idProduct;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setIdProduct(int idProduct) {
