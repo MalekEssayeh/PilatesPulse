@@ -8,6 +8,7 @@ import java.sql.Date;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -179,5 +180,36 @@ public class PromoService implements userInterface<Promo> {
 
     public boolean login(String email, String password) {
         return false;
+    }
+    // Method to calculate the number of days until a promo code expires
+    public long daysUntilExpiration(Promo promo) {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate expirationDate = promo.getValidite().toLocalDate();
+        return ChronoUnit.DAYS.between(currentDate, expirationDate);
+    }
+
+    // Method to showcase the number of days until a promo code expires
+    public void showcaseDaysUntilExpiration(Promo promo) {
+        long daysUntilExpiration = daysUntilExpiration(promo);
+        System.out.println("Days until expiration: " + daysUntilExpiration);
+    }
+    public Promo getPromoByCode(int code){
+        String qry = "SELECT * FROM PROMO WHERE code = ?";
+        Promo promo = new Promo();
+        try{
+            PreparedStatement stm = cnx.prepareStatement(qry);
+            stm.setInt(1,code);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                promo.setCode(rs.getInt("code"));
+                promo.setPourcentage(rs.getFloat("pourcentage"));
+                promo.setValidite(rs.getDate("validite"));
+                promo.setActive(rs.getBoolean("isActive"));
+                promo.setId(rs.getInt("id"));
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return promo;
     }
 }

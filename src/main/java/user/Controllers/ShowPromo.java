@@ -72,7 +72,7 @@ public class ShowPromo {
                                setText(null);
                            } else {
                                // Display only specific attributes of Promo object
-                               setText("Code: " + promo.getCode() + "\n" + " Off Percentage: " + promo.getPourcentage() + "\n" + " Expire Date : " + promo.getValidite());
+                               setText("Code: " + promo.getCode() + "\n" + " Off Percentage: " + promo.getPourcentage() + "%\n" + " Expire Date : " + promo.getValidite());
                            }
                        }
                    };

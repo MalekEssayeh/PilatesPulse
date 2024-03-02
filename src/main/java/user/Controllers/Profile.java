@@ -14,7 +14,8 @@ import user.Models.user;
 import user.Models.Promo;
 import user.Services.PromoService;
 import user.Utils.UserSession;
-
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.IOException;
 import java.util.List;
 
@@ -82,6 +83,42 @@ public class Profile {
             stage.show();
         }catch (IOException e) {
             e.printStackTrace(); // Handle the exception appropriately (e.g., log it)
+        }
+    }
+
+
+    public void exportPromoToPDF(ActionEvent actionEvent) {
+        Promo selectedPromo = getSelectedPromo();
+       /* if (selectedPromo != null) {
+            try {
+                PdfWriter writer = new PdfWriter(new FileOutputStream("promo_info.pdf"));
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf);
+
+                // Add promo information to PDF
+                document.add(new Paragraph("Promo Code: " + selectedPromo.getCode()));
+                document.add(new Paragraph("Off Percentage: " + selectedPromo.getPourcentage()));
+                document.add(new Paragraph("Expiration Date: " + selectedPromo.getValidite()));
+                document.add(new Paragraph("User: " + UserSession.getNom() + " " + UserSession.getPrenom()));
+                document.add(new Paragraph("Days until Expiration: " + promoService.daysUntilExpiration(selectedPromo)));
+
+                document.close();
+                System.out.println("PDF created successfully!");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Please select a discount code");
+        }*/
+    }
+
+    public Promo getSelectedPromo() {
+        Integer selectedPromoCode = codesLV.getSelectionModel().getSelectedItem();
+        if (selectedPromoCode != null) {
+            // Retrieve the Promo object associated with the selected promo code
+            return promoService.getPromoByCode(selectedPromoCode);
+        } else {
+            return null;
         }
     }
 }

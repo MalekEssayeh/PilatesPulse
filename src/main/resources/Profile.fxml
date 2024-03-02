@@ -57,6 +57,7 @@
         <!-- Back Button -->
         <Button fx:id="backBT" layoutX="29.0" layoutY="545.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #f0a6ca; -fx-text-fill: #6b0056;" text="back" />
          <Label layoutX="250.0" layoutY="246.0" styleClass="title" text="DISCOUNT CODES:" textFill="#510a61" />
-         <ListView fx:id="codesLV" layoutX="369.0" layoutY="255.0" prefHeight="104.0" prefWidth="102.0" stylesheets="styles.css" />
+         <ListView fx:id="codesLV" layoutX="369.0" layoutY="255.0" prefHeight="104.0" prefWidth="102.0" />
+        <Button fx:id="detailsBT" layoutX="509.0" layoutY="280.0" mnemonicParsing="false" onAction="#exportPromoToPDF" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: #4B0082;" text="print details " textFill="WHITE" />
     </children>
 </AnchorPane>
