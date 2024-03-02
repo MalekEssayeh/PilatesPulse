@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="647.0" fitWidth="967.0" layoutX="-64.0" opacity="0.3" pickOnBounds="true">
          <image>
-            <Image url="images/alexis.jpg" />
+            <Image url="@/images/alexis.jpg" />
          </image>
       </ImageView>
       <Label layoutX="266.0" layoutY="98.0" text="Discount Codes" textFill="#f784cd">
@@ -23,7 +23,7 @@
       </Label>
       <ImageView fitHeight="46.0" fitWidth="54.0" layoutX="843.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="images/images__4_-removebg-preview.png" />
+            <Image url="@/images/images__4_-removebg-preview.png" />
          </image>
       </ImageView>
       <ListView fx:id="promosLV" layoutX="116.0" layoutY="200.0" prefHeight="290.0" prefWidth="599.0" />

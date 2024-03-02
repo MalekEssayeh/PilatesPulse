@@ -56,6 +56,7 @@ public class ShowPromo {
    @FXML
    void initialize() {
        try {
+           // Populate the ListView with all promos initially
            List<Promo> promoList = ps.show();
            promosLV.setItems(FXCollections.observableArrayList(promoList));
 
@@ -75,6 +76,28 @@ public class ShowPromo {
                            }
                        }
                    };
+               }
+           });
+
+           // Listen for changes in the search text field
+           searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+               // Check if the new value is empty
+               if (newValue.isEmpty()) {
+                   // If empty, reset the search results to show all promos
+                   List<Promo> allPromos = ps.show();
+                   ObservableList<Promo> observableAllPromos = FXCollections.observableArrayList(allPromos);
+                   promosLV.setItems(observableAllPromos);
+               } else {
+                   // If not empty, attempt to perform the search
+                   try {
+                       float percentage = Float.parseFloat(newValue);
+                       List<Promo> searchResults = ps.search2(percentage);
+                       ObservableList<Promo> observableSearchResults = FXCollections.observableArrayList(searchResults);
+                       promosLV.setItems(observableSearchResults);
+                   } catch (NumberFormatException e) {
+                       // If the entered text is not a valid float, show an error
+                       showAlert(Alert.AlertType.ERROR, "Error", "Please enter a valid percentage value.");
+                   }
                }
            });
        } catch (Exception e) {

@@ -56,6 +56,14 @@ public class Showuser {
  @FXML
  void initialize() {
      try {
+         // Listen for changes in the search text field
+         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+             // Call search method with the updated keyword
+             String keyword = newValue.trim();
+             List<user> searchResults = us.search(keyword);
+             ObservableList<user> observableSearchResults = FXCollections.observableArrayList(searchResults);
+             usersLV.setItems(observableSearchResults);
+         });
          List<user> userList = us.show();
          usersLV.setItems(FXCollections.observableArrayList(userList));
 

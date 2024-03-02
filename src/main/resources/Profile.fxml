@@ -11,7 +11,7 @@
     <children>
         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="images/13c2f4707e1fdd0d831552333ffdf5d8.jpg" />
+                <Image url="@/images/13c2f4707e1fdd0d831552333ffdf5d8.jpg" />
             </image>
         </ImageView>
         <Label fx:id="nomL" layoutX="594.0" layoutY="87.0" style="-fx-font-size: 18;" text="Label" />

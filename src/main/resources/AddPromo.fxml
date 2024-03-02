@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="668.0" fitWidth="923.0" layoutY="-10.0" opacity="0.3" pickOnBounds="true">
          <image>
-            <Image url="images/alexis.jpg" />
+            <Image url="@/images/alexis.jpg" />
          </image>
       </ImageView>
       <TextField fx:id="PercentageTF" layoutX="368.0" layoutY="207.0" prefHeight="30.0" prefWidth="214.0" promptText="Percentage" />
