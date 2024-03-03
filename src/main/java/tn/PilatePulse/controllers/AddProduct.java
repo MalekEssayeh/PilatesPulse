@@ -138,7 +138,16 @@ public class AddProduct {
     }
     @FXML
     void adminDashBoard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashBoard.fxml"));
+            Parent root = loader.load();
 
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -161,7 +170,7 @@ public class AddProduct {
               Product productToAdd = new Product(
                       nomProductiD.getText(),
                       descriptionID.getText(),
-                      imgURLId.getText(),
+                      t1,
                       Float.parseFloat(prixProductID.getText()),
                       Integer.parseInt(stockID.getText()),
                       Integer.parseInt(idCategoryID.getText())

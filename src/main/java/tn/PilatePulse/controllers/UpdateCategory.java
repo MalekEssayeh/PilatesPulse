@@ -75,13 +75,8 @@ public class UpdateCategory {
 
     @FXML
     void adminDashboard(ActionEvent event) {
-
-    }
-
-    @FXML
-    void categoriesDashBoard(ActionEvent event) {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CategoriesDashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashBoard.fxml"));
             Parent root = loader.load();
 
             Scene currentScene = ((Node) event.getSource()).getScene();
@@ -91,34 +86,6 @@ public class UpdateCategory {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    void productsDashBoard(ActionEvent event) {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayProduct.fxml"));
-            Parent root = loader.load();
-
-            Scene currentScene = ((Node) event.getSource()).getScene();
-
-            currentScene.setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    void shopDashboard(ActionEvent event) {
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayShop.fxml"));
-            Parent root = loader.load();
-
-            Scene currentScene = ((Node) event.getSource()).getScene();
-
-            currentScene.setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 
 
     @FXML
@@ -138,10 +105,7 @@ public class UpdateCategory {
 
 
 
-    @FXML
-    void search(ActionEvent event) {
 
-    }
 
 
     public void setPassedId(int id) {

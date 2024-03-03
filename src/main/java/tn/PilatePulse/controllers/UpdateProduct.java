@@ -168,6 +168,9 @@ public class UpdateProduct implements Initializable {
 
     @FXML
     void update(ActionEvent event) {
+        String t1=imgURLId.getText().replace("%20", " ");
+        t1=t1.replace("/", "\\").replace("file:\\", "");
+
         if (nomProductiD.getText().isEmpty() || descriptionID.getText().isEmpty() ||
                 imgURLId.getText().isEmpty() || prixProductID.getText().isEmpty() ||
                 stockID.getText().isEmpty() || idCategoryID.getText().isEmpty()) {
@@ -182,7 +185,7 @@ public class UpdateProduct implements Initializable {
                 productService.update(new Product(id,
                         nomProductiD.getText(),
                         descriptionID.getText(),
-                        imgURLId.getText(),
+                        t1,
                         Float.parseFloat(prixProductID.getText()),
                         Integer.parseInt(stockID.getText()),
                         Integer.parseInt(idCategoryID.getText())

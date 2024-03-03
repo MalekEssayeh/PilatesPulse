@@ -30,16 +30,20 @@
             <MFXButton fx:id="shopButton" layoutX="546.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Shop" />
             <MFXButton fx:id="exercicesButton" layoutX="421.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Exercices" />
             <MFXButton fx:id="programsButton" layoutX="482.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Programs" />
-            <MFXButton fx:id="homeButton" layoutX="41.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Home" />
+            <MFXButton fx:id="shophomeButton" layoutX="14.0" layoutY="16.0" onAction="#goBackToHome" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: ECECEC;" text="Home" />
          </children>
       </AnchorPane>
-      <MFXButton fx:id="shophomeButton" layoutX="643.0" layoutY="69.0" onAction="#goBackToHome" prefHeight="25.0" prefWidth="71.0" text="Home" />
-      <MFXButton fx:id="cartButton" layoutX="585.0" layoutY="69.0" onAction="#displayCart" prefHeight="25.0" prefWidth="49.0" text="Cart" />
-      <MFXButton fx:id="wishlistButton" layoutX="510.0" layoutY="69.0" onAction="#displayWishList" text="Wish list" />
-      <MFXButton fx:id="coacheButton" layoutX="403.0" layoutY="69.0" onAction="#coachList" text="Get in touch ! " />
+      <MFXButton fx:id="cartButton" layoutX="664.0" layoutY="69.0" onAction="#displayCart" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #1e044d;" text="Cart" textFill="WHITE">
+         <font>
+            <Font name="Calibri Italic" size="14.0" />
+         </font></MFXButton>
+      <MFXButton fx:id="wishlistButton" layoutX="539.0" layoutY="69.0" onAction="#displayWishList" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #1e044d;" text="Wish list" textFill="WHITE">
+         <font>
+            <Font name="Calibri Italic" size="14.0" />
+         </font></MFXButton>
       <MFXLegacyListView fx:id="productList" layoutY="172.0" prefHeight="342.0" prefWidth="782.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" />
       <Label layoutX="576.0" layoutY="116.0" prefHeight="17.0" prefWidth="134.0" text="Filter by price range" />
-      <MFXSlider fx:id="priceRangeSlider" layoutX="576.0" layoutY="140.0" />
+      <MFXSlider fx:id="priceRangeSlider" layoutX="576.0" layoutY="140.0" max="850.0" unitIncrement="5.0" />
       <MFXButton fx:id="filterButton" layoutX="691.0" layoutY="124.0" onAction="#filterByPrice" prefHeight="25.0" prefWidth="39.0" text="OK" />
       <MFXComboBox fx:id="categoryComboBox" layoutX="7.0" layoutY="113.0" onAction="#filterProductByCategory" prefHeight="40.0" prefWidth="177.0" />
    </children>
