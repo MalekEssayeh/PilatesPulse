@@ -116,7 +116,16 @@ public class DisplayRatings implements Initializable {
 
     @FXML
     void displayChart(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayChart.fxml"));
+            Parent root = loader.load();
 
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

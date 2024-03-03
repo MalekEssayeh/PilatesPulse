@@ -6,7 +6,9 @@ import tn.PilatePulse.util.MaConnexion;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RatingService implements InterfaceRating<RatingModel> {
 
@@ -98,4 +100,61 @@ public class RatingService implements InterfaceRating<RatingModel> {
             exception.printStackTrace();
         }
         return ratings;    }
+
+    @Override
+    public Map<String, Double> fetchProductRatings() {
+        Map<String, Double> productRatings = new HashMap<>();
+
+        String query = "SELECT p.nameProduct, r.nbStars FROM rating r JOIN product p ON r.idProduct = p.idProduct";
+
+        try (PreparedStatement statement = cnx.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String productName = resultSet.getString("nameProduct");
+                double rating = resultSet.getDouble("nbStars");
+                productRatings.put(productName, rating);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return productRatings;
+    }
+
+    @Override
+    public Map<String, Double> fetchAverageProductRatings() {
+        Map<String, Double> productRatings = new HashMap<>();
+
+        String query = "SELECT r.idProduct, AVG(r.nbStars) AS avgRating " +
+                "FROM rating r " +
+                "GROUP BY r.idProduct";
+
+        try (PreparedStatement ps = cnx.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int productId = rs.getInt("idProduct");
+                double avgRating = rs.getDouble("avgRating");
+                productRatings.put(getProductName(productId), avgRating);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return productRatings;
+    }
+
+    private String getProductName(int productId) throws SQLException {
+        String query = "SELECT nameProduct FROM product WHERE idProduct = ?";
+        try (PreparedStatement ps = cnx.prepareStatement(query)) {
+            ps.setInt(1, productId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("nameProduct");
+            }
+        }
+        throw new SQLException("Product with ID " + productId + " not found.");
+    }
+
+
 }
