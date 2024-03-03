@@ -44,15 +44,6 @@ public class ShowPromo {
     private ListView<Promo> promosLV;
     private final PromoService ps = new PromoService();
 
-   /* @FXML
-    void initialize() {
-        try {
-            List<Promo> promoList = ps.show();
-            promosLV.getItems().addAll(promoList);
-        } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
-        }
-    }*/
    @FXML
    void initialize() {
        try {
@@ -177,6 +168,24 @@ public class ShowPromo {
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to load update promo interface.");
         }
     }
+
+    @FXML
+    void statistics(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/PromoStatistics.fxml"));
+            Parent root = loader.load();
+
+            PromoStatistics controller = loader.getController();
+            controller.updatePromoStatistics();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately (e.g., log it)
+        }
+    }
+
 
 
     @FXML

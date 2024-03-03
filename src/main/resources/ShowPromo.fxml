@@ -16,7 +16,7 @@
             <Image url="@/images/alexis.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="266.0" layoutY="98.0" text="Discount Codes" textFill="#f784cd">
+      <Label layoutX="266.0" layoutY="86.0" text="Discount Codes" textFill="#f784cd">
          <font>
             <Font name="Britannic Bold" size="64.0" />
          </font>
@@ -37,7 +37,12 @@
          </font>
       </Button>
       <Button fx:id="backBT" layoutX="79" layoutY="60.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #f0a6ca; -fx-text-fill: #6b0056;" text="back" />
-      <Button fx:id="filterBT" layoutX="376.0" layoutY="164.0" mnemonicParsing="false" onAction="#filterPromos" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);" text="Filter by %">
+      <Button fx:id="filterBT" layoutX="387.0" layoutY="164.0" mnemonicParsing="false" onAction="#filterPromos" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);" text="Filter by %">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="statisticsBT" layoutX="486.0" layoutY="164.0" mnemonicParsing="false" onAction="#statistics" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);" text="Statistics">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
