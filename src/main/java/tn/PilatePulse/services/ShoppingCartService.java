@@ -23,12 +23,13 @@ public class ShoppingCartService {
                 ResultSet rs = st.executeQuery(req);
                 while (rs.next()){
                     ShoppingCartModel p = new ShoppingCartModel();
-                    p.setIdProduct(rs.getInt(1));
-                    p.setNameProduct(rs.getString(2));
-                    p.setImage(rs.getString(3));
-                    p.setProductDescription(rs.getString(4));
-                    p.setPriceProduct(rs.getFloat(5));
-                    p.setQuantity(rs.getInt(6));
+                    p.setIdUser(rs.getInt(1));
+                    p.setIdProduct(rs.getInt(2));
+                    p.setNameProduct(rs.getString(3));
+                    p.setImage(rs.getString(4));
+                    p.setProductDescription(rs.getString(5));
+                    p.setPriceProduct(rs.getFloat(6));
+                    p.setQuantity(rs.getInt(7));
 
 
                     productselected.add(p);
@@ -41,14 +42,15 @@ public class ShoppingCartService {
 
     public void add(Product product, int quantity) {
         try {
-            String req = "INSERT INTO `ShoppingCart`(`idProduct`,`nameProduct`,`PriceProduct`,`productDescription`,`image`,`quantity`) VALUES (?,?,?,?,?,?)";
+            String req = "INSERT INTO `ShoppingCart`(`idUser`,`idProduct`,`nameProduct`,`PriceProduct`,`productDescription`,`image`,`quantity`) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, product.getIdProduct());
-            ps.setString(2, product.getNameProduct());
-            ps.setFloat(   3, product.getPriceProduct());
-            ps.setString(4, product.getProductDescription());
-            ps.setString(5, product.getImage());
-            ps.setInt(6,quantity);
+            ps.setInt(1, 1);
+            ps.setInt(2, product.getIdProduct());
+            ps.setString(3, product.getNameProduct());
+            ps.setFloat(   4, product.getPriceProduct());
+            ps.setString(5, product.getProductDescription());
+            ps.setString(6, product.getImage());
+            ps.setInt(7,quantity);
 
 
             ps.executeUpdate();
@@ -63,14 +65,15 @@ public class ShoppingCartService {
 
     public void addToWishList(WishList product, int quantity) {
         try {
-            String req = "INSERT INTO `ShoppingCart`(`idProduct`,`nameProduct`,`PriceProduct`,`productDescription`,`image`,`quantity`) VALUES (?,?,?,?,?,?)";
+            String req = "INSERT INTO `ShoppingCart`(`idUser`,`idProduct`,`nameProduct`,`PriceProduct`,`productDescription`,`image`,`quantity`) VALUES (?,?,?,?,?,?,?)";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, product.getIdProduct());
-            ps.setString(2, product.getNameProduct());
-            ps.setFloat(   3, product.getPriceProduct());
-            ps.setString(4, product.getProductDescription());
-            ps.setString(5, product.getImage());
-            ps.setInt(6,quantity);
+            ps.setInt(1, 1);
+            ps.setInt(2, product.getIdProduct());
+            ps.setString(3, product.getNameProduct());
+            ps.setFloat(   4, product.getPriceProduct());
+            ps.setString(5, product.getProductDescription());
+            ps.setString(6, product.getImage());
+            ps.setInt(7,quantity);
 
 
             ps.executeUpdate();

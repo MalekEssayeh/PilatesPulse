@@ -1,6 +1,8 @@
 package tn.PilatePulse.model;
 
 public class ShoppingCartModel {
+
+    private int idUser;
     private int idProduct;
     private String nameProduct;
     private float priceProduct;
@@ -9,21 +11,23 @@ public class ShoppingCartModel {
     private int quantity;
 
     public  ShoppingCartModel(){}
-    public ShoppingCartModel(int idProduct, String nameProduct, float priceProduct, String productDescription, String image, int quantity) {
+
+    public ShoppingCartModel(int idUser, int idProduct, String nameProduct, float priceProduct, String productDescription, String image, int quantity) {
+        this.idUser = idUser;
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.priceProduct = priceProduct;
         this.productDescription = productDescription;
         this.image = image;
-        this.quantity=quantity;
+        this.quantity = quantity;
     }
 
-    public ShoppingCartModel(String nameProduct, float priceProduct, String productDescription, String image, int quantity) {
-        this.nameProduct = nameProduct;
-        this.priceProduct = priceProduct;
-        this.productDescription = productDescription;
-        this.image = image;
-        this.quantity = quantity;
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public int getIdProduct() {
@@ -78,11 +82,13 @@ public class ShoppingCartModel {
     @Override
     public String toString() {
         return "ShoppingCartModel{" +
-                "idProduct=" + idProduct +
+                "idUser=" + idUser +
+                ", idProduct=" + idProduct +
                 ", nameProduct='" + nameProduct + '\'' +
                 ", priceProduct=" + priceProduct +
                 ", productDescription='" + productDescription + '\'' +
                 ", image='" + image + '\'' +
+                ", quantity=" + quantity +
                 '}';
     }
 }
