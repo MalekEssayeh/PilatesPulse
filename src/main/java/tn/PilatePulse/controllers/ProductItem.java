@@ -212,14 +212,26 @@ public class ProductItem implements Initializable {
 
 
     @FXML
+
     void submitRating(ActionEvent event) {
         double selectedStars = ratingStarsId.getRating();
-        RatingModel rating = new RatingModel(product.getIdProduct(),1,selectedStars);
+        int idProduct = product.getIdProduct();
+        int idUser = 1;
+        RatingModel rating = new RatingModel(idProduct, idUser, selectedStars);
         RatingService ratingService = new RatingService();
-        ratingService.addRating(rating);
-        System.out.println(selectedStars);
 
+        // Check if the rating already exists in the database
+        if (ratingService.ratingExists(idProduct, idUser)) {
+            // If the rating exists, update it
+            ratingService.updateRating(rating);
+        } else {
+            // If the rating does not exist, add a new rating
+            ratingService.addRating(rating);
+        }
+
+        //System.out.println(selectedStars);
     }
+
 
     @FXML
     void search(ActionEvent event) {

@@ -34,18 +34,33 @@ public class RatingService implements InterfaceRating<RatingModel> {
     @Override
     public void updateRating(RatingModel rating) {
         try {
-            String req = "UPDATE `rating` SET `idProduct`=?,`idUser`=?,`nbStars`=? WHERE `idProduct`=?";
+            String req = "UPDATE `rating` SET `idUser`=?, `nbStars`=? WHERE `idProduct`=?";
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setInt(1, rating.getIdProduct());
-            ps.setInt(2, rating.getIdUser());
-            ps.setDouble(3, rating.getNbStars());
-
+            ps.setInt(1, rating.getIdUser());
+            ps.setDouble(2, rating.getNbStars());
+            ps.setInt(3, rating.getIdProduct()); // Set idProduct in the WHERE clause
 
             ps.executeUpdate();
 
             System.out.println("Rating updated");
-        }catch (SQLException sqlException){
+        } catch (SQLException sqlException) {
             sqlException.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public boolean ratingExists(int idProduct, int idUser) {
+        try {
+            String query = "SELECT * FROM `rating` WHERE `idProduct` = ? AND `idUser` = ?";
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ps.setInt(1, idProduct);
+            ps.setInt(2, idUser);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return false;
         }
     }
 
