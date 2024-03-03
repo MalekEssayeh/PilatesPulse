@@ -24,7 +24,7 @@
             </Label>
 
             <!-- Personal Information -->
-            <GridPane vgap="5">
+            <GridPane prefHeight="85.0" prefWidth="256.0" vgap="5">
 
                 <!-- Labels -->
                 <Label text="SURNAME:" textFill="#510a61" GridPane.columnIndex="0" GridPane.rowIndex="0" />

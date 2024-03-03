@@ -1,21 +1,23 @@
 package user.Controllers;
-
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-import user.Services.userService;
-import user.Models.user;
 import user.Models.Promo;
+import user.Models.user;
 import user.Services.PromoService;
+import user.Services.userService;
 import user.Utils.UserSession;
+
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.IOException;
 import java.util.List;
 
@@ -35,6 +37,9 @@ public class Profile {
 
     @FXML
     private ListView<Integer> codesLV;
+    private static Font titleFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
+    private static Font smallBold = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+    private static Font normalFont = new Font(Font.FontFamily.HELVETICA, 12);
 
     private final userService userService = new userService();
     private final PromoService promoService = new PromoService();
@@ -86,31 +91,59 @@ public class Profile {
         }
     }
 
-
     public void exportPromoToPDF(ActionEvent actionEvent) {
         Promo selectedPromo = getSelectedPromo();
-       /* if (selectedPromo != null) {
+        if (selectedPromo != null) {
             try {
-                PdfWriter writer = new PdfWriter(new FileOutputStream("promo_info.pdf"));
-                PdfDocument pdf = new PdfDocument(writer);
-                Document document = new Document(pdf);
+                String fileName = "DiscountCode_info_" + selectedPromo.getCode() + ".pdf";
+                Document document = new Document();
+                PdfWriter.getInstance(document, new FileOutputStream(fileName));
+
+                // Create custom colors for purple and babypink
+                BaseColor purpleColor = new BaseColor(128, 0, 128); // Purple color
+                BaseColor babypinkColor = new BaseColor(244, 194, 194); // Babypink color
+
+                // Open the document
+                document.open();
+
 
                 // Add promo information to PDF
-                document.add(new Paragraph("Promo Code: " + selectedPromo.getCode()));
-                document.add(new Paragraph("Off Percentage: " + selectedPromo.getPourcentage()));
-                document.add(new Paragraph("Expiration Date: " + selectedPromo.getValidite()));
-                document.add(new Paragraph("User: " + UserSession.getNom() + " " + UserSession.getPrenom()));
-                document.add(new Paragraph("Days until Expiration: " + promoService.daysUntilExpiration(selectedPromo)));
+                Paragraph title = new Paragraph("Discount Code Details", titleFont);
+                title.setAlignment(Element.ALIGN_CENTER);
+                title.setSpacingAfter(20f); // Add spacing after the title
+                document.add(title);
 
+                // Set font color to purple for the details
+                Font purpleFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, purpleColor);
+
+                // Add client information
+                document.add(new Paragraph("Client: " + UserSession.getNom() + " " + UserSession.getPrenom(), purpleFont));
+                document.add(new Paragraph("Discount Code: " + selectedPromo.getCode(), purpleFont));
+                document.add(new Paragraph("Off Percentage: " + selectedPromo.getPourcentage(), purpleFont));
+                document.add(new Paragraph("Expiration Date: " + selectedPromo.getValidite(), purpleFont));
+                document.add(new Paragraph("Days until Expiration: " + promoService.daysUntilExpiration(selectedPromo), purpleFont));
+
+                // Close the document
                 document.close();
-                System.out.println("PDF created successfully!");
-            } catch (IOException e) {
+
+                showAlert(Alert.AlertType.INFORMATION, "PDF Created", "Promo details exported to PDF successfully!");
+            } catch (IOException | DocumentException e) {
                 e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "Error", "Failed to export promo details to PDF.");
             }
         } else {
-            System.out.println("Please select a discount code");
-        }*/
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select a promo code.");
+        }
     }
+
+    private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
     public Promo getSelectedPromo() {
         Integer selectedPromoCode = codesLV.getSelectionModel().getSelectedItem();
