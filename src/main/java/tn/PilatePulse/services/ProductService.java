@@ -263,6 +263,35 @@ public class ProductService implements InterfaceCRUD<Product>, InterfaceFilters<
        return productList ;
    }
 
+    public List<Product> filterProductsByCategoryName2(String categoryName) {
+        List<Product> productList = new ArrayList<>();
+        try {
+            String req = "SELECT p.idProduct, p.nameProduct, p.image, p.productDescription, p.priceProduct, p.stock, p.idCategory, c.nameCat " +
+                    "FROM product p " +
+                    "JOIN category c ON p.idCategory = c.idCategory " +
+                    "WHERE c.nameCat = ?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, categoryName);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setIdProduct(rs.getInt(1));
+                p.setNameProduct(rs.getString(2));
+                p.setImage(rs.getString(3));
+                p.setProductDescription(rs.getString(4));
+                p.setPriceProduct(rs.getFloat(5));
+                p.setStock(rs.getInt(6));
+                p.setIdCategory(rs.getInt(7));
+                productList.add(p);
+            }
+        } catch (SQLException exp) {
+            exp.printStackTrace();
+        }
+        if (productList.isEmpty()) {
+            System.out.println("Product category unavailable");
+        }
+        return productList;
+    }
 
 
 

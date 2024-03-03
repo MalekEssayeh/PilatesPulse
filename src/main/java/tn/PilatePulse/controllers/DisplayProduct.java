@@ -179,6 +179,19 @@ public class DisplayProduct implements Initializable {
         }
 
     }
+    @FXML
+    void displayDashboard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/adminDashBoard.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

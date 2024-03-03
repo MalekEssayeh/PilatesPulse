@@ -234,8 +234,13 @@ public class DisplayShop implements Initializable {
                     setGraphic(container);
 
 
-                    // Set the initial selection
+
+
                     categoryComboBox.getSelectionModel().selectFirst();
+
+
+
+
 
                 }
             }
@@ -244,6 +249,19 @@ public class DisplayShop implements Initializable {
         productList.getItems().addAll(productService.fetchProduct());
         List<String> categoryNames = productService.getAllCategoryNames();
         categoryComboBox.getItems().addAll(categoryNames);
+
+        categoryComboBox.setOnAction(event -> {
+            String selectedCategory = categoryComboBox.getValue();
+
+
+            List<Product> filteredProducts = productService.filterProductsByCategoryName2(selectedCategory);
+
+
+            filteredProducts.forEach(System.out::println);
+
+        });
+        categoryComboBox.getSelectionModel().selectFirst();
+
 
         productList.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {

@@ -3,7 +3,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXSlider?>
-<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -38,13 +37,10 @@
       <MFXButton fx:id="cartButton" layoutX="585.0" layoutY="69.0" onAction="#displayCart" prefHeight="25.0" prefWidth="49.0" text="Cart" />
       <MFXButton fx:id="wishlistButton" layoutX="510.0" layoutY="69.0" onAction="#displayWishList" text="Wish list" />
       <MFXButton fx:id="coacheButton" layoutX="403.0" layoutY="69.0" onAction="#coachList" text="Get in touch ! " />
-      <MFXLegacyListView fx:id="productList" layoutY="172.0" prefHeight="342.0" prefWidth="782.0" />
-      <MFXTextField fx:id="categorynameFilter" layoutX="14.0" layoutY="100.0" prefHeight="49.0" prefWidth="146.0" promptText="Enter category name" />
-      <Label layoutX="20.0" layoutY="104.0" text="Filter by category name : " />
-      <MFXButton fx:id="categorynameButton" layoutX="160.0" layoutY="124.0" prefHeight="25.0" prefWidth="39.0" text="OK" />
+      <MFXLegacyListView fx:id="productList" layoutY="172.0" prefHeight="342.0" prefWidth="782.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" />
       <Label layoutX="576.0" layoutY="116.0" prefHeight="17.0" prefWidth="134.0" text="Filter by price range" />
       <MFXSlider fx:id="priceRangeSlider" layoutX="576.0" layoutY="140.0" />
       <MFXButton fx:id="filterButton" layoutX="691.0" layoutY="124.0" onAction="#filterByPrice" prefHeight="25.0" prefWidth="39.0" text="OK" />
-      <MFXComboBox fx:id="categoryComboBox" layoutX="214.0" layoutY="113.0" onAction="#filterProductByCategory" prefHeight="40.0" prefWidth="177.0" />
+      <MFXComboBox fx:id="categoryComboBox" layoutX="7.0" layoutY="113.0" onAction="#filterProductByCategory" prefHeight="40.0" prefWidth="177.0" />
    </children>
 </AnchorPane>

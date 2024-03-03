@@ -150,6 +150,19 @@ public class CategoriesDashboard implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    void displayDashboard(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashBoard.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void categoriesDashBoard(ActionEvent event) {
