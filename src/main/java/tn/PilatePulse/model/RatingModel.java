@@ -1,21 +1,21 @@
 package tn.PilatePulse.model;
 
-public class Rating {
+public class RatingModel {
     private int idRating;
     private int idProduct;
     private int idUser;
-    private int nbStars;
+    private double nbStars;
 
-    public Rating() {
+   public RatingModel() {
     }
 
-    public Rating(int idProduct, int idUser, int nbStars) {
+    public RatingModel(int idProduct, int idUser, double nbStars) {
         this.idProduct = idProduct;
         this.idUser = idUser;
         this.nbStars = nbStars;
     }
 
-    public Rating(int idRating, int idProduct, int idUser, int nbStars) {
+    public RatingModel(int idRating, int idProduct, int idUser, double nbStars) {
         this.idRating = idRating;
         this.idProduct = idProduct;
         this.idUser = idUser;
@@ -46,7 +46,7 @@ public class Rating {
         this.idUser = idUser;
     }
 
-    public int getNbStars() {
+    public double getNbStars() {
         return nbStars;
     }
 

@@ -17,9 +17,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import tn.PilatePulse.model.Product;
-import tn.PilatePulse.model.WishList;
+import tn.PilatePulse.model.RatingModel;
+import tn.PilatePulse.services.RatingService;
 import tn.PilatePulse.services.ShoppingCartService;
 import tn.PilatePulse.services.WishListService;
+
+
+import org.controlsfx.control.Rating;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -85,12 +90,18 @@ public class ProductItem implements Initializable {
     private Label productDescriptionLabel;
     @FXML
     private Button addToWishListButton;
+    @FXML
+    private Button submitButton;
+    @FXML
+    private Rating ratingStarsId;
 
 
 
     private Product product;
     ShoppingCartService shoppingCartService = new ShoppingCartService();
     WishListService wishListService = new WishListService();
+
+
 
 
 
@@ -105,7 +116,7 @@ public class ProductItem implements Initializable {
 
         idProductLabel.setText("REF: "+product.getIdProduct()+"");
         nameProductLabel.setText(product.getNameProduct());
-        priceLabel.setText(product.getPriceProduct()+""+"TND");
+        priceLabel.setText(product.getPriceProduct()+""+" TND");
         productStockLabel.setText("Rest in stock: "+product.getStock()+"");
         productDescriptionLabel.setText(product.getProductDescription());
 
@@ -113,7 +124,13 @@ public class ProductItem implements Initializable {
         Image demonstrationImage = new Image(new File(demonstrationPath).toURI().toString());
         productImage.setImage(demonstrationImage);
 
-        //System.out.println(product);
+        if (ratingStarsId != null) {
+            // You can safely invoke methods on ratingStarsId here
+            ratingStarsId.setPartialRating(true);
+        } else {
+            System.out.println("Rating control is null.");
+        }
+
     }
 
 
@@ -151,10 +168,6 @@ public class ProductItem implements Initializable {
     }
 
 
-    @FXML
-    void getWantedQuantity(ActionEvent event) {
-
-    }
 
     @FXML
     void returnToShop(ActionEvent event) {
@@ -195,6 +208,17 @@ public class ProductItem implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    @FXML
+    void submitRating(ActionEvent event) {
+        double selectedStars = ratingStarsId.getRating();
+        RatingModel rating = new RatingModel(product.getIdProduct(),1,selectedStars);
+        RatingService ratingService = new RatingService();
+        ratingService.addRating(rating);
+        System.out.println(selectedStars);
+
     }
 
     @FXML
