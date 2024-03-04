@@ -128,14 +128,7 @@ public void choisirImage(ActionEvent event) {
         alert.showAndWait();
     }
 
-    private boolean isValidDate(String dateStr) {
-        try {
-            LocalDate.parse(dateStr);
-            return true;
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-    }
+
 
     private void clearInputFields() {
         eventName.clear();

@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.esprit.pilatespulse.pilatespulsev3.Controllers.DisplayEvents"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="716.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.pilatespulse.pilatespulsev3.Controllers.DisplayEvents">
+   <children>
+      <ListView fx:id="eventList" layoutX="131.0" layoutY="153.0" prefHeight="462.0" prefWidth="691.0" />
+      <Text layoutX="383.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event List">
+         <font>
+            <Font size="45.0" />
+         </font>
+      </Text>
+   </children>
 </AnchorPane>
