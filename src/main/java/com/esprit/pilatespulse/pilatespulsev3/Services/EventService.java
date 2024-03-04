@@ -5,6 +5,7 @@ import com.esprit.pilatespulse.pilatespulsev3.Models.Event;
 import com.esprit.pilatespulse.pilatespulsev3.Utils.MyDB;
 
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +16,14 @@ public class EventService implements IEventService<Event> {
     @Override
     public void addNewEvent(Event event) {
         try {
-            String query = "INSERT INTO event (name, startDate, finishDate, nbrParticipants, description, coach_id) VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO event (name, date, nbrParticipants, description, coach_id, imageURL) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = cnx.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, event.getName());
-            ps.setDate(2, Date.valueOf(event.getStartDate()));
-            ps.setDate(3, Date.valueOf(event.getFinishDate()));
-            ps.setInt(4, event.getNbrParticipants());
-            ps.setString(5, event.getDescription());
-            ps.setInt(6, event.getCoachID());
+            ps.setDate(2, Date.valueOf(event.getDate()));
+            ps.setInt(3, event.getNbrParticipants());
+            ps.setString(4, event.getDescription());
+            ps.setInt(5, event.getCoachID());
+            ps.setString(6, event.getImageURL());
 
             int rowsAffected = ps.executeUpdate();
 
@@ -52,13 +53,12 @@ public class EventService implements IEventService<Event> {
 
             while (rs.next()) {
                 Event event = new Event();
-                event.setEventID(rs.getInt("eventID"));
+                event.setEventID(rs.getInt("event_id"));
                 event.setName(rs.getString("name"));
-                event.setStartDate(rs.getDate("startDate").toLocalDate());
-                event.setFinishDate(rs.getDate("finishDate").toLocalDate());
+                event.setDate(rs.getDate("date").toLocalDate());
                 event.setNbrParticipants(rs.getInt("nbrParticipants"));
                 event.setDescription(rs.getString("description"));
-                event.setCoachID(rs.getInt("coachID"));
+                event.setCoachID(rs.getInt("coach_id"));
 
                 events.add(event);
             }
@@ -73,15 +73,14 @@ public class EventService implements IEventService<Event> {
     @Override
     public void updateEvent(Event event, int id) {
         try {
-            String query = "UPDATE event SET `name`=?, `startDate`=?, `finishDate`=?, `nbrParticipants`=?, `description`=?, `coachID`=? WHERE eventID = ?";
+            String query = "UPDATE event SET `name`=?, `date`=?,  `nbrParticipants`=?, `description`=?, `coach_id`=? WHERE event_id = ?";
             PreparedStatement ps = cnx.prepareStatement(query);
             ps.setString(1, event.getName());
-            ps.setDate(2, Date.valueOf(event.getStartDate()));
-            ps.setDate(3, Date.valueOf(event.getFinishDate()));
-            ps.setInt(4, event.getNbrParticipants());
-            ps.setString(5, event.getDescription());
-            ps.setInt(6, event.getCoachID());
-            ps.setInt(7, id);
+            ps.setDate(2, Date.valueOf(event.getDate()));
+            ps.setInt(3, event.getNbrParticipants());
+            ps.setString(4, event.getDescription());
+            ps.setInt(5, event.getCoachID());
+            ps.setInt(6, id);
 
             int rowsAffected = ps.executeUpdate();
 
@@ -99,7 +98,7 @@ public class EventService implements IEventService<Event> {
     @Override
     public void deleteEvent(int id) {
         try {
-        String query = "DELETE FROM event WHERE eventID = ?";
+        String query = "DELETE FROM event WHERE event_id = ?";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setInt(1, id);
 
@@ -128,8 +127,7 @@ public class EventService implements IEventService<Event> {
                 Event e = new Event();
                 e.setEventID(rs.getInt("eventID"));
                 e.setName(rs.getString("name"));
-                e.setStartDate(rs.getDate("startDate").toLocalDate());
-                e.setFinishDate(rs.getDate("finishDate").toLocalDate());
+                e.setDate(rs.getDate("date").toLocalDate());
                 e.setNbrParticipants(rs.getInt("nbrParticipants"));
                 e.setDescription(rs.getString("description"));
                 e.setCoachID(rs.getInt("coachID"));
@@ -155,8 +153,7 @@ public class EventService implements IEventService<Event> {
                 Event e = new Event();
                 e.setEventID(rs.getInt("eventID"));
                 e.setName(rs.getString("name"));
-                e.setStartDate(rs.getDate("startDate").toLocalDate());
-                e.setFinishDate(rs.getDate("finishDate").toLocalDate());
+                e.setDate(rs.getDate("date").toLocalDate());
                 e.setNbrParticipants(rs.getInt("nbrParticipants"));
                 e.setDescription(rs.getString("description"));
                 e.setCoachID(rs.getInt("coachID"));
@@ -182,8 +179,7 @@ public class EventService implements IEventService<Event> {
                 Event e = new Event();
                 e.setEventID(rs.getInt("eventID"));
                 e.setName(rs.getString("name"));
-                e.setStartDate(rs.getDate("startDate").toLocalDate());
-                e.setFinishDate(rs.getDate("finishDate").toLocalDate());
+                e.setDate(rs.getDate("date").toLocalDate());
                 e.setNbrParticipants(rs.getInt("nbrParticipants"));
                 e.setDescription(rs.getString("description"));
                 e.setCoachID(rs.getInt("coachID"));

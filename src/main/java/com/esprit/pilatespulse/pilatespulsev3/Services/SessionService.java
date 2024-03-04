@@ -15,14 +15,15 @@ public class SessionService implements ISessionService<Session> {
     @Override
     public void addSession(Session session) {
         try {
-            String request = "INSERT INTO `session`(`name`, `description`, `duration`, `coach_id`, `event_id`, `date`) VALUES (?, ?, ?, ?, ?, ?)";
+            String request = "INSERT INTO `session`( `name`, `description`, `duration`, `coach_id`, `event_id`, `startTime`, `date`) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setString(1, session.getName());
             ps.setString(2, session.getDescription());
             ps.setInt(3, session.getDuration());
             ps.setInt(4, session.getCoachID());
             ps.setInt(5, session.getEventID());
-            ps.setDate(6, session.getDate());
+            ps.setTime(6, Time.valueOf(session.getStartTime()));
+            ps.setDate(7, Date.valueOf(session.getDate()));
 
             int rowsAffected = ps.executeUpdate();
 
@@ -41,19 +42,21 @@ public class SessionService implements ISessionService<Session> {
         List<Session> sessions = new ArrayList<>();
 
         try {
-            String req = "SELECT * FROM session";
-            Statement st = cnx.createStatement();
+            String req = "SELECT * FROM Session ";
+            PreparedStatement st = cnx.prepareStatement(req);
             ResultSet rs = st.executeQuery(req);
 
             while (rs.next()) {
                 Session session = new Session();
-                session.setSessionID(rs.getInt("sessionID"));
+                System.out.println("ena lenna");
+                session.setSessionID(rs.getInt("session_id"));
                 session.setName(rs.getString("name"));
                 session.setDescription(rs.getString("description"));
                 session.setDuration(rs.getInt("duration"));
-                session.setCoachID(rs.getInt("coachID"));
-                session.setEventID(rs.getInt("eventID"));
-                session.setDate(rs.getDate("date"));
+                session.setCoachID(rs.getInt("coach_id"));
+                session.setEventID(rs.getInt("event_id"));
+                session.setStartTime(rs.getTime("startTime").toLocalTime());
+                session.setDate(rs.getDate("date").toLocalDate());
 
                 sessions.add(session);
             }
@@ -61,22 +64,23 @@ public class SessionService implements ISessionService<Session> {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
+        System.out.println(sessions.size());
         return sessions;
     }
 
     @Override
     public void updateSession(Session session, int id) {
         try {
-            String request = "UPDATE session SET name=?, description=?, duration=?, coach_id=?, event_id=?, date=? WHERE sessionID=?";
+            String request = "UPDATE session SET name=?, description=?, duration=?, coach_id=?, event_id=?, startTime=?, date=? WHERE session_id=?";
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setString(1, session.getName());
             ps.setString(2, session.getDescription());
             ps.setInt(3, session.getDuration());
             ps.setInt(4, session.getCoachID());
             ps.setInt(5, session.getEventID());
-            ps.setDate(6, session.getDate());
-            ps.setInt(7, session.getSessionID());
+            ps.setDate(6, Date.valueOf(session.getDate()));
+            ps.setTime(7, Time.valueOf(session.getStartTime()));
+            ps.setInt(8, session.getSessionID());
 
             int rowsAffected = ps.executeUpdate();
 
@@ -93,7 +97,7 @@ public class SessionService implements ISessionService<Session> {
     @Override
     public void deleteSession(int id) {
         try {
-            String request = "DELETE FROM session WHERE sessionID=?";
+            String request = "DELETE FROM session WHERE session_id=?";
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setInt(1, id);
 
@@ -124,7 +128,8 @@ public class SessionService implements ISessionService<Session> {
             s.setDuration(rs.getInt("duration"));
             s.setCoachID(rs.getInt("coachID"));
             s.setEventID(rs.getInt("eventID"));
-            s.setDate(rs.getDate("date"));
+            s.setStartTime(rs.getTime("startTime").toLocalTime());
+            s.setDate(rs.getDate("date").toLocalDate());
 
             sessions.add(s);
         }

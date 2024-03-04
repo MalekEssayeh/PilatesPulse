@@ -5,18 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d0c1fb3-9b4a-467b-b7ca-696c2616e101" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Controllers/AddEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/esprit/pilatespulse/pilatespulsev3/AddEvent.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Controllers/AddEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Controllers/AddEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Interfaces/IEventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Interfaces/IEventService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Interfaces/IParticipationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Interfaces/IParticipationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Participation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Participation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Models/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/EventService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/ParticipationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/ParticipationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/SessionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Services/SessionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Test/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Utils/MyDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/esprit/pilatespulse/pilatespulsev3/Utils/MyDB.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +28,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="JavaFXApplication" />
         <option value="FxmlFile" />
         <option value="Class" />
-        <option value="JavaFXApplication" />
       </list>
     </option>
   </component>
@@ -54,7 +55,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "Application.MainFX.executor": "Run",
     "Maven.PilatesPulseV3 [clean].executor": "Run",
     "Maven.PilatesPulseV3 [org.apache.maven.plugins:maven-clean-plugin:2.5:clean].executor": "Run",
@@ -79,6 +80,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.esprit.pilatespulse.pilatespulsev3.Controllers" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.esprit.pilatespulse.pilatespulsev3.Test.Main" />
@@ -126,7 +132,9 @@
       <workItem from="1708916300345" duration="13673000" />
       <workItem from="1709038920414" duration="489000" />
       <workItem from="1709076813591" duration="87000" />
-      <workItem from="1709256531417" duration="16686000" />
+      <workItem from="1709256531417" duration="25192000" />
+      <workItem from="1709457997245" duration="6155000" />
+      <workItem from="1709542599674" duration="9279000" />
     </task>
     <servers />
   </component>

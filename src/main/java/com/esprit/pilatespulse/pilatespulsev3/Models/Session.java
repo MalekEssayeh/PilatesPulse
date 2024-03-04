@@ -2,6 +2,8 @@ package com.esprit.pilatespulse.pilatespulsev3.Models;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Session {
 
@@ -11,13 +13,13 @@ public class Session {
     private int duration;
     private int coachID;
     private int eventID;
-    private Time startTime;
-    private Date date;
+    private LocalTime startTime;
+    private LocalDate date;
 
     public Session() {
     }
 
-    public Session(int sessionID, String name, String description, int duration, int coachID, int eventID, Time startTime, Date date) {
+    public Session(int sessionID, String name, String description, int duration, int coachID, int eventID, LocalTime startTime, LocalDate date) {
         this.sessionID = sessionID;
         this.name = name;
         this.description = description;
@@ -28,7 +30,7 @@ public class Session {
         this.date = date;
     }
 
-    public Session(String name, String description, int duration, int coachID, int eventID, Time startTime, Date date) {
+    public Session(String name, String description, int duration, int coachID, int eventID, LocalTime startTime, LocalDate date) {
         this.name = name;
         this.description = description;
         this.duration = duration;
@@ -86,19 +88,19 @@ public class Session {
         this.eventID = eventID;
     }
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
