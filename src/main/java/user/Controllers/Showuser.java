@@ -43,16 +43,7 @@ public class Showuser {
 
     private final userService us = new userService();
 
- /*   @FXML
-    void initialize() {
-        try {
-            List<user> userList = us.show();
-            usersLV.getItems().addAll(userList);
-        } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
-        }
-        filterCB.getItems().addAll("nom", "prenom");
-    }*/
+
  @FXML
  void initialize() {
      try {
@@ -203,26 +194,7 @@ public class Showuser {
         usersLV.setItems(observableSearchResults);
     }
 
-  /*  @FXML
-    void filterUsers(ActionEvent event) {
-        // Get the selected filter option from the ChoiceBox
-        String selectedFilter = filterCB.getValue();
 
-        // Retrieve the list of users based on the selected filter option
-        List<user> filteredUsers;
-        if ("nom".equals(selectedFilter)) {
-            filteredUsers = us.filterByName("nom");
-        } else if ("prenom".equals(selectedFilter)) {
-            filteredUsers = us.filterByName("prenom");
-        } else {
-            // Handle invalid or null filter option
-            return;
-        }
-
-        // Update the ListView with the filtered list of users
-        ObservableList<user> observableFilteredUsers = FXCollections.observableArrayList(filteredUsers);
-        usersLV.setItems(observableFilteredUsers);
-    }*/
   public void filterUsers(ActionEvent actionEvent) {
       if(filterCB.getValue().equals("nom")) {
           List<user> filteredUsers =  usersLV.getItems().stream().sorted(Comparator.comparing(user::getNom)).toList();

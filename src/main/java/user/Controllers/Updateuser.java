@@ -14,6 +14,7 @@ import user.Services.userService;
 import user.Models.user;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class Updateuser {
     @FXML
@@ -37,6 +38,8 @@ public class Updateuser {
     public void setSelectedUser(user selectedUser) {
         this.selectedUser = selectedUser;
     }
+
+
     public void initialize() {
         // Initialize the ChoiceBox with role options
         ObservableList<String> roles = FXCollections.observableArrayList("client", "coach");
@@ -75,6 +78,7 @@ public class Updateuser {
 
         // Call the userService to update the user in the database
         try {
+
             userService.update(selectedUser);
             // Show a success message
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -103,6 +107,13 @@ public class Updateuser {
         } catch (IOException e) {
             e.printStackTrace(); // Handle the exception appropriately (e.g., log it)
         }
+    }
+    private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 
