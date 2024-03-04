@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #260043;" stylesheets="styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.ShowPromo">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(#c9a0e1, #94618e);" stylesheets="styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.ShowPromo">
    <children>
-      <ImageView fitHeight="647.0" fitWidth="967.0" layoutX="-64.0" opacity="0.3" pickOnBounds="true">
+      <ImageView fitHeight="661.0" fitWidth="915.0" layoutX="-9.0" layoutY="-1.0" opacity="0.26" pickOnBounds="true">
          <image>
-            <Image url="@/images/alexis.jpg" />
+            <Image url="@/images/_388271b9-fa8f-41e9-b327-437b55d3c931.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="266.0" layoutY="86.0" text="Discount Codes" textFill="#f784cd">
+      <Label layoutX="266.0" layoutY="86.0" text="Discount Codes" textFill="#c73389">
          <font>
             <Font name="Britannic Bold" size="64.0" />
          </font>
