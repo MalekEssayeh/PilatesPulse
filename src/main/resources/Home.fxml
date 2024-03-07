@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Home">
+<AnchorPane prefHeight="716.0" prefWidth="953.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.Controllers.Home">
    <children>
       <ImageView fitHeight="49.0" fitWidth="54.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -35,6 +35,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <MFXButton layoutX="285.0" layoutY="202.0" onAction="#gestphyAct" />
+      <MFXButton layoutX="145.0" layoutY="183.0" onAction="#gestphyAct" prefHeight="215.0" prefWidth="270.0" styleClass="mfx-button" stylesheets="@css/MFXButton.css" text="Programme/Exercice" />
+      <MFXButton layoutX="524.0" layoutY="183.0" onAction="#Shop" prefHeight="215.0" prefWidth="270.0" text="Shop" />
    </children>
 </AnchorPane>

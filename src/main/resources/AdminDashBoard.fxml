@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="716.0" prefWidth="953.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.PilatePulse.controllers.AdminDashBoard">
+   <children>
+      <Label fx:id="label1" layoutX="194.0" layoutY="98.0" prefHeight="94.0" prefWidth="602.0" text="DashBoard Shop" textAlignment="CENTER" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="72.0" />
+         </font>
+      </Label>
+      <Pane layoutX="210.0" layoutY="224.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #403060;">
+         <children>
+            <Label fx:id="label11" layoutX="23.0" layoutY="14.0" prefHeight="94.0" prefWidth="154.0" text="Afficher la liste des produits" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="210.0" layoutY="456.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #403060;">
+         <children>
+            <Label fx:id="label112" layoutX="23.0" layoutY="14.0" prefHeight="94.0" prefWidth="154.0" text="Afficher la liste des categories" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="554.0" layoutY="224.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #403060;">
+         <children>
+            <Label fx:id="label111" layoutX="23.0" layoutY="14.0" prefHeight="94.0" prefWidth="154.0" text="Afficher la liste des Ratings" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="554.0" layoutY="456.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #403060;">
+         <children>
+            <Label fx:id="label1111" layoutX="23.0" layoutY="14.0" prefHeight="94.0" prefWidth="154.0" text="Afficher le Shop" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <MFXButton fx:id="shopButton" layoutX="597.0" layoutY="592.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayShop" prefHeight="38.0" prefWidth="114.0" rippleColor="#403060" style="-fx-background-color: #f0a6ca; -fx-text-fill: #ffffff;" text="Shop">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="ratingButton" layoutX="597.0" layoutY="366.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayRatings" prefHeight="38.0" prefWidth="114.0" rippleColor="#403060" style="-fx-background-color: #f0a6ca; -fx-text-fill: #ffffff;" text="Rating">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="categoriesButton" layoutX="253.0" layoutY="582.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayCategories" prefHeight="38.0" prefWidth="114.0" rippleColor="#403060" style="-fx-background-color: #f0a6ca; -fx-text-fill: #ffffff;" text="Categories">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="productsButton" layoutX="253.0" layoutY="366.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayProducts" prefHeight="38.0" prefWidth="114.0" rippleColor="#403060" style="-fx-background-color: #f0a6ca; -fx-text-fill: #ffffff;" text="Produits">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
+   </children>
+</AnchorPane>

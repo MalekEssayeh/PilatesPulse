@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="469.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.PilatePulse.controllers.CategoriesDashboard">
+   <children>
+      <AnchorPane layoutY="-6.0" prefHeight="716.0" prefWidth="953.0" style="-fx-background-color: #FFDBFD;">
+         <children>
+            <MFXLegacyListView fx:id="categoriesList" layoutX="79.0" layoutY="228.0" prefHeight="400.0" prefWidth="775.0" />
+            <Label fx:id="label1" layoutX="283.0" layoutY="65.0" prefHeight="99.0" prefWidth="387.0" text="Categories" textAlignment="CENTER" textFill="#403060">
+               <font>
+                  <Font name="Century Gothic Bold" size="72.0" />
+               </font>
+            </Label>
+            <MFXButton fx:id="addID" layoutX="648.0" layoutY="646.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#addButton" prefHeight="38.0" prefWidth="114.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Ajouter">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </MFXButton>
+            <MFXButton fx:id="deleteid" layoutX="413.0" layoutY="646.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#deleteButton" prefHeight="38.0" prefWidth="114.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Supprimer">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </MFXButton>
+            <MFXButton fx:id="updateid" layoutX="171.0" layoutY="646.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#UpdateButton" prefHeight="38.0" prefWidth="114.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Editer">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </MFXButton>
+         </children>
+      </AnchorPane>
+      <MFXButton fx:id="homeButton" layoutX="47.0" layoutY="35.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayDashboard" prefHeight="38.0" prefWidth="114.0" rippleColor="#403060" style="-fx-background-color: #f0a6ca; -fx-text-fill: #ffffff;" text="Home">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
+   </children>
+</AnchorPane>

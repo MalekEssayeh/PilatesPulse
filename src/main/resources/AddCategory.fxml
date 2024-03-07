@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="716.0" prefWidth="953.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.PilatePulse.controllers.AddCategory">
+   <children>
+      <Label fx:id="label1" layoutX="137.0" layoutY="107.0" prefHeight="94.0" prefWidth="768.0" text="Ajouter Categorie" textAlignment="CENTER" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="72.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="idField" floatingText="Reference de categorie" layoutX="327.0" layoutY="237.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="244.0" styleClass="mfx-text-field" stylesheets="@css/MFXTextField.css">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+         </textFill>
+      </MFXTextField>
+      <MFXTextField fx:id="nameFieldCat" floatingText="Nom categorie" layoutX="327.0" layoutY="358.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="244.0" styleClass="mfx-text-field" stylesheets="@css/MFXTextField.css">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+         </textFill>
+      </MFXTextField>
+      <MFXButton fx:id="addButtonid" layoutX="384.0" layoutY="495.0" onAction="#addCategory" prefHeight="26.0" prefWidth="129.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Confirmer" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="homeButton1" layoutX="42.0" layoutY="48.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#adminDashboard" prefHeight="38.0" prefWidth="114.0" rippleColor="#403060" style="-fx-background-color: #f0a6ca; -fx-text-fill: #ffffff;" text="Home">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
+   </children>
+</AnchorPane>

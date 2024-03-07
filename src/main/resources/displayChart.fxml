@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.PilatePulse.controllers.DisplayChart">
+   <children>
+      <AnchorPane layoutX="-11.0" prefHeight="716.0" prefWidth="953.0" style="-fx-background-color: #FFDBFD;">
+         <children>
+            <BarChart fx:id="prodyuctsBarChart" layoutX="68.0" layoutY="200.0" prefHeight="470.0" prefWidth="813.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <Label fx:id="label1" layoutX="142.0" layoutY="80.0" prefHeight="94.0" prefWidth="768.0" text="Produit Statistique" textAlignment="CENTER" textFill="#403060">
+               <font>
+                  <Font name="Century Gothic Bold" size="72.0" />
+               </font>
+            </Label>
+            <MFXButton fx:id="ratingsButton" layoutX="782.0" layoutY="39.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayRatings" prefHeight="38.0" prefWidth="140.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Ratings">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </MFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

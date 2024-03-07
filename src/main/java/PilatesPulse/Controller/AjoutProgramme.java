@@ -80,17 +80,31 @@ public class AjoutProgramme implements Initializable {
 
         else
         {
-        programmeService.add(new Programme(ThreadLocalRandom.current().nextInt(1000, 2852), UserSession.getId(),NomProgramme.getText(), (int) Duree.getValue(),lsEX));
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherProgramme.fxml"));
-                Parent root = loader.load();
+                boolean containsBadWords = BadWordsChecker.checkForBadWords(NomProgramme.getText());
+                if(!containsBadWords){
+                    programmeService.add(new Programme(ThreadLocalRandom.current().nextInt(1000, 2852), UserSession.getId(),NomProgramme.getText(), (int) Duree.getValue(),lsEX));
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherProgramme.fxml"));
+                        Parent root = loader.load();
 
-                Scene currentScene = ((Node) event.getSource()).getScene();
+                        Scene currentScene = ((Node) event.getSource()).getScene();
 
-                currentScene.setRoot(root);
+                        currentScene.setRoot(root);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }}
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Mauvais mots test");
+                    alert.setHeaderText("Une erreur s'est produite");
+                    alert.setContentText("Mauvais mot detecté");
+                    alert.showAndWait();
+                }
             } catch (IOException e) {
-                e.printStackTrace();
-            }}
+                throw new RuntimeException(e);
+            }
+           }
     }
 
     @FXML

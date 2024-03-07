@@ -306,7 +306,23 @@ if(UserSession.getRole().equals("client")) {
             e.printStackTrace();
         }
     }
+    public void Home(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("View As Client");
+            stage.show();
 
+            // Close the current stage (Backend stage)
+            Node source = (Node) event.getSource();
+            Stage currentStage = (Stage) source.getScene().getWindow();
+            currentStage.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void handleCellClick(javafx.scene.input.MouseEvent mouseEvent) {
 

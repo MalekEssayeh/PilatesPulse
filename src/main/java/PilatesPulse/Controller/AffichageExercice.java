@@ -15,6 +15,7 @@
     import javafx.scene.Node;
     import javafx.scene.Parent;
     import javafx.scene.Scene;
+    import javafx.scene.control.Alert;
     import javafx.scene.control.Label;
     import javafx.scene.control.ListCell;
     import javafx.scene.control.ListView;
@@ -446,6 +447,18 @@
 
         }
 
+        public void Home(ActionEvent event) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Home.fxml"));
+                Parent root = loader.load();
+
+                Scene currentScene = ((Node) event.getSource()).getScene();
+
+                currentScene.setRoot(root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

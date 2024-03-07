@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.PilatePulse.controllers.DisplayWishList">
+   <children>
+      <AnchorPane layoutX="-4.0" layoutY="2.0" prefHeight="716.0" prefWidth="953.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);">
+         <children>
+            <AnchorPane fx:id="navBar" layoutX="-9.0" layoutY="-1.0" prefHeight="67.0" prefWidth="810.0" style="-fx-background-color: #ECECEC;" visible="false">
+               <children>
+                  <Label layoutX="685.0" layoutY="20.0" prefHeight="17.0" prefWidth="80.0" text="Pilates Pulse" textFill="#120228">
+                     <font>
+                        <Font name="Lucida Handwriting Italic" size="10.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="logoImg" fitHeight="29.0" fitWidth="33.0" layoutX="765.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../java/tn/PilatePulse/Images/Logo.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="searchTextField" layoutX="79.0" layoutY="16.0" prefHeight="17.0" prefWidth="114.0" text="Search..." />
+                  <MFXButton fx:id="searchButton" layoutX="204.0" layoutY="16.0" onAction="#search" prefHeight="17.0" prefWidth="39.0" text="OK" />
+                  <MFXButton fx:id="eventsButton" layoutX="585.0" layoutY="16.0" rippleColor="#ececec" style="-fx-background-color: ECECEC;" text="Events" />
+                  <MFXButton fx:id="shopButton" layoutX="546.0" layoutY="16.0" onAction="#returnToShop" style="-fx-background-color: ECECEC;" text="Shop" />
+                  <MFXButton fx:id="exercicesButton" layoutX="421.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Exercices" />
+                  <MFXButton fx:id="programsButton" layoutX="482.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Programs" />
+                  <MFXButton fx:id="homeButton" layoutX="21.0" layoutY="16.0" style="-fx-background-color: ECECEC;" text="Home" />
+               </children>
+            </AnchorPane>
+            <MFXLegacyListView fx:id="productList" layoutX="39.0" layoutY="223.0" prefHeight="294.0" prefWidth="875.0" style="-fx-background-color: linear-gradient(#eed5f4, #ffe5e7);" />
+            <Label fx:id="label1" layoutX="325.0" layoutY="58.0" prefHeight="94.0" prefWidth="302.0" text="Wish List" textAlignment="CENTER" textFill="#403060">
+               <font>
+                  <Font name="Century Gothic Bold" size="72.0" />
+               </font>
+            </Label>
+            <MFXButton fx:id="addToCartButton" layoutX="775.0" layoutY="536.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#addToCart" prefHeight="38.0" prefWidth="140.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Ajouter cart">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </MFXButton>
+            <MFXButton fx:id="shopButton" layoutX="50.0" layoutY="536.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#returnToShop" prefHeight="38.0" prefWidth="201.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Continuer Shopping">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </MFXButton>
+            <MFXButton fx:id="removeButton" layoutX="275.0" layoutY="536.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#DeleteProductSelected" prefHeight="38.0" prefWidth="128.0" rippleColor="#403060" style="-fx-background-color: #403060; -fx-text-fill: #ffffff;" text="Supprimer">
+               <font>
+                  <Font name="Century Gothic Bold" size="18.0" />
+               </font>
+            </MFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

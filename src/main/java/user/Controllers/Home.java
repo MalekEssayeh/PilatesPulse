@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import java.io.IOException;
 import user.Models.user;
+import user.Utils.UserSession;
 
 public class Home {
 
@@ -87,4 +88,34 @@ public class Home {
         } catch (IOException e) {
             e.printStackTrace();
         }
-}}
+}
+
+    public void Shop(ActionEvent event) {
+        if(!UserSession.getRole().equals("admin"))
+        {try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DisplayShop.fxml"));
+            Parent root = loader.load();
+
+            Scene currentScene = ((Node) event.getSource()).getScene();
+
+            currentScene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }}
+        else{
+            try{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashBoard.fxml"));
+                Parent root = loader.load();
+
+                Scene currentScene = ((Node) event.getSource()).getScene();
+
+                currentScene.setRoot(root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+    }
+}

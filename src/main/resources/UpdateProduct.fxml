@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="716.0" prefWidth="953.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.PilatePulse.controllers.UpdateProduct">
+   <children>
+      <AnchorPane layoutX="-7.0" layoutY="-6.0" prefHeight="716.0" prefWidth="953.0" style="-fx-background-color: #FFDBFD;">
+         <children>
+            <MFXButton fx:id="updateButton" layoutX="413.0" layoutY="558.0" onAction="#update" prefHeight="40.0" prefWidth="112.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Confirmer" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font>
+            </MFXButton>
+         </children>
+      </AnchorPane>
+      <Label fx:id="label1" layoutX="184.0" layoutY="56.0" prefHeight="94.0" prefWidth="768.0" text="Modifier Produit" textAlignment="CENTER" textFill="#403060">
+         <font>
+            <Font name="Century Gothic Bold" size="72.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="nomProductiD" floatingText="Nom Produit" layoutX="199.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" styleClass="mfx-text-field" stylesheets="@css/MFXTextField.css">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+         </textFill>
+      </MFXTextField>
+      <MFXTextField fx:id="prixProductID" floatingText="Prix" layoutX="199.0" layoutY="303.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" styleClass="mfx-text-field" stylesheets="@css/MFXTextField.css">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+         </textFill>
+      </MFXTextField>
+      <MFXTextField fx:id="idCategoryID" floatingText="Reference de categorie" layoutX="199.0" layoutY="457.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" styleClass="mfx-text-field" stylesheets="@css/MFXTextField.css">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+         </textFill>
+      </MFXTextField>
+      <MFXTextField fx:id="stockID" floatingText="Quantité" layoutX="199.0" layoutY="381.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="244.0" styleClass="mfx-text-field" stylesheets="@css/MFXTextField.css">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+         </textFill>
+      </MFXTextField>
+      <MFXTextField fx:id="descriptionID" floatingText="Description" layoutX="499.0" layoutY="218.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="244.0" styleClass="mfx-text-field" stylesheets="@css/MFXTextField.css">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+         </textFill>
+      </MFXTextField>
+      <MFXTextField fx:id="imgURLId" floatingText="Image Url" layoutX="499.0" layoutY="457.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="170.0" styleClass="mfx-text-field" stylesheets="@css/MFXTextField.css">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+         <textFill>
+            <Color red="0.250980406999588" green="0.1882352977991104" blue="0.3764705955982208" />
+         </textFill>
+      </MFXTextField>
+      <MFXButton fx:id="uploadButton" layoutX="669.0" layoutY="457.0" onAction="#browse" prefHeight="40.0" prefWidth="85.0" rippleColor="WHITE" style="-fx-background-color: #403060; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Parcourir" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="14.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="homeButton1" layoutX="24.0" layoutY="36.0" onAction="#adminDashBoard" prefHeight="40.0" prefWidth="112.0" rippleColor="WHITE" style="-fx-background-color: #f0a6ca; -fx-text-fill: #FFFFFF;" stylesheets="@css/MFXButton.css" text="Home" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font>
+      </MFXButton>
+   </children>
+</AnchorPane>
